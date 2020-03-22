@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Dto {
     [DataContract]
-    class AdminDto {
+    public class AdminDto {
         [DataMember]
         public int id { get; set; }
         

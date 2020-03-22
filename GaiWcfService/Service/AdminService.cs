@@ -1,4 +1,7 @@
 ﻿using GaiWcfService.Dto;
+using GaiWcfService.Repository.contract;
+using GaiWcfService.Repository.implementation;
+using GaiWcfService.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,82 +13,106 @@ namespace GaiWcfService.Service {
     public class AdminService : IAdminService {
         private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
 
+        private IAdminRepository adminRepository = new AdminRepository();
+        
+        private IEmployeeRepository employeeRepository = new EmployeeRepository();
+
+        private IPaymentRepository paymentRepository = new PaymentRepository();
+
+        private IShiftRepository shiftRepository = new ShiftRepository();
+
+        private IViolationRepository violationRepository = new ViolationRepository();
+
+        private IViolationTypeRepository violationTypeRepository = new ViolationTypeRepository();
+
+        private IViolatorRepository violatorRepository = new ViolatorRepository();
+        
         public string Test() {
             Admin admin = new Admin() { id = 1, password = "pass", username = "username"};
             AdminDto adminDto = Util.Mapper.mapper.Map<AdminDto>(admin);
 
             return $"{adminDto.id} -- {adminDto.username} -- {adminDto.password}";
         }
+
+        public void AddAdimn(AdminDto admin) {
+            adminRepository.AddAdimn(Mapper.mapper.Map<Admin>(admin));
+        }
+
+        public void EditAdmin(int id, AdminDto admin) {
+            adminRepository.EditAdmin(id, Mapper.mapper.Map<Admin>(admin));
+        }
+
         public void AddEmployee(EmployeeDto employee) {
-            throw new NotImplementedException();
+            employeeRepository.AddEmployee(Mapper.mapper.Map<Employee>(employee));
         }
 
-        public void AddPayment(PaymentDto payment) {
-            throw new NotImplementedException();
-        }
-
-        public void AddShift(ShiftDto shift) {
-            throw new NotImplementedException();
-        }
-
-        public void AddViolation(ViolationDto violation) {
-            throw new NotImplementedException();
-        }
-
-        public void AddViolationType(ViolationTypeDto violationType) {
-            throw new NotImplementedException();
-        }
-
-        public void AddViolator(ViolatorDto violator) {
-            throw new NotImplementedException();
+        public void EditEmployee(int id, EmployeeDto employee) {
+            employeeRepository.EditEmployee(id, Mapper.mapper.Map<Employee>(employee));
         }
 
         public void DeleteEmployee(int id) {
-            throw new NotImplementedException();
+            employeeRepository.DeleteEmployee(id);
         }
 
-        public void DeletePayment(int id) {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteShift(int id) {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteViolation(int id) {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteViolationType(int id) {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteViolator(int id) {
-            throw new NotImplementedException();
-        }
-
-        public void EditEmployee(int id, Employee employee) {
-            throw new NotImplementedException();
+        public void AddPayment(PaymentDto payment) {
+            paymentRepository.AddPayment(Mapper.mapper.Map<Payment>(payment));
         }
 
         public void EditPayment(int id, PaymentDto payment) {
-            throw new NotImplementedException();
+            paymentRepository.EditPayment(id, Mapper.mapper.Map<Payment>(payment));
+        }
+
+        public void DeletePayment(int id) {
+            paymentRepository.DeletePayment(id);
+        }
+
+        public void AddShift(ShiftDto shift) {
+            shiftRepository.AddShift(Mapper.mapper.Map<Shift>(shift));
         }
 
         public void EditShift(int id, ShiftDto shift) {
-            throw new NotImplementedException();
+            shiftRepository.EditShift(id, Mapper.mapper.Map<Shift>(shift));
+        }
+
+        public void DeleteShift(int id) {
+            shiftRepository.DeleteShift(id);
+        }
+
+        public void AddViolation(ViolationDto violation) {
+            violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation));
         }
 
         public void EditViolation(int id, ViolationDto violation) {
-            throw new NotImplementedException();
+            violationRepository.EditViolation(id, Mapper.mapper.Map<Violation>(violation));
+        }
+
+        public void DeleteViolation(int id) {
+            violationRepository.DeleteViolation(id);
+        }
+
+        public void AddViolationType(ViolationTypeDto violationType) {
+            violationTypeRepository.AddViolationType(Mapper.mapper.Map<ViolationType>(violationType));
         }
 
         public void EditViolationType(int id, ViolationTypeDto violationType) {
-            throw new NotImplementedException();
+            violationTypeRepository.EditViolationType(id, Mapper.mapper.Map<ViolationType>(violationType));
+        }
+
+        public void DeleteViolationType(int id) {
+            violationTypeRepository.DeleteViolationType(id);
+        }
+
+        public void AddViolator(ViolatorDto violator) {
+            violatorRepository.AddViolator(Mapper.mapper.Map<Violator>(violator));
         }
 
         public void EditViolator(int id, ViolatorDto violator) {
-            throw new NotImplementedException();
+            violatorRepository.EditViolator(id, Mapper.mapper.Map<Violator>(violator));
         }
+
+        public void DeleteViolator(int id) {
+            violatorRepository.DeleteViolator(id);
+        }
+
     }
 }

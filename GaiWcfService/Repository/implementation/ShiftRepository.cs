@@ -1,0 +1,31 @@
+﻿using GaiWcfService.Repository.contract;
+using GaiWcfService.Util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GaiWcfService.Repository.implementation {
+    class ShiftRepository : IShiftRepository {
+        private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
+
+        public void AddShift(Shift shift) {
+            dbEntities.instance.Shifts.Add(shift);
+            dbEntities.instance.SaveChanges();
+        }
+        
+        public void EditShift(int id, Shift shift) {
+            Shift oldShift = dbEntities.instance.Shifts.Find(id);
+            dbEntities.instance.Entry(oldShift).CurrentValues.SetValues(shift);
+        }
+
+        public void DeleteShift(int id) {
+            Shift shift = dbEntities.instance.Shifts.Find(id);
+            dbEntities.instance.Shifts.Remove(shift);
+            dbEntities.instance.SaveChanges();
+        }
+
+
+    }
+}
