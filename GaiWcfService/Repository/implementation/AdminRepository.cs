@@ -17,7 +17,10 @@ namespace GaiWcfService.Repository.implementation {
 
         public void EditAdmin(int id, Admin admin) {
             Admin oldAdmin = dbEntities.instance.Admins.Find(id);
-            dbEntities.instance.Entry(oldAdmin).CurrentValues.SetValues(admin);
+            oldAdmin.username = admin.username;
+            oldAdmin.password = admin.password;
+
+            dbEntities.instance.SaveChanges();
         }
 
         public Admin GetAdmin(int id) {

@@ -23,7 +23,16 @@ namespace GaiWcfService.Repository.implementation {
 
         public void EditEmployee(int id, Employee employee) {
             Employee oldEmployee = dbEntities.instance.Employees.Find(id);
-            dbEntities.instance.Entry(oldEmployee).CurrentValues.SetValues(employee);
+            oldEmployee.name = employee.name;
+            oldEmployee.surname = employee.surname;
+            oldEmployee.patronymic = employee.patronymic;
+            oldEmployee.hire_date = employee.hire_date;
+            oldEmployee.rank = employee.rank;
+            oldEmployee.Shifts = employee.Shifts;
+            oldEmployee.username = employee.username;
+            oldEmployee.patronymic = employee.password;
+            
+            dbEntities.instance.SaveChanges();
         }
 
         public HashSet<Employee> GetAll() {

@@ -17,7 +17,13 @@ namespace GaiWcfService.Repository.implementation {
 
         public void EditViolator(int id, Violator violator) {
             Violator oldViolatior = dbEntities.instance.Violators.Find(id);
-            dbEntities.instance.Entry(oldViolatior).CurrentValues.SetValues(violator);
+            oldViolatior.name = violator.name;
+            oldViolatior.actual_penalty = violator.actual_penalty;
+            oldViolatior.paid_penalty = violator.paid_penalty;
+            oldViolatior.passport_id = violator.passport_id;
+            oldViolatior.patronymic = violator.patronymic;
+            oldViolatior.surname = violator.surname;
+            dbEntities.instance.SaveChanges();
         }
 
         public void DeleteViolator(int id) {

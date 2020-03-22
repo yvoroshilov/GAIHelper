@@ -23,8 +23,10 @@ namespace GaiWcfService.Repository.implementation {
 
         public void EditPayment(int id, Payment payment) {
             Payment oldPayment = dbEntities.instance.Payments.Find(id);
-            dbEntities.instance.Entry(oldPayment).CurrentValues.SetValues(payment);
-            
+            oldPayment.violator_id = payment.violator_id;
+            oldPayment.payday = payment.payday;
+            oldPayment.is_paid = payment.is_paid;
+            dbEntities.instance.SaveChanges();            
         }
 
         public HashSet<Payment> GetAll() {

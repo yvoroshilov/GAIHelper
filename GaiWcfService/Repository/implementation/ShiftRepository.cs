@@ -17,7 +17,10 @@ namespace GaiWcfService.Repository.implementation {
         
         public void EditShift(int id, Shift shift) {
             Shift oldShift = dbEntities.instance.Shifts.Find(id);
-            dbEntities.instance.Entry(oldShift).CurrentValues.SetValues(shift);
+            oldShift.start = shift.start;
+            oldShift.end = shift.end;
+            oldShift.responible_id = shift.responible_id;
+            dbEntities.instance.SaveChanges();
         }
 
         public void DeleteShift(int id) {

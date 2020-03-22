@@ -17,7 +17,10 @@ namespace GaiWcfService.Repository.implementation {
 
         public void EditViolationType(int id, ViolationType violationType) {
             ViolationType oldViolationType = dbEntities.instance.ViolationTypes.Find(id);
-            dbEntities.instance.Entry(oldViolationType).CurrentValues.SetValues(violationType);
+            oldViolationType.title = violationType.title;
+            oldViolationType.min_penalty = violationType.min_penalty;
+            oldViolationType.description = violationType.description;
+            dbEntities.instance.SaveChanges();
         }
 
         public void DeleteViolationType(int id) {
