@@ -25,5 +25,13 @@ namespace GaiWcfService.Repository.implementation {
             Employee oldEmployee = dbEntities.instance.Employees.Find(id);
             dbEntities.instance.Entry(oldEmployee).CurrentValues.SetValues(employee);
         }
+
+        public HashSet<Employee> GetAll() {
+            return dbEntities.instance.Employees.ToHashSet();
+        }
+
+        public Employee GetEmployee(int id) {
+            return dbEntities.instance.Employees.Find(id);
+        }
     }
 }

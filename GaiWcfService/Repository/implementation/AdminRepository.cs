@@ -19,5 +19,13 @@ namespace GaiWcfService.Repository.implementation {
             Admin oldAdmin = dbEntities.instance.Admins.Find(id);
             dbEntities.instance.Entry(oldAdmin).CurrentValues.SetValues(admin);
         }
+
+        public Admin GetAdmin(int id) {
+            return dbEntities.instance.Admins.Find(id);
+        }
+
+        public HashSet<Admin> GetAll() {
+            return dbEntities.instance.Admins.ToHashSet();
+        }
     }
 }

@@ -20,6 +20,9 @@ namespace GaiWcfService.Service {
         void EditAdmin(int id, AdminDto admin);
 
         [OperationContract]
+        HashSet<AdminDto> getAllAdmins();
+
+        [OperationContract]
         void AddEmployee(EmployeeDto employee);
 
         [OperationContract]

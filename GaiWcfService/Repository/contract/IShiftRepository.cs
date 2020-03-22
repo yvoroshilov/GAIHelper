@@ -16,5 +16,11 @@ namespace GaiWcfService.Repository.contract {
 
         [OperationContract]
         void DeleteShift(int id);
+
+        [OperationContract]
+        Shift GetRepository(int id);
+
+        [OperationContract]
+        HashSet<Shift> GetAll();
     }
 }

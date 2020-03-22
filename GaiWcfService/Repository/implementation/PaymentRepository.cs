@@ -26,5 +26,13 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.instance.Entry(oldPayment).CurrentValues.SetValues(payment);
             
         }
+
+        public HashSet<Payment> GetAll() {
+            return dbEntities.instance.Payments.ToHashSet();
+        }
+
+        public Payment GetPayment(int id) {
+            return dbEntities.instance.Payments.Find(id);
+        }
     }
 }

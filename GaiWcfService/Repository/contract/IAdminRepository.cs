@@ -13,5 +13,11 @@ namespace GaiWcfService.Repository.contract {
 
         [OperationContract]
         void EditAdmin(int id, Admin admin);
+
+        [OperationContract]
+        Admin GetAdmin(int id);
+
+        [OperationContract]
+        HashSet<Admin> GetAll();
     }
 }

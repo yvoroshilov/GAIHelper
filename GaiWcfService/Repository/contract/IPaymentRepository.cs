@@ -16,5 +16,11 @@ namespace GaiWcfService.Repository.contract {
 
         [OperationContract]
         void DeletePayment(int id);
+
+        [OperationContract]
+        Payment GetPayment(int id);
+
+        [OperationContract]
+        HashSet<Payment> GetAll();
     }
 }

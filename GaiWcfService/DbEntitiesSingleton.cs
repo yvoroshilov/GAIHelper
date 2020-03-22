@@ -14,7 +14,7 @@ namespace GaiWcfService {
         }
 
         public static DbEntitiesSingleton GetDbEntities() {
-            if (dbEntities != null) {
+            if (dbEntities == null) {
                 dbEntities = new DbEntitiesSingleton();
             }
             return dbEntities;

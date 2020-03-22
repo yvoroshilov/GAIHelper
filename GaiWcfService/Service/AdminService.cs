@@ -42,6 +42,15 @@ namespace GaiWcfService.Service {
             adminRepository.EditAdmin(id, Mapper.mapper.Map<Admin>(admin));
         }
 
+        public HashSet<AdminDto> getAllAdmins() {
+            HashSet<Admin> set = adminRepository.GetAll();
+            HashSet<AdminDto> dtoSet = new HashSet<AdminDto>();
+            foreach (var item in set) {
+                dtoSet.Add(Mapper.mapper.Map<AdminDto>(item));
+            }
+            return dtoSet;
+        }
+
         public void AddEmployee(EmployeeDto employee) {
             employeeRepository.AddEmployee(Mapper.mapper.Map<Employee>(employee));
         }
@@ -113,6 +122,5 @@ namespace GaiWcfService.Service {
         public void DeleteViolator(int id) {
             violatorRepository.DeleteViolator(id);
         }
-
     }
 }

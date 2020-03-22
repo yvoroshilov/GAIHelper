@@ -16,5 +16,11 @@ namespace GaiWcfService.Repository.contract {
 
         [OperationContract]
         void DeleteEmployee(int id);
+
+        [OperationContract]
+        Employee GetEmployee(int id);
+
+        [OperationContract]
+        HashSet<Employee> GetAll();
     }
 }

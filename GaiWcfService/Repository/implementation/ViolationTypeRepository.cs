@@ -25,5 +25,13 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.instance.ViolationTypes.Remove(violationType);
             dbEntities.instance.SaveChanges();
         }
+
+        public ViolationType GetViolationType(int id) {
+            return dbEntities.instance.ViolationTypes.Find(id);
+        }
+
+        public HashSet<ViolationType> GetAll() {
+            return dbEntities.instance.ViolationTypes.ToHashSet();
+        }
     }
 }

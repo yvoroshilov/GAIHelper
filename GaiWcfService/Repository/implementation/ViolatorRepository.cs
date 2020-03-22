@@ -26,5 +26,12 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.instance.SaveChanges();
         }
 
+        public Violator GetViolator(int id) {
+            return dbEntities.instance.Violators.Find(id);
+        }
+
+        public HashSet<Violator> GetAll() {
+            return dbEntities.instance.Violators.ToHashSet();
+        }
     }
 }

@@ -26,6 +26,12 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.instance.SaveChanges();
         }
 
+        public Shift GetRepository(int id) {
+            return dbEntities.instance.Shifts.Find(id);
+        }
 
+        public HashSet<Shift> GetAll() {
+            return dbEntities.instance.Shifts.ToHashSet();
+        }
     }
 }
