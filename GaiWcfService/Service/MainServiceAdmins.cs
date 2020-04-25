@@ -30,18 +30,12 @@ namespace GaiWcfService.Service {
         }
 
         public HashSet<AdminDto> getAllAdmins() {
-            /*
             HashSet<Admin> set = adminRepository.GetAll();
             HashSet<AdminDto> dtoSet = new HashSet<AdminDto>();
             foreach (var item in set) {
                 dtoSet.Add(Mapper.mapper.Map<AdminDto>(item));
             }
             return dtoSet;
-            */
-            HashSet<AdminDto> set = new HashSet<AdminDto>();
-            var entities = new GAIDBEntities();
-            set.Add(Mapper.mapper.Map<AdminDto>(entities.Admins.First()));
-            return set;
         }
 
         public string test() {

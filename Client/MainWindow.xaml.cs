@@ -24,23 +24,9 @@ namespace Client {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            AdminDto[] test = null;
-            try {
-                test = Class1.Test();
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-            /*
-            AdminServiceClient client = new AdminServiceClient();
-            AdminDto[] admins2 = null;
-            try { 
-            admins2 = (await client.getAllAdminsAsync());
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-            MessageBox.Show(admins2[2].username);
-            */
-            
+            AdminServiceClient admin = new AdminServiceClient();
+            AdminDto[] test2 = admin.getAllAdmins();
+            MessageBox.Show(test2[0].username + ":" + test2[0].password);
         }
     }
 }
