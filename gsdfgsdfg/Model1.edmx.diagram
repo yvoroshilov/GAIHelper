@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b4f61bfb10734e4f8dd1b7a61a529aa9" Name="Diagram1">
+        <EntityTypeShape EntityType="GAIDBModel.Admins" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAIDBModel.Employees" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAIDBModel.Payments" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAIDBModel.Shifts" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAIDBModel.Violations" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAIDBModel.ViolationTypes" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAIDBModel.Violators" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="GAIDBModel.FK_Shifts_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="GAIDBModel.FK_Payments_Violators" ManuallyRouted="false" />
+        <AssociationConnector Association="GAIDBModel.FK_Violations_ViolationsTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="GAIDBModel.FK_Violations_Violators" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

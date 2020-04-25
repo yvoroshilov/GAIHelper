@@ -10,14 +10,14 @@ namespace GaiWcfService {
         public GAIDBEntities instance { get; set; }
 
         private DbEntitiesSingleton() {
-            instance = new GAIDBEntities();
+            //instance = new GAIDBEntities();
         }
 
         public static DbEntitiesSingleton GetDbEntities() {
             if (dbEntities == null) {
-                dbEntities = new DbEntitiesSingleton();
+                //dbEntities = new DbEntitiesSingleton();
             }
-            return dbEntities;
+            return null;
         }
     }
 }
