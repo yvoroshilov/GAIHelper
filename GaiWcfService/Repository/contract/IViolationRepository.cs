@@ -21,6 +21,9 @@ namespace GaiWcfService.Repository.contract {
         Violation GetViolation(int id);
 
         [OperationContract]
+        List<Violation> GetAllViolations();
+
+        [OperationContract]
         HashSet<Violation> GetAll();
     }
 }

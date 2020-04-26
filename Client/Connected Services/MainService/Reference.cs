@@ -948,6 +948,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditViolation", ReplyAction="http://tempuri.org/IAdminService/EditViolationResponse")]
         System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolations", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsResponse")]
+        Client.MainService.ViolationDto[] GetAllViolations();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolations", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteViolation", ReplyAction="http://tempuri.org/IAdminService/DeleteViolationResponse")]
         void DeleteViolation(int id);
         
@@ -1138,6 +1144,14 @@ namespace Client.MainService {
             return base.Channel.EditViolationAsync(id, violation);
         }
         
+        public Client.MainService.ViolationDto[] GetAllViolations() {
+            return base.Channel.GetAllViolations();
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsAsync() {
+            return base.Channel.GetAllViolationsAsync();
+        }
+        
         public void DeleteViolation(int id) {
             base.Channel.DeleteViolation(id);
         }
@@ -1246,6 +1260,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolationUser", ReplyAction="http://tempuri.org/IUserService/EditViolationUserResponse")]
         System.Threading.Tasks.Task EditViolationUserAsync(int id, Client.MainService.ViolationDto violation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationsUser", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsUserResponse")]
+        Client.MainService.ViolationDto[] GetAllViolationsUser();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationsUser", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsUserResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsUserAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteViolationUser", ReplyAction="http://tempuri.org/IUserService/DeleteViolationUserResponse")]
         void DeleteViolationUser(int id);
@@ -1361,6 +1381,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task EditViolationUserAsync(int id, Client.MainService.ViolationDto violation) {
             return base.Channel.EditViolationUserAsync(id, violation);
+        }
+        
+        public Client.MainService.ViolationDto[] GetAllViolationsUser() {
+            return base.Channel.GetAllViolationsUser();
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsUserAsync() {
+            return base.Channel.GetAllViolationsUserAsync();
         }
         
         public void DeleteViolationUser(int id) {

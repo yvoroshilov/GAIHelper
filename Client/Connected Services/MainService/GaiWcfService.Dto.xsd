@@ -67,6 +67,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ViolationDto" nillable="true" type="tns:ViolationDto" />
+  <xs:complexType name="ArrayOfViolationDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ViolationDto" nillable="true" type="tns:ViolationDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfViolationDto" nillable="true" type="tns:ArrayOfViolationDto" />
   <xs:complexType name="ViolationTypeDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />

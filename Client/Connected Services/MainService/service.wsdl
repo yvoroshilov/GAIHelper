@@ -163,6 +163,12 @@
   <wsdl:message name="IAdminService_EditViolation_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditViolationResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllViolations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolations" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllViolations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolationsResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_DeleteViolation_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteViolation" />
   </wsdl:message>
@@ -253,6 +259,12 @@
   <wsdl:message name="IUserService_EditViolationUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditViolationUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_GetAllViolationsUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolationsUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllViolationsUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolationsUserResponse" />
+  </wsdl:message>
   <wsdl:message name="IUserService_DeleteViolationUser_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteViolationUser" />
   </wsdl:message>
@@ -338,6 +350,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditViolation" message="tns:IAdminService_EditViolation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditViolationResponse" message="tns:IAdminService_EditViolation_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllViolations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllViolations" message="tns:IAdminService_GetAllViolations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllViolationsResponse" message="tns:IAdminService_GetAllViolations_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteViolation">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteViolation" message="tns:IAdminService_DeleteViolation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteViolationResponse" message="tns:IAdminService_DeleteViolation_OutputMessage" />
@@ -399,6 +415,10 @@
     <wsdl:operation name="EditViolationUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditViolationUser" message="tns:IUserService_EditViolationUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditViolationUserResponse" message="tns:IUserService_EditViolationUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViolationsUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllViolationsUser" message="tns:IUserService_GetAllViolationsUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllViolationsUserResponse" message="tns:IUserService_GetAllViolationsUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteViolationUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteViolationUser" message="tns:IUserService_DeleteViolationUser_InputMessage" />
@@ -556,6 +576,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllViolations">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllViolations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteViolation">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/DeleteViolation" style="document" />
       <wsdl:input>
@@ -689,6 +718,15 @@
     </wsdl:operation>
     <wsdl:operation name="EditViolationUser">
       <soap12:operation soapAction="http://tempuri.org/IUserService/EditViolationUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViolationsUser">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllViolationsUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -2,6 +2,8 @@
 using GaiWcfService.Repository.contract;
 using GaiWcfService.Repository.implementation;
 using GaiWcfService.Util;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GaiWcfService.Service {
     public partial class MainService : IAdminService, IUserService {
@@ -17,6 +19,9 @@ namespace GaiWcfService.Service {
             violationRepository.EditViolation(id, Mapper.mapper.Map<Violation>(violation));
         }
 
+        public List<ViolationDto> GetAllViolations() {
+            return violationRepository.GetAllViolations().Select(val => Mapper.mapper.Map<ViolationDto>(val)).ToList();
+        }
         public void DeleteViolation(int id) {
             violationRepository.DeleteViolation(id);
         }
@@ -24,5 +29,6 @@ namespace GaiWcfService.Service {
         public void AddViolationType(ViolationTypeDto violationType) {
             violationTypeRepository.AddViolationType(Mapper.mapper.Map<ViolationType>(violationType));
         }
+
     }
 }

@@ -7,6 +7,13 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.Dashboard"
         mc:Ignorable="d"
         Title="Dashboard" Height="666.4" Width="1028.175" MinHeight="550" MinWidth="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <TabControl Margin="0,0,-0.2,-0.2">
             <TabItem Header="Нарушения">
@@ -22,7 +29,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <ListView Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False" Margin="0,0,0.6,-0.2">
+                    <ListView Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False" Margin="0,0,0.6,-0.2" ItemsSource="{Binding Violations}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
@@ -34,20 +41,67 @@
                         </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="№" Width="30"/>
-                                <GridViewColumn Header="Нарушение" Width="80"/>
-                                <GridViewColumn Header="№ ВУ/Протокола" Width="130"/>
-                                <GridViewColumn Header="№ Автомобиля" Width="100"/>
-                                <GridViewColumn Header="Дата" Width="80"/>
-                                <GridViewColumn Header="Штраф, р." Width="70"/>
-                                <GridViewColumn Header="Место" Width="70"/>
-                                <GridViewColumn Header="Описание"/>
+                                <GridViewColumn Header="№" Width="30" DisplayMemberBinding="{
+                                         Binding RelativeSource={RelativeSource FindAncestor, 
+                                         AncestorType={x:Type ListViewItem}}, 
+                                         Converter={StaticResource IndexOfConverter}}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Нарушение" Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ViolationType.ShortTitle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="№ ВУ/Протокола" Width="130">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Violator.DriverLicense}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="№ Автомобиля" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CarNumber}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Дата" Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Date, Converter={StaticResource DateConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Штраф, р." Width="70">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Penalty}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Адрес" Width="70">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Address}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Описание">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Description}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
-                        <ListViewItem Content="ListViewItem" Margin="0"/>
-                        <ListViewItem Content="ListViewItem" Margin="0"/>
-                        <ListViewItem Content="ListViewItem" Margin="0"/>
-                        <ListViewItem Content="ListViewItem" Margin="0"/>
                     </ListView>
                     <ComboBox Grid.Column="4" Margin="10.4,25,9.8,0" Height="24" IsEditable="True" VerticalAlignment="Top">
                         <ComboBoxItem Content="1234"/>
@@ -77,7 +131,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="img.png"/>
+                        <Image Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="Resources/img.png"/>
                         <Label Content="Имя:" HorizontalAlignment="Left" Margin="169,65,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
                         <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="169,96,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
                         <Label Content="Отчество:" HorizontalAlignment="Left" Margin="169,127,0,0" VerticalAlignment="Top" Height="26" Width="64"/>

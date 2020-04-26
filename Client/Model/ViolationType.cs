@@ -14,6 +14,17 @@ namespace Client.Model {
             }
         }
 
+        private string shortTitle;
+        public string ShortTitle {
+            get {
+                return shortTitle;
+            }
+            set {
+                shortTitle = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string title;
         public string Title {
             get {

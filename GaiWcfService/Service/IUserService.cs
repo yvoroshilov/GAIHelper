@@ -34,6 +34,9 @@ namespace GaiWcfService.Service {
         [OperationContract(Name = "EditViolationUser")]
         void EditViolation(int id, ViolationDto violation);
 
+        [OperationContract(Name = "GetAllViolationsUser")]
+        List<ViolationDto> GetAllViolations();
+
         [OperationContract(Name = "DeleteViolationUser")]
         void DeleteViolation(int id);
 

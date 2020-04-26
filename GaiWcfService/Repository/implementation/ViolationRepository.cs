@@ -37,6 +37,10 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.instance.Violations.Find(id);
         }
 
+        public List<Violation> GetAllViolations() {
+            return dbEntities.instance.Violations.ToList();
+        }
+
         public HashSet<Violation> GetAll() {
             return dbEntities.instance.Violations.ToHashSet();
         }

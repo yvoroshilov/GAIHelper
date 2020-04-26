@@ -24,6 +24,17 @@ namespace Client.Model {
             }
         }
 
+        private string driverLicense;
+        public string DriverLicense {
+            get {
+                return driverLicense;
+            }
+            set {
+                driverLicense = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string name;
         public string Name {
             get {
