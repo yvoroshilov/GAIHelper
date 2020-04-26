@@ -28,5 +28,11 @@ namespace Client {
             AdminDto[] test2 = admin.getAllAdmins();
             MessageBox.Show(test2[0].username + ":" + test2[0].password);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) {
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+            this.Close();
+        }
     }
 }

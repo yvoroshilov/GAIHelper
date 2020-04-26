@@ -20,8 +20,9 @@ namespace GaiWcfService
         public string car_number { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public float penalty { get; set; }
-        public float location_n { get; set; }
-        public float location_e { get; set; }
+        public Nullable<float> location_n { get; set; }
+        public Nullable<float> location_e { get; set; }
+        public string address { get; set; }
         public string description { get; set; }
     
         public virtual ViolationType ViolationType { get; set; }

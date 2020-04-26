@@ -1,0 +1,17 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="Вход в систему" Height="501.3" Width="648.1">
+    <Grid Margin="0,0,-0.4,0" RenderTransformOrigin="0.502,0.445">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="212" Width="199">
+            <Label Content="Вход в систему&#xD;&#xA;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,9,0" Height="50" Width="175" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+            <TextBox HorizontalAlignment="Center" Height="30" Text="Логин" VerticalAlignment="Top" Width="170" Margin="17,50,12,0" TextAlignment="Center" Padding="0,5,0,0" FontSize="14"/>
+            <TextBox HorizontalAlignment="Center" Height="30" Text="Пароль" VerticalAlignment="Top" Width="170" Margin="17,97,12,0" TextAlignment="Center" Padding="0,5,0,0" FontSize="14"/>
+            <Button Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="55,142,0,0" Height="29" Click="Button_Click_1"/>
+        </Grid>
+    </Grid>
+</Window>

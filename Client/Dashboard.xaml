@@ -1,0 +1,107 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.Dashboard"
+        mc:Ignorable="d"
+        Title="Dashboard" Height="666.4" Width="1028.175" MinHeight="550" MinWidth="800">
+    <Grid>
+        <TabControl Margin="0,0,-0.2,-0.2">
+            <TabItem Header="Нарушения">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False" Margin="0,0,0.6,-0.2">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="№" Width="30"/>
+                                <GridViewColumn Header="Нарушение" Width="80"/>
+                                <GridViewColumn Header="№ ВУ/Протокола" Width="130"/>
+                                <GridViewColumn Header="№ Автомобиля" Width="100"/>
+                                <GridViewColumn Header="Дата" Width="80"/>
+                                <GridViewColumn Header="Штраф, р." Width="70"/>
+                                <GridViewColumn Header="Место" Width="70"/>
+                                <GridViewColumn Header="Описание"/>
+                            </GridView>
+                        </ListView.View>
+                        <ListViewItem Content="ListViewItem" Margin="0"/>
+                        <ListViewItem Content="ListViewItem" Margin="0"/>
+                        <ListViewItem Content="ListViewItem" Margin="0"/>
+                        <ListViewItem Content="ListViewItem" Margin="0"/>
+                    </ListView>
+                    <ComboBox Grid.Column="4" Margin="10.4,25,9.8,0" Height="24" IsEditable="True" VerticalAlignment="Top">
+                        <ComboBoxItem Content="1234"/>
+                        <ComboBoxItem Content="abc f 3"/>
+                        <ComboBoxItem Content="15"/>
+                        <ComboBoxItem Content="ComboBoxItem"/>
+                    </ComboBox>
+                    <Label Content="Нарушение*" Grid.Column="4" Margin="10.4,-1,9.8,0" VerticalAlignment="Top" Height="26"/>
+                    <Label Content="Штраф, р.*" VerticalAlignment="Top" Grid.Column="4" Margin="10.4,59,9.8,0" Height="26"/>
+                    <xctk:DoubleUpDown Grid.Column="4" Margin="10.4,85,9.8,0" VerticalAlignment="Top" Height="24"/>
+                    <Label Content="Адрес происшествия*" VerticalAlignment="Top" Grid.Column="5" Margin="9.2,-2,11.4,0" Height="26"/>
+                    <TextBox Height="24" VerticalAlignment="Top" Grid.Column="5" Margin="9.2,25,10.4,0" Padding="0,3,0,0"/>
+                    <Grid Grid.Column="5" Margin="9.2,61,0,0" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="76*"/>
+                            <ColumnDefinition Width="75*"/>
+                        </Grid.ColumnDefinitions>
+                        <xctk:MaskedTextBox Height="24" Text="MaskedTextBox" VerticalAlignment="Bottom" Mask="00.00000N" Padding="0,3,0,0" HorizontalAlignment="Left" Width="61"/>
+                        <Label Content="Координаты" Margin="0,0,2.4,0" Height="24" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <xctk:MaskedTextBox Margin="0,0,1.4,0" Text="MaskedTextBox" Mask="00.00000E" Padding="0,3,0,0" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="61" Grid.Column="1"/>
+                    </Grid>
+                    <RichTextBox Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.4,200,11.4,244.8">
+                        <FlowDocument/>
+                    </RichTextBox>
+                    <Label Content="Описание" VerticalAlignment="Top" Grid.Column="4" Margin="10.4,174,8.2,0" Height="26"/>
+                    <Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="11.4,0,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="230" Width="318">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="img.png"/>
+                        <Label Content="Имя:" HorizontalAlignment="Left" Margin="169,65,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
+                        <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="169,96,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
+                        <Label Content="Отчество:" HorizontalAlignment="Left" Margin="169,127,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
+                        <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="169,158,0,0" VerticalAlignment="Top" Height="26" Width="98"/>
+                        <Label Content="*имя*" HorizontalAlignment="Left" Margin="207,65,-0.4,0" VerticalAlignment="Top" Width="111" Height="26"/>
+                        <Label Content="*фамилия*" HorizontalAlignment="Left" Margin="233,96,-1.4,0" VerticalAlignment="Top" Width="86" Height="26"/>
+                        <Label Content="*отчество*" HorizontalAlignment="Left" Margin="233,127,-0.4,0" VerticalAlignment="Top" Width="85" Height="26"/>
+                        <Label Content="*дата*" HorizontalAlignment="Left" Margin="267,158,-0.4,0" VerticalAlignment="Top" Width="51" Height="26"/>
+                        <Button Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139"/>
+                        <Button Content="Нарушения" HorizontalAlignment="Left" Margin="169,21,0,0" VerticalAlignment="Top" Width="139" Height="24" IsEnabled="False"/>
+                    </Grid>
+                    <CheckBox Content="Нет прав" Grid.Column="5" Margin="0,174,9.4,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="73"/>
+                    <Label Content="№ Автомобиля*" Grid.Column="4" Margin="11.4,119,8.8,0" VerticalAlignment="Top" Height="26"/>
+                    <TextBox Height="24" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,145,7.8,0" Padding="0,3,0,0"/>
+                    <TextBox Height="24" VerticalAlignment="Top" Margin="9.8,145,9.4,0" Padding="0,3,0,0" Grid.Column="5"/>
+                    <Label Content="Номер ВУ" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="9.8,119,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20.8" VerticalAlignment="Top" Width="53.6">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
