@@ -556,10 +556,13 @@ namespace Client.MainService {
         private string descriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
+        private string idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double minPenaltyField;
+        private decimal maxPenaltyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal minPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string titleField;
@@ -588,12 +591,12 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
+        public string id {
             get {
                 return this.idField;
             }
             set {
-                if ((this.idField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.idField, value) != true)) {
                     this.idField = value;
                     this.RaisePropertyChanged("id");
                 }
@@ -601,7 +604,20 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double minPenalty {
+        public decimal maxPenalty {
+            get {
+                return this.maxPenaltyField;
+            }
+            set {
+                if ((this.maxPenaltyField.Equals(value) != true)) {
+                    this.maxPenaltyField = value;
+                    this.RaisePropertyChanged("maxPenalty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal minPenalty {
             get {
                 return this.minPenaltyField;
             }
@@ -646,7 +662,7 @@ namespace Client.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double actual_penaltyField;
+        private double actualPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string driverLicenseField;
@@ -658,7 +674,7 @@ namespace Client.MainService {
         private string nameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double paid_penaltyField;
+        private double paidPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string passportIdField;
@@ -680,14 +696,14 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double actual_penalty {
+        public double actualPenalty {
             get {
-                return this.actual_penaltyField;
+                return this.actualPenaltyField;
             }
             set {
-                if ((this.actual_penaltyField.Equals(value) != true)) {
-                    this.actual_penaltyField = value;
-                    this.RaisePropertyChanged("actual_penalty");
+                if ((this.actualPenaltyField.Equals(value) != true)) {
+                    this.actualPenaltyField = value;
+                    this.RaisePropertyChanged("actualPenalty");
                 }
             }
         }
@@ -732,14 +748,14 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double paid_penalty {
+        public double paidPenalty {
             get {
-                return this.paid_penaltyField;
+                return this.paidPenaltyField;
             }
             set {
-                if ((this.paid_penaltyField.Equals(value) != true)) {
-                    this.paid_penaltyField = value;
-                    this.RaisePropertyChanged("paid_penalty");
+                if ((this.paidPenaltyField.Equals(value) != true)) {
+                    this.paidPenaltyField = value;
+                    this.RaisePropertyChanged("paidPenalty");
                 }
             }
         }
@@ -1182,6 +1198,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolation", ReplyAction="http://tempuri.org/IUserService/EditViolationResponse")]
         System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationTypes", ReplyAction="http://tempuri.org/IUserService/GetAllViolationTypesResponse")]
+        Client.MainService.ViolationTypeDto[] GetAllViolationTypes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationTypes", ReplyAction="http://tempuri.org/IUserService/GetAllViolationTypesResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationTypeDto[]> GetAllViolationTypesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1257,6 +1279,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation) {
             return base.Channel.EditViolationAsync(id, violation);
+        }
+        
+        public Client.MainService.ViolationTypeDto[] GetAllViolationTypes() {
+            return base.Channel.GetAllViolationTypes();
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationTypeDto[]> GetAllViolationTypesAsync() {
+            return base.Channel.GetAllViolationTypesAsync();
         }
     }
 }

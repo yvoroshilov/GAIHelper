@@ -95,8 +95,10 @@
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\NotifyingModel.cs" />
+    <Compile Include="Resources\CoordConverter.cs" />
     <Compile Include="Resources\DateConverter.cs" />
     <Compile Include="Resources\IndexOfConverter.cs" />
+    <Compile Include="Resources\ViolationToTextConverter.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
     <Compile Include="ViewModel\ViolationsUserViewModel.cs" />
@@ -157,6 +159,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MainService\Client.MainService.ViolationDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MainService\Client.MainService.ViolationTypeDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MainService\GaiWcfService.Dto.xsd">

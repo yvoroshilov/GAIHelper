@@ -19,7 +19,7 @@ namespace GaiWcfService.Repository.implementation {
             Shift oldShift = dbEntities.instance.Shifts.Find(id);
             oldShift.start = shift.start;
             oldShift.end = shift.end;
-            oldShift.responible_id = shift.responible_id;
+            oldShift.responsible_id = shift.responsible_id;
             dbEntities.instance.SaveChanges();
         }
 

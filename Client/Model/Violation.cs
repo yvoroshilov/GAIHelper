@@ -14,6 +14,28 @@ namespace Client.Model {
             }
         }
 
+        private string violationId;
+        public string ViolationId {
+            get {
+                return violationId;
+            }
+            set {
+                violationId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int personId;
+        public int PersonId {
+            get {
+                return personId;
+            }
+            set {
+                personId = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string carNumber;
         public string CarNumber {
             get {
@@ -25,7 +47,7 @@ namespace Client.Model {
             }
         }
 
-        public System.DateTime date;
+        private System.DateTime date;
         public System.DateTime Date {
             get {
                 return date;
@@ -47,8 +69,8 @@ namespace Client.Model {
             }
         }
 
-        private float locationN;
-        public float LocationN{
+        private double locationN;
+        public double LocationN{
             get {
                 return locationN;
             }
@@ -58,8 +80,8 @@ namespace Client.Model {
             }
         }
 
-        private float locationE;
-        public float LocationE {
+        private double locationE;
+        public double LocationE {
             get {
                 return locationE;
             }
@@ -90,28 +112,5 @@ namespace Client.Model {
                 OnPropertyChanged();
             }
         }
-
-        private ViolationType violationType;
-        public ViolationType ViolationType {
-            get {
-                return violationType;
-            }
-            set {
-                violationType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Person person;
-        public Person Person {
-            get {
-                return person;
-            }
-            set {
-                person = value;
-                OnPropertyChanged();
-            }
-        }
-
     }
 }

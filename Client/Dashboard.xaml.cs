@@ -1,5 +1,7 @@
-﻿using Client.ViewModel;
+﻿using Client.Model;
+using Client.ViewModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +46,17 @@ namespace Client {
                 }
             }
             DriverLicenseLabel.Content = "№ ВУ*";
+        }
+
+        private void ViolationField_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            IEnumerator enumerator = e.AddedItems.GetEnumerator();
+            if (enumerator.MoveNext()) {
+                ViolationType type = enumerator.Current as ViolationType;
+                double min = ((ViolationsUserViewModel)DataContext).ViolationTypes.Where(val => val.Id == type.Id).FirstOrDefault().MinPenalty;
+                PenaltyField.Text = min.ToString();
+            } else {
+                PenaltyField.Text = "";
+            }
         }
     }
 }

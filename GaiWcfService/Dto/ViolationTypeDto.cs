@@ -9,13 +9,16 @@ namespace GaiWcfService.Dto {
     [DataContract]
     public class ViolationTypeDto {
         [DataMember]
-        public int id { get; set; }
+        public string id { get; set; }
 
         [DataMember]
         public string title { get; set; }
         
         [DataMember]
-        public double minPenalty { get; set; }
+        public decimal minPenalty { get; set; }
+
+        [DataMember]
+        public decimal maxPenalty { get; set; }
 
         [DataMember]
         public string description { get; set; }

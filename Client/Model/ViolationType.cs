@@ -36,6 +36,17 @@ namespace Client.Model {
             }
         }
 
+        private double maxPenalty;
+        public double MaxPenalty {
+            get {
+                return maxPenalty;
+            }
+            set {
+                maxPenalty = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string description;
         public string Description {
             get {
@@ -56,6 +67,10 @@ namespace Client.Model {
                 violations = value;
                 OnPropertyChanged();
             }
+        }
+
+        public override string ToString() {
+            return id + " " + title;
         }
     }
 }

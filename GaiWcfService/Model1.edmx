@@ -53,7 +53,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="responible_id" Type="int" Nullable="false" />
+          <Property Name="responsible_id" Type="int" Nullable="false" />
           <Property Name="start" Type="date" Nullable="false" />
           <Property Name="end" Type="date" Nullable="false" />
         </EntityType>
@@ -62,7 +62,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="violataion_type_id" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="violation_type_id" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="person_id" Type="int" Nullable="false" />
           <Property Name="car_number" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="date" Type="date" />
@@ -79,6 +79,7 @@
           <Property Name="id" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="min_penalty" Type="money" Nullable="false" />
+          <Property Name="max_penalty" Type="money" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK_Payments_Violators">
@@ -101,7 +102,7 @@
               <PropertyRef Name="certificate_id" />
             </Principal>
             <Dependent Role="Shifts">
-              <PropertyRef Name="responible_id" />
+              <PropertyRef Name="responsible_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -113,7 +114,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Violations">
-              <PropertyRef Name="violataion_type_id" />
+              <PropertyRef Name="violation_type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,7 +236,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="responible_id" Type="Int32" Nullable="false" />
+          <Property Name="responsible_id" Type="Int32" Nullable="false" />
           <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="end" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="GAIDBModel.FK_Shifts_Employees" FromRole="Shift" ToRole="Employee" />
@@ -245,7 +246,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="violataion_type_id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="violation_type_id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="person_id" Type="Int32" Nullable="false" />
           <Property Name="car_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="0" />
@@ -264,6 +265,7 @@
           <Property Name="id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="min_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="max_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="ViolationType" ToRole="Violation" />
         </EntityType>
@@ -275,7 +277,7 @@
               <PropertyRef Name="certificate_id" />
             </Principal>
             <Dependent Role="Shift">
-              <PropertyRef Name="responible_id" />
+              <PropertyRef Name="responsible_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -311,7 +313,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Violation">
-              <PropertyRef Name="violataion_type_id" />
+              <PropertyRef Name="violation_type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -373,7 +375,7 @@
               <MappingFragment StoreEntitySet="Shifts">
                 <ScalarProperty Name="end" ColumnName="end" />
                 <ScalarProperty Name="start" ColumnName="start" />
-                <ScalarProperty Name="responible_id" ColumnName="responible_id" />
+                <ScalarProperty Name="responsible_id" ColumnName="responsible_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -389,7 +391,7 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="car_number" ColumnName="car_number" />
                 <ScalarProperty Name="person_id" ColumnName="person_id" />
-                <ScalarProperty Name="violataion_type_id" ColumnName="violataion_type_id" />
+                <ScalarProperty Name="violation_type_id" ColumnName="violation_type_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -398,6 +400,7 @@
             <EntityTypeMapping TypeName="GAIDBModel.ViolationType">
               <MappingFragment StoreEntitySet="ViolationTypes">
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="max_penalty" ColumnName="max_penalty" />
                 <ScalarProperty Name="min_penalty" ColumnName="min_penalty" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="id" ColumnName="id" />

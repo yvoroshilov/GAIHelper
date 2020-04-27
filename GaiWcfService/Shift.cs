@@ -15,7 +15,7 @@ namespace GaiWcfService
     public partial class Shift
     {
         public int id { get; set; }
-        public int responible_id { get; set; }
+        public int responsible_id { get; set; }
         public System.DateTime start { get; set; }
         public System.DateTime end { get; set; }
     

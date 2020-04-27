@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:Client.Resources">
     <local:IndexOfConverter x:Key="IndexOfConverter" />
     <local:DateConverter x:Key="DateConverter" />
+    <local:CoordConverter x:Key="CoordConverter" />
 </ResourceDictionary>

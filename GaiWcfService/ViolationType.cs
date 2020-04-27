@@ -23,6 +23,7 @@ namespace GaiWcfService
         public string id { get; set; }
         public string title { get; set; }
         public decimal min_penalty { get; set; }
+        public decimal max_penalty { get; set; }
         public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,6 +13,18 @@ namespace Client.ViewModel {
 
         private MainService.UserServiceClient client;
         public ObservableCollection<Violation> Violations { get; set; }
+        public ReadOnlyCollection<ViolationType> ViolationTypes { get; set; }
+
+        private ViolationType selectedViolationType;
+        public ViolationType SelectedViolationType {
+            get {
+                return selectedViolationType;
+            }
+            set {
+                selectedViolationType = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Violation selectedViolation;
         public Violation SelectedViolation {
@@ -25,8 +37,16 @@ namespace Client.ViewModel {
             }
         }
 
-        /s private violationId
-
+        private Violation addedViolation = new Violation();
+        public Violation AddedViolation {
+            get {
+                return addedViolation;
+            }
+            set {
+                addedViolation = value;
+                OnPropertyChanged();
+            }
+        }
 
         private RelayCommand addCommand;
         public RelayCommand AddCommand {
@@ -41,7 +61,9 @@ namespace Client.ViewModel {
 
         public ViolationsUserViewModel() {
             client = new MainService.UserServiceClient();
+
             Violations = new ObservableCollection<Violation>();
+            ViolationTypes = new ReadOnlyCollection<ViolationType>(client.GetAllViolationTypes().Select(val => Mapper.mapper.Map<ViolationType>(val)).ToList());
             Violations.CollectionChanged += CollectionChanged;
         }
         
