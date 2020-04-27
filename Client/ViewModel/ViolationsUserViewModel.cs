@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Data.Entity.Validation;
 
 namespace Client.ViewModel {
     public class ViolationsUserViewModel : NotifyingModel {
@@ -86,8 +87,14 @@ namespace Client.ViewModel {
             get {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
-                        Violation violation = new Violation();
-                        Violations.Add(violation);
+                        addedViolation.ViolationTypeId = selectedViolationType.Id;
+                        if (!noLic) {
+                            addedViolation.Person = Mapper.mapper.Map<Person>(client.GetPerson(CurDriverLicenseOrProtocol));
+                            addedViolation.PersonId = addedViolation.Person.Id;
+                        } else {
+                            addedViolation.Description += " | № Протокола: " + CurDriverLicenseOrProtocol;
+                        }
+                        Violations.Add(AddedViolation);
                     }));
             }
         }
@@ -108,6 +115,7 @@ namespace Client.ViewModel {
             Violations = new ObservableCollection<Violation>();
             ViolationTypes = new ReadOnlyCollection<ViolationType>(client.GetAllViolationTypes().Select(val => Mapper.mapper.Map<ViolationType>(val)).ToList());
             addedViolation = new Violation();
+            addedViolation.Date = DateTime.Now;
             currentPerson = new Person();
             Violations.CollectionChanged += CollectionChanged;
         }
@@ -115,7 +123,11 @@ namespace Client.ViewModel {
         public void CollectionChanged(object obj, NotifyCollectionChangedEventArgs args) {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:
-                    //client.AddViolation(Mapper.mapper.Map<MainService.ViolationDto>(violation));
+                    try {
+                        client.AddViolation(Mapper.mapper.Map<MainService.ViolationDto>(addedViolation));
+                    } catch (DbEntityValidationException exc) {
+                        Console.WriteLine(exc);
+                    }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     break;

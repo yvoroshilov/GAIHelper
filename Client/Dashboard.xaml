@@ -55,7 +55,7 @@
                                 <GridViewColumn Header="Нарушение" Width="80">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding ViolationType.Id}"/>
+                                            <TextBlock Text="{Binding ViolationTypeId}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -137,7 +137,7 @@
                         <Label x:Name="SurnameLabel" HorizontalAlignment="Left" Margin="233,96,-1.4,0" VerticalAlignment="Top" Width="86" Height="26" Content="{Binding CurrentPerson.Surname, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label x:Name="PatronymicLabel" HorizontalAlignment="Left" Margin="233,127,-0.4,0" VerticalAlignment="Top" Width="85" Height="26" Content="{Binding CurrentPerson.Patronymic, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="267,158,-0.4,0" VerticalAlignment="Top" Width="51" Height="26"/>
-                        <Button x:Name="CheckPersonBtn" Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139" Command="{Binding CheckPersonCommand}"/>
+                        <Button x:Name="CheckPersonBtn" Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139" Command="{Binding CheckPersonCommand}" Click="CheckPersonBtn_Click"/>
                         <Button x:Name="ShowPersonsViolationsBtn" Content="Нарушения" HorizontalAlignment="Left" Margin="169,21,0,0" VerticalAlignment="Top" Width="139" Height="24" IsEnabled="False"/>
                     </Grid>
                     <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,218,10.4,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="73" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>

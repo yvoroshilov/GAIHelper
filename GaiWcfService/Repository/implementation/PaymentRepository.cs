@@ -11,6 +11,7 @@ namespace GaiWcfService.Repository.implementation {
         private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
 
         public void AddPayment(Payment payment) {
+            payment.Person = dbEntities.instance.Persons.Find(payment.person_id);
             dbEntities.instance.Payments.Add(payment);
             dbEntities.instance.SaveChanges();
         }

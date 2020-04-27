@@ -14,13 +14,13 @@ namespace Client.Model {
             }
         }
 
-        private string violationId;
-        public string ViolationId {
+        private string violationTypeId;
+        public string ViolationTypeId {
             get {
-                return violationId;
+                return violationTypeId;
             }
             set {
-                violationId = value;
+                violationTypeId = value;
                 OnPropertyChanged();
             }
         }
@@ -58,8 +58,8 @@ namespace Client.Model {
             }
         }
 
-        private float penalty;
-        public float Penalty {
+        private double penalty;
+        public double Penalty {
             get {
                 return penalty;
             }
@@ -109,6 +109,28 @@ namespace Client.Model {
             }
             set {
                 description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Person person;
+        public Person Person {
+            get {
+                return person;
+            }
+            set {
+                person = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ViolationType violationType;
+        public ViolationType ViolationType {
+            get {
+                return violationType;
+            }
+            set {
+                violationType = value;
                 OnPropertyChanged();
             }
         }

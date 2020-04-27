@@ -58,11 +58,15 @@ namespace Client {
             IEnumerator enumerator = e.AddedItems.GetEnumerator();
             if (enumerator.MoveNext()) {
                 ViolationType type = enumerator.Current as ViolationType;
-                double min = ((ViolationsUserViewModel)DataContext).ViolationTypes.Where(val => val.Id == type.Id).FirstOrDefault().MinPenalty;
-                PenaltyField.Text = min.ToString();
+                double min = dataContext.ViolationTypes.Where(val => val.Id == type.Id).FirstOrDefault().MinPenalty;
+                dataContext.AddedViolation.Penalty = min;
             } else {
                 PenaltyField.Text = "";
             }
+        }
+
+        private void CheckPersonBtn_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }

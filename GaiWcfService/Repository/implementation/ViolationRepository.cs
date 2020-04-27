@@ -1,4 +1,5 @@
-﻿using GaiWcfService.Repository.contract;
+﻿using GaiWcfService.Dto;
+using GaiWcfService.Repository.contract;
 using GaiWcfService.Util;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace GaiWcfService.Repository.implementation {
         private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
 
         public void AddViolation(Violation violation) {
+            violation = Mapper.mapper.Map<Violation>(Mapper.mapper.Map<ViolationDto>(violation));
+            violation.Person = dbEntities.instance.Persons.Find(violation.person_id);
+            violation.ViolationType = dbEntities.instance.ViolationTypes.Find(violation.violation_type_id);
             dbEntities.instance.Violations.Add(violation);
             dbEntities.instance.SaveChanges();
         }
