@@ -37,13 +37,46 @@ namespace Client.ViewModel {
             }
         }
 
-        private Violation addedViolation = new Violation();
+        private Violation addedViolation;
         public Violation AddedViolation {
             get {
                 return addedViolation;
             }
             set {
                 addedViolation = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool noLic;
+        public bool NoLic {
+            get {
+                return noLic;
+            }
+            set {
+                noLic = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string curDriverLicenseOrProtocol;
+        public string CurDriverLicenseOrProtocol {
+            get {
+                return curDriverLicenseOrProtocol;
+            }
+            set {
+                curDriverLicenseOrProtocol = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Person currentPerson;
+        public Person CurrentPerson {
+            get {
+                return currentPerson;
+            }
+            set {
+                currentPerson = value;
                 OnPropertyChanged();
             }
         }
@@ -59,11 +92,23 @@ namespace Client.ViewModel {
             }
         }
 
+        private RelayCommand checkPersonCommand;
+        public RelayCommand CheckPersonCommand {
+            get {
+                return checkPersonCommand ??
+                    (checkPersonCommand = new RelayCommand(obj => {
+                        Mapper.mapper.Map(client.GetPerson(curDriverLicenseOrProtocol), currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
+                    }));
+            }
+        }
+
         public ViolationsUserViewModel() {
             client = new MainService.UserServiceClient();
 
             Violations = new ObservableCollection<Violation>();
             ViolationTypes = new ReadOnlyCollection<ViolationType>(client.GetAllViolationTypes().Select(val => Mapper.mapper.Map<ViolationType>(val)).ToList());
+            addedViolation = new Violation();
+            currentPerson = new Person();
             Violations.CollectionChanged += CollectionChanged;
         }
         

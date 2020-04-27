@@ -1204,6 +1204,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationTypes", ReplyAction="http://tempuri.org/IUserService/GetAllViolationTypesResponse")]
         System.Threading.Tasks.Task<Client.MainService.ViolationTypeDto[]> GetAllViolationTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPerson", ReplyAction="http://tempuri.org/IUserService/GetPersonResponse")]
+        Client.MainService.PersonDto GetPerson(string driverLicense);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPerson", ReplyAction="http://tempuri.org/IUserService/GetPersonResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(string driverLicense);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1287,6 +1293,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.ViolationTypeDto[]> GetAllViolationTypesAsync() {
             return base.Channel.GetAllViolationTypesAsync();
+        }
+        
+        public Client.MainService.PersonDto GetPerson(string driverLicense) {
+            return base.Channel.GetPerson(driverLicense);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(string driverLicense) {
+            return base.Channel.GetPersonAsync(driverLicense);
         }
     }
 }

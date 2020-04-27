@@ -158,6 +158,9 @@
     <None Include="Connected Services\MainService\Client.MainService.AdminDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\MainService\Client.MainService.PersonDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\MainService\Client.MainService.ViolationDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

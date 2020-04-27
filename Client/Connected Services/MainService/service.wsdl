@@ -211,6 +211,12 @@
   <wsdl:message name="IUserService_GetAllViolationTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllViolationTypesResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_GetPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPerson" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAdminService">
     <wsdl:operation name="Test">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/Test" message="tns:IAdminService_Test_InputMessage" />
@@ -305,6 +311,10 @@
     <wsdl:operation name="GetAllViolationTypes">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllViolationTypes" message="tns:IUserService_GetAllViolationTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllViolationTypesResponse" message="tns:IUserService_GetAllViolationTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetPerson" message="tns:IUserService_GetPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetPersonResponse" message="tns:IUserService_GetPerson_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AdminServiceTcpEndpointAdmin" type="tns:IAdminService">
@@ -516,6 +526,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllViolationTypes">
       <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllViolationTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetPerson" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

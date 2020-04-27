@@ -20,5 +20,8 @@ namespace GaiWcfService.Service {
             personRepository.DeletePerson(id);
         }
 
+        public PersonDto GetPerson(string driverLicense) {
+            return Mapper.mapper.Map<PersonDto>(personRepository.GetPersonByLicense(driverLicense));
+        }
     }
 }

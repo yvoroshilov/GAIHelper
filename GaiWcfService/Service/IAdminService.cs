@@ -65,7 +65,7 @@ namespace GaiWcfService.Service {
         void DeleteViolationType(int id);
 
         /* ------------------------------ */
-        /* --- VIOLATOR ACTIONS --- */
+        /* --- PERSON ACTIONS --- */
 
         [OperationContract]
         void AddPerson(PersonDto person);
@@ -76,6 +76,6 @@ namespace GaiWcfService.Service {
         [OperationContract]
         void DeletePerson(int id);
 
-        /* ------------------------ */
+        /* ----------------------- */
     }
 }

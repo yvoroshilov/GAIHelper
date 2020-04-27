@@ -21,6 +21,9 @@ namespace GaiWcfService.Repository.contract {
         Person GetPerson(int id);
 
         [OperationContract]
+        Person GetPersonByLicense(string driverLicense);
+
+        [OperationContract]
         HashSet<Person> GetAll();
     }
 }

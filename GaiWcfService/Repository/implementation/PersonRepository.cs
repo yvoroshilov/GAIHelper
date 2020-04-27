@@ -39,5 +39,9 @@ namespace GaiWcfService.Repository.implementation {
         public HashSet<Person> GetAll() {
             return dbEntities.instance.Persons.ToHashSet();
         }
+
+        public Person GetPersonByLicense(string driverLicense) {
+            return dbEntities.instance.Persons.Where(val => val.driver_license == driverLicense).FirstOrDefault();
+        }
     }
 }

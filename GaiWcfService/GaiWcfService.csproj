@@ -98,7 +98,7 @@
     <Compile Include="Repository\implementation\ShiftRepository.cs" />
     <Compile Include="Repository\implementation\ViolationRepository.cs" />
     <Compile Include="Repository\implementation\ViolationTypeRepository.cs" />
-    <Compile Include="Repository\implementation\ViolatorRepository.cs" />
+    <Compile Include="Repository\implementation\PersonRepository.cs" />
     <Compile Include="Repository\contract\IPaymentRepository.cs" />
     <Compile Include="Service\IAdminService.cs" />
     <Compile Include="Service\IUserService.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\MainServiceAdmins.cs" />
     <Compile Include="Dto\PersonDto.cs" />
-    <Compile Include="Service\MainServiceViolators.cs" />
+    <Compile Include="Service\MainServicePersons.cs" />
     <Compile Include="Service\MainServiceViolationTypes.cs" />
     <Compile Include="Service\MainServiceViolations.cs" />
     <Compile Include="Service\MainServiceShifts.cs" />

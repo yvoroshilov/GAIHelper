@@ -24,7 +24,10 @@ namespace Client {
         public Dashboard() {
             InitializeComponent();
             DataContext = new ViolationsUserViewModel();
+            dataContext = (ViolationsUserViewModel)DataContext;
         }
+
+        private readonly ViolationsUserViewModel dataContext;
 
         private void NoDriverLicenseCheckBox_Checked(object sender, RoutedEventArgs e) {
             foreach (var item in PersonInfoGrid.Children) {
@@ -32,8 +35,10 @@ namespace Client {
                     ((Control)item).IsEnabled = false;
                 }
             }
+            BindingOperations.ClearBinding(DriverLicenseField, TextBox.TextProperty);
             DriverLicenseLabel.Content = "№ протокола*";
-        }
+            dataContext.CurDriverLicenseOrProtocol = "";
+        }   
 
         private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
             foreach (var item in PersonInfoGrid.Children) {
@@ -45,6 +50,7 @@ namespace Client {
                     }
                 }
             }
+            BindingOperations.SetBinding(DriverLicenseField, TextBox.TextProperty, new Binding("CurDriverLicenseOrProtocol"));
             DriverLicenseLabel.Content = "№ ВУ*";
         }
 
