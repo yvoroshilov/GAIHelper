@@ -15,13 +15,13 @@ namespace Client.Model {
             }
         }
 
-        private int violatorId;
-        public int ViolatorId {
+        private int personId;
+        public int PersonId {
             get {
-                return violatorId;
+                return personId;
             }
             set {
-                violatorId = value;
+                personId = value;
                 OnPropertyChanged();
             }
         }
@@ -48,13 +48,13 @@ namespace Client.Model {
             }
         }
 
-        private Violator violator;
-        public Violator Violator {
+        private Person person;
+        public Person Person {
             get {
-                return violator;
+                return person;
             }
             set {
-                violator = value;
+                person = value;
                 OnPropertyChanged();
             }
         }

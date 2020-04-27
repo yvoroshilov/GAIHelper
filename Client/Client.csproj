@@ -134,7 +134,7 @@
     <Compile Include="Model\Shift.cs" />
     <Compile Include="Model\Violation.cs" />
     <Compile Include="Model\ViolationType.cs" />
-    <Compile Include="Model\Violator.cs" />
+    <Compile Include="Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

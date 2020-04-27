@@ -115,53 +115,11 @@
   <wsdl:message name="IAdminService_DeleteEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEmployeeResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_AddPayment_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddPayment" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_AddPayment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddPaymentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_EditPayment_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditPayment" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_EditPayment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditPaymentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_DeletePayment_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeletePayment" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_DeletePayment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeletePaymentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_AddShift_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddShift" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_AddShift_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddShiftResponse" />
-  </wsdl:message>
   <wsdl:message name="IAdminService_EditShift_InputMessage">
     <wsdl:part name="parameters" element="tns:EditShift" />
   </wsdl:message>
   <wsdl:message name="IAdminService_EditShift_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditShiftResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_DeleteShift_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteShift" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_DeleteShift_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteShiftResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_AddViolation_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolation" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_AddViolation_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolationResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_EditViolation_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolation" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_EditViolation_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolationResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_GetAllViolations_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllViolations" />
@@ -193,101 +151,59 @@
   <wsdl:message name="IAdminService_DeleteViolationType_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteViolationTypeResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_AddViolator_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolator" />
+  <wsdl:message name="IAdminService_AddPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPerson" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_AddViolator_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolatorResponse" />
+  <wsdl:message name="IAdminService_AddPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPersonResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_EditViolator_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolator" />
+  <wsdl:message name="IAdminService_EditPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditPerson" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_EditViolator_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolatorResponse" />
+  <wsdl:message name="IAdminService_EditPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditPersonResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_DeleteViolator_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteViolator" />
+  <wsdl:message name="IAdminService_DeletePerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePerson" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_DeleteViolator_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteViolatorResponse" />
+  <wsdl:message name="IAdminService_DeletePerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePersonResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_AddPaymentUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddPaymentUser" />
+  <wsdl:message name="IUserService_AddPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPayment" />
   </wsdl:message>
-  <wsdl:message name="IUserService_AddPaymentUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddPaymentUserResponse" />
+  <wsdl:message name="IUserService_AddPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPaymentResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_EditPaymentUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditPaymentUser" />
+  <wsdl:message name="IUserService_EditPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditPayment" />
   </wsdl:message>
-  <wsdl:message name="IUserService_EditPaymentUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditPaymentUserResponse" />
+  <wsdl:message name="IUserService_EditPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditPaymentResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_DeletePaymentUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeletePaymentUser" />
+  <wsdl:message name="IUserService_DeletePayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePayment" />
   </wsdl:message>
-  <wsdl:message name="IUserService_DeletePaymentUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeletePaymentUserResponse" />
+  <wsdl:message name="IUserService_DeletePayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePaymentResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_AddShiftUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddShiftUser" />
+  <wsdl:message name="IUserService_AddShift_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddShift" />
   </wsdl:message>
-  <wsdl:message name="IUserService_AddShiftUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddShiftUserResponse" />
+  <wsdl:message name="IUserService_AddShift_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddShiftResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_EditShiftUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditShiftUser" />
+  <wsdl:message name="IUserService_AddViolation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddViolation" />
   </wsdl:message>
-  <wsdl:message name="IUserService_EditShiftUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditShiftUserResponse" />
+  <wsdl:message name="IUserService_AddViolation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddViolationResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_DeleteShiftUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteShiftUser" />
+  <wsdl:message name="IUserService_EditViolation_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditViolation" />
   </wsdl:message>
-  <wsdl:message name="IUserService_DeleteShiftUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteShiftUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddViolationUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolationUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddViolationUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolationUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_EditViolationUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolationUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_EditViolationUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolationUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_GetAllViolationsUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllViolationsUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_GetAllViolationsUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllViolationsUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_DeleteViolationUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteViolationUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_DeleteViolationUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteViolationUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddViolatorUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolatorUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddViolatorUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddViolatorUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_EditViolatorUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolatorUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_EditViolatorUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditViolatorUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_DeleteViolatorUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteViolatorUser" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_DeleteViolatorUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteViolatorUserResponse" />
+  <wsdl:message name="IUserService_EditViolation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditViolationResponse" />
   </wsdl:message>
   <wsdl:portType name="IAdminService">
     <wsdl:operation name="Test">
@@ -318,37 +234,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteEmployee" message="tns:IAdminService_DeleteEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteEmployeeResponse" message="tns:IAdminService_DeleteEmployee_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddPayment">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddPayment" message="tns:IAdminService_AddPayment_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddPaymentResponse" message="tns:IAdminService_AddPayment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EditPayment">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditPayment" message="tns:IAdminService_EditPayment_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditPaymentResponse" message="tns:IAdminService_EditPayment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeletePayment">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeletePayment" message="tns:IAdminService_DeletePayment_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeletePaymentResponse" message="tns:IAdminService_DeletePayment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddShift">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddShift" message="tns:IAdminService_AddShift_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddShiftResponse" message="tns:IAdminService_AddShift_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="EditShift">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditShift" message="tns:IAdminService_EditShift_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditShiftResponse" message="tns:IAdminService_EditShift_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteShift">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteShift" message="tns:IAdminService_DeleteShift_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteShiftResponse" message="tns:IAdminService_DeleteShift_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddViolation">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolation" message="tns:IAdminService_AddViolation_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddViolationResponse" message="tns:IAdminService_AddViolation_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EditViolation">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditViolation" message="tns:IAdminService_EditViolation_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditViolationResponse" message="tns:IAdminService_EditViolation_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllViolations">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllViolations" message="tns:IAdminService_GetAllViolations_InputMessage" />
@@ -370,71 +258,43 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteViolationType" message="tns:IAdminService_DeleteViolationType_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteViolationTypeResponse" message="tns:IAdminService_DeleteViolationType_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddViolator">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolator" message="tns:IAdminService_AddViolator_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddViolatorResponse" message="tns:IAdminService_AddViolator_OutputMessage" />
+    <wsdl:operation name="AddPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddPerson" message="tns:IAdminService_AddPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddPersonResponse" message="tns:IAdminService_AddPerson_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EditViolator">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditViolator" message="tns:IAdminService_EditViolator_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditViolatorResponse" message="tns:IAdminService_EditViolator_OutputMessage" />
+    <wsdl:operation name="EditPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditPerson" message="tns:IAdminService_EditPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditPersonResponse" message="tns:IAdminService_EditPerson_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteViolator">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteViolator" message="tns:IAdminService_DeleteViolator_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteViolatorResponse" message="tns:IAdminService_DeleteViolator_OutputMessage" />
+    <wsdl:operation name="DeletePerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeletePerson" message="tns:IAdminService_DeletePerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeletePersonResponse" message="tns:IAdminService_DeletePerson_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserService">
-    <wsdl:operation name="AddPaymentUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddPaymentUser" message="tns:IUserService_AddPaymentUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddPaymentUserResponse" message="tns:IUserService_AddPaymentUser_OutputMessage" />
+    <wsdl:operation name="AddPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddPayment" message="tns:IUserService_AddPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddPaymentResponse" message="tns:IUserService_AddPayment_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EditPaymentUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditPaymentUser" message="tns:IUserService_EditPaymentUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditPaymentUserResponse" message="tns:IUserService_EditPaymentUser_OutputMessage" />
+    <wsdl:operation name="EditPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditPayment" message="tns:IUserService_EditPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditPaymentResponse" message="tns:IUserService_EditPayment_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeletePaymentUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeletePaymentUser" message="tns:IUserService_DeletePaymentUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeletePaymentUserResponse" message="tns:IUserService_DeletePaymentUser_OutputMessage" />
+    <wsdl:operation name="DeletePayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeletePayment" message="tns:IUserService_DeletePayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeletePaymentResponse" message="tns:IUserService_DeletePayment_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddShiftUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddShiftUser" message="tns:IUserService_AddShiftUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddShiftUserResponse" message="tns:IUserService_AddShiftUser_OutputMessage" />
+    <wsdl:operation name="AddShift">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddShift" message="tns:IUserService_AddShift_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddShiftResponse" message="tns:IUserService_AddShift_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EditShiftUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditShiftUser" message="tns:IUserService_EditShiftUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditShiftUserResponse" message="tns:IUserService_EditShiftUser_OutputMessage" />
+    <wsdl:operation name="AddViolation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddViolation" message="tns:IUserService_AddViolation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddViolationResponse" message="tns:IUserService_AddViolation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteShiftUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteShiftUser" message="tns:IUserService_DeleteShiftUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteShiftUserResponse" message="tns:IUserService_DeleteShiftUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddViolationUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddViolationUser" message="tns:IUserService_AddViolationUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddViolationUserResponse" message="tns:IUserService_AddViolationUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EditViolationUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditViolationUser" message="tns:IUserService_EditViolationUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditViolationUserResponse" message="tns:IUserService_EditViolationUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllViolationsUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllViolationsUser" message="tns:IUserService_GetAllViolationsUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllViolationsUserResponse" message="tns:IUserService_GetAllViolationsUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteViolationUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteViolationUser" message="tns:IUserService_DeleteViolationUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteViolationUserResponse" message="tns:IUserService_DeleteViolationUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddViolatorUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddViolatorUser" message="tns:IUserService_AddViolatorUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddViolatorUserResponse" message="tns:IUserService_AddViolatorUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EditViolatorUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditViolatorUser" message="tns:IUserService_EditViolatorUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditViolatorUserResponse" message="tns:IUserService_EditViolatorUser_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteViolatorUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteViolatorUser" message="tns:IUserService_DeleteViolatorUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteViolatorUserResponse" message="tns:IUserService_DeleteViolatorUser_OutputMessage" />
+    <wsdl:operation name="EditViolation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/EditViolation" message="tns:IUserService_EditViolation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/EditViolationResponse" message="tns:IUserService_EditViolation_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AdminServiceTcpEndpointAdmin" type="tns:IAdminService">
@@ -504,71 +364,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddPayment">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddPayment" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EditPayment">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditPayment" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeletePayment">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/DeletePayment" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddShift">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddShift" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="EditShift">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/EditShift" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteShift">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/DeleteShift" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddViolation">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddViolation" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EditViolation">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditViolation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -621,8 +418,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddViolator">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddViolator" style="document" />
+    <wsdl:operation name="AddPerson">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddPerson" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -630,8 +427,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EditViolator">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditViolator" style="document" />
+    <wsdl:operation name="EditPerson">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditPerson" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -639,8 +436,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteViolator">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/DeleteViolator" style="document" />
+    <wsdl:operation name="DeletePerson">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/DeletePerson" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -653,8 +450,8 @@
     <wsp:PolicyReference URI="#UserServiceTcpEndpointUser_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="AddPaymentUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/AddPaymentUser" style="document" />
+    <wsdl:operation name="AddPayment">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/AddPayment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -662,8 +459,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EditPaymentUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/EditPaymentUser" style="document" />
+    <wsdl:operation name="EditPayment">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/EditPayment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -671,8 +468,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeletePaymentUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/DeletePaymentUser" style="document" />
+    <wsdl:operation name="DeletePayment">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/DeletePayment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -680,8 +477,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddShiftUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/AddShiftUser" style="document" />
+    <wsdl:operation name="AddShift">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/AddShift" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -689,8 +486,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EditShiftUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/EditShiftUser" style="document" />
+    <wsdl:operation name="AddViolation">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/AddViolation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -698,71 +495,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteShiftUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/DeleteShiftUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddViolationUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/AddViolationUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EditViolationUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/EditViolationUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllViolationsUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllViolationsUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteViolationUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/DeleteViolationUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddViolatorUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/AddViolatorUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EditViolatorUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/EditViolatorUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteViolatorUser">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/DeleteViolatorUser" style="document" />
+    <wsdl:operation name="EditViolation">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/EditViolation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

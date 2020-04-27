@@ -23,5 +23,27 @@ namespace Client {
             InitializeComponent();
             DataContext = new ViolationsUserViewModel();
         }
+
+        private void NoDriverLicenseCheckBox_Checked(object sender, RoutedEventArgs e) {
+            foreach (var item in PersonInfoGrid.Children) {
+                if (item is Control) {
+                    ((Control)item).IsEnabled = false;
+                }
+            }
+            DriverLicenseLabel.Content = "№ протокола*";
+        }
+
+        private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
+            foreach (var item in PersonInfoGrid.Children) {
+                Control control = item as Control;
+                if (item is Control) {
+                    control.IsEnabled = true;
+                    if (control.Name == ShowPersonsViolationsBtn.Name) {
+                        control.IsEnabled = false;
+                    }
+                }
+            }
+            DriverLicenseLabel.Content = "№ ВУ*";
+        }
     }
 }

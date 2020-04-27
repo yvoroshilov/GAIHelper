@@ -8,45 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GaiWcfService.Service {
+
     [ServiceContract]
     public interface IUserService {
-        [OperationContract (Name = "AddPaymentUser")]
+        [OperationContract]
         void AddPayment(PaymentDto payment);
 
-        [OperationContract(Name = "EditPaymentUser")]
+        [OperationContract]
         void EditPayment(int id, PaymentDto payment);
 
-        [OperationContract(Name = "DeletePaymentUser")]
+        [OperationContract]
         void DeletePayment(int id);
 
-        [OperationContract(Name = "AddShiftUser")]
+        [OperationContract]
         void AddShift(ShiftDto shift);
 
-        [OperationContract(Name = "EditShiftUser")]
-        void EditShift(int id, ShiftDto shift);
-
-        [OperationContract(Name = "DeleteShiftUser")]
-        void DeleteShift(int id);
-
-        [OperationContract(Name = "AddViolationUser")]
+        [OperationContract]
         void AddViolation(ViolationDto violation);
 
-        [OperationContract(Name = "EditViolationUser")]
+        [OperationContract]
         void EditViolation(int id, ViolationDto violation);
-
-        [OperationContract(Name = "GetAllViolationsUser")]
-        List<ViolationDto> GetAllViolations();
-
-        [OperationContract(Name = "DeleteViolationUser")]
-        void DeleteViolation(int id);
-
-        [OperationContract(Name = "AddViolatorUser")]
-        void AddViolator(ViolatorDto violator);
-
-        [OperationContract(Name = "EditViolatorUser")]
-        void EditViolator(int id, ViolatorDto violator);
-
-        [OperationContract(Name = "DeleteViolatorUser")]
-        void DeleteViolator(int id);
     }
 }

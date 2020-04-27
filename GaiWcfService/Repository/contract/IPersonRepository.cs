@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.contract {
     [ServiceContract]
-    public interface IViolatorRepository {
+    public interface IPersonRepository {
         [OperationContract]
-        void AddViolator(Violator violator);
+        void AddPerson(Person person);
 
         [OperationContract]
-        void EditViolator(int id, Violator violator);
+        void EditPerson(int id, Person person);
 
         [OperationContract]
-        void DeleteViolator(int id);
+        void DeletePerson(int id);
 
         [OperationContract]
-        Violator GetViolator(int id);
+        Person GetPerson(int id);
 
         [OperationContract]
-        HashSet<Violator> GetAll();
+        HashSet<Person> GetAll();
     }
 }

@@ -10,8 +10,11 @@ using System.Text;
 namespace GaiWcfService.Service {
     [ServiceContract]
     public interface IAdminService {
+
         [OperationContract]
         string Test();
+
+        /* --- ADMIN ACTIONS --- */
 
         [OperationContract]
         void AddAdimn(AdminDto admin);
@@ -22,6 +25,9 @@ namespace GaiWcfService.Service {
         [OperationContract]
         HashSet<AdminDto> getAllAdmins();
 
+        /* --------------------- */
+        /* --- EMPLOYEE ACTIONS --- */
+
         [OperationContract]
         void AddEmployee(EmployeeDto employee);
 
@@ -31,35 +37,23 @@ namespace GaiWcfService.Service {
         [OperationContract]
         void DeleteEmployee(int id);
 
-        [OperationContract]
-        void AddPayment(PaymentDto payment);
-
-        [OperationContract]
-        void EditPayment(int id, PaymentDto payment);
-
-        [OperationContract]
-        void DeletePayment(int id);
-
-        [OperationContract]
-        void AddShift(ShiftDto shift);
+        /* ------------------------ */
+        /* --- SHIFT ACTIONS --- */
 
         [OperationContract]
         void EditShift(int id, ShiftDto shift);
 
-        [OperationContract]
-        void DeleteShift(int id);
-
-        [OperationContract]
-        void AddViolation(ViolationDto violation);
-
-        [OperationContract]
-        void EditViolation(int id, ViolationDto violation);
+        /* --------------------- */
+        /* --- VIOLATIONS ACTIONS --- */
 
         [OperationContract]
         List<ViolationDto> GetAllViolations();
 
         [OperationContract]
         void DeleteViolation(int id);
+
+        /* -------------------------- */
+        /* --- VIOLATION TYPE ACTIONS --- */
 
         [OperationContract]
         void AddViolationType(ViolationTypeDto violationType);
@@ -70,13 +64,18 @@ namespace GaiWcfService.Service {
         [OperationContract]
         void DeleteViolationType(int id);
 
-        [OperationContract]
-        void AddViolator(ViolatorDto violator);
+        /* ------------------------------ */
+        /* --- VIOLATOR ACTIONS --- */
 
         [OperationContract]
-        void EditViolator(int id, ViolatorDto violator);
+        void AddPerson(PersonDto person);
 
         [OperationContract]
-        void DeleteViolator(int id);
+        void EditPerson(int id, PersonDto person);
+
+        [OperationContract]
+        void DeletePerson(int id);
+
+        /* ------------------------ */
     }
 }

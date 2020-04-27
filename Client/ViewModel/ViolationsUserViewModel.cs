@@ -14,16 +14,19 @@ namespace Client.ViewModel {
         private MainService.UserServiceClient client;
         public ObservableCollection<Violation> Violations { get; set; }
 
-        private Violation violation;
-        public Violation Violation {
+        private Violation selectedViolation;
+        public Violation SelectedViolation {
             get {
-                return violation;
+                return selectedViolation;
             }
             set {
-                violation = value;
+                selectedViolation = value;
                 OnPropertyChanged();
             }
         }
+
+        /s private violationId
+
 
         private RelayCommand addCommand;
         public RelayCommand AddCommand {
@@ -38,16 +41,14 @@ namespace Client.ViewModel {
 
         public ViolationsUserViewModel() {
             client = new MainService.UserServiceClient();
-            List<MainService.ViolationDto> list = client.GetAllViolationsUser().ToList();
-            Violations = new ObservableCollection<Violation>(list.Select(val => Mapper.mapper.Map<Violation>(val)));
-            Violations[0].ViolationType.ShortTitle = "test";
+            Violations = new ObservableCollection<Violation>();
             Violations.CollectionChanged += CollectionChanged;
         }
         
         public void CollectionChanged(object obj, NotifyCollectionChangedEventArgs args) {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:
-                    client.AddViolationUser(Mapper.mapper.Map<MainService.ViolationDto>(violation));
+                    //client.AddViolation(Mapper.mapper.Map<MainService.ViolationDto>(violation));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     break;

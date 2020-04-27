@@ -6,18 +6,18 @@ using GaiWcfService.Util;
 namespace GaiWcfService.Service {
     public partial class MainService : IAdminService, IUserService {
 
-        private IViolatorRepository violatorRepository = new ViolatorRepository();
+        private IPersonRepository personRepository = new PersonRepository();
 
-        public void AddViolator(ViolatorDto violator) { 
-            violatorRepository.AddViolator(Mapper.mapper.Map<Violator>(violator));
+        public void AddPerson(PersonDto person) { 
+            personRepository.AddPerson(Mapper.mapper.Map<Person>(person));
         }
 
-        public void EditViolator(int id, ViolatorDto violator) {
-            violatorRepository.EditViolator(id, Mapper.mapper.Map<Violator>(violator));
+        public void EditPerson(int id, PersonDto person) {
+            personRepository.EditPerson(id, Mapper.mapper.Map<Person>(person));
         }
 
-        public void DeleteViolator(int id) {
-            violatorRepository.DeleteViolator(id);
+        public void DeletePerson(int id) {
+            personRepository.DeletePerson(id);
         }
 
     }

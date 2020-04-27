@@ -12,7 +12,7 @@ namespace GaiWcfService.Dto {
         public int id { get; set; }
 
         [DataMember] 
-        public int violatorId { get; set; }
+        public int personId { get; set; }
 
         [DataMember]
         public DateTime payday { get; set; }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace Client.Model {
-    public partial class Violator : NotifyingModel {
+    public partial class Person : NotifyingModel {
         private int id;
         public int Id {
             get {

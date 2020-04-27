@@ -15,10 +15,10 @@ namespace GaiWcfService
     public partial class Payment
     {
         public long id { get; set; }
-        public int violator_id { get; set; }
+        public int person_id { get; set; }
         public System.DateTime payday { get; set; }
         public bool is_paid { get; set; }
     
-        public virtual Violator Violator { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

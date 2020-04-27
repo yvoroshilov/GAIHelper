@@ -7,29 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gsdfgsdfg
+namespace GaiWcfService
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Employees
+    public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employees()
+        public Person()
         {
-            this.Shifts = new HashSet<Shifts>();
+            this.Payments = new HashSet<Payment>();
+            this.Violations = new HashSet<Violation>();
         }
     
-        public int certificate_id { get; set; }
+        public int id { get; set; }
+        public string passport_id { get; set; }
+        public string driver_license { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string patronymic { get; set; }
-        public System.DateTime hire_date { get; set; }
-        public string rank { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public float actual_penalty { get; set; }
+        public Nullable<float> paid_penalty { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shifts> Shifts { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Violation> Violations { get; set; }
     }
 }

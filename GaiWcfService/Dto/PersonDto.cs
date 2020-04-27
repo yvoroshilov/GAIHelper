@@ -6,12 +6,15 @@ using System.Text;
 
 namespace GaiWcfService.Dto {
     [DataContract]
-    public class ViolatorDto {
+    public class PersonDto {
         [DataMember]
         public int id;
 
         [DataMember]
         public string passportId;
+
+        [DataMember]
+        public string driverLicense;
 
         [DataMember]
         public string name;

@@ -20,7 +20,7 @@ namespace GaiWcfService
             this.Violations = new HashSet<Violation>();
         }
     
-        public int id { get; set; }
+        public string id { get; set; }
         public string title { get; set; }
         public decimal min_penalty { get; set; }
         public string description { get; set; }

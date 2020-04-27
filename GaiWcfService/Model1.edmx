@@ -31,9 +31,22 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="violator_id" Type="int" Nullable="false" />
+          <Property Name="person_id" Type="int" Nullable="false" />
           <Property Name="payday" Type="date" Nullable="false" />
           <Property Name="is_paid" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="passport_id" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="driver_license" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="actual_penalty" Type="real" Nullable="false" />
+          <Property Name="paid_penalty" Type="real" />
         </EntityType>
         <EntityType Name="Shifts">
           <Key>
@@ -49,8 +62,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="violataion_type_id" Type="int" Nullable="false" />
-          <Property Name="violator_id" Type="int" Nullable="false" />
+          <Property Name="violataion_type_id" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="person_id" Type="int" Nullable="false" />
           <Property Name="car_number" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="date" Type="date" />
           <Property Name="penalty" Type="real" Nullable="false" />
@@ -63,32 +76,20 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="min_penalty" Type="money" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="Violators">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="passport_id" Type="char" MaxLength="9" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="actual_penalty" Type="real" Nullable="false" />
-          <Property Name="paid_penalty" Type="real" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Payments_Violators">
-          <End Role="Violators" Type="Self.Violators" Multiplicity="1" />
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Violators">
+            <Principal Role="Persons">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Payments">
-              <PropertyRef Name="violator_id" />
+              <PropertyRef Name="person_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -117,14 +118,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Violations_Violators">
-          <End Role="Violators" Type="Self.Violators" Multiplicity="1" />
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="Violations" Type="Self.Violations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Violators">
+            <Principal Role="Persons">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Violations">
-              <PropertyRef Name="violator_id" />
+              <PropertyRef Name="person_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -132,12 +133,12 @@
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Violations" EntityType="Self.Violations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ViolationTypes" EntityType="Self.ViolationTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Violators" EntityType="Self.Violators" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Payments_Violators" Association="Self.FK_Payments_Violators">
-            <End Role="Violators" EntitySet="Violators" />
+            <End Role="Persons" EntitySet="Persons" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
           <AssociationSet Name="FK_Shifts_Employees" Association="Self.FK_Shifts_Employees">
@@ -149,7 +150,7 @@
             <End Role="Violations" EntitySet="Violations" />
           </AssociationSet>
           <AssociationSet Name="FK_Violations_Violators" Association="Self.FK_Violations_Violators">
-            <End Role="Violators" EntitySet="Violators" />
+            <End Role="Persons" EntitySet="Persons" />
             <End Role="Violations" EntitySet="Violations" />
           </AssociationSet>
         </EntityContainer>
@@ -161,24 +162,24 @@
           <EntitySet Name="Admins" EntityType="GAIDBModel.Admin" />
           <EntitySet Name="Employees" EntityType="GAIDBModel.Employee" />
           <EntitySet Name="Payments" EntityType="GAIDBModel.Payment" />
+          <EntitySet Name="Persons" EntityType="GAIDBModel.Person" />
           <EntitySet Name="Shifts" EntityType="GAIDBModel.Shift" />
           <EntitySet Name="Violations" EntityType="GAIDBModel.Violation" />
           <EntitySet Name="ViolationTypes" EntityType="GAIDBModel.ViolationType" />
-          <EntitySet Name="Violators" EntityType="GAIDBModel.Violator" />
           <AssociationSet Name="FK_Shifts_Employees" Association="GAIDBModel.FK_Shifts_Employees">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Shift" EntitySet="Shifts" />
           </AssociationSet>
           <AssociationSet Name="FK_Payments_Violators" Association="GAIDBModel.FK_Payments_Violators">
-            <End Role="Violator" EntitySet="Violators" />
+            <End Role="Person" EntitySet="Persons" />
             <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Violations_Violators" Association="GAIDBModel.FK_Violations_Violators">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="Violation" EntitySet="Violations" />
           </AssociationSet>
           <AssociationSet Name="FK_Violations_ViolationsTypes" Association="GAIDBModel.FK_Violations_ViolationsTypes">
             <End Role="ViolationType" EntitySet="ViolationTypes" />
-            <End Role="Violation" EntitySet="Violations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Violations_Violators" Association="GAIDBModel.FK_Violations_Violators">
-            <End Role="Violator" EntitySet="Violators" />
             <End Role="Violation" EntitySet="Violations" />
           </AssociationSet>
         </EntityContainer>
@@ -209,10 +210,25 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="violator_id" Type="Int32" Nullable="false" />
+          <Property Name="person_id" Type="Int32" Nullable="false" />
           <Property Name="payday" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="is_paid" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Violator" Relationship="GAIDBModel.FK_Payments_Violators" FromRole="Payment" ToRole="Violator" />
+          <NavigationProperty Name="Person" Relationship="GAIDBModel.FK_Payments_Violators" FromRole="Payment" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="passport_id" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="driver_license" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="actual_penalty" Type="Single" Nullable="false" />
+          <Property Name="paid_penalty" Type="Single" />
+          <NavigationProperty Name="Payments" Relationship="GAIDBModel.FK_Payments_Violators" FromRole="Person" ToRole="Payment" />
+          <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Person" ToRole="Violation" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -229,8 +245,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="violataion_type_id" Type="Int32" Nullable="false" />
-          <Property Name="violator_id" Type="Int32" Nullable="false" />
+          <Property Name="violataion_type_id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="person_id" Type="Int32" Nullable="false" />
           <Property Name="car_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="0" />
           <Property Name="penalty" Type="Single" Nullable="false" />
@@ -238,32 +254,18 @@
           <Property Name="location_e" Type="Single" />
           <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Violation" ToRole="Person" />
           <NavigationProperty Name="ViolationType" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="Violation" ToRole="ViolationType" />
-          <NavigationProperty Name="Violator" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Violation" ToRole="Violator" />
         </EntityType>
         <EntityType Name="ViolationType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="min_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="ViolationType" ToRole="Violation" />
-        </EntityType>
-        <EntityType Name="Violator">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="passport_id" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="actual_penalty" Type="Single" Nullable="false" />
-          <Property Name="paid_penalty" Type="Single" Nullable="false" />
-          <NavigationProperty Name="Payments" Relationship="GAIDBModel.FK_Payments_Violators" FromRole="Violator" ToRole="Payment" />
-          <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Violator" ToRole="Violation" />
         </EntityType>
         <Association Name="FK_Shifts_Employees">
           <End Type="GAIDBModel.Employee" Role="Employee" Multiplicity="1" />
@@ -278,14 +280,26 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payments_Violators">
-          <End Type="GAIDBModel.Violator" Role="Violator" Multiplicity="1" />
+          <End Type="GAIDBModel.Person" Role="Person" Multiplicity="1" />
           <End Type="GAIDBModel.Payment" Role="Payment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Violator">
+            <Principal Role="Person">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Payment">
-              <PropertyRef Name="violator_id" />
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Violations_Violators">
+          <End Type="GAIDBModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="GAIDBModel.Violation" Role="Violation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Violation">
+              <PropertyRef Name="person_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,18 +312,6 @@
             </Principal>
             <Dependent Role="Violation">
               <PropertyRef Name="violataion_type_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Violations_Violators">
-          <End Type="GAIDBModel.Violator" Role="Violator" Multiplicity="1" />
-          <End Type="GAIDBModel.Violation" Role="Violation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Violator">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Violation">
-              <PropertyRef Name="violator_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -347,7 +349,21 @@
               <MappingFragment StoreEntitySet="Payments">
                 <ScalarProperty Name="is_paid" ColumnName="is_paid" />
                 <ScalarProperty Name="payday" ColumnName="payday" />
-                <ScalarProperty Name="violator_id" ColumnName="violator_id" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="GAIDBModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="paid_penalty" ColumnName="paid_penalty" />
+                <ScalarProperty Name="actual_penalty" ColumnName="actual_penalty" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="driver_license" ColumnName="driver_license" />
+                <ScalarProperty Name="passport_id" ColumnName="passport_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -372,7 +388,7 @@
                 <ScalarProperty Name="penalty" ColumnName="penalty" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="car_number" ColumnName="car_number" />
-                <ScalarProperty Name="violator_id" ColumnName="violator_id" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
                 <ScalarProperty Name="violataion_type_id" ColumnName="violataion_type_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -384,19 +400,6 @@
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="min_penalty" ColumnName="min_penalty" />
                 <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Violators">
-            <EntityTypeMapping TypeName="GAIDBModel.Violator">
-              <MappingFragment StoreEntitySet="Violators">
-                <ScalarProperty Name="paid_penalty" ColumnName="paid_penalty" />
-                <ScalarProperty Name="actual_penalty" ColumnName="actual_penalty" />
-                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="passport_id" ColumnName="passport_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

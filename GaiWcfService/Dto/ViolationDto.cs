@@ -12,13 +12,13 @@ namespace GaiWcfService.Dto{
         public int id;
 
         [DataMember]
-        public int violationTypeId;
+        public string violationTypeId;
 
         [DataMember]
-        public int violatorId;
+        public int personId;
 
         [DataMember]
-        public string car_number;
+        public string carNumber;
 
         [DataMember]
         public DateTime date;
@@ -31,6 +31,9 @@ namespace GaiWcfService.Dto{
 
         [DataMember]
         public double locationE;
+
+        [DataMember]
+        public string address;
 
         [DataMember]
         public string description;

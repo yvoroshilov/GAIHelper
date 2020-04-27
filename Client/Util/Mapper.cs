@@ -17,7 +17,7 @@ namespace Client.Util {
                 cfg.CreateMap<Shift, MainService.ShiftDto>();
                 cfg.CreateMap<Violation, MainService.ViolationDto>().ReverseMap();
                 cfg.CreateMap<ViolationType, MainService.ViolationTypeDto>().ReverseMap();
-                cfg.CreateMap<Violator, MainService.ViolatorDto>().ReverseMap();
+                cfg.CreateMap<Person, MainService.PersonDto>().ReverseMap();
             });
             mapper = config.CreateMapper();
         }

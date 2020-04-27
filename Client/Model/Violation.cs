@@ -102,13 +102,13 @@ namespace Client.Model {
             }
         }
 
-        private Violator violator;
-        public Violator Violator {
+        private Person person;
+        public Person Person {
             get {
-                return violator;
+                return person;
             }
             set {
-                violator = value;
+                person = value;
                 OnPropertyChanged();
             }
         }

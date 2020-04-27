@@ -8,14 +8,14 @@
         <EntityTypeShape EntityType="GAIDBModel.Admin" Width="1.5" PointX="5.75" PointY="6.375" />
         <EntityTypeShape EntityType="GAIDBModel.Employee" Width="1.5" PointX="5.75" PointY="2.5" />
         <EntityTypeShape EntityType="GAIDBModel.Payment" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="GAIDBModel.Person" Width="1.5" PointX="0.75" PointY="4.25" />
         <EntityTypeShape EntityType="GAIDBModel.Shift" Width="1.5" PointX="8" PointY="2.875" />
         <EntityTypeShape EntityType="GAIDBModel.Violation" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="GAIDBModel.ViolationType" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GAIDBModel.Violator" Width="1.5" PointX="0.75" PointY="4.375" />
         <AssociationConnector Association="GAIDBModel.FK_Shifts_Employees" />
         <AssociationConnector Association="GAIDBModel.FK_Payments_Violators" />
-        <AssociationConnector Association="GAIDBModel.FK_Violations_ViolationsTypes" />
         <AssociationConnector Association="GAIDBModel.FK_Violations_Violators" />
+        <AssociationConnector Association="GAIDBModel.FK_Violations_ViolationsTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

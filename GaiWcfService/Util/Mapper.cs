@@ -17,7 +17,7 @@ namespace GaiWcfService.Util {
                 cfg.CreateMap<Shift, ShiftDto>();
                 cfg.CreateMap<Violation, ViolationDto>().ReverseMap();
                 cfg.CreateMap<ViolationType, ViolationTypeDto>().ReverseMap();
-                cfg.CreateMap<Violator, ViolatorDto>().ReverseMap();
+                cfg.CreateMap<Person, PersonDto>().ReverseMap();
             });
             mapper = config.CreateMapper();
         }

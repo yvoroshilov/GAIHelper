@@ -23,7 +23,7 @@ namespace GaiWcfService.Repository.implementation {
             oldViolation.location_n = violation.location_n;
             oldViolation.location_e = violation.location_e;
             oldViolation.penalty = violation.penalty;
-            oldViolation.violator_id = violation.violator_id;
+            oldViolation.person_id = violation.person_id;
             dbEntities.instance.SaveChanges();
         }
 

@@ -263,99 +263,6 @@ namespace Client.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PaymentDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
-    [System.SerializableAttribute()]
-    public partial class PaymentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool isPaidField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime paydayField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int violatorIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool isPaid {
-            get {
-                return this.isPaidField;
-            }
-            set {
-                if ((this.isPaidField.Equals(value) != true)) {
-                    this.isPaidField = value;
-                    this.RaisePropertyChanged("isPaid");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime payday {
-            get {
-                return this.paydayField;
-            }
-            set {
-                if ((this.paydayField.Equals(value) != true)) {
-                    this.paydayField = value;
-                    this.RaisePropertyChanged("payday");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int violatorId {
-            get {
-                return this.violatorIdField;
-            }
-            set {
-                if ((this.violatorIdField.Equals(value) != true)) {
-                    this.violatorIdField = value;
-                    this.RaisePropertyChanged("violatorId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ShiftDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
     [System.SerializableAttribute()]
     public partial class ShiftDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -457,7 +364,10 @@ namespace Client.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string car_numberField;
+        private string addressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string carNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime dateField;
@@ -478,10 +388,10 @@ namespace Client.MainService {
         private double penaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int violationTypeIdField;
+        private int personIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int violatorIdField;
+        private string violationTypeIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -494,14 +404,27 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string car_number {
+        public string address {
             get {
-                return this.car_numberField;
+                return this.addressField;
             }
             set {
-                if ((object.ReferenceEquals(this.car_numberField, value) != true)) {
-                    this.car_numberField = value;
-                    this.RaisePropertyChanged("car_number");
+                if ((object.ReferenceEquals(this.addressField, value) != true)) {
+                    this.addressField = value;
+                    this.RaisePropertyChanged("address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string carNumber {
+            get {
+                return this.carNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.carNumberField, value) != true)) {
+                    this.carNumberField = value;
+                    this.RaisePropertyChanged("carNumber");
                 }
             }
         }
@@ -585,27 +508,27 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int violationTypeId {
+        public int personId {
             get {
-                return this.violationTypeIdField;
+                return this.personIdField;
             }
             set {
-                if ((this.violationTypeIdField.Equals(value) != true)) {
-                    this.violationTypeIdField = value;
-                    this.RaisePropertyChanged("violationTypeId");
+                if ((this.personIdField.Equals(value) != true)) {
+                    this.personIdField = value;
+                    this.RaisePropertyChanged("personId");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int violatorId {
+        public string violationTypeId {
             get {
-                return this.violatorIdField;
+                return this.violationTypeIdField;
             }
             set {
-                if ((this.violatorIdField.Equals(value) != true)) {
-                    this.violatorIdField = value;
-                    this.RaisePropertyChanged("violatorId");
+                if ((object.ReferenceEquals(this.violationTypeIdField, value) != true)) {
+                    this.violationTypeIdField = value;
+                    this.RaisePropertyChanged("violationTypeId");
                 }
             }
         }
@@ -715,15 +638,18 @@ namespace Client.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ViolatorDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
     [System.SerializableAttribute()]
-    public partial class ViolatorDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class PersonDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double actual_penaltyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string driverLicenseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idField;
@@ -762,6 +688,19 @@ namespace Client.MainService {
                 if ((this.actual_penaltyField.Equals(value) != true)) {
                     this.actual_penaltyField = value;
                     this.RaisePropertyChanged("actual_penalty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string driverLicense {
+            get {
+                return this.driverLicenseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.driverLicenseField, value) != true)) {
+                    this.driverLicenseField = value;
+                    this.RaisePropertyChanged("driverLicense");
                 }
             }
         }
@@ -854,6 +793,99 @@ namespace Client.MainService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaymentDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.SerializableAttribute()]
+    public partial class PaymentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isPaidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime paydayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int personIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isPaid {
+            get {
+                return this.isPaidField;
+            }
+            set {
+                if ((this.isPaidField.Equals(value) != true)) {
+                    this.isPaidField = value;
+                    this.RaisePropertyChanged("isPaid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime payday {
+            get {
+                return this.paydayField;
+            }
+            set {
+                if ((this.paydayField.Equals(value) != true)) {
+                    this.paydayField = value;
+                    this.RaisePropertyChanged("payday");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int personId {
+            get {
+                return this.personIdField;
+            }
+            set {
+                if ((this.personIdField.Equals(value) != true)) {
+                    this.personIdField = value;
+                    this.RaisePropertyChanged("personId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService")]
     public interface IAdminService {
@@ -900,53 +932,11 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteEmployee", ReplyAction="http://tempuri.org/IAdminService/DeleteEmployeeResponse")]
         System.Threading.Tasks.Task DeleteEmployeeAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPayment", ReplyAction="http://tempuri.org/IAdminService/AddPaymentResponse")]
-        void AddPayment(Client.MainService.PaymentDto payment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPayment", ReplyAction="http://tempuri.org/IAdminService/AddPaymentResponse")]
-        System.Threading.Tasks.Task AddPaymentAsync(Client.MainService.PaymentDto payment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPayment", ReplyAction="http://tempuri.org/IAdminService/EditPaymentResponse")]
-        void EditPayment(int id, Client.MainService.PaymentDto payment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPayment", ReplyAction="http://tempuri.org/IAdminService/EditPaymentResponse")]
-        System.Threading.Tasks.Task EditPaymentAsync(int id, Client.MainService.PaymentDto payment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePayment", ReplyAction="http://tempuri.org/IAdminService/DeletePaymentResponse")]
-        void DeletePayment(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePayment", ReplyAction="http://tempuri.org/IAdminService/DeletePaymentResponse")]
-        System.Threading.Tasks.Task DeletePaymentAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddShift", ReplyAction="http://tempuri.org/IAdminService/AddShiftResponse")]
-        void AddShift(Client.MainService.ShiftDto shift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddShift", ReplyAction="http://tempuri.org/IAdminService/AddShiftResponse")]
-        System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditShift", ReplyAction="http://tempuri.org/IAdminService/EditShiftResponse")]
         void EditShift(int id, Client.MainService.ShiftDto shift);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditShift", ReplyAction="http://tempuri.org/IAdminService/EditShiftResponse")]
         System.Threading.Tasks.Task EditShiftAsync(int id, Client.MainService.ShiftDto shift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteShift", ReplyAction="http://tempuri.org/IAdminService/DeleteShiftResponse")]
-        void DeleteShift(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteShift", ReplyAction="http://tempuri.org/IAdminService/DeleteShiftResponse")]
-        System.Threading.Tasks.Task DeleteShiftAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolation", ReplyAction="http://tempuri.org/IAdminService/AddViolationResponse")]
-        void AddViolation(Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolation", ReplyAction="http://tempuri.org/IAdminService/AddViolationResponse")]
-        System.Threading.Tasks.Task AddViolationAsync(Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditViolation", ReplyAction="http://tempuri.org/IAdminService/EditViolationResponse")]
-        void EditViolation(int id, Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditViolation", ReplyAction="http://tempuri.org/IAdminService/EditViolationResponse")]
-        System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolations", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsResponse")]
         Client.MainService.ViolationDto[] GetAllViolations();
@@ -978,23 +968,23 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteViolationType", ReplyAction="http://tempuri.org/IAdminService/DeleteViolationTypeResponse")]
         System.Threading.Tasks.Task DeleteViolationTypeAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolator", ReplyAction="http://tempuri.org/IAdminService/AddViolatorResponse")]
-        void AddViolator(Client.MainService.ViolatorDto violator);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPerson", ReplyAction="http://tempuri.org/IAdminService/AddPersonResponse")]
+        void AddPerson(Client.MainService.PersonDto person);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolator", ReplyAction="http://tempuri.org/IAdminService/AddViolatorResponse")]
-        System.Threading.Tasks.Task AddViolatorAsync(Client.MainService.ViolatorDto violator);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPerson", ReplyAction="http://tempuri.org/IAdminService/AddPersonResponse")]
+        System.Threading.Tasks.Task AddPersonAsync(Client.MainService.PersonDto person);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditViolator", ReplyAction="http://tempuri.org/IAdminService/EditViolatorResponse")]
-        void EditViolator(int id, Client.MainService.ViolatorDto violator);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPerson", ReplyAction="http://tempuri.org/IAdminService/EditPersonResponse")]
+        void EditPerson(int id, Client.MainService.PersonDto person);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditViolator", ReplyAction="http://tempuri.org/IAdminService/EditViolatorResponse")]
-        System.Threading.Tasks.Task EditViolatorAsync(int id, Client.MainService.ViolatorDto violator);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPerson", ReplyAction="http://tempuri.org/IAdminService/EditPersonResponse")]
+        System.Threading.Tasks.Task EditPersonAsync(int id, Client.MainService.PersonDto person);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteViolator", ReplyAction="http://tempuri.org/IAdminService/DeleteViolatorResponse")]
-        void DeleteViolator(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePerson", ReplyAction="http://tempuri.org/IAdminService/DeletePersonResponse")]
+        void DeletePerson(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteViolator", ReplyAction="http://tempuri.org/IAdminService/DeleteViolatorResponse")]
-        System.Threading.Tasks.Task DeleteViolatorAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePerson", ReplyAction="http://tempuri.org/IAdminService/DeletePersonResponse")]
+        System.Threading.Tasks.Task DeletePersonAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1080,68 +1070,12 @@ namespace Client.MainService {
             return base.Channel.DeleteEmployeeAsync(id);
         }
         
-        public void AddPayment(Client.MainService.PaymentDto payment) {
-            base.Channel.AddPayment(payment);
-        }
-        
-        public System.Threading.Tasks.Task AddPaymentAsync(Client.MainService.PaymentDto payment) {
-            return base.Channel.AddPaymentAsync(payment);
-        }
-        
-        public void EditPayment(int id, Client.MainService.PaymentDto payment) {
-            base.Channel.EditPayment(id, payment);
-        }
-        
-        public System.Threading.Tasks.Task EditPaymentAsync(int id, Client.MainService.PaymentDto payment) {
-            return base.Channel.EditPaymentAsync(id, payment);
-        }
-        
-        public void DeletePayment(int id) {
-            base.Channel.DeletePayment(id);
-        }
-        
-        public System.Threading.Tasks.Task DeletePaymentAsync(int id) {
-            return base.Channel.DeletePaymentAsync(id);
-        }
-        
-        public void AddShift(Client.MainService.ShiftDto shift) {
-            base.Channel.AddShift(shift);
-        }
-        
-        public System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift) {
-            return base.Channel.AddShiftAsync(shift);
-        }
-        
         public void EditShift(int id, Client.MainService.ShiftDto shift) {
             base.Channel.EditShift(id, shift);
         }
         
         public System.Threading.Tasks.Task EditShiftAsync(int id, Client.MainService.ShiftDto shift) {
             return base.Channel.EditShiftAsync(id, shift);
-        }
-        
-        public void DeleteShift(int id) {
-            base.Channel.DeleteShift(id);
-        }
-        
-        public System.Threading.Tasks.Task DeleteShiftAsync(int id) {
-            return base.Channel.DeleteShiftAsync(id);
-        }
-        
-        public void AddViolation(Client.MainService.ViolationDto violation) {
-            base.Channel.AddViolation(violation);
-        }
-        
-        public System.Threading.Tasks.Task AddViolationAsync(Client.MainService.ViolationDto violation) {
-            return base.Channel.AddViolationAsync(violation);
-        }
-        
-        public void EditViolation(int id, Client.MainService.ViolationDto violation) {
-            base.Channel.EditViolation(id, violation);
-        }
-        
-        public System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation) {
-            return base.Channel.EditViolationAsync(id, violation);
         }
         
         public Client.MainService.ViolationDto[] GetAllViolations() {
@@ -1184,28 +1118,28 @@ namespace Client.MainService {
             return base.Channel.DeleteViolationTypeAsync(id);
         }
         
-        public void AddViolator(Client.MainService.ViolatorDto violator) {
-            base.Channel.AddViolator(violator);
+        public void AddPerson(Client.MainService.PersonDto person) {
+            base.Channel.AddPerson(person);
         }
         
-        public System.Threading.Tasks.Task AddViolatorAsync(Client.MainService.ViolatorDto violator) {
-            return base.Channel.AddViolatorAsync(violator);
+        public System.Threading.Tasks.Task AddPersonAsync(Client.MainService.PersonDto person) {
+            return base.Channel.AddPersonAsync(person);
         }
         
-        public void EditViolator(int id, Client.MainService.ViolatorDto violator) {
-            base.Channel.EditViolator(id, violator);
+        public void EditPerson(int id, Client.MainService.PersonDto person) {
+            base.Channel.EditPerson(id, person);
         }
         
-        public System.Threading.Tasks.Task EditViolatorAsync(int id, Client.MainService.ViolatorDto violator) {
-            return base.Channel.EditViolatorAsync(id, violator);
+        public System.Threading.Tasks.Task EditPersonAsync(int id, Client.MainService.PersonDto person) {
+            return base.Channel.EditPersonAsync(id, person);
         }
         
-        public void DeleteViolator(int id) {
-            base.Channel.DeleteViolator(id);
+        public void DeletePerson(int id) {
+            base.Channel.DeletePerson(id);
         }
         
-        public System.Threading.Tasks.Task DeleteViolatorAsync(int id) {
-            return base.Channel.DeleteViolatorAsync(id);
+        public System.Threading.Tasks.Task DeletePersonAsync(int id) {
+            return base.Channel.DeletePersonAsync(id);
         }
     }
     
@@ -1213,83 +1147,41 @@ namespace Client.MainService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IUserService")]
     public interface IUserService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddPaymentUser", ReplyAction="http://tempuri.org/IUserService/AddPaymentUserResponse")]
-        void AddPaymentUser(Client.MainService.PaymentDto payment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddPayment", ReplyAction="http://tempuri.org/IUserService/AddPaymentResponse")]
+        void AddPayment(Client.MainService.PaymentDto payment);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddPaymentUser", ReplyAction="http://tempuri.org/IUserService/AddPaymentUserResponse")]
-        System.Threading.Tasks.Task AddPaymentUserAsync(Client.MainService.PaymentDto payment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddPayment", ReplyAction="http://tempuri.org/IUserService/AddPaymentResponse")]
+        System.Threading.Tasks.Task AddPaymentAsync(Client.MainService.PaymentDto payment);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditPaymentUser", ReplyAction="http://tempuri.org/IUserService/EditPaymentUserResponse")]
-        void EditPaymentUser(int id, Client.MainService.PaymentDto payment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditPayment", ReplyAction="http://tempuri.org/IUserService/EditPaymentResponse")]
+        void EditPayment(int id, Client.MainService.PaymentDto payment);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditPaymentUser", ReplyAction="http://tempuri.org/IUserService/EditPaymentUserResponse")]
-        System.Threading.Tasks.Task EditPaymentUserAsync(int id, Client.MainService.PaymentDto payment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditPayment", ReplyAction="http://tempuri.org/IUserService/EditPaymentResponse")]
+        System.Threading.Tasks.Task EditPaymentAsync(int id, Client.MainService.PaymentDto payment);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeletePaymentUser", ReplyAction="http://tempuri.org/IUserService/DeletePaymentUserResponse")]
-        void DeletePaymentUser(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeletePayment", ReplyAction="http://tempuri.org/IUserService/DeletePaymentResponse")]
+        void DeletePayment(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeletePaymentUser", ReplyAction="http://tempuri.org/IUserService/DeletePaymentUserResponse")]
-        System.Threading.Tasks.Task DeletePaymentUserAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeletePayment", ReplyAction="http://tempuri.org/IUserService/DeletePaymentResponse")]
+        System.Threading.Tasks.Task DeletePaymentAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShiftUser", ReplyAction="http://tempuri.org/IUserService/AddShiftUserResponse")]
-        void AddShiftUser(Client.MainService.ShiftDto shift);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShift", ReplyAction="http://tempuri.org/IUserService/AddShiftResponse")]
+        void AddShift(Client.MainService.ShiftDto shift);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShiftUser", ReplyAction="http://tempuri.org/IUserService/AddShiftUserResponse")]
-        System.Threading.Tasks.Task AddShiftUserAsync(Client.MainService.ShiftDto shift);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShift", ReplyAction="http://tempuri.org/IUserService/AddShiftResponse")]
+        System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditShiftUser", ReplyAction="http://tempuri.org/IUserService/EditShiftUserResponse")]
-        void EditShiftUser(int id, Client.MainService.ShiftDto shift);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolation", ReplyAction="http://tempuri.org/IUserService/AddViolationResponse")]
+        void AddViolation(Client.MainService.ViolationDto violation);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditShiftUser", ReplyAction="http://tempuri.org/IUserService/EditShiftUserResponse")]
-        System.Threading.Tasks.Task EditShiftUserAsync(int id, Client.MainService.ShiftDto shift);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolation", ReplyAction="http://tempuri.org/IUserService/AddViolationResponse")]
+        System.Threading.Tasks.Task AddViolationAsync(Client.MainService.ViolationDto violation);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteShiftUser", ReplyAction="http://tempuri.org/IUserService/DeleteShiftUserResponse")]
-        void DeleteShiftUser(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolation", ReplyAction="http://tempuri.org/IUserService/EditViolationResponse")]
+        void EditViolation(int id, Client.MainService.ViolationDto violation);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteShiftUser", ReplyAction="http://tempuri.org/IUserService/DeleteShiftUserResponse")]
-        System.Threading.Tasks.Task DeleteShiftUserAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolationUser", ReplyAction="http://tempuri.org/IUserService/AddViolationUserResponse")]
-        void AddViolationUser(Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolationUser", ReplyAction="http://tempuri.org/IUserService/AddViolationUserResponse")]
-        System.Threading.Tasks.Task AddViolationUserAsync(Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolationUser", ReplyAction="http://tempuri.org/IUserService/EditViolationUserResponse")]
-        void EditViolationUser(int id, Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolationUser", ReplyAction="http://tempuri.org/IUserService/EditViolationUserResponse")]
-        System.Threading.Tasks.Task EditViolationUserAsync(int id, Client.MainService.ViolationDto violation);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationsUser", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsUserResponse")]
-        Client.MainService.ViolationDto[] GetAllViolationsUser();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationsUser", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsUserResponse")]
-        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsUserAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteViolationUser", ReplyAction="http://tempuri.org/IUserService/DeleteViolationUserResponse")]
-        void DeleteViolationUser(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteViolationUser", ReplyAction="http://tempuri.org/IUserService/DeleteViolationUserResponse")]
-        System.Threading.Tasks.Task DeleteViolationUserAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolatorUser", ReplyAction="http://tempuri.org/IUserService/AddViolatorUserResponse")]
-        void AddViolatorUser(Client.MainService.ViolatorDto violator);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolatorUser", ReplyAction="http://tempuri.org/IUserService/AddViolatorUserResponse")]
-        System.Threading.Tasks.Task AddViolatorUserAsync(Client.MainService.ViolatorDto violator);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolatorUser", ReplyAction="http://tempuri.org/IUserService/EditViolatorUserResponse")]
-        void EditViolatorUser(int id, Client.MainService.ViolatorDto violator);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolatorUser", ReplyAction="http://tempuri.org/IUserService/EditViolatorUserResponse")]
-        System.Threading.Tasks.Task EditViolatorUserAsync(int id, Client.MainService.ViolatorDto violator);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteViolatorUser", ReplyAction="http://tempuri.org/IUserService/DeleteViolatorUserResponse")]
-        void DeleteViolatorUser(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteViolatorUser", ReplyAction="http://tempuri.org/IUserService/DeleteViolatorUserResponse")]
-        System.Threading.Tasks.Task DeleteViolatorUserAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/EditViolation", ReplyAction="http://tempuri.org/IUserService/EditViolationResponse")]
+        System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1319,108 +1211,52 @@ namespace Client.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddPaymentUser(Client.MainService.PaymentDto payment) {
-            base.Channel.AddPaymentUser(payment);
+        public void AddPayment(Client.MainService.PaymentDto payment) {
+            base.Channel.AddPayment(payment);
         }
         
-        public System.Threading.Tasks.Task AddPaymentUserAsync(Client.MainService.PaymentDto payment) {
-            return base.Channel.AddPaymentUserAsync(payment);
+        public System.Threading.Tasks.Task AddPaymentAsync(Client.MainService.PaymentDto payment) {
+            return base.Channel.AddPaymentAsync(payment);
         }
         
-        public void EditPaymentUser(int id, Client.MainService.PaymentDto payment) {
-            base.Channel.EditPaymentUser(id, payment);
+        public void EditPayment(int id, Client.MainService.PaymentDto payment) {
+            base.Channel.EditPayment(id, payment);
         }
         
-        public System.Threading.Tasks.Task EditPaymentUserAsync(int id, Client.MainService.PaymentDto payment) {
-            return base.Channel.EditPaymentUserAsync(id, payment);
+        public System.Threading.Tasks.Task EditPaymentAsync(int id, Client.MainService.PaymentDto payment) {
+            return base.Channel.EditPaymentAsync(id, payment);
         }
         
-        public void DeletePaymentUser(int id) {
-            base.Channel.DeletePaymentUser(id);
+        public void DeletePayment(int id) {
+            base.Channel.DeletePayment(id);
         }
         
-        public System.Threading.Tasks.Task DeletePaymentUserAsync(int id) {
-            return base.Channel.DeletePaymentUserAsync(id);
+        public System.Threading.Tasks.Task DeletePaymentAsync(int id) {
+            return base.Channel.DeletePaymentAsync(id);
         }
         
-        public void AddShiftUser(Client.MainService.ShiftDto shift) {
-            base.Channel.AddShiftUser(shift);
+        public void AddShift(Client.MainService.ShiftDto shift) {
+            base.Channel.AddShift(shift);
         }
         
-        public System.Threading.Tasks.Task AddShiftUserAsync(Client.MainService.ShiftDto shift) {
-            return base.Channel.AddShiftUserAsync(shift);
+        public System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift) {
+            return base.Channel.AddShiftAsync(shift);
         }
         
-        public void EditShiftUser(int id, Client.MainService.ShiftDto shift) {
-            base.Channel.EditShiftUser(id, shift);
+        public void AddViolation(Client.MainService.ViolationDto violation) {
+            base.Channel.AddViolation(violation);
         }
         
-        public System.Threading.Tasks.Task EditShiftUserAsync(int id, Client.MainService.ShiftDto shift) {
-            return base.Channel.EditShiftUserAsync(id, shift);
+        public System.Threading.Tasks.Task AddViolationAsync(Client.MainService.ViolationDto violation) {
+            return base.Channel.AddViolationAsync(violation);
         }
         
-        public void DeleteShiftUser(int id) {
-            base.Channel.DeleteShiftUser(id);
+        public void EditViolation(int id, Client.MainService.ViolationDto violation) {
+            base.Channel.EditViolation(id, violation);
         }
         
-        public System.Threading.Tasks.Task DeleteShiftUserAsync(int id) {
-            return base.Channel.DeleteShiftUserAsync(id);
-        }
-        
-        public void AddViolationUser(Client.MainService.ViolationDto violation) {
-            base.Channel.AddViolationUser(violation);
-        }
-        
-        public System.Threading.Tasks.Task AddViolationUserAsync(Client.MainService.ViolationDto violation) {
-            return base.Channel.AddViolationUserAsync(violation);
-        }
-        
-        public void EditViolationUser(int id, Client.MainService.ViolationDto violation) {
-            base.Channel.EditViolationUser(id, violation);
-        }
-        
-        public System.Threading.Tasks.Task EditViolationUserAsync(int id, Client.MainService.ViolationDto violation) {
-            return base.Channel.EditViolationUserAsync(id, violation);
-        }
-        
-        public Client.MainService.ViolationDto[] GetAllViolationsUser() {
-            return base.Channel.GetAllViolationsUser();
-        }
-        
-        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsUserAsync() {
-            return base.Channel.GetAllViolationsUserAsync();
-        }
-        
-        public void DeleteViolationUser(int id) {
-            base.Channel.DeleteViolationUser(id);
-        }
-        
-        public System.Threading.Tasks.Task DeleteViolationUserAsync(int id) {
-            return base.Channel.DeleteViolationUserAsync(id);
-        }
-        
-        public void AddViolatorUser(Client.MainService.ViolatorDto violator) {
-            base.Channel.AddViolatorUser(violator);
-        }
-        
-        public System.Threading.Tasks.Task AddViolatorUserAsync(Client.MainService.ViolatorDto violator) {
-            return base.Channel.AddViolatorUserAsync(violator);
-        }
-        
-        public void EditViolatorUser(int id, Client.MainService.ViolatorDto violator) {
-            base.Channel.EditViolatorUser(id, violator);
-        }
-        
-        public System.Threading.Tasks.Task EditViolatorUserAsync(int id, Client.MainService.ViolatorDto violator) {
-            return base.Channel.EditViolatorUserAsync(id, violator);
-        }
-        
-        public void DeleteViolatorUser(int id) {
-            base.Channel.DeleteViolatorUser(id);
-        }
-        
-        public System.Threading.Tasks.Task DeleteViolatorUserAsync(int id) {
-            return base.Channel.DeleteViolatorUserAsync(id);
+        public System.Threading.Tasks.Task EditViolationAsync(int id, Client.MainService.ViolationDto violation) {
+            return base.Channel.EditViolationAsync(id, violation);
         }
     }
 }

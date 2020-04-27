@@ -3,24 +3,13 @@ using System.Collections.Generic;
 namespace Client.Model {
 
     public class ViolationType : NotifyingModel {
-        private int id;
-        public int Id {
+        private string id;
+        public string Id {
             get {
                 return id;
             }
             set {
                 id = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string shortTitle;
-        public string ShortTitle {
-            get {
-                return shortTitle;
-            }
-            set {
-                shortTitle = value;
                 OnPropertyChanged();
             }
         }

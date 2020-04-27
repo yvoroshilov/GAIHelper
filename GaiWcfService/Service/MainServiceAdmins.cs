@@ -10,6 +10,7 @@ using System.ServiceModel;
 using System.Text;
 
 namespace GaiWcfService.Service {
+
     public partial class MainService : IAdminService, IUserService {
 
         private IAdminRepository adminRepository = new AdminRepository();

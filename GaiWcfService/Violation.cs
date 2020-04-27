@@ -15,8 +15,8 @@ namespace GaiWcfService
     public partial class Violation
     {
         public int id { get; set; }
-        public int violataion_type_id { get; set; }
-        public int violator_id { get; set; }
+        public string violataion_type_id { get; set; }
+        public int person_id { get; set; }
         public string car_number { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public float penalty { get; set; }
@@ -25,7 +25,7 @@ namespace GaiWcfService
         public string address { get; set; }
         public string description { get; set; }
     
+        public virtual Person Person { get; set; }
         public virtual ViolationType ViolationType { get; set; }
-        public virtual Violator Violator { get; set; }
     }
 }
