@@ -8,6 +8,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.Dashboard"
         mc:Ignorable="d"
         Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800">
+<!-- RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}, Path=Background}-->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -62,7 +63,7 @@
                                 <GridViewColumn Header="№ ВУ/Протокола" Width="130">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Person.DriverLicense}"/>
+                                            <TextBlock Text="{Binding DriverLicenseOrProtocol}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -120,9 +121,7 @@
                         <Label Content="Координаты" Margin="0,0,2.4,0" Height="24" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                         <xctk:MaskedTextBox x:Name="CoordEField" Margin="0,0,1.4,0" Mask="00.#####E" Padding="0,3,0,0" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="61"  ValueDataType="{x:Type s:Double}" Grid.Column="1" Value="{Binding AddedViolation.LocationE, Converter={StaticResource CoordConverter}, UpdateSourceTrigger=PropertyChanged}" IncludeLiteralsInValue="False"/>
                     </Grid>
-                    <xctk:RichTextBox Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.2,244,11,244.8" Text="{Binding AddedViolation.Description, UpdateSourceTrigger=PropertyChanged}">
-                        <FlowDocument/>
-                    </xctk:RichTextBox>
+                    <TextBox Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.2,244,11,244.8" Text="{Binding AddedViolation.Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
                     <Label Content="Описание" VerticalAlignment="Top" Grid.Column="4" Margin="10.4,218,8.2,0" Height="26"/>
                     <Grid x:Name="PersonInfoGrid" Grid.ColumnSpan="2" Grid.Column="4" Margin="11.4,0,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="230" Width="318">
                         <Grid.ColumnDefinitions>
@@ -143,7 +142,7 @@
                     <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,218,10.4,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="73" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="№ Автомобиля*" Grid.Column="4" Margin="11.4,163,9.2,0" VerticalAlignment="Top" Height="26"/>
                     <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,189,8.2,0" Padding="0,3,0,0" Text="{Binding AddedViolation.CarNumber}"/>
-                    <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="9.8,189,9.533,0" Padding="0,3,0,0" Grid.Column="5" Text="{Binding CurDriverLicenseOrProtocol, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="9.8,189,9.533,0" Padding="0,3,0,0" Grid.Column="5" Text="{Binding AddedViolation.DriverLicenseOrProtocol, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label x:Name="DriverLicenseLabel" Content="№ ВУ*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="10.8,163,0,0"/>
                     <Button x:Name="EditViolationBtn" Content="Изменить нарушение" Grid.Column="5" Margin="9.8,9,11.4,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" Grid.Column="4" Margin="11.4,9,10.2,0" VerticalAlignment="Top" Height="28" Command="{Binding AddCommand}"/>

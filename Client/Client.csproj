@@ -103,6 +103,8 @@
     <Compile Include="Resources\ViolationToTextConverter.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
+    <Compile Include="ViewModel\IResettable.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViolationsUserViewModel.cs" />
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>

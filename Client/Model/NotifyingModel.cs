@@ -14,5 +14,12 @@ namespace Client.Model {
         public void OnPropertyChanged([CallerMemberName] string prop = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
+
+        public void setAllPropsToDefault() {
+            var props = this.GetType().GetProperties();
+            foreach (var prop in props) {
+                prop.SetValue(this, default);
+            }
+        }
     }
 }

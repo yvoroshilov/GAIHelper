@@ -1,0 +1,2042 @@
+4/28/2020 10:32:30 AM | Opened connection at 4/28/2020 10:32:30 AM +03:00
+
+4/28/2020 10:32:30 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 10:32:30 AM | 
+
+4/28/2020 10:32:30 AM | -- Executing at 4/28/2020 10:32:30 AM +03:00
+
+4/28/2020 10:32:30 AM | -- Completed in 70 ms with result: SqlDataReader
+
+4/28/2020 10:32:30 AM | 
+
+4/28/2020 10:32:31 AM | Closed connection at 4/28/2020 10:32:31 AM +03:00
+
+4/28/2020 10:32:39 AM | Opened connection at 4/28/2020 10:32:39 AM +03:00
+
+4/28/2020 10:32:39 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 10:32:39 AM | 
+
+4/28/2020 10:32:39 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 10:32:39 AM | -- Executing at 4/28/2020 10:32:39 AM +03:00
+
+4/28/2020 10:32:39 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 10:32:39 AM | 
+
+4/28/2020 10:32:39 AM | Closed connection at 4/28/2020 10:32:39 AM +03:00
+
+4/28/2020 10:32:40 AM | Opened connection at 4/28/2020 10:32:40 AM +03:00
+
+4/28/2020 10:32:40 AM | Started transaction at 4/28/2020 10:32:40 AM +03:00
+
+4/28/2020 10:32:40 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 10:32:40 AM | 
+
+4/28/2020 10:32:40 AM | -- @0: '1.2.33' (Type = AnsiString, Size = 8)
+
+4/28/2020 10:32:40 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 10:32:40 AM | -- @2: '1' (Type = String, Size = 10)
+
+4/28/2020 10:32:40 AM | -- @3: '4/28/2020 10:32:31 AM' (Type = DateTime2)
+
+4/28/2020 10:32:40 AM | -- @4: '15' (Type = Single)
+
+4/28/2020 10:32:40 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 10:32:40 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 10:32:40 AM | -- @7: '1' (Type = String, Size = -1)
+
+4/28/2020 10:32:40 AM | -- Executing at 4/28/2020 10:32:40 AM +03:00
+
+4/28/2020 10:32:40 AM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 10:32:40 AM | 
+
+4/28/2020 10:32:40 AM | Committed transaction at 4/28/2020 10:32:40 AM +03:00
+
+4/28/2020 10:32:40 AM | Closed connection at 4/28/2020 10:32:40 AM +03:00
+
+4/28/2020 10:32:44 AM | Opened connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 10:32:44 AM | -- Executing at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | Closed connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Opened connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Started transaction at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | -- @0: '1.2.33' (Type = AnsiString, Size = 8)
+
+4/28/2020 10:32:44 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 10:32:44 AM | -- @2: '1' (Type = String, Size = 10)
+
+4/28/2020 10:32:44 AM | -- @3: '4/28/2020 10:32:31 AM' (Type = DateTime2)
+
+4/28/2020 10:32:44 AM | -- @4: '15' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @7: '1' (Type = String, Size = -1)
+
+4/28/2020 10:32:44 AM | -- Executing at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | Committed transaction at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Closed connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Opened connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 10:32:44 AM | -- Executing at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | Closed connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Opened connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Started transaction at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | -- @0: '1.2.33' (Type = AnsiString, Size = 8)
+
+4/28/2020 10:32:44 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 10:32:44 AM | -- @2: '1' (Type = String, Size = 10)
+
+4/28/2020 10:32:44 AM | -- @3: '4/28/2020 10:32:31 AM' (Type = DateTime2)
+
+4/28/2020 10:32:44 AM | -- @4: '15' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @7: '1' (Type = String, Size = -1)
+
+4/28/2020 10:32:44 AM | -- Executing at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | Committed transaction at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Closed connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Opened connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 10:32:44 AM | -- Executing at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | Closed connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Opened connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Started transaction at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | -- @0: '1.2.33' (Type = AnsiString, Size = 8)
+
+4/28/2020 10:32:44 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 10:32:44 AM | -- @2: '1' (Type = String, Size = 10)
+
+4/28/2020 10:32:44 AM | -- @3: '4/28/2020 10:32:31 AM' (Type = DateTime2)
+
+4/28/2020 10:32:44 AM | -- @4: '15' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 10:32:44 AM | -- @7: '1' (Type = String, Size = -1)
+
+4/28/2020 10:32:44 AM | -- Executing at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:44 AM | 
+
+4/28/2020 10:32:44 AM | Committed transaction at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:44 AM | Closed connection at 4/28/2020 10:32:44 AM +03:00
+
+4/28/2020 10:32:51 AM | Opened connection at 4/28/2020 10:32:51 AM +03:00
+
+4/28/2020 10:32:51 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 10:32:51 AM | 
+
+4/28/2020 10:32:51 AM | -- p__linq__0: '' (Type = String, Size = 4000)
+
+4/28/2020 10:32:51 AM | -- Executing at 4/28/2020 10:32:51 AM +03:00
+
+4/28/2020 10:32:51 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 10:32:51 AM | 
+
+4/28/2020 10:32:51 AM | Closed connection at 4/28/2020 10:32:51 AM +03:00
+
+4/28/2020 11:04:27 AM | Opened connection at 4/28/2020 11:04:27 AM +03:00
+
+4/28/2020 11:04:27 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:04:27 AM | 
+
+4/28/2020 11:04:27 AM | -- Executing at 4/28/2020 11:04:27 AM +03:00
+
+4/28/2020 11:04:27 AM | -- Completed in 131 ms with result: SqlDataReader
+
+4/28/2020 11:04:27 AM | 
+
+4/28/2020 11:04:27 AM | Closed connection at 4/28/2020 11:04:27 AM +03:00
+
+4/28/2020 11:04:37 AM | Opened connection at 4/28/2020 11:04:37 AM +03:00
+
+4/28/2020 11:04:37 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:04:37 AM | 
+
+4/28/2020 11:04:37 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:04:37 AM | -- Executing at 4/28/2020 11:04:37 AM +03:00
+
+4/28/2020 11:04:37 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:04:37 AM | 
+
+4/28/2020 11:04:37 AM | Closed connection at 4/28/2020 11:04:37 AM +03:00
+
+4/28/2020 11:04:37 AM | The field description must be a string or array type with a maximum length of '255'.
+4/28/2020 11:08:34 AM | Opened connection at 4/28/2020 11:08:34 AM +03:00
+
+4/28/2020 11:08:34 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:08:34 AM | 
+
+4/28/2020 11:08:34 AM | -- Executing at 4/28/2020 11:08:34 AM +03:00
+
+4/28/2020 11:08:34 AM | -- Completed in 69 ms with result: SqlDataReader
+
+4/28/2020 11:08:34 AM | 
+
+4/28/2020 11:08:34 AM | Closed connection at 4/28/2020 11:08:34 AM +03:00
+
+4/28/2020 11:08:45 AM | Opened connection at 4/28/2020 11:08:45 AM +03:00
+
+4/28/2020 11:08:45 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:08:45 AM | 
+
+4/28/2020 11:08:45 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:08:45 AM | -- Executing at 4/28/2020 11:08:45 AM +03:00
+
+4/28/2020 11:08:45 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:08:45 AM | 
+
+4/28/2020 11:08:45 AM | Closed connection at 4/28/2020 11:08:45 AM +03:00
+
+4/28/2020 11:15:32 AM | Opened connection at 4/28/2020 11:15:32 AM +03:00
+
+4/28/2020 11:15:32 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:15:32 AM | 
+
+4/28/2020 11:15:32 AM | -- Executing at 4/28/2020 11:15:32 AM +03:00
+
+4/28/2020 11:15:32 AM | -- Completed in 93 ms with result: SqlDataReader
+
+4/28/2020 11:15:32 AM | 
+
+4/28/2020 11:15:32 AM | Closed connection at 4/28/2020 11:15:32 AM +03:00
+
+4/28/2020 11:16:11 AM | Opened connection at 4/28/2020 11:16:11 AM +03:00
+
+4/28/2020 11:16:11 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:16:11 AM | 
+
+4/28/2020 11:16:11 AM | -- Executing at 4/28/2020 11:16:11 AM +03:00
+
+4/28/2020 11:16:11 AM | -- Completed in 84 ms with result: SqlDataReader
+
+4/28/2020 11:16:11 AM | 
+
+4/28/2020 11:16:11 AM | Closed connection at 4/28/2020 11:16:11 AM +03:00
+
+4/28/2020 11:16:34 AM | Opened connection at 4/28/2020 11:16:34 AM +03:00
+
+4/28/2020 11:16:34 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:16:34 AM | 
+
+4/28/2020 11:16:34 AM | -- Executing at 4/28/2020 11:16:34 AM +03:00
+
+4/28/2020 11:16:34 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:16:34 AM | 
+
+4/28/2020 11:16:34 AM | Closed connection at 4/28/2020 11:16:34 AM +03:00
+
+4/28/2020 11:16:45 AM | Opened connection at 4/28/2020 11:16:45 AM +03:00
+
+4/28/2020 11:16:45 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:16:45 AM | 
+
+4/28/2020 11:16:45 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:16:45 AM | -- Executing at 4/28/2020 11:16:45 AM +03:00
+
+4/28/2020 11:16:45 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:16:45 AM | 
+
+4/28/2020 11:16:45 AM | Closed connection at 4/28/2020 11:16:45 AM +03:00
+
+4/28/2020 11:16:51 AM | The field description must be a string or array type with a maximum length of '255'.
+4/28/2020 11:17:47 AM | Opened connection at 4/28/2020 11:17:47 AM +03:00
+
+4/28/2020 11:17:47 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:17:47 AM | 
+
+4/28/2020 11:17:47 AM | -- Executing at 4/28/2020 11:17:47 AM +03:00
+
+4/28/2020 11:17:47 AM | -- Completed in 68 ms with result: SqlDataReader
+
+4/28/2020 11:17:47 AM | 
+
+4/28/2020 11:17:47 AM | Closed connection at 4/28/2020 11:17:47 AM +03:00
+
+4/28/2020 11:17:58 AM | Opened connection at 4/28/2020 11:17:58 AM +03:00
+
+4/28/2020 11:17:58 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:17:58 AM | 
+
+4/28/2020 11:17:58 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:17:58 AM | -- Executing at 4/28/2020 11:17:58 AM +03:00
+
+4/28/2020 11:17:58 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:17:58 AM | 
+
+4/28/2020 11:17:58 AM | Closed connection at 4/28/2020 11:17:58 AM +03:00
+
+4/28/2020 11:17:58 AM | The field description must be a string or array type with a maximum length of '255'.
+4/28/2020 11:18:30 AM | Opened connection at 4/28/2020 11:18:30 AM +03:00
+
+4/28/2020 11:18:30 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:18:30 AM | 
+
+4/28/2020 11:18:30 AM | -- Executing at 4/28/2020 11:18:30 AM +03:00
+
+4/28/2020 11:18:30 AM | -- Completed in 68 ms with result: SqlDataReader
+
+4/28/2020 11:18:30 AM | 
+
+4/28/2020 11:18:30 AM | Closed connection at 4/28/2020 11:18:30 AM +03:00
+
+4/28/2020 11:18:39 AM | Opened connection at 4/28/2020 11:18:39 AM +03:00
+
+4/28/2020 11:18:39 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:18:39 AM | 
+
+4/28/2020 11:18:39 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:18:39 AM | -- Executing at 4/28/2020 11:18:39 AM +03:00
+
+4/28/2020 11:18:39 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:18:39 AM | 
+
+4/28/2020 11:18:39 AM | Closed connection at 4/28/2020 11:18:39 AM +03:00
+
+4/28/2020 11:18:50 AM | The field description must be a string or array type with a maximum length of '255'.
+4/28/2020 11:22:35 AM | Opened connection at 4/28/2020 11:22:35 AM +03:00
+
+4/28/2020 11:22:36 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:22:36 AM | 
+
+4/28/2020 11:22:36 AM | -- Executing at 4/28/2020 11:22:36 AM +03:00
+
+4/28/2020 11:22:36 AM | -- Completed in 81 ms with result: SqlDataReader
+
+4/28/2020 11:22:36 AM | 
+
+4/28/2020 11:22:36 AM | Closed connection at 4/28/2020 11:22:36 AM +03:00
+
+4/28/2020 11:22:46 AM | Opened connection at 4/28/2020 11:22:46 AM +03:00
+
+4/28/2020 11:22:46 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:22:46 AM | 
+
+4/28/2020 11:22:46 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:22:46 AM | -- Executing at 4/28/2020 11:22:46 AM +03:00
+
+4/28/2020 11:22:46 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:22:46 AM | 
+
+4/28/2020 11:22:46 AM | Closed connection at 4/28/2020 11:22:46 AM +03:00
+
+4/28/2020 11:22:47 AM | Opened connection at 4/28/2020 11:22:47 AM +03:00
+
+4/28/2020 11:22:48 AM | Started transaction at 4/28/2020 11:22:47 AM +03:00
+
+4/28/2020 11:22:48 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 11:22:48 AM | 
+
+4/28/2020 11:22:48 AM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 11:22:48 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 11:22:48 AM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 11:22:48 AM | -- @3: '4/28/2020 11:22:37 AM' (Type = DateTime2)
+
+4/28/2020 11:22:48 AM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 11:22:48 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 11:22:48 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 11:22:48 AM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 11:22:48 AM | -- @8: '123fdsfd' (Type = String, Size = 255)
+
+4/28/2020 11:22:48 AM | -- Executing at 4/28/2020 11:22:48 AM +03:00
+
+4/28/2020 11:22:48 AM | -- Completed in 155 ms with result: SqlDataReader
+
+4/28/2020 11:22:48 AM | 
+
+4/28/2020 11:22:48 AM | Committed transaction at 4/28/2020 11:22:48 AM +03:00
+
+4/28/2020 11:22:48 AM | Closed connection at 4/28/2020 11:22:48 AM +03:00
+
+4/28/2020 11:23:06 AM | Opened connection at 4/28/2020 11:23:06 AM +03:00
+
+4/28/2020 11:23:06 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:23:06 AM | 
+
+4/28/2020 11:23:06 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:23:06 AM | -- Executing at 4/28/2020 11:23:06 AM +03:00
+
+4/28/2020 11:23:06 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:23:06 AM | 
+
+4/28/2020 11:23:06 AM | Closed connection at 4/28/2020 11:23:06 AM +03:00
+
+4/28/2020 11:23:07 AM | Opened connection at 4/28/2020 11:23:07 AM +03:00
+
+4/28/2020 11:23:07 AM | Started transaction at 4/28/2020 11:23:07 AM +03:00
+
+4/28/2020 11:23:07 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 11:23:07 AM | 
+
+4/28/2020 11:23:07 AM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 11:23:07 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 11:23:07 AM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 11:23:07 AM | -- @3: '4/28/2020 11:22:37 AM' (Type = DateTime2)
+
+4/28/2020 11:23:07 AM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 11:23:07 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 11:23:07 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 11:23:07 AM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 11:23:07 AM | -- @8: 'sdfgjkfldgksljdflgkjsdklfgjlskdfjglksdjkfgjlsdkfjglksdjfgklsljdkfgjlklsdkfjgllskdjkfg' (Type = String, Size = 255)
+
+4/28/2020 11:23:07 AM | -- Executing at 4/28/2020 11:23:07 AM +03:00
+
+4/28/2020 11:23:07 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:23:07 AM | 
+
+4/28/2020 11:23:07 AM | Committed transaction at 4/28/2020 11:23:07 AM +03:00
+
+4/28/2020 11:23:07 AM | Closed connection at 4/28/2020 11:23:07 AM +03:00
+
+4/28/2020 11:23:26 AM | Opened connection at 4/28/2020 11:23:26 AM +03:00
+
+4/28/2020 11:23:26 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:23:26 AM | 
+
+4/28/2020 11:23:26 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:23:26 AM | -- Executing at 4/28/2020 11:23:26 AM +03:00
+
+4/28/2020 11:23:26 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:23:26 AM | 
+
+4/28/2020 11:23:26 AM | Closed connection at 4/28/2020 11:23:26 AM +03:00
+
+4/28/2020 11:23:27 AM | Opened connection at 4/28/2020 11:23:27 AM +03:00
+
+4/28/2020 11:23:27 AM | Started transaction at 4/28/2020 11:23:27 AM +03:00
+
+4/28/2020 11:23:27 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 11:23:27 AM | 
+
+4/28/2020 11:23:27 AM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 11:23:27 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 11:23:27 AM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 11:23:27 AM | -- @3: '4/28/2020 11:22:37 AM' (Type = DateTime2)
+
+4/28/2020 11:23:27 AM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 11:23:27 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 11:23:27 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 11:23:27 AM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 11:23:27 AM | -- @8: 'dksjfdsa
+fas
+df
+as
+df
+
+asdf
+sdaf
+dfs
+' (Type = String, Size = 255)
+
+4/28/2020 11:23:27 AM | -- Executing at 4/28/2020 11:23:27 AM +03:00
+
+4/28/2020 11:23:27 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:23:27 AM | 
+
+4/28/2020 11:23:27 AM | Committed transaction at 4/28/2020 11:23:27 AM +03:00
+
+4/28/2020 11:23:27 AM | Closed connection at 4/28/2020 11:23:27 AM +03:00
+
+4/28/2020 11:24:55 AM | Opened connection at 4/28/2020 11:24:55 AM +03:00
+
+4/28/2020 11:24:55 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:24:55 AM | 
+
+4/28/2020 11:24:55 AM | -- Executing at 4/28/2020 11:24:55 AM +03:00
+
+4/28/2020 11:24:55 AM | -- Completed in 75 ms with result: SqlDataReader
+
+4/28/2020 11:24:55 AM | 
+
+4/28/2020 11:24:55 AM | Closed connection at 4/28/2020 11:24:55 AM +03:00
+
+4/28/2020 11:25:02 AM | Opened connection at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:25:02 AM | 
+
+4/28/2020 11:25:02 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:25:02 AM | -- Executing at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:25:02 AM | 
+
+4/28/2020 11:25:02 AM | Closed connection at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | Opened connection at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | Started transaction at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 11:25:02 AM | 
+
+4/28/2020 11:25:02 AM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 11:25:02 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 11:25:02 AM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 11:25:02 AM | -- @3: '4/28/2020 11:24:56 AM' (Type = DateTime2)
+
+4/28/2020 11:25:02 AM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 11:25:02 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 11:25:02 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 11:25:02 AM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 11:25:02 AM | -- @8: '123' (Type = String, Size = 255)
+
+4/28/2020 11:25:02 AM | -- Executing at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 11:25:02 AM | 
+
+4/28/2020 11:25:02 AM | Committed transaction at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:02 AM | Closed connection at 4/28/2020 11:25:02 AM +03:00
+
+4/28/2020 11:25:08 AM | Opened connection at 4/28/2020 11:25:08 AM +03:00
+
+4/28/2020 11:25:08 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:25:08 AM | 
+
+4/28/2020 11:25:08 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:25:08 AM | -- Executing at 4/28/2020 11:25:08 AM +03:00
+
+4/28/2020 11:25:08 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:25:08 AM | 
+
+4/28/2020 11:25:08 AM | Closed connection at 4/28/2020 11:25:08 AM +03:00
+
+4/28/2020 11:25:08 AM | The car_number field is required., The address field is required.
+4/28/2020 11:25:31 AM | Opened connection at 4/28/2020 11:25:31 AM +03:00
+
+4/28/2020 11:25:31 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:25:31 AM | 
+
+4/28/2020 11:25:31 AM | -- Executing at 4/28/2020 11:25:31 AM +03:00
+
+4/28/2020 11:25:31 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:25:31 AM | 
+
+4/28/2020 11:25:31 AM | Closed connection at 4/28/2020 11:25:31 AM +03:00
+
+4/28/2020 11:25:39 AM | Opened connection at 4/28/2020 11:25:39 AM +03:00
+
+4/28/2020 11:25:39 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:25:39 AM | 
+
+4/28/2020 11:25:39 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:25:39 AM | -- Executing at 4/28/2020 11:25:39 AM +03:00
+
+4/28/2020 11:25:39 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:25:39 AM | 
+
+4/28/2020 11:25:39 AM | Closed connection at 4/28/2020 11:25:39 AM +03:00
+
+4/28/2020 11:25:39 AM | The car_number field is required., The address field is required.
+4/28/2020 11:31:19 AM | Opened connection at 4/28/2020 11:31:19 AM +03:00
+
+4/28/2020 11:31:19 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:31:19 AM | 
+
+4/28/2020 11:31:19 AM | -- Executing at 4/28/2020 11:31:19 AM +03:00
+
+4/28/2020 11:31:20 AM | -- Completed in 69 ms with result: SqlDataReader
+
+4/28/2020 11:31:20 AM | 
+
+4/28/2020 11:31:20 AM | Closed connection at 4/28/2020 11:31:20 AM +03:00
+
+4/28/2020 11:31:28 AM | Opened connection at 4/28/2020 11:31:28 AM +03:00
+
+4/28/2020 11:31:28 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:31:28 AM | 
+
+4/28/2020 11:31:28 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:31:28 AM | -- Executing at 4/28/2020 11:31:28 AM +03:00
+
+4/28/2020 11:31:28 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:31:28 AM | 
+
+4/28/2020 11:31:28 AM | Closed connection at 4/28/2020 11:31:28 AM +03:00
+
+4/28/2020 11:31:50 AM | The car_number field is required., The address field is required.
+4/28/2020 11:33:24 AM | Opened connection at 4/28/2020 11:33:24 AM +03:00
+
+4/28/2020 11:33:25 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:33:25 AM | 
+
+4/28/2020 11:33:25 AM | -- Executing at 4/28/2020 11:33:25 AM +03:00
+
+4/28/2020 11:33:25 AM | -- Completed in 76 ms with result: SqlDataReader
+
+4/28/2020 11:33:25 AM | 
+
+4/28/2020 11:33:25 AM | Closed connection at 4/28/2020 11:33:25 AM +03:00
+
+4/28/2020 11:33:32 AM | Opened connection at 4/28/2020 11:33:32 AM +03:00
+
+4/28/2020 11:33:32 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:33:32 AM | 
+
+4/28/2020 11:33:32 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:33:32 AM | -- Executing at 4/28/2020 11:33:32 AM +03:00
+
+4/28/2020 11:33:32 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:33:32 AM | 
+
+4/28/2020 11:33:32 AM | Closed connection at 4/28/2020 11:33:32 AM +03:00
+
+4/28/2020 11:33:33 AM | Opened connection at 4/28/2020 11:33:33 AM +03:00
+
+4/28/2020 11:33:33 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:33:33 AM | 
+
+4/28/2020 11:33:33 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:33:33 AM | -- Executing at 4/28/2020 11:33:33 AM +03:00
+
+4/28/2020 11:33:33 AM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 11:33:33 AM | 
+
+4/28/2020 11:33:33 AM | Closed connection at 4/28/2020 11:33:33 AM +03:00
+
+4/28/2020 11:33:44 AM | Opened connection at 4/28/2020 11:33:44 AM +03:00
+
+4/28/2020 11:33:44 AM | Started transaction at 4/28/2020 11:33:44 AM +03:00
+
+4/28/2020 11:33:44 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 11:33:44 AM | 
+
+4/28/2020 11:33:44 AM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 11:33:44 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 11:33:44 AM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 11:33:44 AM | -- @3: '4/28/2020 11:33:26 AM' (Type = DateTime2)
+
+4/28/2020 11:33:44 AM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 11:33:44 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 11:33:44 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 11:33:44 AM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 11:33:44 AM | -- @8: 'fgsdgdfg' (Type = String, Size = 255)
+
+4/28/2020 11:33:44 AM | -- Executing at 4/28/2020 11:33:44 AM +03:00
+
+4/28/2020 11:33:44 AM | -- Completed in 74 ms with result: SqlDataReader
+
+4/28/2020 11:33:44 AM | 
+
+4/28/2020 11:33:44 AM | Committed transaction at 4/28/2020 11:33:44 AM +03:00
+
+4/28/2020 11:33:44 AM | Closed connection at 4/28/2020 11:33:44 AM +03:00
+
+4/28/2020 11:34:21 AM | Opened connection at 4/28/2020 11:34:21 AM +03:00
+
+4/28/2020 11:34:21 AM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 11:34:21 AM | 
+
+4/28/2020 11:34:21 AM | -- Executing at 4/28/2020 11:34:21 AM +03:00
+
+4/28/2020 11:34:21 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:34:21 AM | 
+
+4/28/2020 11:34:21 AM | Closed connection at 4/28/2020 11:34:21 AM +03:00
+
+4/28/2020 11:34:27 AM | Opened connection at 4/28/2020 11:34:27 AM +03:00
+
+4/28/2020 11:34:27 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:34:27 AM | 
+
+4/28/2020 11:34:27 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:34:27 AM | -- Executing at 4/28/2020 11:34:27 AM +03:00
+
+4/28/2020 11:34:27 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:34:27 AM | 
+
+4/28/2020 11:34:27 AM | Closed connection at 4/28/2020 11:34:27 AM +03:00
+
+4/28/2020 11:34:30 AM | Opened connection at 4/28/2020 11:34:30 AM +03:00
+
+4/28/2020 11:34:30 AM | Started transaction at 4/28/2020 11:34:30 AM +03:00
+
+4/28/2020 11:34:30 AM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 11:34:30 AM | 
+
+4/28/2020 11:34:30 AM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 11:34:30 AM | -- @1: '1' (Type = Int32)
+
+4/28/2020 11:34:30 AM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 11:34:30 AM | -- @3: '4/28/2020 11:34:21 AM' (Type = DateTime2)
+
+4/28/2020 11:34:30 AM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 11:34:30 AM | -- @5: '0' (Type = Single)
+
+4/28/2020 11:34:30 AM | -- @6: '0' (Type = Single)
+
+4/28/2020 11:34:30 AM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 11:34:30 AM | -- @8: '123' (Type = String, Size = 255)
+
+4/28/2020 11:34:30 AM | -- Executing at 4/28/2020 11:34:30 AM +03:00
+
+4/28/2020 11:34:30 AM | -- Completed in 72 ms with result: SqlDataReader
+
+4/28/2020 11:34:30 AM | 
+
+4/28/2020 11:34:30 AM | Committed transaction at 4/28/2020 11:34:30 AM +03:00
+
+4/28/2020 11:34:30 AM | Closed connection at 4/28/2020 11:34:30 AM +03:00
+
+4/28/2020 11:34:56 AM | Opened connection at 4/28/2020 11:34:56 AM +03:00
+
+4/28/2020 11:34:56 AM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 11:34:56 AM | 
+
+4/28/2020 11:34:56 AM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 11:34:56 AM | -- Executing at 4/28/2020 11:34:56 AM +03:00
+
+4/28/2020 11:34:56 AM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 11:34:56 AM | 
+
+4/28/2020 11:34:56 AM | Closed connection at 4/28/2020 11:34:56 AM +03:00
+
+4/28/2020 12:42:06 PM | Opened connection at 4/28/2020 12:42:06 PM +03:00
+
+4/28/2020 12:42:06 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 12:42:06 PM | 
+
+4/28/2020 12:42:06 PM | -- Executing at 4/28/2020 12:42:06 PM +03:00
+
+4/28/2020 12:42:07 PM | -- Completed in 164 ms with result: SqlDataReader
+
+4/28/2020 12:42:07 PM | 
+
+4/28/2020 12:42:07 PM | Closed connection at 4/28/2020 12:42:07 PM +03:00
+
+4/28/2020 12:42:21 PM | Opened connection at 4/28/2020 12:42:21 PM +03:00
+
+4/28/2020 12:42:21 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 12:42:21 PM | 
+
+4/28/2020 12:42:21 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 12:42:21 PM | -- Executing at 4/28/2020 12:42:21 PM +03:00
+
+4/28/2020 12:42:21 PM | -- Completed in 27 ms with result: SqlDataReader
+
+4/28/2020 12:42:21 PM | 
+
+4/28/2020 12:42:21 PM | Closed connection at 4/28/2020 12:42:21 PM +03:00
+
+4/28/2020 1:01:48 PM | Opened connection at 4/28/2020 1:01:48 PM +03:00
+
+4/28/2020 1:01:48 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:01:48 PM | 
+
+4/28/2020 1:01:48 PM | -- Executing at 4/28/2020 1:01:48 PM +03:00
+
+4/28/2020 1:01:48 PM | -- Completed in 148 ms with result: SqlDataReader
+
+4/28/2020 1:01:48 PM | 
+
+4/28/2020 1:01:48 PM | Closed connection at 4/28/2020 1:01:48 PM +03:00
+
+4/28/2020 1:01:57 PM | Opened connection at 4/28/2020 1:01:57 PM +03:00
+
+4/28/2020 1:01:57 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:01:57 PM | 
+
+4/28/2020 1:01:57 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:01:57 PM | -- Executing at 4/28/2020 1:01:57 PM +03:00
+
+4/28/2020 1:01:57 PM | -- Completed in 97 ms with result: SqlDataReader
+
+4/28/2020 1:01:57 PM | 
+
+4/28/2020 1:01:57 PM | Closed connection at 4/28/2020 1:01:57 PM +03:00
+
+4/28/2020 1:01:59 PM | Opened connection at 4/28/2020 1:01:59 PM +03:00
+
+4/28/2020 1:01:59 PM | Started transaction at 4/28/2020 1:01:59 PM +03:00
+
+4/28/2020 1:01:59 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:01:59 PM | 
+
+4/28/2020 1:01:59 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:01:59 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:01:59 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:01:59 PM | -- @3: '4/28/2020 1:01:48 PM' (Type = DateTime2)
+
+4/28/2020 1:01:59 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:01:59 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:01:59 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:01:59 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:01:59 PM | -- Executing at 4/28/2020 1:01:59 PM +03:00
+
+4/28/2020 1:01:59 PM | -- Completed in 6 ms with result: SqlDataReader
+
+4/28/2020 1:01:59 PM | 
+
+4/28/2020 1:01:59 PM | Committed transaction at 4/28/2020 1:01:59 PM +03:00
+
+4/28/2020 1:01:59 PM | Closed connection at 4/28/2020 1:01:59 PM +03:00
+
+4/28/2020 1:12:47 PM | Opened connection at 4/28/2020 1:12:47 PM +03:00
+
+4/28/2020 1:12:47 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:12:47 PM | 
+
+4/28/2020 1:12:47 PM | -- Executing at 4/28/2020 1:12:47 PM +03:00
+
+4/28/2020 1:12:47 PM | -- Completed in 68 ms with result: SqlDataReader
+
+4/28/2020 1:12:47 PM | 
+
+4/28/2020 1:12:47 PM | Closed connection at 4/28/2020 1:12:47 PM +03:00
+
+4/28/2020 1:12:57 PM | Opened connection at 4/28/2020 1:12:57 PM +03:00
+
+4/28/2020 1:12:57 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:12:57 PM | 
+
+4/28/2020 1:12:57 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:12:57 PM | -- Executing at 4/28/2020 1:12:57 PM +03:00
+
+4/28/2020 1:12:57 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:12:57 PM | 
+
+4/28/2020 1:12:57 PM | Closed connection at 4/28/2020 1:12:57 PM +03:00
+
+4/28/2020 1:13:00 PM | Opened connection at 4/28/2020 1:13:00 PM +03:00
+
+4/28/2020 1:13:00 PM | Started transaction at 4/28/2020 1:13:00 PM +03:00
+
+4/28/2020 1:13:00 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:13:00 PM | 
+
+4/28/2020 1:13:00 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:13:00 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:13:00 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:13:00 PM | -- @3: '4/28/2020 1:12:47 PM' (Type = DateTime2)
+
+4/28/2020 1:13:00 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:13:00 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:13:00 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:13:00 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:13:00 PM | -- @8: '234' (Type = String, Size = 255)
+
+4/28/2020 1:13:00 PM | -- Executing at 4/28/2020 1:13:00 PM +03:00
+
+4/28/2020 1:13:00 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:13:00 PM | 
+
+4/28/2020 1:13:00 PM | Committed transaction at 4/28/2020 1:13:00 PM +03:00
+
+4/28/2020 1:13:00 PM | Closed connection at 4/28/2020 1:13:00 PM +03:00
+
+4/28/2020 1:25:50 PM | Opened connection at 4/28/2020 1:25:50 PM +03:00
+
+4/28/2020 1:25:50 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:25:50 PM | 
+
+4/28/2020 1:25:50 PM | -- Executing at 4/28/2020 1:25:50 PM +03:00
+
+4/28/2020 1:25:50 PM | -- Completed in 78 ms with result: SqlDataReader
+
+4/28/2020 1:25:50 PM | 
+
+4/28/2020 1:25:50 PM | Closed connection at 4/28/2020 1:25:50 PM +03:00
+
+4/28/2020 1:26:08 PM | Opened connection at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:26:08 PM | 
+
+4/28/2020 1:26:08 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:26:08 PM | -- Executing at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:26:08 PM | 
+
+4/28/2020 1:26:08 PM | Closed connection at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | Opened connection at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | Started transaction at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:26:08 PM | 
+
+4/28/2020 1:26:08 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:26:08 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:26:08 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:26:08 PM | -- @3: '4/28/2020 1:25:50 PM' (Type = DateTime2)
+
+4/28/2020 1:26:08 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:26:08 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:26:08 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:26:08 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:26:08 PM | -- @8: '123' (Type = String, Size = 255)
+
+4/28/2020 1:26:08 PM | -- Executing at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:26:08 PM | 
+
+4/28/2020 1:26:08 PM | Committed transaction at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:08 PM | Closed connection at 4/28/2020 1:26:08 PM +03:00
+
+4/28/2020 1:26:51 PM | Opened connection at 4/28/2020 1:26:51 PM +03:00
+
+4/28/2020 1:26:51 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:26:51 PM | 
+
+4/28/2020 1:26:51 PM | -- Executing at 4/28/2020 1:26:51 PM +03:00
+
+4/28/2020 1:26:51 PM | -- Completed in 83 ms with result: SqlDataReader
+
+4/28/2020 1:26:51 PM | 
+
+4/28/2020 1:26:51 PM | Closed connection at 4/28/2020 1:26:51 PM +03:00
+
+4/28/2020 1:27:02 PM | Opened connection at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:27:02 PM | 
+
+4/28/2020 1:27:02 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:27:02 PM | -- Executing at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:27:02 PM | 
+
+4/28/2020 1:27:02 PM | Closed connection at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | Opened connection at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | Started transaction at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:27:02 PM | 
+
+4/28/2020 1:27:02 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:27:02 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:27:02 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:27:02 PM | -- @3: '4/28/2020 1:26:52 PM' (Type = DateTime2)
+
+4/28/2020 1:27:02 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:27:02 PM | -- @5: '11.23' (Type = Single)
+
+4/28/2020 1:27:02 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:27:02 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:27:02 PM | -- Executing at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:27:02 PM | 
+
+4/28/2020 1:27:02 PM | Committed transaction at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:02 PM | Closed connection at 4/28/2020 1:27:02 PM +03:00
+
+4/28/2020 1:27:58 PM | Opened connection at 4/28/2020 1:27:58 PM +03:00
+
+4/28/2020 1:27:58 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:27:58 PM | 
+
+4/28/2020 1:27:58 PM | -- Executing at 4/28/2020 1:27:58 PM +03:00
+
+4/28/2020 1:27:58 PM | -- Completed in 69 ms with result: SqlDataReader
+
+4/28/2020 1:27:58 PM | 
+
+4/28/2020 1:27:58 PM | Closed connection at 4/28/2020 1:27:58 PM +03:00
+
+4/28/2020 1:28:08 PM | Opened connection at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:28:08 PM | 
+
+4/28/2020 1:28:08 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:28:08 PM | -- Executing at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:28:08 PM | 
+
+4/28/2020 1:28:08 PM | Closed connection at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | Opened connection at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | Started transaction at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:28:08 PM | 
+
+4/28/2020 1:28:08 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:28:08 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:28:08 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:28:08 PM | -- @3: '4/28/2020 1:27:58 PM' (Type = DateTime2)
+
+4/28/2020 1:28:08 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:28:08 PM | -- @5: '12.3' (Type = Single)
+
+4/28/2020 1:28:08 PM | -- @6: '45.6' (Type = Single)
+
+4/28/2020 1:28:08 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:28:08 PM | -- Executing at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:28:08 PM | 
+
+4/28/2020 1:28:08 PM | Committed transaction at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:28:08 PM | Closed connection at 4/28/2020 1:28:08 PM +03:00
+
+4/28/2020 1:35:45 PM | Opened connection at 4/28/2020 1:35:45 PM +03:00
+
+4/28/2020 1:35:45 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:35:45 PM | 
+
+4/28/2020 1:35:45 PM | -- Executing at 4/28/2020 1:35:45 PM +03:00
+
+4/28/2020 1:35:45 PM | -- Completed in 75 ms with result: SqlDataReader
+
+4/28/2020 1:35:45 PM | 
+
+4/28/2020 1:35:45 PM | Closed connection at 4/28/2020 1:35:45 PM +03:00
+
+4/28/2020 1:35:55 PM | Opened connection at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:35:55 PM | 
+
+4/28/2020 1:35:55 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:35:55 PM | -- Executing at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:35:55 PM | 
+
+4/28/2020 1:35:55 PM | Closed connection at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | Opened connection at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | Started transaction at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:35:55 PM | 
+
+4/28/2020 1:35:55 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:35:55 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:35:55 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:35:55 PM | -- @3: '4/28/2020 1:35:46 PM' (Type = DateTime2)
+
+4/28/2020 1:35:55 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:35:55 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:35:55 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:35:55 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:35:55 PM | -- @8: '123' (Type = String, Size = 255)
+
+4/28/2020 1:35:55 PM | -- Executing at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | -- Completed in 42 ms with result: SqlDataReader
+
+4/28/2020 1:35:55 PM | 
+
+4/28/2020 1:35:55 PM | Committed transaction at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:35:55 PM | Closed connection at 4/28/2020 1:35:55 PM +03:00
+
+4/28/2020 1:36:09 PM | Opened connection at 4/28/2020 1:36:09 PM +03:00
+
+4/28/2020 1:36:09 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:36:09 PM | 
+
+4/28/2020 1:36:09 PM | -- p__linq__0: '456' (Type = String, Size = 4000)
+
+4/28/2020 1:36:09 PM | -- Executing at 4/28/2020 1:36:09 PM +03:00
+
+4/28/2020 1:36:09 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:36:09 PM | 
+
+4/28/2020 1:36:09 PM | Closed connection at 4/28/2020 1:36:09 PM +03:00
+
+4/28/2020 1:36:38 PM | Opened connection at 4/28/2020 1:36:38 PM +03:00
+
+4/28/2020 1:36:38 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:36:38 PM | 
+
+4/28/2020 1:36:38 PM | -- Executing at 4/28/2020 1:36:38 PM +03:00
+
+4/28/2020 1:36:38 PM | -- Completed in 68 ms with result: SqlDataReader
+
+4/28/2020 1:36:38 PM | 
+
+4/28/2020 1:36:38 PM | Closed connection at 4/28/2020 1:36:38 PM +03:00
+
+4/28/2020 1:36:44 PM | Opened connection at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:36:44 PM | 
+
+4/28/2020 1:36:44 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:36:44 PM | -- Executing at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:36:44 PM | 
+
+4/28/2020 1:36:44 PM | Closed connection at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | Opened connection at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | Started transaction at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:36:44 PM | 
+
+4/28/2020 1:36:44 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:36:44 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:36:44 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:36:44 PM | -- @3: '4/28/2020 1:36:38 PM' (Type = DateTime2)
+
+4/28/2020 1:36:44 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:36:44 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:36:44 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:36:44 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:36:44 PM | -- @8: '123' (Type = String, Size = 255)
+
+4/28/2020 1:36:44 PM | -- Executing at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:36:44 PM | 
+
+4/28/2020 1:36:44 PM | Committed transaction at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:44 PM | Closed connection at 4/28/2020 1:36:44 PM +03:00
+
+4/28/2020 1:36:53 PM | Opened connection at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:36:53 PM | 
+
+4/28/2020 1:36:53 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:36:53 PM | -- Executing at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 1:36:53 PM | 
+
+4/28/2020 1:36:53 PM | Closed connection at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | Opened connection at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | Started transaction at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:36:53 PM | 
+
+4/28/2020 1:36:53 PM | -- @0: '1.2.33' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:36:53 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:36:53 PM | -- @2: '456' (Type = String, Size = 10)
+
+4/28/2020 1:36:53 PM | -- @3: '1/1/0001 12:00:00 AM' (Type = DateTime2)
+
+4/28/2020 1:36:53 PM | -- @4: '15' (Type = Single)
+
+4/28/2020 1:36:53 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:36:53 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:36:53 PM | -- @7: '456' (Type = String, Size = -1)
+
+4/28/2020 1:36:53 PM | -- Executing at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:36:53 PM | 
+
+4/28/2020 1:36:53 PM | Committed transaction at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:36:53 PM | Closed connection at 4/28/2020 1:36:53 PM +03:00
+
+4/28/2020 1:47:34 PM | Opened connection at 4/28/2020 1:47:34 PM +03:00
+
+4/28/2020 1:47:34 PM | SELECT 
+    [Extent1].[id] AS [id], 
+    [Extent1].[title] AS [title], 
+    [Extent1].[min_penalty] AS [min_penalty], 
+    [Extent1].[max_penalty] AS [max_penalty], 
+    [Extent1].[description] AS [description]
+    FROM [dbo].[ViolationTypes] AS [Extent1]
+4/28/2020 1:47:34 PM | 
+
+4/28/2020 1:47:34 PM | -- Executing at 4/28/2020 1:47:34 PM +03:00
+
+4/28/2020 1:47:34 PM | -- Completed in 78 ms with result: SqlDataReader
+
+4/28/2020 1:47:34 PM | 
+
+4/28/2020 1:47:34 PM | Closed connection at 4/28/2020 1:47:34 PM +03:00
+
+4/28/2020 1:47:41 PM | Opened connection at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:47:41 PM | 
+
+4/28/2020 1:47:41 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:47:41 PM | -- Executing at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | -- Completed in 1 ms with result: SqlDataReader
+
+4/28/2020 1:47:41 PM | 
+
+4/28/2020 1:47:41 PM | Closed connection at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | Opened connection at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | Started transaction at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:47:41 PM | 
+
+4/28/2020 1:47:41 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:47:41 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:47:41 PM | -- @2: '123' (Type = String, Size = 10)
+
+4/28/2020 1:47:41 PM | -- @3: '1/1/0001 12:00:00 AM' (Type = DateTime2)
+
+4/28/2020 1:47:41 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:47:41 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:47:41 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:47:41 PM | -- @7: '123' (Type = String, Size = -1)
+
+4/28/2020 1:47:41 PM | -- @8: '123' (Type = String, Size = 255)
+
+4/28/2020 1:47:41 PM | -- Executing at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | -- Completed in 2 ms with result: SqlDataReader
+
+4/28/2020 1:47:41 PM | 
+
+4/28/2020 1:47:41 PM | Committed transaction at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:41 PM | Closed connection at 4/28/2020 1:47:41 PM +03:00
+
+4/28/2020 1:47:51 PM | Opened connection at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | SELECT TOP (1) 
+    [Extent1].[id] AS [id], 
+    [Extent1].[passport_id] AS [passport_id], 
+    [Extent1].[driver_license] AS [driver_license], 
+    [Extent1].[name] AS [name], 
+    [Extent1].[surname] AS [surname], 
+    [Extent1].[patronymic] AS [patronymic], 
+    [Extent1].[actual_penalty] AS [actual_penalty], 
+    [Extent1].[paid_penalty] AS [paid_penalty]
+    FROM [dbo].[Persons] AS [Extent1]
+    WHERE [Extent1].[driver_license] = @p__linq__0
+4/28/2020 1:47:51 PM | 
+
+4/28/2020 1:47:51 PM | -- p__linq__0: '123' (Type = String, Size = 4000)
+
+4/28/2020 1:47:51 PM | -- Executing at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 1:47:51 PM | 
+
+4/28/2020 1:47:51 PM | Closed connection at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | Opened connection at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | Started transaction at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | INSERT [dbo].[Violations]([violation_type_id], [person_id], [car_number], [date], [penalty], [location_n], [location_e], [address], [description])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)
+SELECT [id]
+FROM [dbo].[Violations]
+WHERE @@ROWCOUNT > 0 AND [id] = scope_identity()
+4/28/2020 1:47:51 PM | 
+
+4/28/2020 1:47:51 PM | -- @0: '1.1.1' (Type = AnsiString, Size = 8)
+
+4/28/2020 1:47:51 PM | -- @1: '1' (Type = Int32)
+
+4/28/2020 1:47:51 PM | -- @2: '456' (Type = String, Size = 10)
+
+4/28/2020 1:47:51 PM | -- @3: '4/28/2020 1:47:41 PM' (Type = DateTime2)
+
+4/28/2020 1:47:51 PM | -- @4: '12.3' (Type = Single)
+
+4/28/2020 1:47:51 PM | -- @5: '0' (Type = Single)
+
+4/28/2020 1:47:51 PM | -- @6: '0' (Type = Single)
+
+4/28/2020 1:47:51 PM | -- @7: '456' (Type = String, Size = -1)
+
+4/28/2020 1:47:51 PM | -- @8: '456' (Type = String, Size = 255)
+
+4/28/2020 1:47:51 PM | -- Executing at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | -- Completed in 0 ms with result: SqlDataReader
+
+4/28/2020 1:47:51 PM | 
+
+4/28/2020 1:47:51 PM | Committed transaction at 4/28/2020 1:47:51 PM +03:00
+
+4/28/2020 1:47:51 PM | Closed connection at 4/28/2020 1:47:51 PM +03:00
+

@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     public class AdminRepository : IAdminRepository {
+
         private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
-        
+
         public void AddAdimn(Admin admin) {
             dbEntities.instance.Admins.Add(admin);
             dbEntities.instance.SaveChanges();

@@ -89,12 +89,5 @@ namespace Client.Model {
                 OnPropertyChanged();
             }
         }
-
-        private List<Violation> violations;
-        public List<Violation> Violation {
-            get {
-                return violations;
-            }
-        }
     }
 }

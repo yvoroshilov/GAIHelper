@@ -2,7 +2,7 @@ using System;
 
 namespace Client.Model {
     
-    public class Violation : NotifyingModel {
+    public class Violation : NotifyingModel, ICloneable {
         private int id;
         public int Id {
             get {
@@ -113,26 +113,19 @@ namespace Client.Model {
             }
         }
 
-        private Person person;
-        public Person Person {
+        private string driverLicenseOrProtocol;
+        public string DriverLicenseOrProtocol {
             get {
-                return person;
+                return driverLicenseOrProtocol;
             }
             set {
-                person = value;
+                driverLicenseOrProtocol = value;
                 OnPropertyChanged();
             }
         }
 
-        private ViolationType violationType;
-        public ViolationType ViolationType {
-            get {
-                return violationType;
-            }
-            set {
-                violationType = value;
-                OnPropertyChanged();
-            }
+        public object Clone() {
+            return base.MemberwiseClone();
         }
     }
 }

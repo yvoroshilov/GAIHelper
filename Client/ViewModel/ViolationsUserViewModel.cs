@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Data.Entity.Validation;
+using System.Windows.Data;
 
 namespace Client.ViewModel {
-    public class ViolationsUserViewModel : NotifyingModel {
+    public class ViolationsUserViewModel : ViewModel {
 
         private MainService.UserServiceClient client;
         public ObservableCollection<Violation> Violations { get; set; }
@@ -60,17 +61,6 @@ namespace Client.ViewModel {
             }
         }
 
-        private string curDriverLicenseOrProtocol;
-        public string CurDriverLicenseOrProtocol {
-            get {
-                return curDriverLicenseOrProtocol;
-            }
-            set {
-                curDriverLicenseOrProtocol = value;
-                OnPropertyChanged();
-            }
-        }
-
         private Person currentPerson;
         public Person CurrentPerson {
             get {
@@ -88,13 +78,16 @@ namespace Client.ViewModel {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
                         addedViolation.ViolationTypeId = selectedViolationType.Id;
+
                         if (!noLic) {
-                            addedViolation.Person = Mapper.mapper.Map<Person>(client.GetPerson(CurDriverLicenseOrProtocol));
-                            addedViolation.PersonId = addedViolation.Person.Id;
+                            Person pers = Mapper.mapper.Map<Person>(client.GetPerson(AddedViolation.DriverLicenseOrProtocol));
+                            addedViolation.PersonId = pers.Id;
                         } else {
-                            addedViolation.Description += " | № Протокола: " + CurDriverLicenseOrProtocol;
+                            addedViolation.Description += " | № Протокола: " + AddedViolation.DriverLicenseOrProtocol;
                         }
-                        Violations.Add(AddedViolation);
+
+                        Violations.Add((Violation)AddedViolation.Clone());
+                        ResetForm();
                     }));
             }
         }
@@ -104,7 +97,7 @@ namespace Client.ViewModel {
             get {
                 return checkPersonCommand ??
                     (checkPersonCommand = new RelayCommand(obj => {
-                        Mapper.mapper.Map(client.GetPerson(curDriverLicenseOrProtocol), currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
+                        Mapper.mapper.Map(client.GetPerson(AddedViolation.DriverLicenseOrProtocol), currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
                     }));
             }
         }
@@ -113,21 +106,33 @@ namespace Client.ViewModel {
             client = new MainService.UserServiceClient();
 
             Violations = new ObservableCollection<Violation>();
-            ViolationTypes = new ReadOnlyCollection<ViolationType>(client.GetAllViolationTypes().Select(val => Mapper.mapper.Map<ViolationType>(val)).ToList());
+            ViolationTypes = new ReadOnlyCollection<ViolationType>(client
+                .GetAllViolationTypes()
+                .Select(val => Mapper.mapper.Map<ViolationType>(val))
+                .ToList());
             addedViolation = new Violation();
-            addedViolation.Date = DateTime.Now;
             currentPerson = new Person();
             Violations.CollectionChanged += CollectionChanged;
+            InitializeForm();
+        }
+
+        public override void InitializeForm() {
+            addedViolation.Date = DateTime.Now;
+        }
+
+        public override void ResetForm() {
+            SelectedViolationType = null;
+            AddedViolation.setAllPropsToDefault();
+            CurrentPerson.setAllPropsToDefault();
+
+            InitializeForm();
         }
         
         public void CollectionChanged(object obj, NotifyCollectionChangedEventArgs args) {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:
-                    try {
-                        client.AddViolation(Mapper.mapper.Map<MainService.ViolationDto>(addedViolation));
-                    } catch (DbEntityValidationException exc) {
-                        Console.WriteLine(exc);
-                    }
+                    MainService.ViolationDto dto = Mapper.mapper.Map<MainService.ViolationDto>(args.NewItems[0]);
+                    client.AddViolation(dto);
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     break;

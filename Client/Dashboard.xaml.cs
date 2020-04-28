@@ -37,7 +37,7 @@ namespace Client {
             }
             BindingOperations.ClearBinding(DriverLicenseField, TextBox.TextProperty);
             DriverLicenseLabel.Content = "№ протокола*";
-            dataContext.CurDriverLicenseOrProtocol = "";
+            dataContext.AddedViolation.DriverLicenseOrProtocol = null;
         }   
 
         private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
@@ -50,7 +50,7 @@ namespace Client {
                     }
                 }
             }
-            BindingOperations.SetBinding(DriverLicenseField, TextBox.TextProperty, new Binding("CurDriverLicenseOrProtocol"));
+            BindingOperations.SetBinding(DriverLicenseField, TextBox.TextProperty, new Binding("AddedViolation.DriverLicenseOrProtocol"));
             DriverLicenseLabel.Content = "№ ВУ*";
         }
 

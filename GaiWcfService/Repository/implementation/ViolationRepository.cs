@@ -3,6 +3,7 @@ using GaiWcfService.Repository.contract;
 using GaiWcfService.Util;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,14 @@ namespace GaiWcfService.Repository.implementation {
             violation = Mapper.mapper.Map<Violation>(Mapper.mapper.Map<ViolationDto>(violation));
             violation.Person = dbEntities.instance.Persons.Find(violation.person_id);
             violation.ViolationType = dbEntities.instance.ViolationTypes.Find(violation.violation_type_id);
-            dbEntities.instance.Violations.Add(violation);
-            dbEntities.instance.SaveChanges();
+            try {
+                dbEntities.instance.Violations.Add(violation);
+                dbEntities.instance.SaveChanges();
+            } catch (DbEntityValidationException exc) {
+                string str = string.Join(", ", exc.EntityValidationErrors.First().ValidationErrors.Select(val => val.ErrorMessage));
+                DbEntitiesSingleton.GetLogger().Write(str);
+                throw new DbEntityValidationException($"decription: '{violation.description}' car number: {violation.car_number}", exc);
+            }
         }
 
         public void EditViolation(int id, Violation violation) {
