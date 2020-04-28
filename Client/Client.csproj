@@ -99,6 +99,7 @@
     <Compile Include="Model\NotifyingModel.cs" />
     <Compile Include="Resources\CoordConverter.cs" />
     <Compile Include="Resources\DateConverter.cs" />
+    <Compile Include="Resources\DescriptionConverter.cs" />
     <Compile Include="Resources\IndexOfConverter.cs" />
     <Compile Include="Resources\ViolationToTextConverter.cs" />
     <Compile Include="Util\Mapper.cs" />

@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:Client"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.Dashboard"
         mc:Ignorable="d"
-        Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800">
-<!-- RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}, Path=Background}-->
+        Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800" SizeChanged="Window_SizeChanged">
+    <!-- RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}, Path=Background}-->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -95,33 +95,62 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Описание">
+                                <GridViewColumn x:Name="DescriptionColumn" Header="Описание" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Description}"/>
+                                            <TextBlock ToolTip="{Binding Description}"  Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <ComboBox x:Name="ViolationField" Grid.Column="4" Margin="10.4,69,10.2,0" Height="24" IsEditable="True" VerticalAlignment="Top" ItemsSource="{Binding ViolationTypes}" SelectedItem="{Binding SelectedViolationType}" SelectionChanged="ViolationField_SelectionChanged">
+                    <ComboBox x:Name="ViolationField" Grid.Column="4" Margin="10.4,69,10.2,0" Height="24" IsEditable="True" VerticalAlignment="Top" ItemsSource="{Binding ViolationTypes}" SelectionChanged="ViolationField_SelectionChanged" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <ComboBox.SelectedItem>
+                            <Binding Path="SelectedViolationType" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedItem>
                     </ComboBox>
                     <Label Content="Нарушение*" Grid.Column="4" Margin="10.4,43,10.2,0" VerticalAlignment="Top" Height="26"/>
                     <Label Content="Штраф, р.*" VerticalAlignment="Top" Grid.Column="4" Margin="10.4,103,10.2,0" Height="26"/>
                     <xctk:DoubleUpDown x:Name="PenaltyField" Grid.Column="4" Margin="10.4,129,10.2,0" VerticalAlignment="Top" Height="24" Text="{Binding AddedViolation.Penalty}" Maximum="{Binding SelectedViolationType.MaxPenalty}" Minimum="{Binding SelectedViolationType.MinPenalty}"/>
                     <Label Content="Адрес происшествия*" VerticalAlignment="Top" Grid.Column="5" Margin="9.8,42,10.533,0" Height="26"/>
-                    <TextBox x:Name="AddressField" Height="24" VerticalAlignment="Top" Grid.Column="5" Margin="9.8,69,9.533,0" Padding="0,3,0,0" Text="{Binding AddedViolation.Address}"/>
+                    <TextBox x:Name="AddressField" Height="24" VerticalAlignment="Top" Grid.Column="5" Margin="9.8,69,9.533,0" Padding="0,3,0,0">
+                        <TextBox.Text>
+                            <Binding Path="AddedViolation.Address">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <Grid Grid.Column="5" Margin="10.8,105,0,0" Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="76*"/>
                             <ColumnDefinition Width="75*"/>
                         </Grid.ColumnDefinitions>
-                        <xctk:MaskedTextBox x:Name="CoordNField" Height="24" VerticalAlignment="Bottom" Mask="00.#####N" Padding="0,3,0,0" HorizontalAlignment="Left" Width="61" ValueDataType="{x:Type s:Double}" Value="{Binding AddedViolation.LocationN, Converter={StaticResource CoordConverter}, UpdateSourceTrigger=PropertyChanged}" IncludeLiteralsInValue="False"/>
+                        <TextBox x:Name="CoordNField" Height="24" VerticalAlignment="Bottom" Padding="0,3,0,0" HorizontalAlignment="Left" Width="59" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10">
+                            <Binding Path="AddedViolation.LocationN" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
                         <Label Content="Координаты" Margin="0,0,2.4,0" Height="24" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <xctk:MaskedTextBox x:Name="CoordEField" Margin="0,0,1.4,0" Mask="00.#####E" Padding="0,3,0,0" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="61"  ValueDataType="{x:Type s:Double}" Grid.Column="1" Value="{Binding AddedViolation.LocationE, Converter={StaticResource CoordConverter}, UpdateSourceTrigger=PropertyChanged}" IncludeLiteralsInValue="False"/>
+                        <TextBox x:Name="CoordEField" Margin="75,0,0,0" Padding="0,3,0,0" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="58" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10" Grid.ColumnSpan="2">
+                            <Binding Path="AddedViolation.LocationE" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                        <Label Content="N" Margin="59,24,0,0" Height="24" VerticalAlignment="Top" FontSize="9" HorizontalAlignment="Left" Width="16"/>
+                        <Label Content="E" Margin="57.8,24,-0.2,0" Height="24" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.504,0.5" FontSize="9" HorizontalAlignment="Left" Width="16"/>
                     </Grid>
-                    <TextBox Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.2,244,11,244.8" Text="{Binding AddedViolation.Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
+                    <TextBox x:Name="DescriptionField" Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.2,244,11,244.8" Text="{Binding AddedViolation.Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
                     <Label Content="Описание" VerticalAlignment="Top" Grid.Column="4" Margin="10.4,218,8.2,0" Height="26"/>
                     <Grid x:Name="PersonInfoGrid" Grid.ColumnSpan="2" Grid.Column="4" Margin="11.4,0,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="230" Width="318">
                         <Grid.ColumnDefinitions>
@@ -141,11 +170,19 @@
                     </Grid>
                     <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,218,10.4,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="73" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="№ Автомобиля*" Grid.Column="4" Margin="11.4,163,9.2,0" VerticalAlignment="Top" Height="26"/>
-                    <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,189,8.2,0" Padding="0,3,0,0" Text="{Binding AddedViolation.CarNumber}"/>
+                    <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,189,8.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <TextBox.Text>
+                            <Binding Path="AddedViolation.CarNumber" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="9.8,189,9.533,0" Padding="0,3,0,0" Grid.Column="5" Text="{Binding AddedViolation.DriverLicenseOrProtocol, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label x:Name="DriverLicenseLabel" Content="№ ВУ*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="10.8,163,0,0"/>
-                    <Button x:Name="EditViolationBtn" Content="Изменить нарушение" Grid.Column="5" Margin="9.8,9,11.4,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
-                    <Button x:Name="AddViolationBtn" Content="Добавить нарушение" Grid.Column="4" Margin="11.4,9,10.2,0" VerticalAlignment="Top" Height="28" Command="{Binding AddCommand}"/>
+                    <Button x:Name="DeleteViolationBtn" Content="Удалить нарушение" Grid.Column="5" Margin="9.8,9,11.4,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
+                    <Button x:Name="AddViolationBtn" Content="Добавить нарушение" Grid.Column="4" Margin="11.4,9,10.2,0" VerticalAlignment="Top" Height="28" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">

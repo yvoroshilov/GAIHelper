@@ -18,7 +18,9 @@ namespace Client.Model {
         public void setAllPropsToDefault() {
             var props = this.GetType().GetProperties();
             foreach (var prop in props) {
-                prop.SetValue(this, default);
+                if (prop.SetMethod != null) {
+                    prop.SetValue(this, default);
+                }
             }
         }
     }

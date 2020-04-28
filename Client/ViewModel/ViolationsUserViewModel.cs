@@ -9,9 +9,10 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Data.Entity.Validation;
 using System.Windows.Data;
+using System.ComponentModel;
 
 namespace Client.ViewModel {
-    public class ViolationsUserViewModel : ViewModel {
+    public class ViolationsUserViewModel : ViewModel, IDataErrorInfo {
 
         private MainService.UserServiceClient client;
         public ObservableCollection<Violation> Violations { get; set; }
@@ -77,6 +78,7 @@ namespace Client.ViewModel {
             get {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
+                        if (selectedViolationType == null) return;
                         addedViolation.ViolationTypeId = selectedViolationType.Id;
 
                         if (!noLic) {
@@ -87,6 +89,7 @@ namespace Client.ViewModel {
                         }
 
                         Violations.Add((Violation)AddedViolation.Clone());
+                        isSelectedItemNew = true;
                         ResetForm();
                     }));
             }
@@ -144,6 +147,28 @@ namespace Client.ViewModel {
                     break;
                 default:
                     break;
+            }
+        }
+
+
+        public string Error => throw new NotImplementedException();
+
+        private bool isSelectedItemNew = true;
+
+        public string this[string columnName] {
+            get {
+                string error = "";
+                switch (columnName) {
+                    case "SelectedViolationType":
+                        if (selectedViolationType == null && !isSelectedItemNew) {
+                            error = "Тип нарушения обязателен для заполнения";
+                        }
+                        isSelectedItemNew = false;
+                        break;
+                    default:
+                        break;
+                }
+                return error;
             }
         }
     }

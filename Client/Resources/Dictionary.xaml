@@ -4,4 +4,13 @@
     <local:IndexOfConverter x:Key="IndexOfConverter" />
     <local:DateConverter x:Key="DateConverter" />
     <local:CoordConverter x:Key="CoordConverter" />
+    <local:DescriptionConverter x:Key="DescriptionConverter" />
+    <ControlTemplate x:Key="ValidationTemplate">
+        <Grid>
+            <Ellipse Margin="0,2,2,0" Fill="Red" Opacity="0.8" Width="10" Height="10"
+                     HorizontalAlignment="Right" VerticalAlignment="Top"
+                     ToolTip="{Binding Path=/ErrorContent}" />
+            <AdornedElementPlaceholder />
+        </Grid>
+    </ControlTemplate>
 </ResourceDictionary>

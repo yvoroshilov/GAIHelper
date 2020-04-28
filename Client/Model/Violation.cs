@@ -1,8 +1,9 @@
 using System;
+using System.ComponentModel;
 
 namespace Client.Model {
     
-    public class Violation : NotifyingModel, ICloneable {
+    public class Violation : NotifyingModel, ICloneable, IDataErrorInfo {
         private int id;
         public int Id {
             get {
@@ -121,6 +122,28 @@ namespace Client.Model {
             set {
                 driverLicenseOrProtocol = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string Error => throw new NotImplementedException();
+
+        public string this[string columnName] {
+            get {
+                string error = "";
+                switch (columnName) {
+                    case "CarNumber":
+                        if (carNumber == null) break;
+                        if (carNumber == "") {
+                            error = "Номер автомобиля обязателен для ввода";
+                        }
+                        foreach (char ch in carNumber) {
+                            if (!Char.IsLetterOrDigit(ch)) {
+                                error = "Номер автомобиля может содержать только буквы и цифры";
+                            }
+                        }
+                        break;
+                }
+                return error;
             }
         }
 

@@ -66,7 +66,22 @@ namespace Client {
         }
 
         private void CheckPersonBtn_Click(object sender, RoutedEventArgs e) {
+        }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e) {
+            if (e.WidthChanged && !(e.PreviousSize.Width == 0)) {
+                DescriptionColumn.Width = Math.Pow(e.NewSize.Width / e.PreviousSize.Width, 3) * DescriptionColumn.ActualWidth;
+            }
+        }
+
+        private void AddViolationBtn_Click(object sender, RoutedEventArgs e) {
+            ViolationField.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateTarget();
+            AddressField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            CoordNField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            CoordEField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            CarNumberField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            DriverLicenseField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            DescriptionField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
         }
     }
 }
