@@ -1,12 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Client.Resources">
-    <local:IndexOfConverter x:Key="IndexOfConverter" />
-    <local:DateConverter x:Key="DateConverter" />
-    <local:CoordConverter x:Key="CoordConverter" />
-    <local:DescriptionConverter x:Key="DescriptionConverter" />
-    <local:FloatConverter x:Key="FloatConverter" />
+                    xmlns:converter="clr-namespace:Client.Resources.Converter">
 
+    <converter:IndexOfConverter x:Key="IndexOfConverter" />
+    <converter:DateConverter x:Key="DateConverter" />
+    <converter:CoordConverter x:Key="CoordConverter" />
+    <converter:DescriptionConverter x:Key="DescriptionConverter" />
+    <converter:FloatConverter x:Key="FloatConverter" />
+
+    <BitmapImage UriSource="Img/img.png" x:Key="SamplePersonImage" />
 
     <ControlTemplate x:Key="ValidationTemplate">
         <Grid>

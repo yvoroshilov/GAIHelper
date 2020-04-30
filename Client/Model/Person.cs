@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Client.Model {
@@ -64,6 +65,17 @@ namespace Client.Model {
             }
             set {
                 patronymic = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime birthday;
+        public DateTime Birthday {
+            get {
+                return birthday;
+            }
+            set {
+                birthday = value;
                 OnPropertyChanged();
             }
         }

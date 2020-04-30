@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Client.Resources {
+namespace Client.Resources.Converter {
     public class IndexOfConverter : IValueConverter {
         public object Convert(object value, Type TargetType, object parameter, CultureInfo culture) {
             ListViewItem item = (ListViewItem) value;

@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="GAIDBModel.Admin" Width="1.5" PointX="5.75" PointY="6.375" />
         <EntityTypeShape EntityType="GAIDBModel.Employee" Width="1.5" PointX="5.75" PointY="2.625" />
         <EntityTypeShape EntityType="GAIDBModel.Payment" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="GAIDBModel.Person" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="GAIDBModel.Person" Width="1.5" PointX="0.75" PointY="4.25" />
         <EntityTypeShape EntityType="GAIDBModel.Shift" Width="1.5" PointX="8" PointY="3" />
         <EntityTypeShape EntityType="GAIDBModel.Violation" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="GAIDBModel.ViolationType" Width="1.5" PointX="0.75" PointY="0.75" />

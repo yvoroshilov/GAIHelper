@@ -25,8 +25,8 @@ namespace Client {
         public Dashboard() {
             DataContext = new ViolationsUserViewModel();
             dataContext = (ViolationsUserViewModel)DataContext;
+            dataContext.CurrentPerson.PropertyChanged += ShowInfoMessageBox;
             InitializeComponent();
-            dataContext.PropertyChanged += InfoMessageBox;
         }
 
         private readonly ViolationsUserViewModel dataContext;
@@ -84,9 +84,9 @@ namespace Client {
             DescriptionField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
         }
 
-        private void InfoMessageBox(object sender, PropertyChangedEventArgs args) {
-            if (args.PropertyName == "CurrentPerson" && dataContext.CurrentPerson == null) {
-                MessageBox.Show($"Человека с таким водительским удостоверением № {dataContext.DriverLicenseOrProtocol} не существует");
+        private void ShowInfoMessageBox(object sender, PropertyChangedEventArgs args) {
+            if (args.PropertyName == "Id" && dataContext.CurrentPerson.Id == 0) {
+                MessageBox.Show($"Человека с водительским удостоверением № {dataContext.DriverLicenseOrProtocol} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

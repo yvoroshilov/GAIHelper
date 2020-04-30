@@ -27,6 +27,7 @@ namespace GaiWcfService
         public string name { get; set; }
         public string surname { get; set; }
         public string patronymic { get; set; }
+        public Nullable<System.DateTime> birthday { get; set; }
         public float actual_penalty { get; set; }
         public Nullable<float> paid_penalty { get; set; }
     

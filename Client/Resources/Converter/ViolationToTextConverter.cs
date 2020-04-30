@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Client.Resources {
+namespace Client.Resources.Converter {
     public class ViolationTypeToTextConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             ViolationType violation = value as ViolationType;

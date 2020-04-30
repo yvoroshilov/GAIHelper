@@ -665,6 +665,9 @@ namespace Client.MainService {
         private double actualPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime birthdayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string driverLicenseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -704,6 +707,19 @@ namespace Client.MainService {
                 if ((this.actualPenaltyField.Equals(value) != true)) {
                     this.actualPenaltyField = value;
                     this.RaisePropertyChanged("actualPenalty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime birthday {
+            get {
+                return this.birthdayField;
+            }
+            set {
+                if ((this.birthdayField.Equals(value) != true)) {
+                    this.birthdayField = value;
+                    this.RaisePropertyChanged("birthday");
                 }
             }
         }

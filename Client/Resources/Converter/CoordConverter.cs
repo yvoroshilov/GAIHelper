@@ -6,20 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Client.Resources {
-    [ValueConversion(typeof(double), typeof(string))]
-    public class FloatConverter : IValueConverter {
+namespace Client.Resources.Converter {
+    public class CoordConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            return value;
+            if (value is double && (double)value != 0) {
+                return value;
+            } else {
+                return null;
+            }
+        
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
-            string val = (string)value;
-            if (val == "") {
-                return 0;
-            } else {
-                return value;
-            }
+            return value;
         }
     }
 }

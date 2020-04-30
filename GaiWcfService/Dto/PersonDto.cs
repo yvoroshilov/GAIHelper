@@ -26,6 +26,9 @@ namespace GaiWcfService.Dto {
         public string patronymic;
 
         [DataMember]
+        public DateTime birthday;
+
+        [DataMember]
         public double actualPenalty;
 
         [DataMember]

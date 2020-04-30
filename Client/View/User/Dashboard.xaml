@@ -5,15 +5,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
-        xmlns:res="clr-namespace:Client.Resources"
+        xmlns:res="clr-namespace:Client.Resources.Rule"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.Dashboard"
         mc:Ignorable="d"
         Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800" SizeChanged="Window_SizeChanged">
-    <!-- RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}, Path=Background}-->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="../../Resources/Dictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -159,19 +158,19 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="PersonPhoto" Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="Resources/img.png"/>
-                        <Label Content="Имя:" HorizontalAlignment="Left" Margin="169,65,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
-                        <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="169,96,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
-                        <Label Content="Отчество:" HorizontalAlignment="Left" Margin="169,127,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
-                        <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="169,158,0,0" VerticalAlignment="Top" Height="26" Width="98"/>
-                        <Label x:Name="NameLabel" HorizontalAlignment="Left" Margin="207,65,-0.4,0" VerticalAlignment="Top" Width="111" Height="26" Content="{Binding CurrentPerson.Name, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label x:Name="SurnameLabel" HorizontalAlignment="Left" Margin="233,96,-1.4,0" VerticalAlignment="Top" Width="86" Height="26" Content="{Binding CurrentPerson.Surname, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label x:Name="PatronymicLabel" HorizontalAlignment="Left" Margin="233,127,-0.4,0" VerticalAlignment="Top" Width="85" Height="26" Content="{Binding CurrentPerson.Patronymic, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="267,158,-0.4,0" VerticalAlignment="Top" Width="51" Height="26"/>
+                        <Image x:Name="PersonPhoto" Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{StaticResource SamplePersonImage}"/>
+                        <Label Content="Имя:" HorizontalAlignment="Left" Margin="150,72,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
+                        <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="150,103,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
+                        <Label Content="Отчество:" HorizontalAlignment="Left" Margin="150,134,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
+                        <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="150,165,0,0" VerticalAlignment="Top" Height="26" Width="98"/>
+                        <Label x:Name="NameLabel" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top" Width="135" Height="26" Content="{Binding CurrentPerson.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label x:Name="SurnameLabel" HorizontalAlignment="Left" Margin="208,103,0,0" VerticalAlignment="Top" Width="110" Height="26" Content="{Binding CurrentPerson.Surname, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label x:Name="PatronymicLabel" HorizontalAlignment="Left" Margin="209,134,0,0" VerticalAlignment="Top" Width="109" Height="26" Content="{Binding CurrentPerson.Patronymic, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="243,165,0,0" VerticalAlignment="Top" Width="75" Height="26" Content="{Binding CurrentPerson.Birthday, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button x:Name="CheckPersonBtn" Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139" Command="{Binding CheckPersonCommand}" Click="CheckPersonBtn_Click"/>
                         <Button x:Name="ShowPersonsViolationsBtn" Content="Нарушения" HorizontalAlignment="Left" Margin="169,21,0,0" VerticalAlignment="Top" Width="139" Height="24" IsEnabled="False"/>
                     </Grid>
-                    <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,218,10.4,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="73" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,218,11,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="59" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="№ Автомобиля*" Grid.Column="4" Margin="11.4,163,9.2,0" VerticalAlignment="Top" Height="26"/>
                     <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,189,8.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                         <TextBox.Text>
@@ -192,7 +191,8 @@
                         </TextBox.Text>
                     </TextBox>
                     <Label x:Name="DriverLicenseLabel" Content="№ ВУ*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="10.8,163,0,0"/>
-                    <Button x:Name="DeleteViolationBtn" Content="Удалить нарушение" Grid.Column="5" Margin="9.8,9,11.4,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
+                    <Button x:Name="DeleteViolationBtn" Content="Удалить" Grid.Column="5" Margin="9.8,9,89,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
+                    <Button x:Name="EditViolationBtn" Content="Изменить" Grid.Column="5" Margin="88.8,9,10,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" Grid.Column="4" Margin="11.4,9,10.2,0" VerticalAlignment="Top" Height="28" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
                 </Grid>
             </TabItem>

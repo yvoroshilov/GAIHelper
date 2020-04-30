@@ -225,12 +225,15 @@ namespace Client.ViewModel {
             get {
                 return checkPersonCommand ??
                     (checkPersonCommand = new RelayCommand(obj => {
-                        MainService.PersonDto person = client.GetPerson(DriverLicenseOrProtocol);
-                        if (person == null) {
-                            
+                        MainService.PersonDto personDto = client.GetPerson(DriverLicenseOrProtocol);
+                        if (personDto == null) {
+                            CurrentPerson.Id = 0;
+                            CurrentPerson.Name = null;
+                            CurrentPerson.Surname = null;
+                            CurrentPerson.Birthday = DateTime.MinValue;
+                        } else {
+                            Mapper.mapper.Map(personDto, currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
                         }
-                        Mapper.mapper.Map(, currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
-                        
                     }, obj => {
                         return DriverLicenseOrProtocol != null;
                     }));

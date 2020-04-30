@@ -6,11 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Client.Resources {
-    public class DateConverter : IValueConverter {
+namespace Client.Resources.Converter {
+    public class DescriptionConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            DateTime dateTime = (DateTime)value;
-            return dateTime.ToShortDateString();
+            string res = null;
+            if (value != null) {
+                string str = (string)value;
+                int ind = str.IndexOf(Environment.NewLine);
+                if (ind >= 0) { 
+                    res = str.Insert(ind, "...");
+                } else {
+                    res = str;
+                }
+            }
+            return res;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
