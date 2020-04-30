@@ -5,6 +5,9 @@
     <local:DateConverter x:Key="DateConverter" />
     <local:CoordConverter x:Key="CoordConverter" />
     <local:DescriptionConverter x:Key="DescriptionConverter" />
+    <local:FloatConverter x:Key="FloatConverter" />
+
+
     <ControlTemplate x:Key="ValidationTemplate">
         <Grid>
             <Ellipse Margin="0,2,2,0" Fill="Red" Opacity="0.8" Width="10" Height="10"

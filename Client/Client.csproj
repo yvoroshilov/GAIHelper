@@ -97,13 +97,16 @@
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\NotifyingModel.cs" />
+    <Compile Include="Resources\DoubleValidationRule.cs" />
     <Compile Include="Resources\CoordConverter.cs" />
     <Compile Include="Resources\DateConverter.cs" />
     <Compile Include="Resources\DescriptionConverter.cs" />
+    <Compile Include="Resources\FloatConverter.cs" />
     <Compile Include="Resources\IndexOfConverter.cs" />
     <Compile Include="Resources\ViolationToTextConverter.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
+    <Compile Include="ViewModel\InputProperty.cs" />
     <Compile Include="ViewModel\IResettable.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViolationsUserViewModel.cs" />

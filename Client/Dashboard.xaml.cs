@@ -3,6 +3,7 @@ using Client.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,10 @@ namespace Client {
     /// </summary>
     public partial class Dashboard : Window {
         public Dashboard() {
-            InitializeComponent();
             DataContext = new ViolationsUserViewModel();
             dataContext = (ViolationsUserViewModel)DataContext;
+            InitializeComponent();
+            dataContext.PropertyChanged += InfoMessageBox;
         }
 
         private readonly ViolationsUserViewModel dataContext;
@@ -35,9 +37,8 @@ namespace Client {
                     ((Control)item).IsEnabled = false;
                 }
             }
-            BindingOperations.ClearBinding(DriverLicenseField, TextBox.TextProperty);
             DriverLicenseLabel.Content = "№ протокола*";
-            dataContext.AddedViolation.DriverLicenseOrProtocol = null;
+            dataContext.DriverLicenseOrProtocol = null;
         }   
 
         private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
@@ -50,7 +51,6 @@ namespace Client {
                     }
                 }
             }
-            BindingOperations.SetBinding(DriverLicenseField, TextBox.TextProperty, new Binding("AddedViolation.DriverLicenseOrProtocol"));
             DriverLicenseLabel.Content = "№ ВУ*";
         }
 
@@ -59,7 +59,7 @@ namespace Client {
             if (enumerator.MoveNext()) {
                 ViolationType type = enumerator.Current as ViolationType;
                 double min = dataContext.ViolationTypes.Where(val => val.Id == type.Id).FirstOrDefault().MinPenalty;
-                dataContext.AddedViolation.Penalty = min;
+                dataContext.Penalty = min;
             } else {
                 PenaltyField.Text = "";
             }
@@ -82,6 +82,12 @@ namespace Client {
             CarNumberField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             DriverLicenseField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             DescriptionField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+        }
+
+        private void InfoMessageBox(object sender, PropertyChangedEventArgs args) {
+            if (args.PropertyName == "CurrentPerson" && dataContext.CurrentPerson == null) {
+                MessageBox.Show($"Человека с таким водительским удостоверением № {dataContext.DriverLicenseOrProtocol} не существует");
+            }
         }
     }
 }
