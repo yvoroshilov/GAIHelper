@@ -232,14 +232,13 @@ namespace Client.ViewModel {
                             return;
                         }
 
-                        List<Violation> selectedViolations = new List<Violation>(((Collection<Object>)obj).Select(val => 
-                            (Violation)val));
+                        List<Violation> selectedViolations = new List<Violation>(((Collection<Object>)obj).Cast<Violation>());
 
                         foreach (var item in selectedViolations) {
                             Violations.Remove(item);
                         }
                     }, obj => {
-                        return obj != null;
+                        return (obj as Collection<Object>).Count != 0;
                     }));
             }
         }

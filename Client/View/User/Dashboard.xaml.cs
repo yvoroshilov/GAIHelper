@@ -92,5 +92,20 @@ namespace Client {
         private void DriverLicenseField_TextChanged(object sender, TextChangedEventArgs e) {
             dataContext.ResetPersonProfile();
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e) {
+            switch (e.Key) {
+                case Key.Escape:
+                    ViolationTable.UnselectAll();
+                    break;
+                case Key.Delete:
+                    if (dataContext.DeleteCommand.CanExecute(ViolationTable.SelectedItems)) {
+                        dataContext.DeleteCommand.Execute(ViolationTable.SelectedItems);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
