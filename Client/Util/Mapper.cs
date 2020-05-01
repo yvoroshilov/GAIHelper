@@ -13,7 +13,7 @@ namespace Client.Util {
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Admin, MainService.AdminDto>().ReverseMap();
                 cfg.CreateMap<Employee, MainService.EmployeeDto>().ReverseMap();
-                cfg.CreateMap<Payment, MainService.PaymentDto>().ReverseMap();
+                //cfg.CreateMap<Payment, MainService.PaymentDto>().ReverseMap();
                 cfg.CreateMap<Shift, MainService.ShiftDto>();
                 cfg.CreateMap<Violation, MainService.ViolationDto>().ReverseMap();
                 cfg.CreateMap<ViolationType, MainService.ViolationTypeDto>().ReverseMap();

@@ -9,10 +9,10 @@ namespace GaiWcfService.Repository.contract {
     [ServiceContract]
     public interface IViolationRepository {
         [OperationContract]
-        void AddViolation(Violation violation);
+        Violation AddViolation(Violation violation);
 
         [OperationContract]
-        void EditViolation(int id, Violation violation);
+        void EditViolation(Violation violation);
 
         [OperationContract]
         void DeleteViolation(int id);
@@ -22,8 +22,5 @@ namespace GaiWcfService.Repository.contract {
 
         [OperationContract]
         List<Violation> GetAllViolations();
-
-        [OperationContract]
-        HashSet<Violation> GetAll();
     }
 }

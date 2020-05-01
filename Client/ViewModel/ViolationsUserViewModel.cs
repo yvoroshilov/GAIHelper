@@ -11,6 +11,7 @@ using System.Data.Entity.Validation;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace Client.ViewModel {
     public class ViolationsUserViewModel : ViewModel, IDataErrorInfo {
@@ -34,13 +35,13 @@ namespace Client.ViewModel {
             }
         }
 
-        private Violation selectedViolation;
-        public Violation SelectedViolation {
+        private List<Violation> selectedViolations;
+        public List<Violation> SelectedViolations {
             get {
-                return selectedViolation;
+                return selectedViolations;
             }
             set {
-                selectedViolation = value;
+                selectedViolations = value;
                 OnPropertyChanged();
             }
         }
@@ -213,9 +214,32 @@ namespace Client.ViewModel {
 
                         Violations.Add(violation);
                         initValid = 0;
+                        ResetPersonProfile();
                         ResetForm();
                     }, (obj) => {
-                        return IsAllInputFieldsFilled();
+                        return IsAllRequiredFieldsFilled() && (currentPerson.Id != 0 || NoLic);
+                    }));
+            }
+        }
+
+        private RelayCommand deleteCommand;
+        public RelayCommand DeleteCommand {
+            get {
+                return deleteCommand ??
+                    (deleteCommand = new RelayCommand(obj => {
+                        MessageBoxResult confirmRes = MessageBox.Show("Вы действительно хотите удалить эти нарушения?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+                        if (confirmRes == MessageBoxResult.No) {
+                            return;
+                        }
+
+                        List<Violation> selectedViolations = new List<Violation>(((Collection<Object>)obj).Select(val => 
+                            (Violation)val));
+
+                        foreach (var item in selectedViolations) {
+                            Violations.Remove(item);
+                        }
+                    }, obj => {
+                        return obj != null;
                     }));
             }
         }
@@ -226,11 +250,10 @@ namespace Client.ViewModel {
                 return checkPersonCommand ??
                     (checkPersonCommand = new RelayCommand(obj => {
                         MainService.PersonDto personDto = client.GetPerson(DriverLicenseOrProtocol);
+
                         if (personDto == null) {
-                            CurrentPerson.Id = 0;
-                            CurrentPerson.Name = null;
-                            CurrentPerson.Surname = null;
-                            CurrentPerson.Birthday = DateTime.MinValue;
+                            MessageBox.Show($"Человека с водительским удостоверением № {DriverLicenseOrProtocol} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            ResetPersonProfile();
                         } else {
                             Mapper.mapper.Map(personDto, currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
                         }
@@ -251,8 +274,16 @@ namespace Client.ViewModel {
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))
                 .ToList());
             currentPerson = new Person();
-            Violations.CollectionChanged += CollectionChanged;
+            Violations.CollectionChanged += ViolationCollectionChanged;
             InitializeForm();
+        }
+
+        public void ResetPersonProfile() {
+            CurrentPerson.Id = 0;
+            CurrentPerson.Name = null;
+            CurrentPerson.Surname = null;
+            CurrentPerson.Patronymic = null;
+            CurrentPerson.Birthday = DateTime.MinValue;
         }
         #endregion
 
@@ -318,13 +349,18 @@ namespace Client.ViewModel {
             }
         }
 
-        public void CollectionChanged(object obj, NotifyCollectionChangedEventArgs args) {
+        public void ViolationCollectionChanged(object obj, NotifyCollectionChangedEventArgs args) {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:
-                    MainService.ViolationDto dto = Mapper.mapper.Map<MainService.ViolationDto>(args.NewItems[0]);
-                    client.AddViolation(dto);
+                    Violation newItem = (Violation)args.NewItems[0];
+                    MainService.ViolationDto dto = Mapper.mapper.Map<MainService.ViolationDto>(newItem);
+                    MainService.ViolationDto saved = client.AddViolation(dto);
+                    newItem.Id = saved.id;
                     break;
                 case NotifyCollectionChangedAction.Remove:
+                    foreach (Violation item in args.OldItems) {
+                        client.DeleteViolation(item.Id);
+                    }
                     break;
                 case NotifyCollectionChangedAction.Replace:
                     break;

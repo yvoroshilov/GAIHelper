@@ -11,12 +11,12 @@ namespace GaiWcfService.Service {
         private IViolationRepository violationRepository = new ViolationRepository();
 
 
-        public void AddViolation(ViolationDto violation) {
-            violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation));
+        public ViolationDto AddViolation(ViolationDto violation) {
+            return Mapper.mapper.Map<ViolationDto>(violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation)));
         }
 
-        public void EditViolation(int id, ViolationDto violation) {
-            violationRepository.EditViolation(id, Mapper.mapper.Map<Violation>(violation));
+        public void EditViolation(ViolationDto violation) {
+            violationRepository.EditViolation(Mapper.mapper.Map<Violation>(violation));
         }
 
         public List<ViolationDto> GetAllViolations() {

@@ -14,8 +14,7 @@ namespace GaiWcfService.Service {
         [OperationContract]
         string Test();
 
-        /* --- ADMIN ACTIONS --- */
-
+        #region Admin
         [OperationContract]
         void AddAdimn(AdminDto admin);
 
@@ -24,10 +23,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         HashSet<AdminDto> getAllAdmins();
+        #endregion
 
-        /* --------------------- */
-        /* --- EMPLOYEE ACTIONS --- */
-
+        #region Employee
         [OperationContract]
         void AddEmployee(EmployeeDto employee);
 
@@ -36,25 +34,19 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void DeleteEmployee(int id);
+        #endregion
 
-        /* ------------------------ */
-        /* --- SHIFT ACTIONS --- */
-
+        #region Shift
         [OperationContract]
         void EditShift(int id, ShiftDto shift);
+        #endregion
 
-        /* --------------------- */
-        /* --- VIOLATIONS ACTIONS --- */
-
+        #region Violation
         [OperationContract]
         List<ViolationDto> GetAllViolations();
+        #endregion
 
-        [OperationContract]
-        void DeleteViolation(int id);
-
-        /* -------------------------- */
-        /* --- VIOLATION TYPE ACTIONS --- */
-
+        #region ViolationType
         [OperationContract]
         void AddViolationType(ViolationTypeDto violationType);
 
@@ -63,10 +55,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void DeleteViolationType(int id);
+        #endregion
 
-        /* ------------------------------ */
-        /* --- PERSON ACTIONS --- */
-
+        #region Person
         [OperationContract]
         void AddPerson(PersonDto person);
 
@@ -75,7 +66,6 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void DeletePerson(int id);
-
-        /* ----------------------- */
+        #endregion
     }
 }

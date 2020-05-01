@@ -10,50 +10,50 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     public class ViolationRepository : IViolationRepository {
-        private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
+        private GAIDBEntities dbEntities = DbEntitiesSingleton.GetDbEntities().instance;
 
-        public void AddViolation(Violation violation) {
-            violation = Mapper.mapper.Map<Violation>(Mapper.mapper.Map<ViolationDto>(violation));
-            violation.Person = dbEntities.instance.Persons.Find(violation.person_id);
-            violation.ViolationType = dbEntities.instance.ViolationTypes.Find(violation.violation_type_id);
-            try {
-                dbEntities.instance.Violations.Add(violation);
-                dbEntities.instance.SaveChanges();
-            } catch (DbEntityValidationException exc) {
-                string str = string.Join(", ", exc.EntityValidationErrors.First().ValidationErrors.Select(val => val.ErrorMessage));
-                DbEntitiesSingleton.GetLogger().Write(str);
-                throw new DbEntityValidationException($"decription: '{violation.description}' car number: {violation.car_number}", exc);
-            }
+        public Violation AddViolation(Violation violation) {
+            violation.Person = dbEntities.Persons.Find(violation.person_id);
+            violation.ViolationType = dbEntities.ViolationTypes.Find(violation.violation_type_id);
+            Violation added = dbEntities.Violations.Add(violation);
+            dbEntities.SaveChanges();
+            return added;
         }
 
-        public void EditViolation(int id, Violation violation) {
-            Violation oldViolation = dbEntities.instance.Violations.Find(id);
-            oldViolation.date = violation.date;
-            oldViolation.car_number = violation.car_number;
-            oldViolation.description = violation.description;
-            oldViolation.location_n = violation.location_n;
-            oldViolation.location_e = violation.location_e;
-            oldViolation.penalty = violation.penalty;
-            oldViolation.person_id = violation.person_id;
-            dbEntities.instance.SaveChanges();
+        public void EditViolation(Violation newViolation) {
+            Violation editedViolation = dbEntities.Violations.Find(newViolation.id);
+            if (newViolation.violation_type_id == editedViolation.violation_type_id) {
+                editedViolation.ViolationType = dbEntities.ViolationTypes.Find(editedViolation.violation_type_id);
+            }
+            if (newViolation.person_id == editedViolation.person_id) {
+                editedViolation.Person = dbEntities.Persons.Find(editedViolation.person_id);
+            }
+
+            editedViolation.violation_type_id = newViolation.violation_type_id;
+            editedViolation.person_id = newViolation.person_id;
+            editedViolation.car_number = newViolation.car_number;
+            editedViolation.date = newViolation.date;
+            editedViolation.penalty = newViolation.penalty;
+            editedViolation.location_n = newViolation.location_n;
+            editedViolation.location_e = newViolation.location_e;
+            editedViolation.address = newViolation.address;
+            editedViolation.description = newViolation.description;
+
+            dbEntities.SaveChanges();
         }
 
         public void DeleteViolation(int id) {
-            Violation violation = dbEntities.instance.Violations.Find(id);
-            dbEntities.instance.Violations.Remove(violation);
-            dbEntities.instance.SaveChanges();
+            Violation violation = dbEntities.Violations.Find(id);
+            dbEntities.Violations.Remove(violation);
+            dbEntities.SaveChanges();
         }
 
         public Violation GetViolation(int id) {
-            return dbEntities.instance.Violations.Find(id);
+            return dbEntities.Violations.Find(id);
         }
 
         public List<Violation> GetAllViolations() {
-            return dbEntities.instance.Violations.ToList();
-        }
-
-        public HashSet<Violation> GetAll() {
-            return dbEntities.instance.Violations.ToHashSet();
+            return dbEntities.Violations.ToList();
         }
     }
 }

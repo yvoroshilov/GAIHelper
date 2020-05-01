@@ -12,22 +12,16 @@ namespace GaiWcfService.Service {
     [ServiceContract]
     public interface IUserService {
         [OperationContract]
-        void AddPayment(PaymentDto payment);
-
-        [OperationContract]
-        void EditPayment(int id, PaymentDto payment);
-
-        [OperationContract]
-        void DeletePayment(int id);
-
-        [OperationContract]
         void AddShift(ShiftDto shift);
 
         [OperationContract]
-        void AddViolation(ViolationDto violation);
+        ViolationDto AddViolation(ViolationDto violation);
 
         [OperationContract]
-        void EditViolation(int id, ViolationDto violation);
+        void EditViolation(ViolationDto violation);
+
+        [OperationContract]
+        void DeleteViolation(int id);
 
         [OperationContract]
         List<ViolationTypeDto> GetAllViolationTypes();

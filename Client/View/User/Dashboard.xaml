@@ -8,7 +8,7 @@
         xmlns:res="clr-namespace:Client.Resources.Rule"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.Dashboard"
         mc:Ignorable="d"
-        Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800" SizeChanged="Window_SizeChanged">
+        Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800" SizeChanged="Window_SizeChanged" MouseDown="Window_MouseDown">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,7 +31,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <ListView Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False" Margin="0,0,0.6,-0.2" ItemsSource="{Binding Violations}" SelectionMode="Single">
+                    <ListView x:Name="ViolationTable" Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False" Margin="0,0,0.6,-0.2" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Multiple">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
@@ -43,13 +43,18 @@
                         </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="№" Width="30" DisplayMemberBinding="{
-                                         Binding RelativeSource={RelativeSource FindAncestor, 
-                                         AncestorType={x:Type ListViewItem}}, 
-                                         Converter={StaticResource IndexOfConverter}}">
+                                <GridViewColumn Header="№" Width="30">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock />
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource IndexOfConverter}">
+                                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType={x:Type ListView}}" Path="ItemsSource" />
+                                                        <Binding />
+                                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType={x:Type ListView}}" Path="ItemsSource.Count" UpdateSourceTrigger="PropertyChanged" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -181,7 +186,7 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="9.8,189,9.533,0" Padding="0,3,0,0" Grid.Column="5" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                    <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="9.8,189,9.533,0" Padding="0,3,0,0" Grid.Column="5" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="DriverLicenseField_TextChanged">
                         <TextBox.Text>
                             <Binding Path="DriverLicenseOrProtocol" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
@@ -191,7 +196,7 @@
                         </TextBox.Text>
                     </TextBox>
                     <Label x:Name="DriverLicenseLabel" Content="№ ВУ*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="10.8,163,0,0"/>
-                    <Button x:Name="DeleteViolationBtn" Content="Удалить" Grid.Column="5" Margin="9.8,9,89,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
+                    <Button x:Name="DeleteViolationBtn" Content="Удалить" Grid.Column="5" Margin="9.8,9,89,0" VerticalAlignment="Top" Height="28" CommandParameter="{Binding ElementName=ViolationTable, Path=SelectedItems}" Command="{Binding DeleteCommand}"/>
                     <Button x:Name="EditViolationBtn" Content="Изменить" Grid.Column="5" Margin="88.8,9,10,0" VerticalAlignment="Top" Height="28" IsEnabled="False"/>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" Grid.Column="4" Margin="11.4,9,10.2,0" VerticalAlignment="Top" Height="28" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
                 </Grid>

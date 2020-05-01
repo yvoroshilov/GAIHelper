@@ -25,7 +25,6 @@ namespace Client {
         public Dashboard() {
             DataContext = new ViolationsUserViewModel();
             dataContext = (ViolationsUserViewModel)DataContext;
-            dataContext.CurrentPerson.PropertyChanged += ShowInfoMessageBox;
             InitializeComponent();
         }
 
@@ -84,10 +83,14 @@ namespace Client {
             DescriptionField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
         }
 
-        private void ShowInfoMessageBox(object sender, PropertyChangedEventArgs args) {
-            if (args.PropertyName == "Id" && dataContext.CurrentPerson.Id == 0) {
-                MessageBox.Show($"Человека с водительским удостоверением № {dataContext.DriverLicenseOrProtocol} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
+            HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
+            if (r.VisualHit.GetType() != typeof(ListBoxItem))
+                ViolationTable.UnselectAll();
             }
+
+        private void DriverLicenseField_TextChanged(object sender, TextChangedEventArgs e) {
+            dataContext.ResetPersonProfile();
         }
     }
 }
