@@ -21,6 +21,6 @@ namespace GaiWcfService.Repository.contract {
         Violation GetViolation(int id);
 
         [OperationContract]
-        List<Violation> GetAllViolations();
+        List<Violation> GetAllViolations(int personId);
     }
 }

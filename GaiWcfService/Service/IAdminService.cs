@@ -41,11 +41,6 @@ namespace GaiWcfService.Service {
         void EditShift(int id, ShiftDto shift);
         #endregion
 
-        #region Violation
-        [OperationContract]
-        List<ViolationDto> GetAllViolations();
-        #endregion
-
         #region ViolationType
         [OperationContract]
         void AddViolationType(ViolationTypeDto violationType);

@@ -44,27 +44,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ShiftDto" nillable="true" type="tns:ShiftDto" />
-  <xs:complexType name="ArrayOfViolationDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ViolationDto" nillable="true" type="tns:ViolationDto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfViolationDto" nillable="true" type="tns:ArrayOfViolationDto" />
-  <xs:complexType name="ViolationDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="carNumber" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="date" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="id" type="xs:int" />
-      <xs:element minOccurs="0" name="locationE" type="xs:double" />
-      <xs:element minOccurs="0" name="locationN" type="xs:double" />
-      <xs:element minOccurs="0" name="penalty" type="xs:double" />
-      <xs:element minOccurs="0" name="personId" type="xs:int" />
-      <xs:element minOccurs="0" name="violationTypeId" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ViolationDto" nillable="true" type="tns:ViolationDto" />
   <xs:complexType name="ViolationTypeDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
@@ -89,6 +68,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PersonDto" nillable="true" type="tns:PersonDto" />
+  <xs:complexType name="ArrayOfViolationDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ViolationDto" nillable="true" type="tns:ViolationDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfViolationDto" nillable="true" type="tns:ArrayOfViolationDto" />
+  <xs:complexType name="ViolationDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="carNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="locationE" type="xs:double" />
+      <xs:element minOccurs="0" name="locationN" type="xs:double" />
+      <xs:element minOccurs="0" name="penalty" type="xs:double" />
+      <xs:element minOccurs="0" name="personId" type="xs:int" />
+      <xs:element minOccurs="0" name="violationTypeId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ViolationDto" nillable="true" type="tns:ViolationDto" />
   <xs:complexType name="ArrayOfViolationTypeDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ViolationTypeDto" nillable="true" type="tns:ViolationTypeDto" />

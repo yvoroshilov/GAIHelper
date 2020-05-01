@@ -115,6 +115,9 @@
     <Compile Include="ViewModel\IResettable.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViolationsUserViewModel.cs" />
+    <Compile Include="View\User\PersonsViolations.xaml.cs">
+      <DependentUpon>PersonsViolations.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\User\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +143,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\User\PersonsViolations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

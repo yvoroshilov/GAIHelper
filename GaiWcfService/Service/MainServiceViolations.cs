@@ -10,18 +10,21 @@ namespace GaiWcfService.Service {
 
         private IViolationRepository violationRepository = new ViolationRepository();
 
+        public List<ViolationDto> GetAllViolations(int personId) {
+            return violationRepository.GetAllViolations(personId)
+                .Select(val => Mapper.mapper.Map<ViolationDto>(val))
+                .ToList();
+        }
 
         public ViolationDto AddViolation(ViolationDto violation) {
-            return Mapper.mapper.Map<ViolationDto>(violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation)));
+            return Mapper.mapper.Map<ViolationDto>(
+                violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation)));
         }
 
         public void EditViolation(ViolationDto violation) {
             violationRepository.EditViolation(Mapper.mapper.Map<Violation>(violation));
         }
 
-        public List<ViolationDto> GetAllViolations() {
-            return violationRepository.GetAllViolations().Select(val => Mapper.mapper.Map<ViolationDto>(val)).ToList();
-        }
         public void DeleteViolation(int id) {
             violationRepository.DeleteViolation(id);
         }

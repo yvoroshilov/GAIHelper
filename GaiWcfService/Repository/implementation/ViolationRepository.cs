@@ -52,8 +52,10 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Violations.Find(id);
         }
 
-        public List<Violation> GetAllViolations() {
-            return dbEntities.Violations.ToList();
+        public List<Violation> GetAllViolations(int personId) {
+            return dbEntities.Violations.Select(val => val)
+                .Where(val => val.person_id == personId)
+                .ToList();
         }
     }
 }

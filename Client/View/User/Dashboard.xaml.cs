@@ -17,18 +17,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace Client {
-    /// <summary>
-    /// Interaction logic for Dashboard.xaml
-    /// </summary>
+namespace Client.View.User {
+
     public partial class Dashboard : Window {
         public Dashboard() {
             DataContext = new ViolationsUserViewModel();
             dataContext = (ViolationsUserViewModel)DataContext;
+            dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;
             InitializeComponent();
         }
 
         private readonly ViolationsUserViewModel dataContext;
+
+        private PersonsViolations personsViolationsWindow;
 
         private void NoDriverLicenseCheckBox_Checked(object sender, RoutedEventArgs e) {
             foreach (var item in PersonInfoGrid.Children) {
@@ -106,6 +107,48 @@ namespace Client {
                 default:
                     break;
             }
+        }
+
+        private void ShowPersonsViolationsBtn_Click(object sender, RoutedEventArgs e) {
+            if (personsViolationsWindow == null || !personsViolationsWindow.IsLoaded) {
+                personsViolationsWindow = new PersonsViolations();
+                personsViolationsWindow.DataContext = dataContext.CurrentPersonsViolations;
+                personsViolationsWindow.Show();
+            } else {
+                personsViolationsWindow.Activate();
+            }
+        }
+
+        private void OnCurrentPersonIdChanged(object sender, PropertyChangedEventArgs args) {
+            if (args.PropertyName != "Id") {
+                return;
+            }
+            if (dataContext.CurrentPerson.Id == 0) {
+                ShowPersonsViolationsBtn.IsEnabled = false;
+            } else {
+                ShowPersonsViolationsBtn.IsEnabled = true;
+            }
+        }
+
+        private void CancelEdit_Click(object sender, RoutedEventArgs e) {
+            CancelEditBtn.Visibility = Visibility.Hidden;
+            AcceptEditBtn.Visibility = Visibility.Hidden;
+            DeleteViolationBtn.Visibility = Visibility.Visible;
+            EditViolationBtn.Visibility = Visibility.Visible;
+        }
+
+        private void AcceptEdit_Click(object sender, RoutedEventArgs e) {
+            CancelEditBtn.Visibility = Visibility.Hidden;
+            AcceptEditBtn.Visibility = Visibility.Hidden;
+            DeleteViolationBtn.Visibility = Visibility.Visible;
+            EditViolationBtn.Visibility = Visibility.Visible;
+        }
+
+        private void EditViolationBtn_Click(object sender, RoutedEventArgs e) {
+            CancelEditBtn.Visibility = Visibility.Visible;
+            AcceptEditBtn.Visibility = Visibility.Visible;
+            DeleteViolationBtn.Visibility = Visibility.Hidden;
+            EditViolationBtn.Visibility = Visibility.Hidden;
         }
     }
 }

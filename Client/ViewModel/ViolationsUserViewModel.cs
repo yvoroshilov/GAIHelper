@@ -12,14 +12,15 @@ using System.Windows.Data;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Collections;
 
 namespace Client.ViewModel {
     public class ViolationsUserViewModel : ViewModel, IDataErrorInfo {
 
         #region Common
         private MainService.UserServiceClient client;
-        public ObservableCollection<Violation> Violations { get; set; }
-        public ReadOnlyCollection<ViolationType> ViolationTypes { get; set; }
+        public ObservableCollection<Violation> Violations { get; }
+        public ReadOnlyCollection<ViolationType> ViolationTypes { get; }
         #endregion
 
         #region Input fields
@@ -31,28 +32,6 @@ namespace Client.ViewModel {
             }
             set {
                 selectedViolationType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<Violation> selectedViolations;
-        public List<Violation> SelectedViolations {
-            get {
-                return selectedViolations;
-            }
-            set {
-                selectedViolations = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string violationTypeId;
-        public string ViolationTypeId {
-            get {
-                return violationTypeId;
-            }
-            set {
-                violationTypeId = value;
                 OnPropertyChanged();
             }
         }
@@ -173,6 +152,11 @@ namespace Client.ViewModel {
         #endregion
 
         #region Person info
+
+        private const int NO_LIC_PERSON_ID = 1; 
+
+        private const string NO_LIC_DRIVER_LIC = "NO_LIC";
+
         private Person currentPerson;
         public Person CurrentPerson {
             get {
@@ -183,6 +167,8 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        public List<Violation> CurrentPersonsViolations { get; set; } = new List<Violation>();
         #endregion
 
         #region Commands
@@ -191,17 +177,16 @@ namespace Client.ViewModel {
             get {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
-                        ViolationTypeId = selectedViolationType.Id;
-
                         if (!noLic) {
                             Person pers = Mapper.mapper.Map<Person>(client.GetPerson(DriverLicenseOrProtocol));
                             PersonId = pers.Id;
                         } else {
+                            PersonId = NO_LIC_PERSON_ID;
                             Description += " | № Протокола: " + DriverLicenseOrProtocol;
                         }
 
                         Violation violation = new Violation();
-                        violation.ViolationTypeId = ViolationTypeId;
+                        violation.ViolationTypeId = SelectedViolationType.Id;
                         violation.PersonId = PersonId;
                         violation.CarNumber = CarNumber;
                         violation.Date = Date;
@@ -213,7 +198,6 @@ namespace Client.ViewModel {
                         violation.DriverLicenseOrProtocol = DriverLicenseOrProtocol;
 
                         Violations.Add(violation);
-                        initValid = 0;
                         ResetPersonProfile();
                         ResetForm();
                     }, (obj) => {
@@ -232,13 +216,39 @@ namespace Client.ViewModel {
                             return;
                         }
 
-                        List<Violation> selectedViolations = new List<Violation>(((Collection<Object>)obj).Cast<Violation>());
-
+                        List<Violation> selectedViolations = new List<Violation>((obj as ICollection).Cast<Violation>());
                         foreach (var item in selectedViolations) {
                             Violations.Remove(item);
                         }
                     }, obj => {
-                        return (obj as Collection<Object>).Count != 0;
+                        return (obj as ICollection).Count != 0;
+                    }));
+            }
+        }
+
+        private RelayCommand editCommand;
+        public RelayCommand EditCommand {
+            get {
+                return editCommand ??
+                    (editCommand = new RelayCommand(obj => {
+                        List<Violation> selectedViolations = new List<Violation>((obj as ICollection).Cast<Violation>());
+                        Violation curViolation = selectedViolations.First();
+                        SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.ViolationTypeId).First();
+                        CarNumber = curViolation.CarNumber;
+                        Penalty = curViolation.Penalty;
+                        LocationN = curViolation.LocationN;
+                        LocationE = curViolation.LocationE;
+                        Address = curViolation.Address;
+                        Description = curViolation.Description;
+                        DriverLicenseOrProtocol = curViolation.DriverLicenseOrProtocol;
+                        if (curViolation.PersonId != NO_LIC_PERSON_ID) {
+                            CheckPersonCommand.Execute(null);
+                            NoLic = false;
+                        } else {
+                            NoLic = true;
+                        }
+                    }, obj => {
+                        return (obj as ICollection).Count == 1;
                     }));
             }
         }
@@ -249,15 +259,60 @@ namespace Client.ViewModel {
                 return checkPersonCommand ??
                     (checkPersonCommand = new RelayCommand(obj => {
                         MainService.PersonDto personDto = client.GetPerson(DriverLicenseOrProtocol);
-
                         if (personDto == null) {
                             MessageBox.Show($"Человека с водительским удостоверением № {DriverLicenseOrProtocol} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                             ResetPersonProfile();
                         } else {
-                            Mapper.mapper.Map(personDto, currentPerson, typeof (MainService.PersonDto), currentPerson.GetType());
+                            Mapper.mapper.Map(
+                                personDto, 
+                                currentPerson, 
+                                typeof (MainService.PersonDto),
+                                currentPerson.GetType());
+                            CurrentPersonsViolations.AddRange(client.GetAllViolations(CurrentPerson.Id)
+                                .Select(val => Mapper.mapper.Map<Violation>(val))
+                                .ToList());
                         }
                     }, obj => {
                         return DriverLicenseOrProtocol != null;
+                    }));
+            }
+        }
+
+        private RelayCommand cancelEditCommand;
+        public RelayCommand CancelEditCommand {
+            get {
+                return cancelEditCommand ??
+                    (cancelEditCommand = new RelayCommand(obj => {
+                        ResetForm();
+                        ResetPersonProfile();
+                    }));
+            }
+        }
+
+        private RelayCommand acceptEditCommand;
+        public RelayCommand AcceptEditCommand {
+            get {
+                return acceptEditCommand ??
+                    (acceptEditCommand = new RelayCommand(obj => {
+                        List<Violation> selectedViolations = new List<Violation>((obj as ICollection).Cast<Violation>());
+                        Violation curViolation = selectedViolations.First();
+                        curViolation.ViolationTypeId = SelectedViolationType.Id;
+                        curViolation.CarNumber = CarNumber;
+                        curViolation.Penalty = Penalty;
+                        curViolation.LocationN = LocationN;
+                        curViolation.LocationE = LocationE;
+                        curViolation.Address = Address;
+                        curViolation.Description = Description;
+                        curViolation.DriverLicenseOrProtocol = DriverLicenseOrProtocol;
+                        if (NoLic) {
+                            curViolation.PersonId = NO_LIC_PERSON_ID;
+                        } else {
+                            curViolation.PersonId = client.GetPerson(DriverLicenseOrProtocol).id;
+                        }
+                        client.EditViolation(Mapper.mapper.Map<MainService.ViolationDto>(curViolation));
+                        ResetForm();
+                    }, obj => {
+                        return IsAllRequiredFieldsFilled() && (currentPerson.Id != 0 || NoLic);
                     }));
             }
         }
@@ -283,6 +338,13 @@ namespace Client.ViewModel {
             CurrentPerson.Surname = null;
             CurrentPerson.Patronymic = null;
             CurrentPerson.Birthday = DateTime.MinValue;
+            CurrentPersonsViolations.Clear();
+        }
+
+        protected override void ResetForm() {
+            base.ResetForm();
+            initValid = 0;
+            NoLic = false;
         }
         #endregion
 
@@ -360,14 +422,6 @@ namespace Client.ViewModel {
                     foreach (Violation item in args.OldItems) {
                         client.DeleteViolation(item.Id);
                     }
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    break;
-                default:
                     break;
             }
         }

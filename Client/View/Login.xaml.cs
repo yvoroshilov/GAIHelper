@@ -1,4 +1,5 @@
 ﻿using Client.MainService;
+using Client.View.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

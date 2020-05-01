@@ -356,195 +356,6 @@ namespace Client.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ViolationDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
-    [System.SerializableAttribute()]
-    public partial class ViolationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string addressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string carNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime dateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string descriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double locationEField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double locationNField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double penaltyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int personIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string violationTypeIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string address {
-            get {
-                return this.addressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.addressField, value) != true)) {
-                    this.addressField = value;
-                    this.RaisePropertyChanged("address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string carNumber {
-            get {
-                return this.carNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.carNumberField, value) != true)) {
-                    this.carNumberField = value;
-                    this.RaisePropertyChanged("carNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime date {
-            get {
-                return this.dateField;
-            }
-            set {
-                if ((this.dateField.Equals(value) != true)) {
-                    this.dateField = value;
-                    this.RaisePropertyChanged("date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
-                    this.descriptionField = value;
-                    this.RaisePropertyChanged("description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double locationE {
-            get {
-                return this.locationEField;
-            }
-            set {
-                if ((this.locationEField.Equals(value) != true)) {
-                    this.locationEField = value;
-                    this.RaisePropertyChanged("locationE");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double locationN {
-            get {
-                return this.locationNField;
-            }
-            set {
-                if ((this.locationNField.Equals(value) != true)) {
-                    this.locationNField = value;
-                    this.RaisePropertyChanged("locationN");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double penalty {
-            get {
-                return this.penaltyField;
-            }
-            set {
-                if ((this.penaltyField.Equals(value) != true)) {
-                    this.penaltyField = value;
-                    this.RaisePropertyChanged("penalty");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int personId {
-            get {
-                return this.personIdField;
-            }
-            set {
-                if ((this.personIdField.Equals(value) != true)) {
-                    this.personIdField = value;
-                    this.RaisePropertyChanged("personId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string violationTypeId {
-            get {
-                return this.violationTypeIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.violationTypeIdField, value) != true)) {
-                    this.violationTypeIdField = value;
-                    this.RaisePropertyChanged("violationTypeId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ViolationTypeDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
     [System.SerializableAttribute()]
     public partial class ViolationTypeDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -825,6 +636,195 @@ namespace Client.MainService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ViolationDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.SerializableAttribute()]
+    public partial class ViolationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string addressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string carNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double locationEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double locationNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double penaltyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int personIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string violationTypeIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string address {
+            get {
+                return this.addressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.addressField, value) != true)) {
+                    this.addressField = value;
+                    this.RaisePropertyChanged("address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string carNumber {
+            get {
+                return this.carNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.carNumberField, value) != true)) {
+                    this.carNumberField = value;
+                    this.RaisePropertyChanged("carNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((this.dateField.Equals(value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
+                    this.descriptionField = value;
+                    this.RaisePropertyChanged("description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double locationE {
+            get {
+                return this.locationEField;
+            }
+            set {
+                if ((this.locationEField.Equals(value) != true)) {
+                    this.locationEField = value;
+                    this.RaisePropertyChanged("locationE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double locationN {
+            get {
+                return this.locationNField;
+            }
+            set {
+                if ((this.locationNField.Equals(value) != true)) {
+                    this.locationNField = value;
+                    this.RaisePropertyChanged("locationN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double penalty {
+            get {
+                return this.penaltyField;
+            }
+            set {
+                if ((this.penaltyField.Equals(value) != true)) {
+                    this.penaltyField = value;
+                    this.RaisePropertyChanged("penalty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int personId {
+            get {
+                return this.personIdField;
+            }
+            set {
+                if ((this.personIdField.Equals(value) != true)) {
+                    this.personIdField = value;
+                    this.RaisePropertyChanged("personId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string violationTypeId {
+            get {
+                return this.violationTypeIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.violationTypeIdField, value) != true)) {
+                    this.violationTypeIdField = value;
+                    this.RaisePropertyChanged("violationTypeId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService")]
     public interface IAdminService {
@@ -876,12 +876,6 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditShift", ReplyAction="http://tempuri.org/IAdminService/EditShiftResponse")]
         System.Threading.Tasks.Task EditShiftAsync(int id, Client.MainService.ShiftDto shift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolations", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsResponse")]
-        Client.MainService.ViolationDto[] GetAllViolations();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolations", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsResponse")]
-        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
@@ -1011,14 +1005,6 @@ namespace Client.MainService {
             return base.Channel.EditShiftAsync(id, shift);
         }
         
-        public Client.MainService.ViolationDto[] GetAllViolations() {
-            return base.Channel.GetAllViolations();
-        }
-        
-        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsAsync() {
-            return base.Channel.GetAllViolationsAsync();
-        }
-        
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {
             base.Channel.AddViolationType(violationType);
         }
@@ -1077,6 +1063,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShift", ReplyAction="http://tempuri.org/IUserService/AddShiftResponse")]
         System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolations", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsResponse")]
+        Client.MainService.ViolationDto[] GetAllViolations(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolations", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsAsync(int personId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolation", ReplyAction="http://tempuri.org/IUserService/AddViolationResponse")]
         Client.MainService.ViolationDto AddViolation(Client.MainService.ViolationDto violation);
@@ -1142,6 +1134,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift) {
             return base.Channel.AddShiftAsync(shift);
+        }
+        
+        public Client.MainService.ViolationDto[] GetAllViolations(int personId) {
+            return base.Channel.GetAllViolations(personId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsAsync(int personId) {
+            return base.Channel.GetAllViolationsAsync(personId);
         }
         
         public Client.MainService.ViolationDto AddViolation(Client.MainService.ViolationDto violation) {

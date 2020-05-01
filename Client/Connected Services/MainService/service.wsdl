@@ -121,12 +121,6 @@
   <wsdl:message name="IAdminService_EditShift_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditShiftResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_GetAllViolations_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllViolations" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_GetAllViolations_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllViolationsResponse" />
-  </wsdl:message>
   <wsdl:message name="IAdminService_AddViolationType_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolationType" />
   </wsdl:message>
@@ -168,6 +162,12 @@
   </wsdl:message>
   <wsdl:message name="IUserService_AddShift_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddShiftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllViolations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolations" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllViolations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolationsResponse" />
   </wsdl:message>
   <wsdl:message name="IUserService_AddViolation_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolation" />
@@ -232,10 +232,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditShift" message="tns:IAdminService_EditShift_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditShiftResponse" message="tns:IAdminService_EditShift_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllViolations">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllViolations" message="tns:IAdminService_GetAllViolations_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllViolationsResponse" message="tns:IAdminService_GetAllViolations_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolationType" message="tns:IAdminService_AddViolationType_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddViolationTypeResponse" message="tns:IAdminService_AddViolationType_OutputMessage" />
@@ -265,6 +261,10 @@
     <wsdl:operation name="AddShift">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddShift" message="tns:IUserService_AddShift_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddShiftResponse" message="tns:IUserService_AddShift_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViolations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllViolations" message="tns:IUserService_GetAllViolations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllViolationsResponse" message="tns:IUserService_GetAllViolations_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddViolation">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddViolation" message="tns:IUserService_AddViolation_InputMessage" />
@@ -363,15 +363,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllViolations">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllViolations" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/AddViolationType" style="document" />
       <wsdl:input>
@@ -433,6 +424,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="AddShift">
       <soap12:operation soapAction="http://tempuri.org/IUserService/AddShift" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViolations">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllViolations" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

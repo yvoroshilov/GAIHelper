@@ -20,7 +20,7 @@ namespace Client.ViewModel {
             props = this.GetType().GetProperties();
         }
 
-        protected void ResetForm() {
+        protected virtual void ResetForm() {
             foreach (var prop in props) {
                 if (Attribute.IsDefined(prop, inputPropertyType)) {
                     prop.SetValue(this, default);

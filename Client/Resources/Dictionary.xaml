@@ -18,4 +18,12 @@
             <AdornedElementPlaceholder />
         </Grid>
     </ControlTemplate>
+
+    <Style TargetType="{x:Type ListViewItem}" x:Key="ListViewItemStyle">
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                <Setter Property="Background" Value="LightGray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
