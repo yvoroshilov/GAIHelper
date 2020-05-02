@@ -342,9 +342,9 @@ namespace Client.ViewModel {
         }
 
         protected override void ResetForm() {
-            base.ResetForm();
             initValid = 0;
             NoLic = false;
+            base.ResetForm();
         }
         #endregion
 

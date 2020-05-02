@@ -31,7 +31,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <ListView x:Name="ViolationTable" Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False" Margin="0,0,0.6,-0.2" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView x:Name="ViolationTable" Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black" Focusable="False"  Margin="0,0,0.6,-0.2" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">

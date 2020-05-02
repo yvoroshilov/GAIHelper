@@ -131,24 +131,39 @@ namespace Client.View.User {
         }
 
         private void CancelEdit_Click(object sender, RoutedEventArgs e) {
-            CancelEditBtn.Visibility = Visibility.Hidden;
-            AcceptEditBtn.Visibility = Visibility.Hidden;
-            DeleteViolationBtn.Visibility = Visibility.Visible;
-            EditViolationBtn.Visibility = Visibility.Visible;
+            ExitEditMode();
         }
 
         private void AcceptEdit_Click(object sender, RoutedEventArgs e) {
-            CancelEditBtn.Visibility = Visibility.Hidden;
-            AcceptEditBtn.Visibility = Visibility.Hidden;
-            DeleteViolationBtn.Visibility = Visibility.Visible;
-            EditViolationBtn.Visibility = Visibility.Visible;
+            ExitEditMode();
         }
 
         private void EditViolationBtn_Click(object sender, RoutedEventArgs e) {
+            EnterEditMode();
+        }
+
+        private void EnterEditMode() {
+            ViolationTable.IsEnabled = false;
+            this.KeyDown -= Window_KeyDown;
+            this.MouseDown -= Window_MouseDown;
+            BindingOperations.ClearBinding(AddViolationBtn, Button.CommandProperty);
+            AddViolationBtn.IsEnabled = false;
             CancelEditBtn.Visibility = Visibility.Visible;
             AcceptEditBtn.Visibility = Visibility.Visible;
             DeleteViolationBtn.Visibility = Visibility.Hidden;
             EditViolationBtn.Visibility = Visibility.Hidden;
+        }
+
+        private void ExitEditMode() {
+            ViolationTable.IsEnabled = true;
+            this.KeyDown += Window_KeyDown;
+            this.MouseDown += Window_MouseDown;
+            BindingOperations.SetBinding(AddViolationBtn, Button.CommandProperty, new Binding("AddCommand"));
+            AddViolationBtn.IsEnabled = true;;
+            CancelEditBtn.Visibility = Visibility.Hidden;
+            AcceptEditBtn.Visibility = Visibility.Hidden;
+            DeleteViolationBtn.Visibility = Visibility.Visible;
+            EditViolationBtn.Visibility = Visibility.Visible;
         }
     }
 }
