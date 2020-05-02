@@ -8,7 +8,7 @@
         xmlns:res="clr-namespace:Client.Resources.Rule"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.View.User.Dashboard"
         mc:Ignorable="d"
-        Title="Dashboard" Height="726.4" Width="1028.175" MinHeight="550" MinWidth="800" SizeChanged="Window_SizeChanged" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
+        Title="Dashboard" Height="751.4" Width="1028.175" MinHeight="550" MinWidth="800" SizeChanged="Window_SizeChanged" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -56,10 +56,10 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="№ ВУ/Протокола" Width="130">
+                                <GridViewColumn Header="№ Протокола" Width="110">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding DriverLicenseOrProtocol}"/>
+                                            <TextBlock Text="{Binding ProtocolId}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -148,8 +148,8 @@
                             </Binding>
                         </TextBox>
                     </Grid>
-                    <TextBox x:Name="DescriptionField" Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.2,244,11,244.8" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
-                    <Label Content="Описание" VerticalAlignment="Top" Grid.Column="4" Margin="10.4,218,8.2,0" Height="26"/>
+                    <TextBox x:Name="DescriptionField" Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.4,302,11,244.6" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
+                    <Label Content="Описание" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,277,7.2,0" Height="25"/>
                     <Grid x:Name="PersonInfoGrid" Grid.ColumnSpan="2" Grid.Column="4" Margin="11.4,0,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="230" Width="318">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -166,7 +166,7 @@
                         <Button x:Name="CheckPersonBtn" Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139" Command="{Binding CheckPersonCommand}" Click="CheckPersonBtn_Click"/>
                         <Button x:Name="ShowPersonsViolationsBtn" Content="Нарушения" HorizontalAlignment="Left" Margin="169,21,0,0" VerticalAlignment="Top" Width="139" Height="24" Click="ShowPersonsViolationsBtn_Click" IsEnabled="False" />
                     </Grid>
-                    <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,218,11,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="59" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="5" Margin="0,269,11,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="59" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="№ Автомобиля*" Grid.Column="4" Margin="11.4,163,9.2,0" VerticalAlignment="Top" Height="26"/>
                     <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,189,8.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                         <TextBox.Text>
@@ -177,16 +177,16 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="9.8,189,9.533,0" Padding="0,3,0,0" Grid.Column="5" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="DriverLicenseField_TextChanged">
+                    <TextBox x:Name="DriverLicenseField" Height="24" VerticalAlignment="Top" Margin="8.8,244,11,0" Padding="0,3,0,0" Grid.Column="5" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="DriverLicenseField_TextChanged">
                         <TextBox.Text>
-                            <Binding Path="DriverLicenseOrProtocol" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                            <Binding Path="DriverLicense" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Label x:Name="DriverLicenseLabel" Content="№ ВУ*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="10.8,163,0,0"/>
+                    <Label x:Name="DriverLicenseLabel" Content="№ ВУ*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="9.8,218,0,0"/>
                     <Grid Grid.Column="5" Margin="9.8,9,10,0" Height="40" VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -198,6 +198,14 @@
                         <Button x:Name="EditViolationBtn" Content="Изменить" Margin="3.6,0,0.8,0" Grid.Column="1" Height="28" VerticalAlignment="Top" CommandParameter="{Binding SelectedItems, ElementName=ViolationTable}" Command="{Binding EditCommand}" Click="EditViolationBtn_Click"/>
                     </Grid>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" Grid.Column="4" Margin="11.4,9,10.2,0" VerticalAlignment="Top" Height="28" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
+                    <TextBox x:Name="ProtocolIdField" Height="24" VerticalAlignment="Top" Margin="7.8,189,11,0" Padding="0,3,0,0" Grid.Column="5" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <Binding Path="ProtocolId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                    <Label x:Name="ProtocolNumberLabel" Content="№ Протокола*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="8.8,163,0,0"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">

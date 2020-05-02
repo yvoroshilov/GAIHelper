@@ -126,14 +126,26 @@ namespace Client.ViewModel {
             }
         }
 
-        private string driverLicenseOrProtocol;
-        [InputProperty(true)]
-        public string DriverLicenseOrProtocol {
+        private string driverLicense;
+        [InputProperty]
+        public string DriverLicense {
             get {
-                return driverLicenseOrProtocol;
+                return driverLicense;
             }
             set {
-                driverLicenseOrProtocol = value;
+                driverLicense = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string protocolId;
+        [InputProperty(true)]
+        public string ProtocolId {
+            get {
+                return protocolId;
+            }
+            set {
+                protocolId = value;
                 OnPropertyChanged();
             }
         }
@@ -177,12 +189,11 @@ namespace Client.ViewModel {
             get {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
-                        if (!noLic) {
-                            Person pers = Mapper.mapper.Map<Person>(client.GetPerson(DriverLicenseOrProtocol));
+                        if (!NoLic) {
+                            Person pers = Mapper.mapper.Map<Person>(client.GetPerson(DriverLicense));
                             PersonId = pers.Id;
                         } else {
                             PersonId = NO_LIC_PERSON_ID;
-                            Description += " | № Протокола: " + DriverLicenseOrProtocol;
                         }
 
                         Violation violation = new Violation();
@@ -195,7 +206,7 @@ namespace Client.ViewModel {
                         violation.LocationE = LocationE;
                         violation.Address = Address;
                         violation.Description = Description;
-                        violation.DriverLicenseOrProtocol = DriverLicenseOrProtocol;
+                        violation.ProtocolId = ProtocolId;
 
                         Violations.Add(violation);
                         ResetPersonProfile();
@@ -240,8 +251,9 @@ namespace Client.ViewModel {
                         LocationE = curViolation.LocationE;
                         Address = curViolation.Address;
                         Description = curViolation.Description;
-                        DriverLicenseOrProtocol = curViolation.DriverLicenseOrProtocol;
+                        ProtocolId = curViolation.ProtocolId;
                         if (curViolation.PersonId != NO_LIC_PERSON_ID) {
+                            DriverLicense = CurrentPerson.DriverLicense;
                             CheckPersonCommand.Execute(null);
                             NoLic = false;
                         } else {
@@ -258,9 +270,9 @@ namespace Client.ViewModel {
             get {
                 return checkPersonCommand ??
                     (checkPersonCommand = new RelayCommand(obj => {
-                        MainService.PersonDto personDto = client.GetPerson(DriverLicenseOrProtocol);
+                        MainService.PersonDto personDto = client.GetPerson(DriverLicense);
                         if (personDto == null) {
-                            MessageBox.Show($"Человека с водительским удостоверением № {DriverLicenseOrProtocol} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show($"Человека с водительским удостоверением № {DriverLicense} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                             ResetPersonProfile();
                         } else {
                             Mapper.mapper.Map(
@@ -273,7 +285,7 @@ namespace Client.ViewModel {
                                 .ToList());
                         }
                     }, obj => {
-                        return DriverLicenseOrProtocol != null;
+                        return DriverLicense != null;
                     }));
             }
         }
@@ -303,11 +315,11 @@ namespace Client.ViewModel {
                         curViolation.LocationE = LocationE;
                         curViolation.Address = Address;
                         curViolation.Description = Description;
-                        curViolation.DriverLicenseOrProtocol = DriverLicenseOrProtocol;
+                        curViolation.ProtocolId = ProtocolId;
                         if (NoLic) {
                             curViolation.PersonId = NO_LIC_PERSON_ID;
                         } else {
-                            curViolation.PersonId = client.GetPerson(DriverLicenseOrProtocol).id;
+                            curViolation.PersonId = client.GetPerson(DriverLicense).id;
                         }
                         client.EditViolation(Mapper.mapper.Map<MainService.ViolationDto>(curViolation));
                         ResetForm();
@@ -349,7 +361,7 @@ namespace Client.ViewModel {
         #endregion
 
         #region Util
-        private const int MAX_INIT_VALID_FIELDS = 6;
+        private const int MAX_INIT_VALID_FIELDS = 7;
         private int initValid = 0;
 
         public string this[string columnName] {
@@ -383,22 +395,30 @@ namespace Client.ViewModel {
                             }
                         }
                         break;
-                    case "DriverLicenseOrProtocol":
-                        if (DriverLicenseOrProtocol == null) {
-                            if (noLic) {
-                                error = "Номер протокола обязателен для заполнения";
-                            } else {
-                                error = "Номер водительского удостоверения обязателен для заполнения";
-                            }
+                    case "ProtocolId":
+                        if (ProtocolId == null) {
+                            error = "Номер протокола обязателен для заполнения";
                             break;
                         }
 
-                        foreach (char ch in DriverLicenseOrProtocol) {
+                        foreach (char ch in ProtocolId) {
+                            if (!char.IsLetterOrDigit(ch)) {
+                                error = "Номер протокола может содержать только буквы и цифры";
+                                break;
+                            }
+                        }
+
+                        break;
+                    case "DriverLicenseOrProtocol":
+                        if (DriverLicense == null) {
+                            error = "Номер водительского удостоверения обязателен для заполнения";
+                            break;
+                        }
+
+                        foreach (char ch in DriverLicense) {
                             if (!char.IsLetterOrDigit(ch)) {
                                 if (noLic) {
                                     error = "Номер ВУ может содержать только буквы и цифры";
-                                } else {
-                                    error = "Номер протокола может содержать только буквы и цифры";
                                 }
                                 break;
                             }

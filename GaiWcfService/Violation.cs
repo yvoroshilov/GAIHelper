@@ -16,9 +16,10 @@ namespace GaiWcfService
     {
         public int id { get; set; }
         public string violation_type_id { get; set; }
-        public Nullable<int> person_id { get; set; }
+        public int person_id { get; set; }
         public string car_number { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
+        public string protocol_id { get; set; }
+        public System.DateTime date { get; set; }
         public float penalty { get; set; }
         public Nullable<float> location_n { get; set; }
         public Nullable<float> location_e { get; set; }

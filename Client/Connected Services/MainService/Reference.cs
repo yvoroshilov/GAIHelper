@@ -673,6 +673,9 @@ namespace Client.MainService {
         private int personIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string protocolIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string violationTypeIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -798,6 +801,19 @@ namespace Client.MainService {
                 if ((this.personIdField.Equals(value) != true)) {
                     this.personIdField = value;
                     this.RaisePropertyChanged("personId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string protocolId {
+            get {
+                return this.protocolIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.protocolIdField, value) != true)) {
+                    this.protocolIdField = value;
+                    this.RaisePropertyChanged("protocolId");
                 }
             }
         }

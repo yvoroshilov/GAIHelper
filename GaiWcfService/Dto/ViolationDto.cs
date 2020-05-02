@@ -21,6 +21,9 @@ namespace GaiWcfService.Dto{
         public string carNumber;
 
         [DataMember]
+        public string protocolId;
+
+        [DataMember]
         public DateTime date;
 
         [DataMember]

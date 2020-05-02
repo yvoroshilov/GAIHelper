@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Client.Model {
     
-    public class Violation : NotifyingModel, ICloneable  {
+    public class Violation : NotifyingModel  {
         private int id;
         public int Id {
             get {
@@ -44,6 +44,17 @@ namespace Client.Model {
             }
             set {
                 carNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string protocolId;
+        public string ProtocolId {
+            get {
+                return protocolId;
+            }
+            set {
+                protocolId = value;
                 OnPropertyChanged();
             }
         }
@@ -112,21 +123,6 @@ namespace Client.Model {
                 description = value;
                 OnPropertyChanged();
             }
-        }
-
-        private string driverLicenseOrProtocol;
-        public string DriverLicenseOrProtocol {
-            get {
-                return driverLicenseOrProtocol;
-            }
-            set {
-                driverLicenseOrProtocol = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public object Clone() {
-            return base.MemberwiseClone();
         }
     }
 }

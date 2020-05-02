@@ -37,8 +37,8 @@ namespace Client.View.User {
                     ((Control)item).IsEnabled = false;
                 }
             }
-            DriverLicenseLabel.Content = "№ протокола*";
-            dataContext.DriverLicenseOrProtocol = null;
+            DriverLicenseField.IsEnabled = false;
+            DriverLicenseLabel.IsEnabled = false;
         }   
 
         private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
@@ -51,7 +51,8 @@ namespace Client.View.User {
                     }
                 }
             }
-            DriverLicenseLabel.Content = "№ ВУ*";
+            DriverLicenseField.IsEnabled = true;
+            DriverLicenseLabel.IsEnabled = true;
         }
 
         private void ViolationField_SelectionChanged(object sender, SelectionChangedEventArgs e) {

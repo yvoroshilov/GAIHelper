@@ -41,7 +41,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="passport_id" Type="char" MaxLength="9" Nullable="false" />
-          <Property Name="driver_license" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="driver_license" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -64,9 +64,10 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="violation_type_id" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="person_id" Type="int" />
+          <Property Name="person_id" Type="int" Nullable="false" />
           <Property Name="car_number" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="date" Type="date" />
+          <Property Name="protocol_id" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
           <Property Name="penalty" Type="real" Nullable="false" />
           <Property Name="location_n" Type="real" />
           <Property Name="location_e" Type="real" />
@@ -120,7 +121,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Violations_Violators">
-          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="Violations" Type="Self.Violations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persons">
@@ -223,7 +224,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="passport_id" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
-          <Property Name="driver_license" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="driver_license" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -249,9 +250,10 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="violation_type_id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="person_id" Type="Int32" />
+          <Property Name="person_id" Type="Int32" Nullable="false" />
           <Property Name="car_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="protocol_id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="penalty" Type="Single" Nullable="false" />
           <Property Name="location_n" Type="Single" />
           <Property Name="location_e" Type="Single" />
@@ -296,7 +298,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Violations_Violators">
-          <End Type="GAIDBModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="GAIDBModel.Person" Role="Person" Multiplicity="1" />
           <End Type="GAIDBModel.Violation" Role="Violation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -392,6 +394,7 @@
                 <ScalarProperty Name="location_n" ColumnName="location_n" />
                 <ScalarProperty Name="penalty" ColumnName="penalty" />
                 <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="protocol_id" ColumnName="protocol_id" />
                 <ScalarProperty Name="car_number" ColumnName="car_number" />
                 <ScalarProperty Name="person_id" ColumnName="person_id" />
                 <ScalarProperty Name="violation_type_id" ColumnName="violation_type_id" />
