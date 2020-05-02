@@ -14,11 +14,19 @@ namespace GaiWcfService
     
     public partial class Shift
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Shift()
+        {
+            this.Violations = new HashSet<Violation>();
+        }
+    
         public int id { get; set; }
         public int responsible_id { get; set; }
         public System.DateTime start { get; set; }
         public System.DateTime end { get; set; }
     
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Violation> Violations { get; set; }
     }
 }

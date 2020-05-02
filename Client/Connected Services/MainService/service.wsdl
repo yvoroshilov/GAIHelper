@@ -73,29 +73,35 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IAdminService_Test_InputMessage">
-    <wsdl:part name="parameters" element="tns:Test" />
+  <wsdl:message name="IAdminService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_Test_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TestResponse" />
+  <wsdl:message name="IAdminService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_AddAdimn_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddAdimn" />
+  <wsdl:message name="IAdminService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_AddAdimn_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddAdimnResponse" />
+  <wsdl:message name="IAdminService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_EditAdmin_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditAdmin" />
+  <wsdl:message name="IAdminService_GetUserByLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByLogin" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_EditAdmin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditAdminResponse" />
+  <wsdl:message name="IAdminService_GetUserByLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByLoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_getAllAdmins_InputMessage">
-    <wsdl:part name="parameters" element="tns:getAllAdmins" />
+  <wsdl:message name="IAdminService_EditUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditUser" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_getAllAdmins_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getAllAdminsResponse" />
+  <wsdl:message name="IAdminService_EditUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_getAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_getAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
@@ -200,21 +206,25 @@
     <wsdl:part name="parameters" element="tns:GetPersonResponse" />
   </wsdl:message>
   <wsdl:portType name="IAdminService">
-    <wsdl:operation name="Test">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/Test" message="tns:IAdminService_Test_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/TestResponse" message="tns:IAdminService_Test_OutputMessage" />
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddUser" message="tns:IAdminService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddUserResponse" message="tns:IAdminService_AddUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddAdimn">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddAdimn" message="tns:IAdminService_AddAdimn_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddAdimnResponse" message="tns:IAdminService_AddAdimn_OutputMessage" />
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetUser" message="tns:IAdminService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetUserResponse" message="tns:IAdminService_GetUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EditAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditAdmin" message="tns:IAdminService_EditAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditAdminResponse" message="tns:IAdminService_EditAdmin_OutputMessage" />
+    <wsdl:operation name="GetUserByLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetUserByLogin" message="tns:IAdminService_GetUserByLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetUserByLoginResponse" message="tns:IAdminService_GetUserByLogin_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="getAllAdmins">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/getAllAdmins" message="tns:IAdminService_getAllAdmins_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/getAllAdminsResponse" message="tns:IAdminService_getAllAdmins_OutputMessage" />
+    <wsdl:operation name="EditUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditUser" message="tns:IAdminService_EditUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditUserResponse" message="tns:IAdminService_EditUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/getAllUsers" message="tns:IAdminService_getAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/getAllUsersResponse" message="tns:IAdminService_getAllUsers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddEmployee" message="tns:IAdminService_AddEmployee_InputMessage" />
@@ -291,8 +301,8 @@
     <wsp:PolicyReference URI="#AdminServiceTcpEndpointAdmin_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="Test">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/Test" style="document" />
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -300,8 +310,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddAdimn">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddAdimn" style="document" />
+    <wsdl:operation name="GetUser">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -309,8 +319,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EditAdmin">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditAdmin" style="document" />
+    <wsdl:operation name="GetUserByLogin">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetUserByLogin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -318,8 +328,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getAllAdmins">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/getAllAdmins" style="document" />
+    <wsdl:operation name="EditUser">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/getAllUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -29,8 +29,6 @@ namespace GaiWcfService.Repository.implementation {
             oldEmployee.hire_date = employee.hire_date;
             oldEmployee.rank = employee.rank;
             oldEmployee.Shifts = employee.Shifts;
-            oldEmployee.username = employee.username;
-            oldEmployee.patronymic = employee.password;
             
             dbEntities.instance.SaveChanges();
         }

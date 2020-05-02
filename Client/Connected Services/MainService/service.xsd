@@ -1,59 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" />
-  <xs:element name="Test">
+  <xs:element name="AddUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="User" nillable="true" type="q1:UserDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="TestResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="TestResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddAdimn">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="admin" nillable="true" type="q1:AdminDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddAdimnResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditAdmin">
+  <xs:element name="GetUser">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="admin" nillable="true" type="q2:AdminDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="EditAdminResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getAllAdmins">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getAllAdminsResponse">
+  <xs:element name="GetUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="getAllAdminsResult" nillable="true" type="q3:ArrayOfAdminDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetUserResult" nillable="true" type="q2:UserDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetUserByLoginResult" nillable="true" type="q3:UserDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="user" nillable="true" type="q4:UserDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="getAllUsersResult" nillable="true" type="q5:ArrayOfUserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddEmployee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="employee" nillable="true" type="q4:EmployeeDto" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="employee" nillable="true" type="q6:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -66,7 +82,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="employee" nillable="true" type="q5:EmployeeDto" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="employee" nillable="true" type="q7:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -91,7 +107,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="shift" nillable="true" type="q6:ShiftDto" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="shift" nillable="true" type="q8:ShiftDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -103,7 +119,7 @@
   <xs:element name="AddViolationType">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violationType" nillable="true" type="q7:ViolationTypeDto" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violationType" nillable="true" type="q9:ViolationTypeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -116,7 +132,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violationType" nillable="true" type="q8:ViolationTypeDto" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violationType" nillable="true" type="q10:ViolationTypeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -140,7 +156,7 @@
   <xs:element name="AddPerson">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="person" nillable="true" type="q9:PersonDto" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="person" nillable="true" type="q11:PersonDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -153,7 +169,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="person" nillable="true" type="q10:PersonDto" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="person" nillable="true" type="q12:PersonDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -177,7 +193,7 @@
   <xs:element name="AddShift">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="shift" nillable="true" type="q11:ShiftDto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="shift" nillable="true" type="q13:ShiftDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -196,28 +212,28 @@
   <xs:element name="GetAllViolationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationsResult" nillable="true" type="q12:ArrayOfViolationDto" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationsResult" nillable="true" type="q14:ArrayOfViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddViolation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q13:ViolationDto" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q15:ViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddViolationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="AddViolationResult" nillable="true" type="q14:ViolationDto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="AddViolationResult" nillable="true" type="q16:ViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditViolation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q15:ViolationDto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q17:ViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -246,7 +262,7 @@
   <xs:element name="GetAllViolationTypesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationTypesResult" nillable="true" type="q16:ArrayOfViolationTypeDto" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationTypesResult" nillable="true" type="q18:ArrayOfViolationTypeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -260,7 +276,7 @@
   <xs:element name="GetPersonResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetPersonResult" nillable="true" type="q17:PersonDto" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetPersonResult" nillable="true" type="q19:PersonDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

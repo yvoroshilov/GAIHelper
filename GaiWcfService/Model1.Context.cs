@@ -25,11 +25,12 @@ namespace GaiWcfService
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Violation> Violations { get; set; }
         public virtual DbSet<ViolationType> ViolationTypes { get; set; }
     }

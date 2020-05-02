@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="Вход в систему" Height="501.3" Width="648.1">
+        Title="Вход в систему" Height="501.3" Width="648.1" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid Margin="0,0,-0.4,0" RenderTransformOrigin="0.502,0.445">
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="212" Width="199">
-            <Label Content="Вход в систему&#xD;&#xA;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,9,0" Height="50" Width="175" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
-            <TextBox HorizontalAlignment="Center" Height="30" Text="Логин" VerticalAlignment="Top" Width="170" Margin="17,50,12,0" TextAlignment="Center" Padding="0,5,0,0" FontSize="14"/>
-            <TextBox HorizontalAlignment="Center" Height="30" Text="Пароль" VerticalAlignment="Top" Width="170" Margin="17,97,12,0" TextAlignment="Center" Padding="0,5,0,0" FontSize="14"/>
-            <Button Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="55,142,0,0" Height="29" Click="Button_Click_1"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="237" Width="199" Margin="221,105,222,130" FocusManager.FocusedElement="{Binding ElementName=LoginField}">
+            <Label Content="Вход в систему" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,9,0" Height="50" Width="175" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+            <TextBox HorizontalAlignment="Center" Name="LoginField" Height="30" VerticalAlignment="Top" Width="170" Margin="17,78,12,0" Padding="0,5,0,0" FontSize="14" Text="{Binding Login}" />
+            <PasswordBox HorizontalAlignment="Center" Name="PasswordField" Height="30" VerticalAlignment="Top" Width="170" Margin="17,143,12,0"  Padding="0,5,0,0" FontSize="14"/>
+            <Button Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="54,186,0,0" Height="29" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordField}"/>
+            <Label Content="Логин:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,52,0,0" Width="165"/>
+            <Label Content="Пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,117,0,0" Width="165"/>
         </Grid>
     </Grid>
 </Window>

@@ -29,7 +29,7 @@ namespace Client.ViewModel {
             InitializeForm();
         }
 
-        protected bool IsAllRequiredFieldsFilled() {
+        protected virtual bool IsAllRequiredFieldsFilled() {
             foreach (var prop in props) {
                 if (Attribute.IsDefined(prop, inputPropertyType)) {
                     InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);

@@ -11,18 +11,21 @@ namespace GaiWcfService.Service {
     [ServiceContract]
     public interface IAdminService {
 
+        #region User
         [OperationContract]
-        string Test();
-
-        #region Admin
-        [OperationContract]
-        void AddAdimn(AdminDto admin);
+        void AddUser(UserDto User);
 
         [OperationContract]
-        void EditAdmin(int id, AdminDto admin);
+        UserDto GetUser(int id);
+
+        [OperationContract(Name = "GetUserByLogin")]
+        UserDto GetUser(string login);
 
         [OperationContract]
-        HashSet<AdminDto> getAllAdmins();
+        void EditUser(int id, UserDto user);
+
+        [OperationContract]
+        HashSet<UserDto> getAllUsers();
         #endregion
 
         #region Employee

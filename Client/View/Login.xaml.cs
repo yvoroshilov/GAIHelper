@@ -1,5 +1,6 @@
 ﻿using Client.MainService;
 using Client.View.User;
+using Client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +22,22 @@ namespace Client {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
+            DataContext = new LoginViewModel();
+            dataContext = (DataContext as LoginViewModel);
+            dataContext.ClosingRequest += (s, a) => this.Close();
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            AdminServiceClient admin = new AdminServiceClient();
-            AdminDto[] test2 = admin.getAllAdmins();
-            MessageBox.Show(test2[0].username + ":" + test2[0].password);
-        }
+        private readonly LoginViewModel dataContext;
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) {
-            Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Close();
+        private void Window_KeyDown(object sender, KeyEventArgs e) {
+            switch (e.Key) {
+                case Key.Enter:
+                    if (dataContext.LoginCommand.CanExecute(PasswordField)) {
+                        dataContext.LoginCommand.Execute(PasswordField);
+                    }
+                    break;
+            }
         }
     }
 }

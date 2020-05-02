@@ -15,9 +15,9 @@ namespace Client.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AdminDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
     [System.SerializableAttribute()]
-    public partial class AdminDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class UserDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -26,10 +26,13 @@ namespace Client.MainService {
         private int idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string loginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string passwordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string usernameField;
+        private string roleField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -55,6 +58,19 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string login {
+            get {
+                return this.loginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.loginField, value) != true)) {
+                    this.loginField = value;
+                    this.RaisePropertyChanged("login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string password {
             get {
                 return this.passwordField;
@@ -68,14 +84,14 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string username {
+        public string role {
             get {
-                return this.usernameField;
+                return this.roleField;
             }
             set {
-                if ((object.ReferenceEquals(this.usernameField, value) != true)) {
-                    this.usernameField = value;
-                    this.RaisePropertyChanged("username");
+                if ((object.ReferenceEquals(this.roleField, value) != true)) {
+                    this.roleField = value;
+                    this.RaisePropertyChanged("role");
                 }
             }
         }
@@ -119,6 +135,9 @@ namespace Client.MainService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string surnameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int userIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string usernameField;
@@ -220,6 +239,19 @@ namespace Client.MainService {
                 if ((object.ReferenceEquals(this.surnameField, value) != true)) {
                     this.surnameField = value;
                     this.RaisePropertyChanged("surname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int userId {
+            get {
+                return this.userIdField;
+            }
+            set {
+                if ((this.userIdField.Equals(value) != true)) {
+                    this.userIdField = value;
+                    this.RaisePropertyChanged("userId");
                 }
             }
         }
@@ -676,6 +708,9 @@ namespace Client.MainService {
         private string protocolIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int shiftIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string violationTypeIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -819,6 +854,19 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int shiftId {
+            get {
+                return this.shiftIdField;
+            }
+            set {
+                if ((this.shiftIdField.Equals(value) != true)) {
+                    this.shiftIdField = value;
+                    this.RaisePropertyChanged("shiftId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string violationTypeId {
             get {
                 return this.violationTypeIdField;
@@ -845,29 +893,35 @@ namespace Client.MainService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService")]
     public interface IAdminService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Test", ReplyAction="http://tempuri.org/IAdminService/TestResponse")]
-        string Test();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddUser", ReplyAction="http://tempuri.org/IAdminService/AddUserResponse")]
+        void AddUser(Client.MainService.UserDto User);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Test", ReplyAction="http://tempuri.org/IAdminService/TestResponse")]
-        System.Threading.Tasks.Task<string> TestAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddUser", ReplyAction="http://tempuri.org/IAdminService/AddUserResponse")]
+        System.Threading.Tasks.Task AddUserAsync(Client.MainService.UserDto User);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddAdimn", ReplyAction="http://tempuri.org/IAdminService/AddAdimnResponse")]
-        void AddAdimn(Client.MainService.AdminDto admin);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUser", ReplyAction="http://tempuri.org/IAdminService/GetUserResponse")]
+        Client.MainService.UserDto GetUser(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddAdimn", ReplyAction="http://tempuri.org/IAdminService/AddAdimnResponse")]
-        System.Threading.Tasks.Task AddAdimnAsync(Client.MainService.AdminDto admin);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUser", ReplyAction="http://tempuri.org/IAdminService/GetUserResponse")]
+        System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditAdmin", ReplyAction="http://tempuri.org/IAdminService/EditAdminResponse")]
-        void EditAdmin(int id, Client.MainService.AdminDto admin);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUserByLogin", ReplyAction="http://tempuri.org/IAdminService/GetUserByLoginResponse")]
+        Client.MainService.UserDto GetUserByLogin(string login);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditAdmin", ReplyAction="http://tempuri.org/IAdminService/EditAdminResponse")]
-        System.Threading.Tasks.Task EditAdminAsync(int id, Client.MainService.AdminDto admin);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUserByLogin", ReplyAction="http://tempuri.org/IAdminService/GetUserByLoginResponse")]
+        System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserByLoginAsync(string login);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllAdmins", ReplyAction="http://tempuri.org/IAdminService/getAllAdminsResponse")]
-        Client.MainService.AdminDto[] getAllAdmins();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
+        void EditUser(int id, Client.MainService.UserDto user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllAdmins", ReplyAction="http://tempuri.org/IAdminService/getAllAdminsResponse")]
-        System.Threading.Tasks.Task<Client.MainService.AdminDto[]> getAllAdminsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
+        System.Threading.Tasks.Task EditUserAsync(int id, Client.MainService.UserDto user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
+        Client.MainService.UserDto[] getAllUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
+        System.Threading.Tasks.Task<Client.MainService.UserDto[]> getAllUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddEmployee", ReplyAction="http://tempuri.org/IAdminService/AddEmployeeResponse")]
         void AddEmployee(Client.MainService.EmployeeDto employee);
@@ -957,36 +1011,44 @@ namespace Client.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public string Test() {
-            return base.Channel.Test();
+        public void AddUser(Client.MainService.UserDto User) {
+            base.Channel.AddUser(User);
         }
         
-        public System.Threading.Tasks.Task<string> TestAsync() {
-            return base.Channel.TestAsync();
+        public System.Threading.Tasks.Task AddUserAsync(Client.MainService.UserDto User) {
+            return base.Channel.AddUserAsync(User);
         }
         
-        public void AddAdimn(Client.MainService.AdminDto admin) {
-            base.Channel.AddAdimn(admin);
+        public Client.MainService.UserDto GetUser(int id) {
+            return base.Channel.GetUser(id);
         }
         
-        public System.Threading.Tasks.Task AddAdimnAsync(Client.MainService.AdminDto admin) {
-            return base.Channel.AddAdimnAsync(admin);
+        public System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(int id) {
+            return base.Channel.GetUserAsync(id);
         }
         
-        public void EditAdmin(int id, Client.MainService.AdminDto admin) {
-            base.Channel.EditAdmin(id, admin);
+        public Client.MainService.UserDto GetUserByLogin(string login) {
+            return base.Channel.GetUserByLogin(login);
         }
         
-        public System.Threading.Tasks.Task EditAdminAsync(int id, Client.MainService.AdminDto admin) {
-            return base.Channel.EditAdminAsync(id, admin);
+        public System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserByLoginAsync(string login) {
+            return base.Channel.GetUserByLoginAsync(login);
         }
         
-        public Client.MainService.AdminDto[] getAllAdmins() {
-            return base.Channel.getAllAdmins();
+        public void EditUser(int id, Client.MainService.UserDto user) {
+            base.Channel.EditUser(id, user);
         }
         
-        public System.Threading.Tasks.Task<Client.MainService.AdminDto[]> getAllAdminsAsync() {
-            return base.Channel.getAllAdminsAsync();
+        public System.Threading.Tasks.Task EditUserAsync(int id, Client.MainService.UserDto user) {
+            return base.Channel.EditUserAsync(id, user);
+        }
+        
+        public Client.MainService.UserDto[] getAllUsers() {
+            return base.Channel.getAllUsers();
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.UserDto[]> getAllUsersAsync() {
+            return base.Channel.getAllUsersAsync();
         }
         
         public void AddEmployee(Client.MainService.EmployeeDto employee) {

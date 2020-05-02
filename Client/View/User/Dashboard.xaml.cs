@@ -19,8 +19,8 @@ using System.Windows.Shapes;
 
 namespace Client.View.User {
 
-    public partial class Dashboard : Window {
-        public Dashboard() {
+    public partial class UserDashboard : Window {
+        public UserDashboard() {
             DataContext = new ViolationsUserViewModel();
             dataContext = (ViolationsUserViewModel)DataContext;
             dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;

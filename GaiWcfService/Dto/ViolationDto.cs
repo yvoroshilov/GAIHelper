@@ -40,5 +40,8 @@ namespace GaiWcfService.Dto{
 
         [DataMember]
         public string description;
+
+        [DataMember]
+        public int shiftId;
     }
 }

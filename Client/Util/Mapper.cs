@@ -11,7 +11,7 @@ namespace Client.Util {
         public static IMapper mapper;
         static Mapper() {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Admin, MainService.AdminDto>().ReverseMap();
+                cfg.CreateMap<Admin, MainService.UserDto>().ReverseMap();
                 cfg.CreateMap<Employee, MainService.EmployeeDto>().ReverseMap();
                 //cfg.CreateMap<Payment, MainService.PaymentDto>().ReverseMap();
                 cfg.CreateMap<Shift, MainService.ShiftDto>();

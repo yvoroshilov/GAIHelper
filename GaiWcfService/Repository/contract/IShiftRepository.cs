@@ -6,21 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.contract {
-    [ServiceContract]
     public interface IShiftRepository {
-        [OperationContract]
         void AddShift(Shift shift);
 
-        [OperationContract]
         void EditShift(int id, Shift shift);
 
-        [OperationContract]
         void DeleteShift(int id);
 
-        [OperationContract]
         Shift GetRepository(int id);
 
-        [OperationContract]
         HashSet<Shift> GetAll();
     }
 }

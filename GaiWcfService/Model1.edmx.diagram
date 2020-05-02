@@ -5,16 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="61829b77956a4e6e98f8e1a9c69bf50f" Name="Diagram1" ZoomLevel="70">
-        <EntityTypeShape EntityType="GAIDBModel.Admin" Width="1.5" PointX="5.75" PointY="8.375" />
-        <EntityTypeShape EntityType="GAIDBModel.Employee" Width="1.5" PointX="0.75" PointY="8.5" />
-        <EntityTypeShape EntityType="GAIDBModel.Payment" Width="1.5" PointX="3" PointY="3.875" />
-        <EntityTypeShape EntityType="GAIDBModel.Person" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="GAIDBModel.Shift" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="GAIDBModel.Violation" Width="1.5" PointX="6" PointY="3.125" />
-        <EntityTypeShape EntityType="GAIDBModel.ViolationType" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GAIDBModel.Employee" Width="1.5" PointX="1.5" PointY="13.375" />
+        <EntityTypeShape EntityType="GAIDBModel.Payment" Width="1.5" PointX="3" PointY="10" />
+        <EntityTypeShape EntityType="GAIDBModel.Person" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="GAIDBModel.Role" Width="1.5" PointX="1.5" PointY="21" />
+        <EntityTypeShape EntityType="GAIDBModel.Shift" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GAIDBModel.User" Width="1.5" PointX="1.5" PointY="17.625" />
+        <EntityTypeShape EntityType="GAIDBModel.Violation" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="GAIDBModel.ViolationType" Width="1.5" PointX="0.75" PointY="9" />
+        <AssociationConnector Association="GAIDBModel.FK_Employees_Users" />
         <AssociationConnector Association="GAIDBModel.FK_Shifts_Employees" />
-        <AssociationConnector Association="GAIDBModel.FK_Payments_Violators" />
+        <AssociationConnector Association="GAIDBModel.FK_Payments_Persons" />
         <AssociationConnector Association="GAIDBModel.FK_Violations_Violators" />
+        <AssociationConnector Association="GAIDBModel.FK_Users_Roles" />
+        <AssociationConnector Association="GAIDBModel.FK_Violations_Shifts" />
         <AssociationConnector Association="GAIDBModel.FK_Violations_ViolationsTypes" />
       </Diagram>
     </edmx:Diagrams>

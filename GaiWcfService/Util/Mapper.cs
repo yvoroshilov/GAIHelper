@@ -11,7 +11,7 @@ namespace GaiWcfService.Util {
         public static IMapper mapper;
         static Mapper() {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Admin, AdminDto>().ReverseMap();
+                cfg.CreateMap<User, UserDto>().ReverseMap();
                 cfg.CreateMap<Employee, EmployeeDto>()
                     .ForMember("certificateId", expr => expr.MapFrom("certificate_id"))
                     .ForMember("hireDate", expr => expr.MapFrom("hire_date"))
@@ -30,6 +30,7 @@ namespace GaiWcfService.Util {
                     .ForMember("protocolId", expr => expr.MapFrom("protocol_id"))
                     .ForMember("locationN", expr => expr.MapFrom("location_n"))
                     .ForMember("locationE", expr => expr.MapFrom("location_e"))
+                    .ForMember("shiftId", expr => expr.MapFrom("shift_id"))
                     .ReverseMap();
                 cfg.CreateMap<ViolationType, ViolationTypeDto>()
                     .ForMember("minPenalty", expr => expr.MapFrom("min_penalty"))

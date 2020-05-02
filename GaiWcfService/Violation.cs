@@ -25,8 +25,10 @@ namespace GaiWcfService
         public Nullable<float> location_e { get; set; }
         public string address { get; set; }
         public string description { get; set; }
+        public int shift_id { get; set; }
     
         public virtual Person Person { get; set; }
+        public virtual Shift Shift { get; set; }
         public virtual ViolationType ViolationType { get; set; }
     }
 }

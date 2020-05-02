@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Dto {
     [DataContract]
-    public class AdminDto {
-        [DataMember]
-        public int id { get; set; }
-        
-        [DataMember]
-        public string username { get; set; }
+    public class UserDto {
 
         [DataMember]
-        public string password { get; set; }
+        public int id;
+
+        [DataMember]
+        public string login;
+
+        [DataMember]
+        public string password;
+
+        [DataMember]
+        public string role;
     }
 }

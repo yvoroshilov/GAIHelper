@@ -12,6 +12,9 @@ namespace GaiWcfService.Dto {
         public int certificateId { get; set; }
 
         [DataMember] 
+        public int userId { get; set; }
+
+        [DataMember] 
         public string name { get; set; }
 
         [DataMember] 
