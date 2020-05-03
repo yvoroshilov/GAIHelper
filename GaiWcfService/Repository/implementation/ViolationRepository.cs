@@ -13,8 +13,6 @@ namespace GaiWcfService.Repository.implementation {
         private GAIDBEntities dbEntities = DbEntitiesSingleton.GetDbEntities().instance;
 
         public Violation AddViolation(Violation violation) {
-            violation.Person = dbEntities.Persons.Find(violation.person_id);
-            violation.ViolationType = dbEntities.ViolationTypes.Find(violation.violation_type_id);
             Violation added = dbEntities.Violations.Add(violation);
             dbEntities.SaveChanges();
             return added;

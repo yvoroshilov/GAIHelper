@@ -295,99 +295,6 @@ namespace Client.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ShiftDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
-    [System.SerializableAttribute()]
-    public partial class ShiftDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime endField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int responsibleIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime startField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime end {
-            get {
-                return this.endField;
-            }
-            set {
-                if ((this.endField.Equals(value) != true)) {
-                    this.endField = value;
-                    this.RaisePropertyChanged("end");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int responsibleId {
-            get {
-                return this.responsibleIdField;
-            }
-            set {
-                if ((this.responsibleIdField.Equals(value) != true)) {
-                    this.responsibleIdField = value;
-                    this.RaisePropertyChanged("responsibleId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime start {
-            get {
-                return this.startField;
-            }
-            set {
-                if ((this.startField.Equals(value) != true)) {
-                    this.startField = value;
-                    this.RaisePropertyChanged("start");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ViolationTypeDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
     [System.SerializableAttribute()]
     public partial class ViolationTypeDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -893,6 +800,18 @@ namespace Client.MainService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService")]
     public interface IAdminService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SetTest", ReplyAction="http://tempuri.org/IAdminService/SetTestResponse")]
+        void SetTest(int lel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SetTest", ReplyAction="http://tempuri.org/IAdminService/SetTestResponse")]
+        System.Threading.Tasks.Task SetTestAsync(int lel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetTest", ReplyAction="http://tempuri.org/IAdminService/GetTestResponse")]
+        System.ServiceModel.Channels.Message GetTest();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetTest", ReplyAction="http://tempuri.org/IAdminService/GetTestResponse")]
+        System.Threading.Tasks.Task<System.ServiceModel.Channels.Message> GetTestAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddUser", ReplyAction="http://tempuri.org/IAdminService/AddUserResponse")]
         void AddUser(Client.MainService.UserDto User);
         
@@ -941,11 +860,17 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteEmployee", ReplyAction="http://tempuri.org/IAdminService/DeleteEmployeeResponse")]
         System.Threading.Tasks.Task DeleteEmployeeAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditShift", ReplyAction="http://tempuri.org/IAdminService/EditShiftResponse")]
-        void EditShift(int id, Client.MainService.ShiftDto shift);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/OpenShift", ReplyAction="http://tempuri.org/IAdminService/OpenShiftResponse")]
+        int OpenShift(int responsibleId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditShift", ReplyAction="http://tempuri.org/IAdminService/EditShiftResponse")]
-        System.Threading.Tasks.Task EditShiftAsync(int id, Client.MainService.ShiftDto shift);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/OpenShift", ReplyAction="http://tempuri.org/IAdminService/OpenShiftResponse")]
+        System.Threading.Tasks.Task<int> OpenShiftAsync(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/CloseShift", ReplyAction="http://tempuri.org/IAdminService/CloseShiftResponse")]
+        void CloseShift(int shiftId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/CloseShift", ReplyAction="http://tempuri.org/IAdminService/CloseShiftResponse")]
+        System.Threading.Tasks.Task CloseShiftAsync(int shiftId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
@@ -1009,6 +934,22 @@ namespace Client.MainService {
         
         public AdminServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public void SetTest(int lel) {
+            base.Channel.SetTest(lel);
+        }
+        
+        public System.Threading.Tasks.Task SetTestAsync(int lel) {
+            return base.Channel.SetTestAsync(lel);
+        }
+        
+        public System.ServiceModel.Channels.Message GetTest() {
+            return base.Channel.GetTest();
+        }
+        
+        public System.Threading.Tasks.Task<System.ServiceModel.Channels.Message> GetTestAsync() {
+            return base.Channel.GetTestAsync();
         }
         
         public void AddUser(Client.MainService.UserDto User) {
@@ -1075,12 +1016,20 @@ namespace Client.MainService {
             return base.Channel.DeleteEmployeeAsync(id);
         }
         
-        public void EditShift(int id, Client.MainService.ShiftDto shift) {
-            base.Channel.EditShift(id, shift);
+        public int OpenShift(int responsibleId) {
+            return base.Channel.OpenShift(responsibleId);
         }
         
-        public System.Threading.Tasks.Task EditShiftAsync(int id, Client.MainService.ShiftDto shift) {
-            return base.Channel.EditShiftAsync(id, shift);
+        public System.Threading.Tasks.Task<int> OpenShiftAsync(int responsibleId) {
+            return base.Channel.OpenShiftAsync(responsibleId);
+        }
+        
+        public void CloseShift(int shiftId) {
+            base.Channel.CloseShift(shiftId);
+        }
+        
+        public System.Threading.Tasks.Task CloseShiftAsync(int shiftId) {
+            return base.Channel.CloseShiftAsync(shiftId);
         }
         
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {
@@ -1135,12 +1084,6 @@ namespace Client.MainService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IUserService")]
     public interface IUserService {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShift", ReplyAction="http://tempuri.org/IUserService/AddShiftResponse")]
-        void AddShift(Client.MainService.ShiftDto shift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddShift", ReplyAction="http://tempuri.org/IUserService/AddShiftResponse")]
-        System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolations", ReplyAction="http://tempuri.org/IUserService/GetAllViolationsResponse")]
         Client.MainService.ViolationDto[] GetAllViolations(int personId);
@@ -1204,14 +1147,6 @@ namespace Client.MainService {
         
         public UserServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public void AddShift(Client.MainService.ShiftDto shift) {
-            base.Channel.AddShift(shift);
-        }
-        
-        public System.Threading.Tasks.Task AddShiftAsync(Client.MainService.ShiftDto shift) {
-            return base.Channel.AddShiftAsync(shift);
         }
         
         public Client.MainService.ViolationDto[] GetAllViolations(int personId) {

@@ -5,11 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 
 namespace GaiWcfService.Service {
     [ServiceContract]
     public interface IAdminService {
+
+        [OperationContract]
+        void SetTest(int lel);
+        [OperationContract]
+        Message GetTest();
 
         #region User
         [OperationContract]
@@ -41,7 +47,10 @@ namespace GaiWcfService.Service {
 
         #region Shift
         [OperationContract]
-        void EditShift(int id, ShiftDto shift);
+        int OpenShift(int responsibleId);
+
+        [OperationContract]
+        void CloseShift(int shiftId);
         #endregion
 
         #region ViolationType

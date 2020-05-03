@@ -52,14 +52,14 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="responsible_id" Type="int" Nullable="false" />
-          <Property Name="start" Type="date" Nullable="false" />
-          <Property Name="end" Type="date" Nullable="false" />
+          <Property Name="start" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="end" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
@@ -308,8 +308,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="responsible_id" Type="Int32" Nullable="false" />
-          <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="end" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="start" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="end" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Employee" Relationship="GAIDBModel.FK_Shifts_Employees" FromRole="Shift" ToRole="Employee" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_Shifts" FromRole="Shift" ToRole="Violation" />
         </EntityType>
@@ -317,7 +317,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />

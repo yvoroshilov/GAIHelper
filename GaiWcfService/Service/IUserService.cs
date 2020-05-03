@@ -12,9 +12,6 @@ namespace GaiWcfService.Service {
     [ServiceContract]
     public interface IUserService {
         [OperationContract]
-        void AddShift(ShiftDto shift);
-
-        [OperationContract]
         List<ViolationDto> GetAllViolations(int personId);
 
         [OperationContract]

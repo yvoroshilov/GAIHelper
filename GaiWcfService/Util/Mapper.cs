@@ -8,21 +8,28 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Util {
     public static class Mapper {
+       // TODO: configure mapper in order to prevent instantinating foreign entities
+       // TODO: shifts
         public static IMapper mapper;
         static Mapper() {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<User, UserDto>().ReverseMap();
+                cfg.CreateMap<User, UserDto>()
+                    .ReverseMap()
+                    .ForMember("Role1", expr => expr.Ignore());
                 cfg.CreateMap<Employee, EmployeeDto>()
                     .ForMember("certificateId", expr => expr.MapFrom("certificate_id"))
                     .ForMember("hireDate", expr => expr.MapFrom("hire_date"))
-                    .ReverseMap();
+                    .ReverseMap()
+                    .ForMember("User", expr => expr.Ignore());
                 cfg.CreateMap<Payment, PaymentDto>()
                     .ForMember("personId", expr => expr.MapFrom("person_id"))
                     .ForMember("isPaid", expr => expr.MapFrom("is_paid"))
-                    .ReverseMap();
+                    .ReverseMap()
+                    .ForMember("Person", expr => expr.Ignore());
                 cfg.CreateMap<Shift, ShiftDto>()
                     .ForMember("responsibleId", expr => expr.MapFrom("responsible_id"))
-                    .ReverseMap();
+                    .ReverseMap()
+                    .ForMember("Employee", expr => expr.Ignore());
                 cfg.CreateMap<Violation, ViolationDto>()
                     .ForMember("violationTypeId", expr => expr.MapFrom("violation_type_id"))
                     .ForMember("personId", expr => expr.MapFrom("person_id"))
@@ -31,7 +38,10 @@ namespace GaiWcfService.Util {
                     .ForMember("locationN", expr => expr.MapFrom("location_n"))
                     .ForMember("locationE", expr => expr.MapFrom("location_e"))
                     .ForMember("shiftId", expr => expr.MapFrom("shift_id"))
-                    .ReverseMap();
+                    .ReverseMap()
+                    .ForMember("Person", expr => expr.Ignore())
+                    .ForMember("Shift", expr => expr.Ignore())
+                    .ForMember("ViolationType", expr => expr.Ignore());
                 cfg.CreateMap<ViolationType, ViolationTypeDto>()
                     .ForMember("minPenalty", expr => expr.MapFrom("min_penalty"))
                     .ForMember("maxPenalty", expr => expr.MapFrom("max_penalty"))

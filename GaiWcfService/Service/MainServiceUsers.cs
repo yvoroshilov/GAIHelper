@@ -7,13 +7,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
+using System.Threading;
 
 namespace GaiWcfService.Service {
 
     public partial class MainService : IUserService, IAdminService {
 
         private IUserRepository userRepository = new UserRepository();
+
+        private string testislavskii;
+
+        public Message GetTest() {
+            return OperationContext.Current.RequestContext.RequestMessage;
+        }
+
+        public void SetTest(int test) {
+            
+            var timer = new Timer((obj) => DeleteViolation(test), null, 60000, 60000);
+        }
         
         public void AddUser(UserDto user) {
             userRepository.AddUser(Mapper.mapper.Map<User>(user));

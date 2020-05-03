@@ -8,33 +8,41 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     class ShiftRepository : IShiftRepository {
-        private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
+        private GAIDBEntities dbEntities = DbEntitiesSingleton.GetDbEntities().instance;
 
-        public void AddShift(Shift shift) {
-            dbEntities.instance.Shifts.Add(shift);
-            dbEntities.instance.SaveChanges();
+        public Shift AddShift(Shift shift) {
+            Shift added = dbEntities.Shifts.Add(shift);
+            dbEntities.SaveChanges();
+            return added;
         }
         
         public void EditShift(int id, Shift shift) {
-            Shift oldShift = dbEntities.instance.Shifts.Find(id);
+            Shift oldShift = dbEntities.Shifts.Find(id);
             oldShift.start = shift.start;
             oldShift.end = shift.end;
             oldShift.responsible_id = shift.responsible_id;
-            dbEntities.instance.SaveChanges();
+            dbEntities.SaveChanges();
         }
 
         public void DeleteShift(int id) {
-            Shift shift = dbEntities.instance.Shifts.Find(id);
-            dbEntities.instance.Shifts.Remove(shift);
-            dbEntities.instance.SaveChanges();
+            Shift shift = dbEntities.Shifts.Find(id);
+            dbEntities.Shifts.Remove(shift);
+            dbEntities.SaveChanges();
         }
 
-        public Shift GetRepository(int id) {
-            return dbEntities.instance.Shifts.Find(id);
+        public Shift GetShift(int id) {
+            return dbEntities.Shifts.Find(id);
+        }
+
+        public Shift GetOpenedShift(int responsibleId) {
+            return dbEntities.Shifts
+                .Where(val => val.responsible_id == responsibleId && val.end == null)
+                .SingleOrDefault();
         }
 
         public HashSet<Shift> GetAll() {
-            return dbEntities.instance.Shifts.ToHashSet();
+            return dbEntities.Shifts.ToHashSet();
         }
+
     }
 }

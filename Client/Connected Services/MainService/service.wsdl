@@ -70,9 +70,20 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/Message" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IAdminService_SetTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTest" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SetTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetTest_InputMessage" />
+  <wsdl:message name="IAdminService_GetTest_OutputMessage">
+    <wsdl:part xmlns:q1="http://schemas.microsoft.com/Message" name="GetTestResult" type="q1:MessageBody" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
   </wsdl:message>
@@ -121,11 +132,17 @@
   <wsdl:message name="IAdminService_DeleteEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEmployeeResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_EditShift_InputMessage">
-    <wsdl:part name="parameters" element="tns:EditShift" />
+  <wsdl:message name="IAdminService_OpenShift_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenShift" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_EditShift_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditShiftResponse" />
+  <wsdl:message name="IAdminService_OpenShift_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenShiftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_CloseShift_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseShift" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_CloseShift_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseShiftResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddViolationType_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolationType" />
@@ -162,12 +179,6 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_DeletePerson_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeletePersonResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddShift_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddShift" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_AddShift_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddShiftResponse" />
   </wsdl:message>
   <wsdl:message name="IUserService_GetAllViolations_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllViolations" />
@@ -206,6 +217,14 @@
     <wsdl:part name="parameters" element="tns:GetPersonResponse" />
   </wsdl:message>
   <wsdl:portType name="IAdminService">
+    <wsdl:operation name="SetTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SetTest" message="tns:IAdminService_SetTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SetTestResponse" message="tns:IAdminService_SetTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetTest" message="tns:IAdminService_GetTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetTestResponse" message="tns:IAdminService_GetTest_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddUser" message="tns:IAdminService_AddUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddUserResponse" message="tns:IAdminService_AddUser_OutputMessage" />
@@ -238,9 +257,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteEmployee" message="tns:IAdminService_DeleteEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteEmployeeResponse" message="tns:IAdminService_DeleteEmployee_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EditShift">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditShift" message="tns:IAdminService_EditShift_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditShiftResponse" message="tns:IAdminService_EditShift_OutputMessage" />
+    <wsdl:operation name="OpenShift">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/OpenShift" message="tns:IAdminService_OpenShift_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/OpenShiftResponse" message="tns:IAdminService_OpenShift_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseShift">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/CloseShift" message="tns:IAdminService_CloseShift_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/CloseShiftResponse" message="tns:IAdminService_CloseShift_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolationType" message="tns:IAdminService_AddViolationType_InputMessage" />
@@ -268,10 +291,6 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserService">
-    <wsdl:operation name="AddShift">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddShift" message="tns:IUserService_AddShift_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddShiftResponse" message="tns:IUserService_AddShift_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllViolations">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllViolations" message="tns:IUserService_GetAllViolations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllViolationsResponse" message="tns:IUserService_GetAllViolations_OutputMessage" />
@@ -301,6 +320,24 @@
     <wsp:PolicyReference URI="#AdminServiceTcpEndpointAdmin_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SetTest">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SetTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTest">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddUser">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/AddUser" style="document" />
       <wsdl:input>
@@ -373,8 +410,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EditShift">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/EditShift" style="document" />
+    <wsdl:operation name="OpenShift">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/OpenShift" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseShift">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/CloseShift" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -441,15 +487,6 @@
     <wsp:PolicyReference URI="#UserServiceTcpEndpointUser_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="AddShift">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/AddShift" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAllViolations">
       <soap12:operation soapAction="http://tempuri.org/IUserService/GetAllViolations" style="document" />
       <wsdl:input>

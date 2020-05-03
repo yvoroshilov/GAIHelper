@@ -166,5 +166,6 @@ namespace Client.View.User {
             DeleteViolationBtn.Visibility = Visibility.Visible;
             EditViolationBtn.Visibility = Visibility.Visible;
         }
+
     }
 }

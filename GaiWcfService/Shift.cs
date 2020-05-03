@@ -23,7 +23,7 @@ namespace GaiWcfService
         public int id { get; set; }
         public int responsible_id { get; set; }
         public System.DateTime start { get; set; }
-        public System.DateTime end { get; set; }
+        public Nullable<System.DateTime> end { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

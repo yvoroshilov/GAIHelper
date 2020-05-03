@@ -37,15 +37,6 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="Post" nillable="true" type="tns:Post" />
-  <xs:complexType name="ShiftDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="end" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="id" type="xs:int" />
-      <xs:element minOccurs="0" name="responsibleId" type="xs:int" />
-      <xs:element minOccurs="0" name="start" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ShiftDto" nillable="true" type="tns:ShiftDto" />
   <xs:complexType name="ViolationTypeDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />

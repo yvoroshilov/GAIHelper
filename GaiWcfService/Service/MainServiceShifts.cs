@@ -13,12 +13,19 @@ namespace GaiWcfService.Service {
 
         private IShiftRepository shiftRepository = new ShiftRepository();
 
-        public void EditShift(int id, ShiftDto shift) {
-            shiftRepository.EditShift(id, Mapper.mapper.Map<Shift>(shift));
+        public int OpenShift(int responsibleId) {
+            Shift shift = shiftRepository.GetOpenedShift(responsibleId);
+            if (shift == null) {
+                shift = new Shift();
+                shift.responsible_id = responsibleId;
+                shift.start = DateTime.Now;
+                shiftRepository.AddShift(shift);
+            }
+            return shift.id;
         }
 
-        public void DeleteShift(int id) {
-            shiftRepository.DeleteShift(id);
+        public void CloseShift(int id) {
+            
         }
     }
 }

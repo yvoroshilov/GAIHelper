@@ -121,11 +121,15 @@
     <Compile Include="View\User\PersonsViolations.xaml.cs">
       <DependentUpon>PersonsViolations.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\AdminDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\User\Dashboard.xaml">
+    <Page Include="View\User\UserDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,8 +146,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="View\User\Dashboard.xaml.cs">
-      <DependentUpon>Dashboard.xaml</DependentUpon>
+    <Compile Include="View\User\UserDashboard.xaml.cs">
+      <DependentUpon>UserDashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -193,6 +197,9 @@
     <None Include="Connected Services\MainService\GaiWcfService.Dto.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\MainService\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MainService\service.wsdl" />
     <None Include="Connected Services\MainService\service.xsd">
       <SubType>Designer</SubType>
@@ -201,6 +208,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.ServiceModel.Channels.Message.datasource" />
+    <None Include="Properties\DataSources\System.ServiceModel.Channels.RequestContext.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

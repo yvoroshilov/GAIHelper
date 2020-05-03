@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.contract {
     public interface IShiftRepository {
-        void AddShift(Shift shift);
+        Shift AddShift(Shift shift);
 
         void EditShift(int id, Shift shift);
 
         void DeleteShift(int id);
 
-        Shift GetRepository(int id);
+        Shift GetShift(int shiftId);
+
+        Shift GetOpenedShift(int responsibleId);
 
         HashSet<Shift> GetAll();
     }
