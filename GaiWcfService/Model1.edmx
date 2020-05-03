@@ -10,7 +10,7 @@
             <PropertyRef Name="certificate_id" />
           </Key>
           <Property Name="certificate_id" Type="int" Nullable="false" />
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_login" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -57,9 +57,8 @@
         </EntityType>
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="login" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
@@ -96,10 +95,10 @@
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="login" />
             </Principal>
             <Dependent Role="Employees">
-              <PropertyRef Name="user_id" />
+              <PropertyRef Name="user_login" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -260,7 +259,7 @@
             <PropertyRef Name="certificate_id" />
           </Key>
           <Property Name="certificate_id" Type="Int32" Nullable="false" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_login" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -315,9 +314,8 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="login" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -360,10 +358,10 @@
           <End Type="GAIDBModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="login" />
             </Principal>
             <Dependent Role="Employee">
-              <PropertyRef Name="user_id" />
+              <PropertyRef Name="user_login" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -453,7 +451,7 @@
                 <ScalarProperty Name="patronymic" ColumnName="patronymic" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_login" ColumnName="user_login" />
                 <ScalarProperty Name="certificate_id" ColumnName="certificate_id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -506,7 +504,6 @@
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

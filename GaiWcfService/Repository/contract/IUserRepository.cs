@@ -10,9 +10,7 @@ namespace GaiWcfService.Repository.contract {
     public interface IUserRepository {
         void AddUser(User user);
 
-        void EditUser(int id, User user);
-
-        User GetUser(int id);
+        void EditUser(string login, User user);
 
         User GetUser(string login);
 

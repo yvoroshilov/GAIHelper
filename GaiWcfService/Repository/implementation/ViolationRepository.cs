@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     public class ViolationRepository : IViolationRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.GetDbEntities().instance;
-
+        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
+        
         public Violation AddViolation(Violation violation) {
             Violation added = dbEntities.Violations.Add(violation);
             dbEntities.SaveChanges();

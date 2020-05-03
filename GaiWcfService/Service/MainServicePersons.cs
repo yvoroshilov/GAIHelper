@@ -4,7 +4,7 @@ using GaiWcfService.Repository.implementation;
 using GaiWcfService.Util;
 
 namespace GaiWcfService.Service {
-    public partial class MainService : IAdminService, IUserService {
+    public partial class MainService {
 
         private IPersonRepository personRepository = new PersonRepository();
 

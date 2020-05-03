@@ -1,4 +1,5 @@
-﻿using GaiWcfService.Dto;
+﻿using GaiWcfService.Callback;
+using GaiWcfService.Dto;
 using GaiWcfService.Repository.contract;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,15 @@ using System.ServiceModel.Channels;
 using System.Text;
 
 namespace GaiWcfService.Service {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(ICallbackService))]
     public interface IAdminService {
 
         [OperationContract]
+        MainService.SubscribeState Subscribe(string login);
+
+        [OperationContract]
         void SetTest(int lel);
+
         [OperationContract]
         Message GetTest();
 
@@ -22,13 +27,10 @@ namespace GaiWcfService.Service {
         void AddUser(UserDto User);
 
         [OperationContract]
-        UserDto GetUser(int id);
-
-        [OperationContract(Name = "GetUserByLogin")]
         UserDto GetUser(string login);
 
         [OperationContract]
-        void EditUser(int id, UserDto user);
+        void EditUser(string login, UserDto user);
 
         [OperationContract]
         HashSet<UserDto> getAllUsers();
@@ -50,7 +52,7 @@ namespace GaiWcfService.Service {
         int OpenShift(int responsibleId);
 
         [OperationContract]
-        void CloseShift(int shiftId);
+        void CloseShift(int responsibleId);
         #endregion
 
         #region ViolationType

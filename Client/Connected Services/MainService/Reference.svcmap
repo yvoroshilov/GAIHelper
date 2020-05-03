@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="519f2934-09ce-4d88-9827-2bf5a59e9692" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e6f98a45-6be9-4a38-bd1f-7cbf89875207" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,12 @@
     <MetadataSource Address="net.tcp://localhost:9007/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="123dae78-51f3-4dcb-bd32-d79b7d2f72f5" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a988a542-37ef-44b0-b7fb-a8598019c3a7" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="77267d6a-c520-4679-b942-0a8e46dd3b4c" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="Message.xsd" MetadataType="Schema" ID="4273df9b-16b5-45d6-8116-a8d7a0b1328e" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="GaiWcfService.Dto.xsd" MetadataType="Schema" ID="f7705cf4-9f7e-480d-bffa-222ba7f7b0d7" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="cebecce3-6110-46d4-a188-c3e0f8e3d694" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d29e2320-3ba0-453e-b9bb-4dbe2f807cb8" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9fa26db6-dec7-4b61-82e8-c441421397b0" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="GaiWcfService.Service.xsd" MetadataType="Schema" ID="2593b26a-8f29-4a8c-bc5f-26e60b77623d" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="Message.xsd" MetadataType="Schema" ID="5d517e27-6e27-443d-82fe-e08586e72152" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="GaiWcfService.Dto.xsd" MetadataType="Schema" ID="621f9b2d-8192-4966-bec1-f702372de67e" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

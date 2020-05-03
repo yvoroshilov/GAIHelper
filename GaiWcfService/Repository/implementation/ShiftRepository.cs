@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     class ShiftRepository : IShiftRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.GetDbEntities().instance;
+        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
 
         public Shift AddShift(Shift shift) {
             Shift added = dbEntities.Shifts.Add(shift);
@@ -34,7 +34,7 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Shifts.Find(id);
         }
 
-        public Shift GetOpenedShift(int responsibleId) {
+        public Shift GetOpenedShiftByResponsibleId(int responsibleId) {
             return dbEntities.Shifts
                 .Where(val => val.responsible_id == responsibleId && val.end == null)
                 .SingleOrDefault();

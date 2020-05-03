@@ -21,7 +21,7 @@ namespace GaiWcfService
         }
     
         public int certificate_id { get; set; }
-        public int user_id { get; set; }
+        public string user_login { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string patronymic { get; set; }

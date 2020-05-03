@@ -1,4 +1,5 @@
-﻿using GaiWcfService.Dto;
+﻿using GaiWcfService.Callback;
+using GaiWcfService.Dto;
 using GaiWcfService.Repository.contract;
 using System;
 using System.Collections.Generic;

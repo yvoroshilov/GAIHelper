@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     public class EmployeeRepository : IEmployeeRepository {
-        private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
+        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
 
         public void AddEmployee(Employee employee) {
-            dbEntities.instance.Employees.Add(employee);
-            dbEntities.instance.SaveChanges();
+            dbEntities.Employees.Add(employee);
+            dbEntities.SaveChanges();
         }
 
         public void DeleteEmployee(int id) {
-            Employee employee = dbEntities.instance.Employees.Find(id);
-            dbEntities.instance.Employees.Remove(employee);
-            dbEntities.instance.SaveChanges();
+            Employee employee = dbEntities.Employees.Find(id);
+            dbEntities.Employees.Remove(employee);
+            dbEntities.SaveChanges();
         }
 
         public void EditEmployee(int id, Employee employee) {
-            Employee oldEmployee = dbEntities.instance.Employees.Find(id);
+            Employee oldEmployee = dbEntities.Employees.Find(id);
             oldEmployee.name = employee.name;
             oldEmployee.surname = employee.surname;
             oldEmployee.patronymic = employee.patronymic;
@@ -30,15 +30,15 @@ namespace GaiWcfService.Repository.implementation {
             oldEmployee.rank = employee.rank;
             oldEmployee.Shifts = employee.Shifts;
             
-            dbEntities.instance.SaveChanges();
+            dbEntities.SaveChanges();
         }
 
         public HashSet<Employee> GetAll() {
-            return dbEntities.instance.Employees.ToHashSet();
+            return dbEntities.Employees.ToHashSet();
         }
 
         public Employee GetEmployee(int id) {
-            return dbEntities.instance.Employees.Find(id);
+            return dbEntities.Employees.Find(id);
         }
     }
 }

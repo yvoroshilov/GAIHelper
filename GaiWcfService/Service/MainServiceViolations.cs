@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace GaiWcfService.Service {
-    public partial class MainService : IAdminService, IUserService {
+    public partial class MainService {
 
         private IViolationRepository violationRepository = new ViolationRepository();
 

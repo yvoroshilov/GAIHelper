@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GaiWcfService.Service {
-    public partial class MainService : IAdminService, IUserService {
+    public partial class MainService {
         private readonly IEmployeeRepository employeeRepository = new EmployeeRepository();
 
         public void AddEmployee(EmployeeDto employee) {

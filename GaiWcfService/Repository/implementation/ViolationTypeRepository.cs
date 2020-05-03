@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.implementation {
     class ViolationTypeRepository : IViolationTypeRepository {
-        private DbEntitiesSingleton dbEntities = DbEntitiesSingleton.GetDbEntities();
+        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
 
         public void AddViolationType(ViolationType violationType) {
-            dbEntities.instance.ViolationTypes.Add(violationType);
-            dbEntities.instance.SaveChanges();
+            dbEntities.ViolationTypes.Add(violationType);
+            dbEntities.SaveChanges();
         }
 
         public void EditViolationType(int id, ViolationType violationType) {
-            ViolationType oldViolationType = dbEntities.instance.ViolationTypes.Find(id);
+            ViolationType oldViolationType = dbEntities.ViolationTypes.Find(id);
             oldViolationType.title = violationType.title;
             oldViolationType.min_penalty = violationType.min_penalty;
             oldViolationType.description = violationType.description;
-            dbEntities.instance.SaveChanges();
+            dbEntities.SaveChanges();
         }
 
         public void DeleteViolationType(int id) {
-            ViolationType violationType = dbEntities.instance.ViolationTypes.Find(id);
-            dbEntities.instance.ViolationTypes.Remove(violationType);
-            dbEntities.instance.SaveChanges();
+            ViolationType violationType = dbEntities.ViolationTypes.Find(id);
+            dbEntities.ViolationTypes.Remove(violationType);
+            dbEntities.SaveChanges();
         }
 
         public ViolationType GetViolationType(int id) {
-            return dbEntities.instance.ViolationTypes.Find(id);
+            return dbEntities.ViolationTypes.Find(id);
         }
 
         public HashSet<ViolationType> GetAll() {
-            return dbEntities.instance.ViolationTypes.ToHashSet();
+            return dbEntities.ViolationTypes.ToHashSet();
         }
     }
 }

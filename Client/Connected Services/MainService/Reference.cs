@@ -13,6 +13,20 @@ namespace Client.MainService {
     using System;
     
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MainService.SubscribeState", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Service")]
+    public enum MainServiceSubscribeState : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SUBSCRIBED = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SUBSCRIBE_UPDATED = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NOT_SUBSCRIBED = 2,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
@@ -797,8 +811,14 @@ namespace Client.MainService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService", CallbackContract=typeof(Client.MainService.IAdminServiceCallback))]
     public interface IAdminService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Subscribe", ReplyAction="http://tempuri.org/IAdminService/SubscribeResponse")]
+        Client.MainService.MainServiceSubscribeState Subscribe(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Subscribe", ReplyAction="http://tempuri.org/IAdminService/SubscribeResponse")]
+        System.Threading.Tasks.Task<Client.MainService.MainServiceSubscribeState> SubscribeAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SetTest", ReplyAction="http://tempuri.org/IAdminService/SetTestResponse")]
         void SetTest(int lel);
@@ -819,22 +839,16 @@ namespace Client.MainService {
         System.Threading.Tasks.Task AddUserAsync(Client.MainService.UserDto User);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUser", ReplyAction="http://tempuri.org/IAdminService/GetUserResponse")]
-        Client.MainService.UserDto GetUser(int id);
+        Client.MainService.UserDto GetUser(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUser", ReplyAction="http://tempuri.org/IAdminService/GetUserResponse")]
-        System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUserByLogin", ReplyAction="http://tempuri.org/IAdminService/GetUserByLoginResponse")]
-        Client.MainService.UserDto GetUserByLogin(string login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetUserByLogin", ReplyAction="http://tempuri.org/IAdminService/GetUserByLoginResponse")]
-        System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserByLoginAsync(string login);
+        System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
-        void EditUser(int id, Client.MainService.UserDto user);
+        void EditUser(string login, Client.MainService.UserDto user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
-        System.Threading.Tasks.Task EditUserAsync(int id, Client.MainService.UserDto user);
+        System.Threading.Tasks.Task EditUserAsync(string login, Client.MainService.UserDto user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
         Client.MainService.UserDto[] getAllUsers();
@@ -867,10 +881,10 @@ namespace Client.MainService {
         System.Threading.Tasks.Task<int> OpenShiftAsync(int responsibleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/CloseShift", ReplyAction="http://tempuri.org/IAdminService/CloseShiftResponse")]
-        void CloseShift(int shiftId);
+        void CloseShift(int responsibleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/CloseShift", ReplyAction="http://tempuri.org/IAdminService/CloseShiftResponse")]
-        System.Threading.Tasks.Task CloseShiftAsync(int shiftId);
+        System.Threading.Tasks.Task CloseShiftAsync(int responsibleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
@@ -910,30 +924,46 @@ namespace Client.MainService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IAdminServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Test", ReplyAction="http://tempuri.org/IAdminService/TestResponse")]
+        string Test(string str);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IAdminServiceChannel : Client.MainService.IAdminService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AdminServiceClient : System.ServiceModel.ClientBase<Client.MainService.IAdminService>, Client.MainService.IAdminService {
+    public partial class AdminServiceClient : System.ServiceModel.DuplexClientBase<Client.MainService.IAdminService>, Client.MainService.IAdminService {
         
-        public AdminServiceClient() {
+        public AdminServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public AdminServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public AdminServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public AdminServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public AdminServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public AdminServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public AdminServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public AdminServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public AdminServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public Client.MainService.MainServiceSubscribeState Subscribe(string login) {
+            return base.Channel.Subscribe(login);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.MainServiceSubscribeState> SubscribeAsync(string login) {
+            return base.Channel.SubscribeAsync(login);
         }
         
         public void SetTest(int lel) {
@@ -960,28 +990,20 @@ namespace Client.MainService {
             return base.Channel.AddUserAsync(User);
         }
         
-        public Client.MainService.UserDto GetUser(int id) {
-            return base.Channel.GetUser(id);
+        public Client.MainService.UserDto GetUser(string login) {
+            return base.Channel.GetUser(login);
         }
         
-        public System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(int id) {
-            return base.Channel.GetUserAsync(id);
+        public System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(string login) {
+            return base.Channel.GetUserAsync(login);
         }
         
-        public Client.MainService.UserDto GetUserByLogin(string login) {
-            return base.Channel.GetUserByLogin(login);
+        public void EditUser(string login, Client.MainService.UserDto user) {
+            base.Channel.EditUser(login, user);
         }
         
-        public System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserByLoginAsync(string login) {
-            return base.Channel.GetUserByLoginAsync(login);
-        }
-        
-        public void EditUser(int id, Client.MainService.UserDto user) {
-            base.Channel.EditUser(id, user);
-        }
-        
-        public System.Threading.Tasks.Task EditUserAsync(int id, Client.MainService.UserDto user) {
-            return base.Channel.EditUserAsync(id, user);
+        public System.Threading.Tasks.Task EditUserAsync(string login, Client.MainService.UserDto user) {
+            return base.Channel.EditUserAsync(login, user);
         }
         
         public Client.MainService.UserDto[] getAllUsers() {
@@ -1024,12 +1046,12 @@ namespace Client.MainService {
             return base.Channel.OpenShiftAsync(responsibleId);
         }
         
-        public void CloseShift(int shiftId) {
-            base.Channel.CloseShift(shiftId);
+        public void CloseShift(int responsibleId) {
+            base.Channel.CloseShift(responsibleId);
         }
         
-        public System.Threading.Tasks.Task CloseShiftAsync(int shiftId) {
-            return base.Channel.CloseShiftAsync(shiftId);
+        public System.Threading.Tasks.Task CloseShiftAsync(int responsibleId) {
+            return base.Channel.CloseShiftAsync(responsibleId);
         }
         
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {
