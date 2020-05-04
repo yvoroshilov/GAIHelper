@@ -75,7 +75,9 @@ namespace Client.ViewModel {
 
                         Window dashboard = null;
                         if (user.role == "ROLE_USER") {
-                            dashboard = new UserDashboard();
+                            EmployeeDto empDto = client.GetEmployeeByUserLogin(user.login);
+                            ShiftDto curShift = client.GetCurrentShift(empDto.certificateId);
+                            dashboard = new UserDashboard(Mapper.mapper.Map<Shift>(curShift));
                         } else if (user.role == "ROLE_ADMIN") {
                             dashboard = new AdminDashboard();
                         }

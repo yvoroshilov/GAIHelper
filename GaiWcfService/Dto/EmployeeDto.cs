@@ -26,23 +26,10 @@ namespace GaiWcfService.Dto {
         [DataMember]
         public DateTime hireDate { get; set; }
 
-        [DataMember]
-        public Post rank { get; set; }
-
         [DataMember] 
         public string username { get; set; }
 
         [DataMember] 
         public string password { get; set; }
-    }
-
-    [DataContract]
-    public enum Post {
-        [EnumMember]
-        PRIVATE, 
-        [EnumMember]
-        SERGEANT,
-        [EnumMember]
-        LEIUTENANT
     }
 }

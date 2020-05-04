@@ -41,6 +41,9 @@ namespace GaiWcfService.Service {
         void AddEmployee(EmployeeDto employee);
 
         [OperationContract]
+        EmployeeDto GetEmployeeByUserLogin(string login);
+            
+        [OperationContract]
         void EditEmployee(int id, EmployeeDto employee);
 
         [OperationContract]
@@ -53,6 +56,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void CloseShift(int responsibleId);
+
+        [OperationContract]
+        ShiftDto GetCurrentShift(int responsibleId);
         #endregion
 
         #region ViolationType

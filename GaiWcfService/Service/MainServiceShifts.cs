@@ -33,5 +33,10 @@ namespace GaiWcfService.Service {
             shift.end = DateTime.Now;
             shiftRepository.EditShift(shift.id, shift);
         }
+
+        public ShiftDto GetCurrentShift(int resposibleId) {
+            Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(resposibleId);
+            return Mapper.mapper.Map<ShiftDto>(shift);
+        }
     }
 }

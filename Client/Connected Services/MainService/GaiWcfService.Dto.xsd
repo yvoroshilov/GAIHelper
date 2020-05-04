@@ -22,21 +22,21 @@
       <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="patronymic" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="rank" type="tns:Post" />
       <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="userId" type="xs:int" />
       <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="EmployeeDto" nillable="true" type="tns:EmployeeDto" />
-  <xs:simpleType name="Post">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="PRIVATE" />
-      <xs:enumeration value="SERGEANT" />
-      <xs:enumeration value="LEIUTENANT" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="Post" nillable="true" type="tns:Post" />
+  <xs:complexType name="ShiftDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="end" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="responsibleId" type="xs:int" />
+      <xs:element minOccurs="0" name="start" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShiftDto" nillable="true" type="tns:ShiftDto" />
   <xs:complexType name="ViolationTypeDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />

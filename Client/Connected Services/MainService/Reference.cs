@@ -145,9 +145,6 @@ namespace Client.MainService {
         private string patronymicField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.MainService.Post rankField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string surnameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -232,19 +229,6 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.MainService.Post rank {
-            get {
-                return this.rankField;
-            }
-            set {
-                if ((this.rankField.Equals(value) != true)) {
-                    this.rankField = value;
-                    this.RaisePropertyChanged("rank");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string surname {
             get {
                 return this.surnameField;
@@ -293,18 +277,97 @@ namespace Client.MainService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Post", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
-    public enum Post : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ShiftDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.SerializableAttribute()]
+    public partial class ShiftDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        PRIVATE = 0,
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        SERGEANT = 1,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime endField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        LEIUTENANT = 2,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int responsibleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime startField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime end {
+            get {
+                return this.endField;
+            }
+            set {
+                if ((this.endField.Equals(value) != true)) {
+                    this.endField = value;
+                    this.RaisePropertyChanged("end");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int responsibleId {
+            get {
+                return this.responsibleIdField;
+            }
+            set {
+                if ((this.responsibleIdField.Equals(value) != true)) {
+                    this.responsibleIdField = value;
+                    this.RaisePropertyChanged("responsibleId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime start {
+            get {
+                return this.startField;
+            }
+            set {
+                if ((this.startField.Equals(value) != true)) {
+                    this.startField = value;
+                    this.RaisePropertyChanged("start");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -862,6 +925,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddEmployee", ReplyAction="http://tempuri.org/IAdminService/AddEmployeeResponse")]
         System.Threading.Tasks.Task AddEmployeeAsync(Client.MainService.EmployeeDto employee);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetEmployeeByUserLogin", ReplyAction="http://tempuri.org/IAdminService/GetEmployeeByUserLoginResponse")]
+        Client.MainService.EmployeeDto GetEmployeeByUserLogin(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetEmployeeByUserLogin", ReplyAction="http://tempuri.org/IAdminService/GetEmployeeByUserLoginResponse")]
+        System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByUserLoginAsync(string login);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditEmployee", ReplyAction="http://tempuri.org/IAdminService/EditEmployeeResponse")]
         void EditEmployee(int id, Client.MainService.EmployeeDto employee);
         
@@ -885,6 +954,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/CloseShift", ReplyAction="http://tempuri.org/IAdminService/CloseShiftResponse")]
         System.Threading.Tasks.Task CloseShiftAsync(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetCurrentShift", ReplyAction="http://tempuri.org/IAdminService/GetCurrentShiftResponse")]
+        Client.MainService.ShiftDto GetCurrentShift(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetCurrentShift", ReplyAction="http://tempuri.org/IAdminService/GetCurrentShiftResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ShiftDto> GetCurrentShiftAsync(int responsibleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
@@ -1022,6 +1097,14 @@ namespace Client.MainService {
             return base.Channel.AddEmployeeAsync(employee);
         }
         
+        public Client.MainService.EmployeeDto GetEmployeeByUserLogin(string login) {
+            return base.Channel.GetEmployeeByUserLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByUserLoginAsync(string login) {
+            return base.Channel.GetEmployeeByUserLoginAsync(login);
+        }
+        
         public void EditEmployee(int id, Client.MainService.EmployeeDto employee) {
             base.Channel.EditEmployee(id, employee);
         }
@@ -1052,6 +1135,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task CloseShiftAsync(int responsibleId) {
             return base.Channel.CloseShiftAsync(responsibleId);
+        }
+        
+        public Client.MainService.ShiftDto GetCurrentShift(int responsibleId) {
+            return base.Channel.GetCurrentShift(responsibleId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ShiftDto> GetCurrentShiftAsync(int responsibleId) {
+            return base.Channel.GetCurrentShiftAsync(responsibleId);
         }
         
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {

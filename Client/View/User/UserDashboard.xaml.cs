@@ -20,8 +20,8 @@ using System.Windows.Shapes;
 namespace Client.View.User {
 
     public partial class UserDashboard : Window {
-        public UserDashboard() {
-            DataContext = new ViolationsUserViewModel();
+        public UserDashboard(Shift shift) {
+            DataContext = new ViolationsUserViewModel(shift);
             dataContext = (ViolationsUserViewModel)DataContext;
             dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;
             InitializeComponent();
@@ -160,7 +160,7 @@ namespace Client.View.User {
             this.KeyDown += Window_KeyDown;
             this.MouseDown += Window_MouseDown;
             BindingOperations.SetBinding(AddViolationBtn, Button.CommandProperty, new Binding("AddCommand"));
-            AddViolationBtn.IsEnabled = true;;
+            AddViolationBtn.IsEnabled = true;
             CancelEditBtn.Visibility = Visibility.Hidden;
             AcceptEditBtn.Visibility = Visibility.Hidden;
             DeleteViolationBtn.Visibility = Visibility.Visible;

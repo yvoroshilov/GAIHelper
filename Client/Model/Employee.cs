@@ -56,16 +56,6 @@ namespace Client.Model {
                 OnPropertyChanged();
             }
         }
-        private string rank;
-        public string Rank {
-            get {
-                return rank;
-            }
-            set {
-                rank = value;
-                OnPropertyChanged();
-            }
-        }
         private string username;
         public string Username {
             get {

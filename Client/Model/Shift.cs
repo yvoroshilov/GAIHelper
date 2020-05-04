@@ -45,16 +45,5 @@ namespace Client.Model {
                 OnPropertyChanged();
             }
         }
-
-        private Employee employee;
-        public Employee Employee {
-            get {
-                return employee;
-            }
-            set {
-                employee = value;
-                OnPropertyChanged();
-            }
-        }
     }
 }

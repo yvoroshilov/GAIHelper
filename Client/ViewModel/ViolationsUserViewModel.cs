@@ -21,6 +21,7 @@ namespace Client.ViewModel {
         private MainService.UserServiceClient client;
         public ObservableCollection<Violation> Violations { get; }
         public ReadOnlyCollection<ViolationType> ViolationTypes { get; }
+        public Shift CurrentShift { get; }
         #endregion
 
         #region Input fields
@@ -207,6 +208,7 @@ namespace Client.ViewModel {
                         violation.Address = Address;
                         violation.Description = Description;
                         violation.ProtocolId = ProtocolId;
+                        violation.ShiftId = CurrentShift.Id;
 
                         Violations.Add(violation);
                         ResetPersonProfile();
@@ -331,7 +333,7 @@ namespace Client.ViewModel {
         #endregion
 
         #region Form management
-        public ViolationsUserViewModel() : base() {
+        public ViolationsUserViewModel(Shift shift) : base() {
             client = new MainService.UserServiceClient();
 
             Violations = new ObservableCollection<Violation>();
@@ -341,7 +343,7 @@ namespace Client.ViewModel {
                 .ToList());
             currentPerson = new Person();
             Violations.CollectionChanged += ViolationCollectionChanged;
-            InitializeForm();
+            CurrentShift = shift;
         }
 
         public void ResetPersonProfile() {

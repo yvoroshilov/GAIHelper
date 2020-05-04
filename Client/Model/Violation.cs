@@ -124,5 +124,16 @@ namespace Client.Model {
                 OnPropertyChanged();
             }
         }
+
+        private int shiftId;
+        public int ShiftId {
+            get {
+                return shiftId;
+            }
+            set {
+                shiftId = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

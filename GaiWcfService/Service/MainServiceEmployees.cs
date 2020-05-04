@@ -16,6 +16,11 @@ namespace GaiWcfService.Service {
             employeeRepository.AddEmployee(Mapper.mapper.Map<Employee>(employee));
         }
 
+        public EmployeeDto GetEmployeeByUserLogin(string login) {
+            EmployeeDto empDto = Mapper.mapper.Map<EmployeeDto>(employeeRepository.GetEmployeeByUserLogin(login));
+            return empDto;
+        }
+
         public void EditEmployee(int id, EmployeeDto employee) {
             employeeRepository.EditEmployee(id, Mapper.mapper.Map<Employee>(employee));
         }

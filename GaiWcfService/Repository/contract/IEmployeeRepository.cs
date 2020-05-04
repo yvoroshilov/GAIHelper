@@ -15,6 +15,8 @@ namespace GaiWcfService.Repository.contract {
 
         Employee GetEmployee(int id);
 
+        Employee GetEmployeeByUserLogin(string login);
+
         HashSet<Employee> GetAll();
     }
 }

@@ -26,7 +26,6 @@ namespace GaiWcfService
         public string surname { get; set; }
         public string patronymic { get; set; }
         public System.DateTime hire_date { get; set; }
-        public string rank { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

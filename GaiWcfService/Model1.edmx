@@ -15,7 +15,6 @@
           <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="hire_date" Type="date" Nullable="false" />
-          <Property Name="rank" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -264,7 +263,6 @@
           <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="hire_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="rank" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="GAIDBModel.FK_Employees_Users" FromRole="Employee" ToRole="User" />
           <NavigationProperty Name="Shifts" Relationship="GAIDBModel.FK_Shifts_Employees" FromRole="Employee" ToRole="Shift" />
         </EntityType>
@@ -446,7 +444,6 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="GAIDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="rank" ColumnName="rank" />
                 <ScalarProperty Name="hire_date" ColumnName="hire_date" />
                 <ScalarProperty Name="patronymic" ColumnName="patronymic" />
                 <ScalarProperty Name="surname" ColumnName="surname" />

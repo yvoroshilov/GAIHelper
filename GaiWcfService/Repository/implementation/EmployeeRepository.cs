@@ -15,6 +15,10 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.SaveChanges();
         }
 
+        public Employee GetEmployeeByUserLogin(string login) {
+            return dbEntities.Employees.Where(val => val.user_login == login).SingleOrDefault();
+        }
+
         public void DeleteEmployee(int id) {
             Employee employee = dbEntities.Employees.Find(id);
             dbEntities.Employees.Remove(employee);
@@ -27,7 +31,6 @@ namespace GaiWcfService.Repository.implementation {
             oldEmployee.surname = employee.surname;
             oldEmployee.patronymic = employee.patronymic;
             oldEmployee.hire_date = employee.hire_date;
-            oldEmployee.rank = employee.rank;
             oldEmployee.Shifts = employee.Shifts;
             
             dbEntities.SaveChanges();
@@ -40,5 +43,6 @@ namespace GaiWcfService.Repository.implementation {
         public Employee GetEmployee(int id) {
             return dbEntities.Employees.Find(id);
         }
+
     }
 }

@@ -14,7 +14,7 @@ namespace Client.Util {
                 cfg.CreateMap<Admin, MainService.UserDto>().ReverseMap();
                 cfg.CreateMap<Employee, MainService.EmployeeDto>().ReverseMap();
                 //cfg.CreateMap<Payment, MainService.PaymentDto>().ReverseMap();
-                //cfg.CreateMap<Shift, MainService.ShiftDto>();
+                cfg.CreateMap<Shift, MainService.ShiftDto>().ReverseMap();
                 cfg.CreateMap<Violation, MainService.ViolationDto>().ReverseMap();
                 cfg.CreateMap<ViolationType, MainService.ViolationTypeDto>().ReverseMap();
                 cfg.CreateMap<Person, MainService.PersonDto>().ReverseMap();

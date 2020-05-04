@@ -121,6 +121,12 @@
   <wsdl:message name="IAdminService_AddEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_GetEmployeeByUserLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeByUserLogin" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetEmployeeByUserLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeByUserLoginResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_EditEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:EditEmployee" />
   </wsdl:message>
@@ -144,6 +150,12 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_CloseShift_OutputMessage">
     <wsdl:part name="parameters" element="tns:CloseShiftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetCurrentShift_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentShift" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetCurrentShift_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentShiftResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddViolationType_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolationType" />
@@ -256,6 +268,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddEmployee" message="tns:IAdminService_AddEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddEmployeeResponse" message="tns:IAdminService_AddEmployee_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEmployeeByUserLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetEmployeeByUserLogin" message="tns:IAdminService_GetEmployeeByUserLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetEmployeeByUserLoginResponse" message="tns:IAdminService_GetEmployeeByUserLogin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="EditEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditEmployee" message="tns:IAdminService_EditEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditEmployeeResponse" message="tns:IAdminService_EditEmployee_OutputMessage" />
@@ -271,6 +287,10 @@
     <wsdl:operation name="CloseShift">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/CloseShift" message="tns:IAdminService_CloseShift_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/CloseShiftResponse" message="tns:IAdminService_CloseShift_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentShift">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetCurrentShift" message="tns:IAdminService_GetCurrentShift_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetCurrentShiftResponse" message="tns:IAdminService_GetCurrentShift_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolationType" message="tns:IAdminService_AddViolationType_InputMessage" />
@@ -403,6 +423,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEmployeeByUserLogin">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetEmployeeByUserLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="EditEmployee">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/EditEmployee" style="document" />
       <wsdl:input>
@@ -432,6 +461,15 @@
     </wsdl:operation>
     <wsdl:operation name="CloseShift">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/CloseShift" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentShift">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetCurrentShift" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
