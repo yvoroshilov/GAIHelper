@@ -133,6 +133,12 @@
   <wsdl:message name="IAdminService_EditEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_SearchEmployees_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchEmployees" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchEmployees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchEmployeesResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_DeleteEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEmployee" />
   </wsdl:message>
@@ -156,6 +162,24 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_GetCurrentShift_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCurrentShiftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllShiftsByResponsibleId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShiftsByResponsibleId" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllShiftsByResponsibleId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShiftsByResponsibleIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchViolations_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchViolations" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchViolations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchViolationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllViolationsByResponsibleId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolationsByResponsibleId" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllViolationsByResponsibleId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViolationsByResponsibleIdResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddViolationType_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolationType" />
@@ -186,6 +210,12 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_EditPerson_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchPersons_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPersons" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchPersons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPersonsResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_DeletePerson_InputMessage">
     <wsdl:part name="parameters" element="tns:DeletePerson" />
@@ -276,6 +306,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditEmployee" message="tns:IAdminService_EditEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditEmployeeResponse" message="tns:IAdminService_EditEmployee_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SearchEmployees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchEmployees" message="tns:IAdminService_SearchEmployees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchEmployeesResponse" message="tns:IAdminService_SearchEmployees_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteEmployee" message="tns:IAdminService_DeleteEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteEmployeeResponse" message="tns:IAdminService_DeleteEmployee_OutputMessage" />
@@ -291,6 +325,18 @@
     <wsdl:operation name="GetCurrentShift">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetCurrentShift" message="tns:IAdminService_GetCurrentShift_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetCurrentShiftResponse" message="tns:IAdminService_GetCurrentShift_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllShiftsByResponsibleId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleId" message="tns:IAdminService_GetAllShiftsByResponsibleId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleIdResponse" message="tns:IAdminService_GetAllShiftsByResponsibleId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchViolations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchViolations" message="tns:IAdminService_SearchViolations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsResponse" message="tns:IAdminService_SearchViolations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViolationsByResponsibleId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId" message="tns:IAdminService_GetAllViolationsByResponsibleId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleIdResponse" message="tns:IAdminService_GetAllViolationsByResponsibleId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolationType" message="tns:IAdminService_AddViolationType_InputMessage" />
@@ -311,6 +357,10 @@
     <wsdl:operation name="EditPerson">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditPerson" message="tns:IAdminService_EditPerson_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditPersonResponse" message="tns:IAdminService_EditPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersons">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchPersons" message="tns:IAdminService_SearchPersons_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchPersonsResponse" message="tns:IAdminService_SearchPersons_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeletePerson">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeletePerson" message="tns:IAdminService_DeletePerson_InputMessage" />
@@ -441,6 +491,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SearchEmployees">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchEmployees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteEmployee">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/DeleteEmployee" style="document" />
       <wsdl:input>
@@ -470,6 +529,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetCurrentShift">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/GetCurrentShift" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllShiftsByResponsibleId">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchViolations">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchViolations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViolationsByResponsibleId">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -515,6 +601,15 @@
     </wsdl:operation>
     <wsdl:operation name="EditPerson">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/EditPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersons">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchPersons" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

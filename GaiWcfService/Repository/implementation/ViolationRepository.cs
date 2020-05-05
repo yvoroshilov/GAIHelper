@@ -55,5 +55,25 @@ namespace GaiWcfService.Repository.implementation {
                 .Where(val => val.person_id == personId)
                 .ToList();
         }
+
+        public List<Violation> SearchViolations(Violation searchedViolation) {
+            return dbEntities.Violations.Where(val =>
+                (searchedViolation.violation_type_id == default || val.violation_type_id.Equals(searchedViolation.violation_type_id)) &&
+                (searchedViolation.car_number == default || val.car_number == searchedViolation.car_number) &&
+                (searchedViolation.protocol_id == default || val.protocol_id == searchedViolation.protocol_id) &&
+                (searchedViolation.date == default || val.date == searchedViolation.date) &&
+                (searchedViolation.penalty == default || val.penalty == searchedViolation.penalty) &&
+                (searchedViolation.location_e == default || val.location_e == searchedViolation.location_e) &&
+                (searchedViolation.location_n == default || val.location_n == searchedViolation.location_n) &&
+                (searchedViolation.address == default || val.address.Contains(searchedViolation.address)) &&
+                (searchedViolation.description == default || val.description.Contains(searchedViolation.description)))
+                .ToList();
+        }
+
+        public List<Violation> GetAllViolationsByShiftId(int shiftId) {
+            return dbEntities.Violations
+                .Where(val => val.shift_id == shiftId)
+                .ToList();
+        }
     }
 }

@@ -29,9 +29,25 @@ namespace GaiWcfService.Service {
             violationRepository.DeleteViolation(id);
         }
 
+        public List<ViolationDto> SearchViolations(ViolationDto violation) {
+            return violationRepository.SearchViolations(Mapper.mapper.Map<Violation>(violation))
+                .Select(val => Mapper.mapper.Map<ViolationDto>(val))
+                .ToList();
+        }
+
         public void AddViolationType(ViolationTypeDto violationType) {
             violationTypeRepository.AddViolationType(Mapper.mapper.Map<ViolationType>(violationType));
         }
 
+        public List<ViolationDto> GetAllViolationsByResponsibleId(int responsibleId) {
+            Employee employee = employeeRepository.GetEmployee(responsibleId);
+            List<ViolationDto> res = new List<ViolationDto>();
+            foreach (var item in employee.Shifts) {
+                res.AddRange(violationRepository.GetAllViolationsByShiftId(item.id)
+                    .Select(val => Mapper.mapper.Map<ViolationDto>(val))
+                    .ToList());
+            }
+            return res;
+        }
     }
 }

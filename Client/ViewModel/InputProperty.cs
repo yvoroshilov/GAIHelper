@@ -8,18 +8,20 @@ namespace Client.ViewModel {
     [System.AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
     sealed class InputProperty : Attribute {
 
-        private readonly bool required;
+        private bool Required { get; }
+
+        public string Mark { get; set; }
 
         public InputProperty() {
-            required = false;
+            Required = false;
         }
 
         public InputProperty(bool required) {
-            this.required = required;
+            this.Required = required;
         }
 
         public bool isRequred() {
-            return required;
+            return Required;
         }
     }
 }

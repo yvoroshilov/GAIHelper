@@ -9,13 +9,15 @@ namespace GaiWcfService.Repository.contract {
     public interface IPersonRepository {
         void AddPerson(Person person);
 
-        void EditPerson(int id, Person person);
+        void EditPerson(Person person);
 
         void DeletePerson(int id);
 
         Person GetPerson(int id);
 
         Person GetPersonByLicense(string driverLicense);
+
+        List<Person> SearchPersons(Person searchedPerson);
 
         HashSet<Person> GetAll();
     }

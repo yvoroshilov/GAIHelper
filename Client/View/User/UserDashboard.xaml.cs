@@ -85,14 +85,14 @@ namespace Client.View.User {
             DescriptionField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
         }
 
+        private void DriverLicenseField_TextChanged(object sender, TextChangedEventArgs e) {
+            dataContext.ResetPersonProfile();
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
             HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
             if (r.VisualHit.GetType() != typeof(ListBoxItem))
                 ViolationTable.UnselectAll();
-            }
-
-        private void DriverLicenseField_TextChanged(object sender, TextChangedEventArgs e) {
-            dataContext.ResetPersonProfile();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
@@ -167,5 +167,9 @@ namespace Client.View.User {
             EditViolationBtn.Visibility = Visibility.Visible;
         }
 
+        protected override void OnClosed(EventArgs e) {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
+        }
     }
 }

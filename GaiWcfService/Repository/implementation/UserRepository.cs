@@ -16,8 +16,8 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.SaveChanges();
         }
 
-        public void EditUser(string login, User user) {
-            User oldUser = dbEntities.Users.Find(login);
+        public void EditUser(User user) {
+            User oldUser = dbEntities.Users.Find(user.login);
             oldUser.login = user.login;
             oldUser.password = user.password;
             oldUser.role = user.role;

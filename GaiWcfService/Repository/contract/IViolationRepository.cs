@@ -15,6 +15,10 @@ namespace GaiWcfService.Repository.contract {
 
         Violation GetViolation(int id);
 
+        List<Violation> SearchViolations(Violation searchedViolation);
+
         List<Violation> GetAllViolations(int personId);
+
+        List<Violation> GetAllViolationsByShiftId(int shiftId);
     }
 }

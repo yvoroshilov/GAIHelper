@@ -21,8 +21,14 @@ namespace GaiWcfService.Service {
             return empDto;
         }
 
-        public void EditEmployee(int id, EmployeeDto employee) {
-            employeeRepository.EditEmployee(id, Mapper.mapper.Map<Employee>(employee));
+        public void EditEmployee(EmployeeDto employee) {
+            employeeRepository.EditEmployee(Mapper.mapper.Map<Employee>(employee));
+        }
+
+        public List<EmployeeDto> SearchEmployees(EmployeeDto employee) {
+            return employeeRepository.SearchEmployees(Mapper.mapper.Map<Employee>(employee))
+                .Select(val => Mapper.mapper.Map<EmployeeDto>(val))
+                .ToList();
         }
 
         public void DeleteEmployee(int id) {

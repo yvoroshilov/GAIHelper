@@ -107,6 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Converter\FIOConverter.cs" />
     <Compile Include="Resources\Rule\DoubleValidationRule.cs" />
     <Compile Include="Resources\Converter\CoordConverter.cs" />
     <Compile Include="Resources\Converter\DateConverter.cs" />
@@ -116,6 +117,8 @@
     <Compile Include="Resources\Converter\ViolationToTextConverter.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
+    <Compile Include="Util\Utility.cs" />
+    <Compile Include="ViewModel\EmployeesViewModel.cs" />
     <Compile Include="ViewModel\InputProperty.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
@@ -123,9 +126,25 @@
     <Compile Include="View\Admin\AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\EmployeesTabSubWindows\EditEmployeeWindow.xaml.cs">
+      <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\EmployeesTabSubWindows\AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeDoneShiftsWindow.xaml.cs">
+      <DependentUpon>EmployeeDoneShiftsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml.cs">
+      <DependentUpon>EmployeeAddedViolationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\User\PersonsViolations.xaml.cs">
       <DependentUpon>PersonsViolations.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\AdminDashboardDict.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +152,22 @@
     <Page Include="View\Admin\AdminDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\EmployeesTabSubWindows\EditEmployeeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\EmployeesTabSubWindows\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\EmployeesTabSubWindows\EmployeeDoneShiftsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\User\UserDashboard.xaml">
       <SubType>Designer</SubType>

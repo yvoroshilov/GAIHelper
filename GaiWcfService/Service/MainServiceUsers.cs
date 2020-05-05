@@ -22,14 +22,17 @@ namespace GaiWcfService.Service {
         }
 
         public void SetTest(int test) {
+            Employee empl = new Employee();
+            empl.hire_date = new DateTime(2001, 1, 1);
+            var testt = employeeRepository.SearchEmployees(empl);
         }
         
         public void AddUser(UserDto user) {
             userRepository.AddUser(Mapper.mapper.Map<User>(user));
         }
 
-        public void EditUser(string login, UserDto user) {
-            userRepository.EditUser(login, Mapper.mapper.Map<User>(user));
+        public void EditUser(UserDto user) {
+            userRepository.EditUser(Mapper.mapper.Map<User>(user));
         }
 
         public UserDto GetUser(string login) {

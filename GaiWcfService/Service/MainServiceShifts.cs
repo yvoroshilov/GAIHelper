@@ -38,5 +38,11 @@ namespace GaiWcfService.Service {
             Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(resposibleId);
             return Mapper.mapper.Map<ShiftDto>(shift);
         }
+
+        public List<ShiftDto> GetAllShiftsByResponsibleId(int responsibleId) {
+            return shiftRepository.GetAllShiftsByResponsibleId(responsibleId)
+                .Select(val => Mapper.mapper.Map<ShiftDto>(val))
+                .ToList();
+        }
     }
 }

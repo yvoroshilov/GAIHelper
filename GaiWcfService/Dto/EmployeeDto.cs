@@ -12,9 +12,6 @@ namespace GaiWcfService.Dto {
         public int certificateId { get; set; }
 
         [DataMember] 
-        public int userId { get; set; }
-
-        [DataMember] 
         public string name { get; set; }
 
         [DataMember] 
@@ -27,9 +24,6 @@ namespace GaiWcfService.Dto {
         public DateTime hireDate { get; set; }
 
         [DataMember] 
-        public string username { get; set; }
-
-        [DataMember] 
-        public string password { get; set; }
+        public string userLogin { get; set; }
     }
 }

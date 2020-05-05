@@ -19,6 +19,7 @@ namespace GaiWcfService.Util {
                 cfg.CreateMap<Employee, EmployeeDto>()
                     .ForMember("certificateId", expr => expr.MapFrom("certificate_id"))
                     .ForMember("hireDate", expr => expr.MapFrom("hire_date"))
+                    .ForMember("userLogin", expr => expr.MapFrom("user_login"))
                     .ReverseMap()
                     .ForMember("User", expr => expr.Ignore());
                 cfg.CreateMap<Payment, PaymentDto>()

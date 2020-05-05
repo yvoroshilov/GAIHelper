@@ -355,7 +355,7 @@ namespace Client.ViewModel {
             CurrentPersonsViolations.Clear();
         }
 
-        protected override void ResetForm() {
+        protected override void ResetForm(string mark = null) {
             initValid = 0;
             NoLic = false;
             base.ResetForm();

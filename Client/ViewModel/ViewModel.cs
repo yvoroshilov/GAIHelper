@@ -1,4 +1,6 @@
-﻿using Client.Model;
+﻿using Client.MainService;
+using Client.Model;
+using Client.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,25 +22,35 @@ namespace Client.ViewModel {
             props = this.GetType().GetProperties();
         }
 
-        protected virtual void ResetForm() {
+        protected virtual void ResetForm(string mark = null) {
             foreach (var prop in props) {
-                if (Attribute.IsDefined(prop, inputPropertyType)) {
+                InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);
+                if (Attribute.IsDefined(prop, inputPropertyType) &&
+                    (mark == null || mark.Equals(attr.Mark))) {
                     prop.SetValue(this, default);
                 }
             }
             InitializeForm();
         }
 
-        protected virtual bool IsAllRequiredFieldsFilled() {
+        protected virtual bool IsAllRequiredFieldsFilled(string mark = null) {
             foreach (var prop in props) {
                 if (Attribute.IsDefined(prop, inputPropertyType)) {
                     InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);
-                    if (attr.isRequred() && prop.GetValue(this) == null) {
+                    
+                    if ((attr.isRequred() && prop.GetValue(this) == Utility.GetDefault(prop.PropertyType)) &&
+                     (mark == null || mark.Equals(attr.Mark))) {
                         return false;
                     }
                 }
             }
             return true;
+        }
+
+        protected class DummyCallbackClass : IAdminServiceCallback {
+            public string Test(string str) {
+                throw new NotImplementedException();
+            }
         }
     }
 }

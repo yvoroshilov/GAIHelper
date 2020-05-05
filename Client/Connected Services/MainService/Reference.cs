@@ -139,19 +139,13 @@ namespace Client.MainService {
         private string nameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string passwordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string patronymicField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string surnameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int userIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string usernameField;
+        private string userLoginField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -203,19 +197,6 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string password {
-            get {
-                return this.passwordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.passwordField, value) != true)) {
-                    this.passwordField = value;
-                    this.RaisePropertyChanged("password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string patronymic {
             get {
                 return this.patronymicField;
@@ -242,27 +223,14 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int userId {
+        public string userLogin {
             get {
-                return this.userIdField;
+                return this.userLoginField;
             }
             set {
-                if ((this.userIdField.Equals(value) != true)) {
-                    this.userIdField = value;
-                    this.RaisePropertyChanged("userId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string username {
-            get {
-                return this.usernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.usernameField, value) != true)) {
-                    this.usernameField = value;
-                    this.RaisePropertyChanged("username");
+                if ((object.ReferenceEquals(this.userLoginField, value) != true)) {
+                    this.userLoginField = value;
+                    this.RaisePropertyChanged("userLogin");
                 }
             }
         }
@@ -356,6 +324,227 @@ namespace Client.MainService {
                 if ((this.startField.Equals(value) != true)) {
                     this.startField = value;
                     this.RaisePropertyChanged("start");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ViolationDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.SerializableAttribute()]
+    public partial class ViolationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string addressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string carNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double locationEField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double locationNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double penaltyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int personIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string protocolIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int shiftIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string violationTypeIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string address {
+            get {
+                return this.addressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.addressField, value) != true)) {
+                    this.addressField = value;
+                    this.RaisePropertyChanged("address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string carNumber {
+            get {
+                return this.carNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.carNumberField, value) != true)) {
+                    this.carNumberField = value;
+                    this.RaisePropertyChanged("carNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((this.dateField.Equals(value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
+                    this.descriptionField = value;
+                    this.RaisePropertyChanged("description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double locationE {
+            get {
+                return this.locationEField;
+            }
+            set {
+                if ((this.locationEField.Equals(value) != true)) {
+                    this.locationEField = value;
+                    this.RaisePropertyChanged("locationE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double locationN {
+            get {
+                return this.locationNField;
+            }
+            set {
+                if ((this.locationNField.Equals(value) != true)) {
+                    this.locationNField = value;
+                    this.RaisePropertyChanged("locationN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double penalty {
+            get {
+                return this.penaltyField;
+            }
+            set {
+                if ((this.penaltyField.Equals(value) != true)) {
+                    this.penaltyField = value;
+                    this.RaisePropertyChanged("penalty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int personId {
+            get {
+                return this.personIdField;
+            }
+            set {
+                if ((this.personIdField.Equals(value) != true)) {
+                    this.personIdField = value;
+                    this.RaisePropertyChanged("personId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string protocolId {
+            get {
+                return this.protocolIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.protocolIdField, value) != true)) {
+                    this.protocolIdField = value;
+                    this.RaisePropertyChanged("protocolId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int shiftId {
+            get {
+                return this.shiftIdField;
+            }
+            set {
+                if ((this.shiftIdField.Equals(value) != true)) {
+                    this.shiftIdField = value;
+                    this.RaisePropertyChanged("shiftId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string violationTypeId {
+            get {
+                return this.violationTypeIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.violationTypeIdField, value) != true)) {
+                    this.violationTypeIdField = value;
+                    this.RaisePropertyChanged("violationTypeId");
                 }
             }
         }
@@ -652,227 +841,6 @@ namespace Client.MainService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ViolationDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
-    [System.SerializableAttribute()]
-    public partial class ViolationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string addressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string carNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime dateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string descriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double locationEField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double locationNField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double penaltyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int personIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string protocolIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int shiftIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string violationTypeIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string address {
-            get {
-                return this.addressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.addressField, value) != true)) {
-                    this.addressField = value;
-                    this.RaisePropertyChanged("address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string carNumber {
-            get {
-                return this.carNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.carNumberField, value) != true)) {
-                    this.carNumberField = value;
-                    this.RaisePropertyChanged("carNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime date {
-            get {
-                return this.dateField;
-            }
-            set {
-                if ((this.dateField.Equals(value) != true)) {
-                    this.dateField = value;
-                    this.RaisePropertyChanged("date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
-                    this.descriptionField = value;
-                    this.RaisePropertyChanged("description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double locationE {
-            get {
-                return this.locationEField;
-            }
-            set {
-                if ((this.locationEField.Equals(value) != true)) {
-                    this.locationEField = value;
-                    this.RaisePropertyChanged("locationE");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double locationN {
-            get {
-                return this.locationNField;
-            }
-            set {
-                if ((this.locationNField.Equals(value) != true)) {
-                    this.locationNField = value;
-                    this.RaisePropertyChanged("locationN");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double penalty {
-            get {
-                return this.penaltyField;
-            }
-            set {
-                if ((this.penaltyField.Equals(value) != true)) {
-                    this.penaltyField = value;
-                    this.RaisePropertyChanged("penalty");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int personId {
-            get {
-                return this.personIdField;
-            }
-            set {
-                if ((this.personIdField.Equals(value) != true)) {
-                    this.personIdField = value;
-                    this.RaisePropertyChanged("personId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string protocolId {
-            get {
-                return this.protocolIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.protocolIdField, value) != true)) {
-                    this.protocolIdField = value;
-                    this.RaisePropertyChanged("protocolId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int shiftId {
-            get {
-                return this.shiftIdField;
-            }
-            set {
-                if ((this.shiftIdField.Equals(value) != true)) {
-                    this.shiftIdField = value;
-                    this.RaisePropertyChanged("shiftId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string violationTypeId {
-            get {
-                return this.violationTypeIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.violationTypeIdField, value) != true)) {
-                    this.violationTypeIdField = value;
-                    this.RaisePropertyChanged("violationTypeId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService", CallbackContract=typeof(Client.MainService.IAdminServiceCallback))]
     public interface IAdminService {
@@ -908,10 +876,10 @@ namespace Client.MainService {
         System.Threading.Tasks.Task<Client.MainService.UserDto> GetUserAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
-        void EditUser(string login, Client.MainService.UserDto user);
+        void EditUser(Client.MainService.UserDto user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
-        System.Threading.Tasks.Task EditUserAsync(string login, Client.MainService.UserDto user);
+        System.Threading.Tasks.Task EditUserAsync(Client.MainService.UserDto user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
         Client.MainService.UserDto[] getAllUsers();
@@ -932,10 +900,16 @@ namespace Client.MainService {
         System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByUserLoginAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditEmployee", ReplyAction="http://tempuri.org/IAdminService/EditEmployeeResponse")]
-        void EditEmployee(int id, Client.MainService.EmployeeDto employee);
+        void EditEmployee(Client.MainService.EmployeeDto employee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditEmployee", ReplyAction="http://tempuri.org/IAdminService/EditEmployeeResponse")]
-        System.Threading.Tasks.Task EditEmployeeAsync(int id, Client.MainService.EmployeeDto employee);
+        System.Threading.Tasks.Task EditEmployeeAsync(Client.MainService.EmployeeDto employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchEmployees", ReplyAction="http://tempuri.org/IAdminService/SearchEmployeesResponse")]
+        Client.MainService.EmployeeDto[] SearchEmployees(Client.MainService.EmployeeDto searchedEmployee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchEmployees", ReplyAction="http://tempuri.org/IAdminService/SearchEmployeesResponse")]
+        System.Threading.Tasks.Task<Client.MainService.EmployeeDto[]> SearchEmployeesAsync(Client.MainService.EmployeeDto searchedEmployee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteEmployee", ReplyAction="http://tempuri.org/IAdminService/DeleteEmployeeResponse")]
         void DeleteEmployee(int id);
@@ -960,6 +934,24 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetCurrentShift", ReplyAction="http://tempuri.org/IAdminService/GetCurrentShiftResponse")]
         System.Threading.Tasks.Task<Client.MainService.ShiftDto> GetCurrentShiftAsync(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleId", ReplyAction="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleIdResponse")]
+        Client.MainService.ShiftDto[] GetAllShiftsByResponsibleId(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleId", ReplyAction="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ShiftDto[]> GetAllShiftsByResponsibleIdAsync(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolations", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsResponse")]
+        Client.MainService.ViolationDto[] SearchViolations(Client.MainService.ViolationDto violation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolations", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsAsync(Client.MainService.ViolationDto violation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleIdResponse")]
+        Client.MainService.ViolationDto[] GetAllViolationsByResponsibleId(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsByResponsibleIdAsync(int responsibleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
@@ -986,10 +978,16 @@ namespace Client.MainService {
         System.Threading.Tasks.Task AddPersonAsync(Client.MainService.PersonDto person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPerson", ReplyAction="http://tempuri.org/IAdminService/EditPersonResponse")]
-        void EditPerson(int id, Client.MainService.PersonDto person);
+        void EditPerson(Client.MainService.PersonDto person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPerson", ReplyAction="http://tempuri.org/IAdminService/EditPersonResponse")]
-        System.Threading.Tasks.Task EditPersonAsync(int id, Client.MainService.PersonDto person);
+        System.Threading.Tasks.Task EditPersonAsync(Client.MainService.PersonDto person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersons", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsResponse")]
+        Client.MainService.PersonDto[] SearchPersons(Client.MainService.PersonDto searchedPerson);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersons", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsAsync(Client.MainService.PersonDto searchedPerson);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePerson", ReplyAction="http://tempuri.org/IAdminService/DeletePersonResponse")]
         void DeletePerson(int id);
@@ -1073,12 +1071,12 @@ namespace Client.MainService {
             return base.Channel.GetUserAsync(login);
         }
         
-        public void EditUser(string login, Client.MainService.UserDto user) {
-            base.Channel.EditUser(login, user);
+        public void EditUser(Client.MainService.UserDto user) {
+            base.Channel.EditUser(user);
         }
         
-        public System.Threading.Tasks.Task EditUserAsync(string login, Client.MainService.UserDto user) {
-            return base.Channel.EditUserAsync(login, user);
+        public System.Threading.Tasks.Task EditUserAsync(Client.MainService.UserDto user) {
+            return base.Channel.EditUserAsync(user);
         }
         
         public Client.MainService.UserDto[] getAllUsers() {
@@ -1105,12 +1103,20 @@ namespace Client.MainService {
             return base.Channel.GetEmployeeByUserLoginAsync(login);
         }
         
-        public void EditEmployee(int id, Client.MainService.EmployeeDto employee) {
-            base.Channel.EditEmployee(id, employee);
+        public void EditEmployee(Client.MainService.EmployeeDto employee) {
+            base.Channel.EditEmployee(employee);
         }
         
-        public System.Threading.Tasks.Task EditEmployeeAsync(int id, Client.MainService.EmployeeDto employee) {
-            return base.Channel.EditEmployeeAsync(id, employee);
+        public System.Threading.Tasks.Task EditEmployeeAsync(Client.MainService.EmployeeDto employee) {
+            return base.Channel.EditEmployeeAsync(employee);
+        }
+        
+        public Client.MainService.EmployeeDto[] SearchEmployees(Client.MainService.EmployeeDto searchedEmployee) {
+            return base.Channel.SearchEmployees(searchedEmployee);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.EmployeeDto[]> SearchEmployeesAsync(Client.MainService.EmployeeDto searchedEmployee) {
+            return base.Channel.SearchEmployeesAsync(searchedEmployee);
         }
         
         public void DeleteEmployee(int id) {
@@ -1145,6 +1151,30 @@ namespace Client.MainService {
             return base.Channel.GetCurrentShiftAsync(responsibleId);
         }
         
+        public Client.MainService.ShiftDto[] GetAllShiftsByResponsibleId(int responsibleId) {
+            return base.Channel.GetAllShiftsByResponsibleId(responsibleId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ShiftDto[]> GetAllShiftsByResponsibleIdAsync(int responsibleId) {
+            return base.Channel.GetAllShiftsByResponsibleIdAsync(responsibleId);
+        }
+        
+        public Client.MainService.ViolationDto[] SearchViolations(Client.MainService.ViolationDto violation) {
+            return base.Channel.SearchViolations(violation);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsAsync(Client.MainService.ViolationDto violation) {
+            return base.Channel.SearchViolationsAsync(violation);
+        }
+        
+        public Client.MainService.ViolationDto[] GetAllViolationsByResponsibleId(int responsibleId) {
+            return base.Channel.GetAllViolationsByResponsibleId(responsibleId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsByResponsibleIdAsync(int responsibleId) {
+            return base.Channel.GetAllViolationsByResponsibleIdAsync(responsibleId);
+        }
+        
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {
             base.Channel.AddViolationType(violationType);
         }
@@ -1177,12 +1207,20 @@ namespace Client.MainService {
             return base.Channel.AddPersonAsync(person);
         }
         
-        public void EditPerson(int id, Client.MainService.PersonDto person) {
-            base.Channel.EditPerson(id, person);
+        public void EditPerson(Client.MainService.PersonDto person) {
+            base.Channel.EditPerson(person);
         }
         
-        public System.Threading.Tasks.Task EditPersonAsync(int id, Client.MainService.PersonDto person) {
-            return base.Channel.EditPersonAsync(id, person);
+        public System.Threading.Tasks.Task EditPersonAsync(Client.MainService.PersonDto person) {
+            return base.Channel.EditPersonAsync(person);
+        }
+        
+        public Client.MainService.PersonDto[] SearchPersons(Client.MainService.PersonDto searchedPerson) {
+            return base.Channel.SearchPersons(searchedPerson);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsAsync(Client.MainService.PersonDto searchedPerson) {
+            return base.Channel.SearchPersonsAsync(searchedPerson);
         }
         
         public void DeletePerson(int id) {

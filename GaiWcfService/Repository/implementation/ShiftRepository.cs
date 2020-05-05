@@ -44,5 +44,10 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Shifts.ToHashSet();
         }
 
+        public List<Shift> GetAllShiftsByResponsibleId(int responsibleId) {
+            return dbEntities.Shifts
+                .Where(val => val.responsible_id == responsibleId)
+                .ToList();
+        }
     }
 }
