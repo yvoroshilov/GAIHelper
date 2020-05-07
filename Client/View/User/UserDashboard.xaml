@@ -50,49 +50,49 @@
                         <GridViewColumn Header="Нарушение" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding ViolationTypeId}"/>
+                                    <TextBlock Text="{Binding violationTypeId}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="№ Протокола" Width="110">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding ProtocolId}"/>
+                                    <TextBlock Text="{Binding protocolId}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="№ Автомобиля" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CarNumber}"/>
+                                    <TextBlock Text="{Binding carNumber}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Дата" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Date, Converter={StaticResource DateConverter}}"/>
+                                    <TextBlock Text="{Binding date, Converter={StaticResource DateConverter}}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Штраф, р." Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Penalty}"/>
+                                    <TextBlock Text="{Binding penalty}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Адрес" Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Address}"/>
+                                    <TextBlock Text="{Binding address}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="DescriptionColumn" Header="Описание" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock ToolTip="{Binding Description}"  Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
+                                    <TextBlock ToolTip="{Binding description}"  Text="{Binding description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -126,8 +126,8 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="CoordNField" Height="24" VerticalAlignment="Top" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10" Margin="0,24,16.2,0">
-                    <Binding Path="LocationN" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource FloatConverter}">
+                <TextBox x:Name="CoordNField" Height="24" VerticalAlignment="Top" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10" Margin="0,24,16.2,0" >
+                    <Binding Path="LocationN" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource FloatConverter}" TargetNullValue="">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>
                             <res:DoubleValidationRule />
@@ -138,7 +138,7 @@
                 <Label Content="N" Margin="0,24,2,0" Height="24" VerticalAlignment="Top" FontSize="9" HorizontalAlignment="Right" Width="16"/>
                 <Label Content="E" Margin="0,24,0.4,0" Height="24" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.504,0.5" FontSize="9" HorizontalAlignment="Right" Width="15"/>
                 <TextBox x:Name="CoordEField" Margin="0.8,24,14.4,0" Padding="0,3,0,0" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10" Grid.Column="1">
-                    <Binding Path="LocationE" Converter="{StaticResource FloatConverter}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="LocationE" Converter="{StaticResource FloatConverter}" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>
                             <res:DoubleValidationRule />
@@ -157,10 +157,10 @@
                 <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="150,103,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
                 <Label Content="Отчество:" HorizontalAlignment="Left" Margin="150,134,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
                 <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="150,165,0,0" VerticalAlignment="Top" Height="26" Width="98"/>
-                <Label x:Name="NameLabel" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top" Width="135" Height="26" Content="{Binding CurrentPerson.Name, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label x:Name="SurnameLabel" HorizontalAlignment="Left" Margin="208,103,0,0" VerticalAlignment="Top" Width="110" Height="26" Content="{Binding CurrentPerson.Surname, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label x:Name="PatronymicLabel" HorizontalAlignment="Left" Margin="209,134,0,0" VerticalAlignment="Top" Width="109" Height="26" Content="{Binding CurrentPerson.Patronymic, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="243,165,0,0" VerticalAlignment="Top" Width="75" Height="26" Content="{Binding CurrentPerson.Birthday, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="NameLabel" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top" Width="135" Height="26" Content="{Binding CurrentPerson.name, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="SurnameLabel" HorizontalAlignment="Left" Margin="208,103,0,0" VerticalAlignment="Top" Width="110" Height="26" Content="{Binding CurrentPerson.surname, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="PatronymicLabel" HorizontalAlignment="Left" Margin="209,134,0,0" VerticalAlignment="Top" Width="109" Height="26" Content="{Binding CurrentPerson.patronymic, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="243,165,0,0" VerticalAlignment="Top" Width="75" Height="26" Content="{Binding CurrentPerson.birthday, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button x:Name="CheckPersonBtn" Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139" Command="{Binding CheckPersonCommand}" Click="CheckPersonBtn_Click"/>
                 <Button x:Name="ShowPersonsViolationsBtn" Content="Нарушения" HorizontalAlignment="Left" Margin="169,21,0,0" VerticalAlignment="Top" Width="139" Height="24" Click="ShowPersonsViolationsBtn_Click" IsEnabled="False" />
             </Grid>

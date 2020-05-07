@@ -173,7 +173,9 @@ namespace Client.View.Admin {
         }
 
         private void ViolationsTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            violationsAdminViewModel.curViolation = e.AddedItems[0] as ViolationDto;
+            if (e.AddedItems.Count == 1) {
+                violationsAdminViewModel.curViolation = e.AddedItems[0] as ViolationDto;
+            }
         }
         #endregion
     }

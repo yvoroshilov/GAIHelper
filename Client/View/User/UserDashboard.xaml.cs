@@ -1,4 +1,5 @@
-﻿using Client.Model;
+﻿using Client.MainService;
+using Client.Model;
 using Client.ViewModel;
 using System;
 using System.Collections;
@@ -20,7 +21,7 @@ using System.Windows.Shapes;
 namespace Client.View.User {
 
     public partial class UserDashboard : Window {
-        public UserDashboard(Shift shift) {
+        public UserDashboard(ShiftDto shift) {
             DataContext = new ViolationsUserViewModel(shift);
             dataContext = (ViolationsUserViewModel)DataContext;
             dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;
@@ -39,6 +40,8 @@ namespace Client.View.User {
             }
             DriverLicenseField.IsEnabled = false;
             DriverLicenseLabel.IsEnabled = false;
+            dataContext.ResetPersonProfile();
+            dataContext.DriverLicense = "";
         }   
 
         private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
@@ -121,10 +124,10 @@ namespace Client.View.User {
         }
 
         private void OnCurrentPersonIdChanged(object sender, PropertyChangedEventArgs args) {
-            if (args.PropertyName != "Id") {
+            if (args.PropertyName != nameof(dataContext.CurrentPerson.id)) {
                 return;
             }
-            if (dataContext.CurrentPerson.Id == 0) {
+            if (dataContext.CurrentPerson.id == 0) {
                 ShowPersonsViolationsBtn.IsEnabled = false;
             } else {
                 ShowPersonsViolationsBtn.IsEnabled = true;

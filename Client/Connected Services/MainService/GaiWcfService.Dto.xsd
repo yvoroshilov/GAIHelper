@@ -54,8 +54,8 @@
       <xs:element minOccurs="0" name="date" type="xs:dateTime" />
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="id" type="xs:int" />
-      <xs:element minOccurs="0" name="locationE" type="xs:double" />
-      <xs:element minOccurs="0" name="locationN" type="xs:double" />
+      <xs:element minOccurs="0" name="locationE" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="locationN" nillable="true" type="xs:double" />
       <xs:element minOccurs="0" name="penalty" type="xs:double" />
       <xs:element minOccurs="0" name="personId" type="xs:int" />
       <xs:element minOccurs="0" name="protocolId" nillable="true" type="xs:string" />

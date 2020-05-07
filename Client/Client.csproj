@@ -99,8 +99,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Model\Admin.cs" />
-    <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\NotifyingModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -223,11 +221,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Payment.cs" />
-    <Compile Include="Model\Shift.cs" />
-    <Compile Include="Model\Violation.cs" />
     <Compile Include="Model\ViolationType.cs" />
-    <Compile Include="Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

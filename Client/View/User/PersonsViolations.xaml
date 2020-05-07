@@ -35,42 +35,42 @@
                     <GridViewColumn Header="Нарушение" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding ViolationTypeId}"/>
+                                <TextBlock Text="{Binding violationTypeId}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="№ Автомобиля" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding CarNumber}"/>
+                                <TextBlock Text="{Binding carNumber}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Дата" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=Date, Converter={StaticResource DateConverter}}"/>
+                                <TextBlock Text="{Binding date, Converter={StaticResource DateConverter}}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Штраф, р." Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Penalty}"/>
+                                <TextBlock Text="{Binding penalty}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Адрес" Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Address}"/>
+                                <TextBlock Text="{Binding address}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn x:Name="DescriptionColumn" Header="Описание" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock ToolTip="{Binding Description}"  Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
+                                <TextBlock ToolTip="{Binding description}"  Text="{Binding description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

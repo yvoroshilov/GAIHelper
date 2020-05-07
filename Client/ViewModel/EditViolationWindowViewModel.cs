@@ -75,9 +75,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double locationN;
+        private double? locationN;
         [InputProperty]
-        public double LocationN{
+        public double? LocationN{
             get {
                 return locationN;
             }
@@ -87,9 +87,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double locationE;
+        private double? locationE;
         [InputProperty]
-        public double LocationE {
+        public double? LocationE {
             get {
                 return locationE;
             }
@@ -189,8 +189,8 @@ namespace Client.ViewModel {
 
         private const string NO_LIC_DRIVER_LIC = "NO_LIC";
 
-        private Person currentPerson;
-        public Person CurrentPerson {
+        private PersonDto currentPerson;
+        public PersonDto CurrentPerson {
             get {
                 return currentPerson;
             }
@@ -200,7 +200,7 @@ namespace Client.ViewModel {
             }
         }
 
-        public List<Violation> CurrentPersonsViolations { get; set; } = new List<Violation>();
+        public List<ViolationDto> CurrentPersonsViolations { get; set; } = new List<ViolationDto>();
         #endregion
 
         #region Commands
@@ -216,8 +216,8 @@ namespace Client.ViewModel {
 
 
                         if (!NoLic) {
-                            Person pers = Mapper.mapper.Map<Person>(userClient.GetPersonByDriverLicense(DriverLicense));
-                            PersonId = pers.Id;
+                            PersonDto pers = userClient.GetPersonByDriverLicense(DriverLicense);
+                            PersonId = pers.id;
                         } else {
                             PersonId = NO_LIC_PERSON_ID;
                         }
@@ -240,7 +240,7 @@ namespace Client.ViewModel {
                         ResetPersonProfile();
                         ResetForm();
                     }, (obj) => {
-                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.Id != 0 || NoLic);
+                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.id != 0 || NoLic);
                     }));
             }
         }
@@ -276,7 +276,7 @@ namespace Client.ViewModel {
 
                         (obj as Window).Close();
                     }, obj => {
-                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.Id != 0 || NoLic);
+                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.id != 0 || NoLic);
                     }));
             }
         }
@@ -291,14 +291,13 @@ namespace Client.ViewModel {
                             MessageBox.Show($"Человека с водительским удостоверением № {DriverLicense} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                             ResetPersonProfile();
                         } else {
-                            Mapper.mapper.Map(
-                                personDto, 
-                                currentPerson, 
-                                typeof (MainService.PersonDto),
-                                currentPerson.GetType());
-                            CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.Id)
-                                .Select(val => Mapper.mapper.Map<Violation>(val))
-                                .ToList());
+                            CurrentPerson.driverLicense = personDto.driverLicense;
+                            CurrentPerson.id = personDto.id;
+                            CurrentPerson.birthday = personDto.birthday;
+                            CurrentPerson.name = personDto.name;
+                            CurrentPerson.surname = personDto.surname;
+                            CurrentPerson.patronymic = personDto.patronymic;
+                            CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
                         return DriverLicense != null;
@@ -319,7 +318,7 @@ namespace Client.ViewModel {
                 .GetAllViolationTypes()
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))
                 .ToList());
-            currentPerson = new Person();
+            currentPerson = new PersonDto();
 
             SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.violationTypeId).SingleOrDefault();
             CarNumber = curViolation.carNumber;
@@ -341,11 +340,11 @@ namespace Client.ViewModel {
         }
 
         public void ResetPersonProfile() {
-            CurrentPerson.Id = 0;
-            CurrentPerson.Name = null;
-            CurrentPerson.Surname = null;
-            CurrentPerson.Patronymic = null;
-            CurrentPerson.Birthday = DateTime.MinValue;
+            CurrentPerson.id = 0;
+            CurrentPerson.name = null;
+            CurrentPerson.surname = null;
+            CurrentPerson.patronymic = null;
+            CurrentPerson.birthday = DateTime.MinValue;
             CurrentPersonsViolations.Clear();
         }
 

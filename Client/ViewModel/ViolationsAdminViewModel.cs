@@ -264,14 +264,28 @@ namespace Client.ViewModel {
         }
 
         #region Command
-        /*
         private RelayCommand deleteCommand;
         public RelayCommand DeleteCommand {
             get {
-                return deleteCommand;
+                return deleteCommand ??
+                    (deleteCommand = new RelayCommand(obj => {
+                        MessageBoxResult confirmRes = MessageBox.Show("Вы действительно хотите удалить эти нарушения?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+                        if (confirmRes == MessageBoxResult.No) {
+                            return;
+                        }
+
+                        List<ViolationDto> selectedViolations = new List<ViolationDto>((obj as ICollection).Cast<ViolationDto>());
+                        foreach (var item in selectedViolations) {
+                            userClient.DeleteViolation(item.id);
+                            Violations.Remove(item);
+                        }
+                    }, obj => {
+                        return (obj as ICollection).Count != 0;
+                    }));
             }
         }
 
+        /*
         private RelayCommand seeViolatorProfile;
         public RelayCommand SeeViolatorProfile {
             get {

@@ -363,10 +363,10 @@ namespace Client.MainService {
         private int idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double locationEField;
+        private System.Nullable<double> locationEField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double locationNField;
+        private System.Nullable<double> locationNField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double penaltyField;
@@ -459,7 +459,7 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double locationE {
+        public System.Nullable<double> locationE {
             get {
                 return this.locationEField;
             }
@@ -472,7 +472,7 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double locationN {
+        public System.Nullable<double> locationN {
             get {
                 return this.locationNField;
             }

@@ -58,17 +58,6 @@ namespace Client.Model {
             }
         }
 
-        private List<Violation> violations;
-        public List<Violation> Violations {
-            get {
-                return violations;
-            }
-            set {
-                violations = value;
-                OnPropertyChanged();
-            }
-        }
-
         public override string ToString() {
             return id + " " + title;
         }

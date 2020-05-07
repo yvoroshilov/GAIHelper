@@ -451,7 +451,7 @@
                     </StackPanel>
                     <Button Content="Очистить поисковые &#xD;&#xA;              поля" Grid.Column="4" Margin="10.2,10.2,10.4,19.6" Grid.Row="2" Grid.ColumnSpan="2" Command="{Binding ResetSearchFieldsCommand}"/>
                     <Button Content="Поиск" Grid.Column="4" Margin="10.2,8.4,10.4,9.8" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding SearchCommand}"/>
-                    <Button Content="Удалить" Grid.Column="4" Margin="10.2,62,1.8,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=UserTable}"/>
+                    <Button Content="Удалить" Grid.Column="4" Margin="10.2,62,1.8,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}"/>
                     <Button x:Name="EditViolationBtn" Content="Изменить" Grid.Column="5" Margin="7.2,62,10.4,0" VerticalAlignment="Top" Height="35" Command="{Binding EditCommand}"  CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="EditViolationBtn_Click"/>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" VerticalAlignment="Top" Grid.Column="4" Margin="10.2,10,10.4,0" Grid.ColumnSpan="2" Height="45" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
                     <Button Grid.ColumnSpan="2" Content="Посмотреть профиль&#xD;&#xA;        нарушителя" Grid.Column="4" Margin="10.2,105,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeViolatorProfile}"/>

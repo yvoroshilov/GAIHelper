@@ -45,6 +45,8 @@ namespace Client.View.Admin.ViolationsTabSubWindows {
             }
             DriverLicenseField.IsEnabled = false;
             DriverLicenseLabel.IsEnabled = false;
+            dataContext.ResetPersonProfile();
+            dataContext.DriverLicense = "";
         }   
 
         private void NoDriverLicenseCheckBox_Unchecked(object sender, RoutedEventArgs e) {
@@ -104,10 +106,10 @@ namespace Client.View.Admin.ViolationsTabSubWindows {
         }
 
         private void OnCurrentPersonIdChanged(object sender, PropertyChangedEventArgs args) {
-            if (args.PropertyName != "Id") {
+            if (args.PropertyName != nameof(dataContext.CurrentPerson.id)) {
                 return;
             }
-            if (dataContext.CurrentPerson.Id == 0) {
+            if (dataContext.CurrentPerson.id == 0) {
                 ShowPersonsViolationsBtn.IsEnabled = false;
             } else {
                 ShowPersonsViolationsBtn.IsEnabled = true;
