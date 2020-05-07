@@ -53,6 +53,9 @@ namespace GaiWcfService.Util {
                     .ForMember("actualPenalty", expr => expr.MapFrom("actual_penalty"))
                     .ForMember("paidPenalty", expr => expr.MapFrom("paid_penalty"))
                     .ReverseMap();
+                cfg.CreateMap<Role, RoleDto>()
+                    .ForMember("role", expr => expr.MapFrom("role1"))
+                    .ReverseMap();
             });
             mapper = config.CreateMapper();
         }

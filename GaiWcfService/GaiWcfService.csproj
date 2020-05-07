@@ -54,6 +54,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -66,6 +67,33 @@
   <ItemGroup>
     <Compile Include="Callback\ConnectedClientsSingleton.cs" />
     <Compile Include="Callback\ICallbackService.cs" />
+    <Compile Include="Dto\RoleDto.cs" />
+    <Compile Include="Employee.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GAIDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GAIDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\contract\IRoleRepository.cs" />
+    <Compile Include="Repository\implementation\RoleRepository.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MainServiceRoles.cs" />
+    <Compile Include="Shift.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Util\DbEntitiesSingleton.cs" />
     <Compile Include="Dto\EmployeeDto.cs" />
     <Compile Include="Dto\PaymentDto.cs" />
@@ -73,18 +101,9 @@
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\ViolationDto.cs" />
     <Compile Include="Dto\ViolationTypeDto.cs" />
-    <Compile Include="Employee.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Payment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Person.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\implementation\UserRepository.cs" />
@@ -101,9 +120,6 @@
     <Compile Include="Repository\implementation\ViolationTypeRepository.cs" />
     <Compile Include="Repository\implementation\PersonRepository.cs" />
     <Compile Include="Repository\contract\IPaymentRepository.cs" />
-    <Compile Include="Role.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Service\IAdminService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="Model1.Context.cs">
@@ -127,12 +143,6 @@
     <Compile Include="Service\MainServiceShifts.cs" />
     <Compile Include="Service\MainServicePayments.cs" />
     <Compile Include="Service\MainServiceEmployees.cs" />
-    <Compile Include="Shift.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\MyLogger.cs" />
     <Compile Include="Util\SearchMatcher.cs" />
@@ -149,6 +159,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="GAIDBDataSet.xsc">
+      <DependentUpon>GAIDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GAIDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GAIDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GAIDBDataSet.xss">
+      <DependentUpon>GAIDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>

@@ -3,6 +3,7 @@ using Client.Model;
 using Client.Util;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -47,10 +48,28 @@ namespace Client.ViewModel {
             return true;
         }
 
+        protected virtual bool IsAllInputPropsValid(IDataErrorInfo errorInfo, string mark = null) {
+            foreach (var prop in props) {
+                if (Attribute.IsDefined(prop, inputPropertyType)) {
+                    InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);
+                    
+                    if ((errorInfo[prop.Name]) != "" &&
+                     (mark == null || mark.Equals(attr.Mark))) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         protected class DummyCallbackClass : IAdminServiceCallback {
             public string Test(string str) {
                 throw new NotImplementedException();
             }
+        }
+
+        protected PropertyInfo[] GetProps() {
+            return props;
         }
     }
 }

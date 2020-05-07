@@ -90,7 +90,9 @@
           <Property Name="description" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK_Employees_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -114,7 +116,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Shifts_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -138,7 +142,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Violations_Shifts">
-          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Violations" Type="Self.Violations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shifts">
@@ -352,7 +358,9 @@
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="ViolationType" ToRole="Violation" />
         </EntityType>
         <Association Name="FK_Employees_Users">
-          <End Type="GAIDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="GAIDBModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="GAIDBModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -364,7 +372,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Shifts_Employees">
-          <End Type="GAIDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="GAIDBModel.Employee" Role="Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="GAIDBModel.Shift" Role="Shift" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -412,7 +422,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Violations_Shifts">
-          <End Type="GAIDBModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="GAIDBModel.Shift" Role="Shift" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="GAIDBModel.Violation" Role="Violation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shift">

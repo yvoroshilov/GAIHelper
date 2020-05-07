@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding}" ItemContainerStyle="{StaticResource ListViewItemStyle}">
+        <ListView ItemsSource="{Binding}" AlternationCount="2" ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="№" Width="30">

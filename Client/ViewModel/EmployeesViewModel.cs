@@ -436,6 +436,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(LoginAdd):
+                        if (!FindLoginCheckbox) break;
                         if (LoginAdd == default) {
                             error = "Логин должен быть заполнен";
                             break;
@@ -449,6 +450,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Login):
+                        if (!FindLoginCheckbox) break;
                         if (Login == default && FindLoginCheckbox) {
                             error = "Логин должен быть заполнен";
                             break;
@@ -462,6 +464,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(SurnameAdd):
+                        if (!FindSurnameCheckbox) break;
                         if (SurnameAdd == default) {
                             error = "Фамилия должна быть заполнена";
                             break;
@@ -475,6 +478,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Surname):
+                        if (!FindSurnameCheckbox) break;
                         if (Surname == default && FindSurnameCheckbox) {
                             error = "Фамилия должна быть заполнена";
                             break;
@@ -488,6 +492,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(NameAdd):
+                        if (!FindNameCheckbox) break;
                         if (NameAdd == default) {
                             error = "Имя должено быть заполнено";
                             break;
@@ -501,6 +506,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Name):
+                        if (!FindNameCheckbox) break;
                         if (Name == default && FindNameCheckbox) {
                             error = "Имя должено быть заполнено";
                             break;
@@ -514,6 +520,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(PatronymicAdd):
+                        if (!FindPatronymicCheckbox) break;
                         if (PatronymicAdd == default) {
                             error = "Фамилия должен быть заполнена";
                             break;
@@ -527,6 +534,7 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Patronymic):
+                        if (!FindPatronymicCheckbox) break;
                         if (Patronymic == default && FindPatronymicCheckbox) {
                             error = "Фамилия должен быть заполнена";
                             break;

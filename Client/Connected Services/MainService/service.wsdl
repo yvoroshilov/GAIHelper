@@ -115,6 +115,18 @@
   <wsdl:message name="IAdminService_getAllUsers_OutputMessage">
     <wsdl:part name="parameters" element="tns:getAllUsersResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_SearchUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchUsers" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_AddEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:AddEmployee" />
   </wsdl:message>
@@ -169,6 +181,12 @@
   <wsdl:message name="IAdminService_GetAllShiftsByResponsibleId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllShiftsByResponsibleIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_GetShiftById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShiftById" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetShiftById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShiftByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_SearchViolations_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchViolations" />
   </wsdl:message>
@@ -180,6 +198,18 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_GetAllViolationsByResponsibleId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllViolationsByResponsibleIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchViolationsPenaltyRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchViolationsPenaltyRange" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchViolationsPenaltyRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchViolationsPenaltyRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchViolationsDateRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchViolationsDateRange" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchViolationsDateRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchViolationsDateRangeResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddViolationType_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolationType" />
@@ -223,6 +253,24 @@
   <wsdl:message name="IAdminService_DeletePerson_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeletePersonResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_GetPayments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayments" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetPayments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRoles" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetAllRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRolesResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_Test_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Test" />
   </wsdl:message>
@@ -259,11 +307,11 @@
   <wsdl:message name="IUserService_GetAllViolationTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllViolationTypesResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_GetPerson_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPerson" />
+  <wsdl:message name="IUserService_GetPersonByDriverLicense_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonByDriverLicense" />
   </wsdl:message>
-  <wsdl:message name="IUserService_GetPerson_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPersonResponse" />
+  <wsdl:message name="IUserService_GetPersonByDriverLicense_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonByDriverLicenseResponse" />
   </wsdl:message>
   <wsdl:portType name="IAdminService">
     <wsdl:operation name="Subscribe">
@@ -293,6 +341,14 @@
     <wsdl:operation name="getAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/getAllUsers" message="tns:IAdminService_getAllUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/getAllUsersResponse" message="tns:IAdminService_getAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchUsers" message="tns:IAdminService_SearchUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchUsersResponse" message="tns:IAdminService_SearchUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteUser" message="tns:IAdminService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteUserResponse" message="tns:IAdminService_DeleteUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddEmployee" message="tns:IAdminService_AddEmployee_InputMessage" />
@@ -330,6 +386,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleId" message="tns:IAdminService_GetAllShiftsByResponsibleId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleIdResponse" message="tns:IAdminService_GetAllShiftsByResponsibleId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetShiftById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetShiftById" message="tns:IAdminService_GetShiftById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetShiftByIdResponse" message="tns:IAdminService_GetShiftById_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SearchViolations">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchViolations" message="tns:IAdminService_SearchViolations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsResponse" message="tns:IAdminService_SearchViolations_OutputMessage" />
@@ -337,6 +397,14 @@
     <wsdl:operation name="GetAllViolationsByResponsibleId">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId" message="tns:IAdminService_GetAllViolationsByResponsibleId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleIdResponse" message="tns:IAdminService_GetAllViolationsByResponsibleId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchViolationsPenaltyRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsPenaltyRange" message="tns:IAdminService_SearchViolationsPenaltyRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsPenaltyRangeResponse" message="tns:IAdminService_SearchViolationsPenaltyRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchViolationsDateRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsDateRange" message="tns:IAdminService_SearchViolationsDateRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsDateRangeResponse" message="tns:IAdminService_SearchViolationsDateRange_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolationType" message="tns:IAdminService_AddViolationType_InputMessage" />
@@ -366,6 +434,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeletePerson" message="tns:IAdminService_DeletePerson_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeletePersonResponse" message="tns:IAdminService_DeletePerson_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetPayments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPayments" message="tns:IAdminService_GetPayments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPaymentsResponse" message="tns:IAdminService_GetPayments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPerson" message="tns:IAdminService_GetPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPersonResponse" message="tns:IAdminService_GetPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllRoles" message="tns:IAdminService_GetAllRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetAllRolesResponse" message="tns:IAdminService_GetAllRoles_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Test">
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/Test" message="tns:IAdminService_Test_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/TestResponse" message="tns:IAdminService_Test_InputCallbackMessage" />
@@ -392,9 +472,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllViolationTypes" message="tns:IUserService_GetAllViolationTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllViolationTypesResponse" message="tns:IUserService_GetAllViolationTypes_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetPerson">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetPerson" message="tns:IUserService_GetPerson_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetPersonResponse" message="tns:IUserService_GetPerson_OutputMessage" />
+    <wsdl:operation name="GetPersonByDriverLicense">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetPersonByDriverLicense" message="tns:IUserService_GetPersonByDriverLicense_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetPersonByDriverLicenseResponse" message="tns:IUserService_GetPersonByDriverLicense_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AdminServiceTcpEndpointAdmin" type="tns:IAdminService">
@@ -457,6 +537,24 @@
     </wsdl:operation>
     <wsdl:operation name="getAllUsers">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/getAllUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchUsers">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/DeleteUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -545,6 +643,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetShiftById">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetShiftById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchViolations">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchViolations" style="document" />
       <wsdl:input>
@@ -556,6 +663,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllViolationsByResponsibleId">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchViolationsPenaltyRange">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchViolationsPenaltyRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchViolationsDateRange">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchViolationsDateRange" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -626,6 +751,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPayments">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPayments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Test">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/Test" style="document" />
       <wsdl:input>
@@ -685,8 +837,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetPerson">
-      <soap12:operation soapAction="http://tempuri.org/IUserService/GetPerson" style="document" />
+    <wsdl:operation name="GetPersonByDriverLicense">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetPersonByDriverLicense" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

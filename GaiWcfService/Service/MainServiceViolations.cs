@@ -2,6 +2,7 @@
 using GaiWcfService.Repository.contract;
 using GaiWcfService.Repository.implementation;
 using GaiWcfService.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,6 +49,22 @@ namespace GaiWcfService.Service {
                     .ToList());
             }
             return res;
+        }
+
+        public List<ViolationDto> SearchViolationsPenaltyRange(ViolationDto searchedViolation, double penaltyMin, double penaltyMax) {
+            List<ViolationDto> partialResult = SearchViolations(searchedViolation);
+            return partialResult.Where(val => val.penalty >= penaltyMin && val.penalty <= penaltyMax)
+                .ToList();
+        }
+
+        public List<ViolationDto> SearchViolationsDateRange(ViolationDto searchedViolation, DateTime start, DateTime end) {
+            List<ViolationDto> partialResult = SearchViolations(searchedViolation);
+            return partialResult
+                .Where(val => 
+                    ((val.date.Date.CompareTo(start.Date) + val.date.Date.CompareTo(end.Date)) == 0) ||
+                    (val.date.Date.CompareTo(start.Date) == 0) ||
+                    (val.date.Date.CompareTo(end.Date) == 0))
+                .ToList();
         }
     }
 }

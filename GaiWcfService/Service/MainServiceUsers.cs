@@ -45,6 +45,16 @@ namespace GaiWcfService.Service {
                 .ToHashSet();
         }
 
+        public List<UserDto> SearchUsers(UserDto searchedUser) {
+            return userRepository.SearchUser(Mapper.mapper.Map<User>(searchedUser))
+                .Select(val => Mapper.mapper.Map<UserDto>(val))
+                .ToList();
+        }
+
+        public void DeleteUser(string login) {
+            userRepository.DeleteUser(login);
+        }
+
         public string test() {
             return "TEST";
         }

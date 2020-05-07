@@ -13,15 +13,18 @@ using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Collections;
+using Client.MainService;
+using System.ServiceModel;
 
 namespace Client.ViewModel {
-    public class ViolationsUserViewModel : ViewModel, IDataErrorInfo {
+    public class EditViolationWindowViewModel : ViewModel, IDataErrorInfo {
 
         #region Common
-        private MainService.UserServiceClient client;
-        public ObservableCollection<Violation> Violations { get; }
+        private MainService.UserServiceClient userClient;
+        private AdminServiceClient adminClient;
+        public ObservableCollection<ViolationDto> Violations { get; }
         public ReadOnlyCollection<ViolationType> ViolationTypes { get; }
-        public Shift CurrentShift { get; }
+        public ViolationDto curViolation;
         #endregion
 
         #region Input fields
@@ -57,13 +60,6 @@ namespace Client.ViewModel {
             set {
                 carNumber = value;
                 OnPropertyChanged();
-            }
-        }
-
-        private System.DateTime date;
-        public System.DateTime Date {
-            get {
-                return DateTime.Now;
             }
         }
 
@@ -162,6 +158,29 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        private int shiftId;
+        [InputProperty(true)]
+        public int ShiftId {
+            get {
+                return shiftId;
+            }
+            set {
+                shiftId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime violationDate;
+        public DateTime ViolationDate {
+            get {
+                return violationDate == default ? DateTime.Now : violationDate;
+            }
+            set {
+                violationDate = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Person info
@@ -190,26 +209,33 @@ namespace Client.ViewModel {
             get {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
+                        if (adminClient.GetShiftById(ShiftId) == null) {
+                            MessageBox.Show("Смены с таким номером не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
+
                         if (!NoLic) {
-                            Person pers = Mapper.mapper.Map<Person>(client.GetPersonByDriverLicense(DriverLicense));
+                            Person pers = Mapper.mapper.Map<Person>(userClient.GetPersonByDriverLicense(DriverLicense));
                             PersonId = pers.Id;
                         } else {
                             PersonId = NO_LIC_PERSON_ID;
                         }
 
-                        Violation violation = new Violation();
-                        violation.ViolationTypeId = SelectedViolationType.Id;
-                        violation.PersonId = PersonId;
-                        violation.CarNumber = CarNumber;
-                        violation.Date = Date;
-                        violation.Penalty = Penalty;
-                        violation.LocationN = LocationN;
-                        violation.LocationE = LocationE;
-                        violation.Address = Address;
-                        violation.Description = Description;
-                        violation.ProtocolId = ProtocolId;
-                        violation.ShiftId = CurrentShift.Id;
+                        ViolationDto violation = new ViolationDto();
+                        violation.violationTypeId = SelectedViolationType.Id;
+                        violation.personId = PersonId;
+                        violation.carNumber = CarNumber;
+                        violation.penalty = Penalty;
+                        violation.locationN = LocationN;
+                        violation.locationE = LocationE;
+                        violation.address = Address;
+                        violation.description = Description;
+                        violation.protocolId = ProtocolId;
+                        violation.shiftId = ShiftId;
+                        violation.date = ViolationDate;
 
+                        userClient.AddViolation(violation);
                         Violations.Add(violation);
                         ResetPersonProfile();
                         ResetForm();
@@ -219,50 +245,38 @@ namespace Client.ViewModel {
             }
         }
 
-        private RelayCommand deleteCommand;
-        public RelayCommand DeleteCommand {
+        private RelayCommand acceptEditCommand;
+        public RelayCommand AcceptEditCommand {
             get {
-                return deleteCommand ??
-                    (deleteCommand = new RelayCommand(obj => {
-                        MessageBoxResult confirmRes = MessageBox.Show("Вы действительно хотите удалить эти нарушения?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
-                        if (confirmRes == MessageBoxResult.No) {
+                return acceptEditCommand ??
+                    (acceptEditCommand = new RelayCommand(obj => {
+                        if (adminClient.GetShiftById(ShiftId) == null) {
+                            MessageBox.Show("Смены с таким номером не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
-                        List<Violation> selectedViolations = new List<Violation>((obj as ICollection).Cast<Violation>());
-                        foreach (var item in selectedViolations) {
-                            Violations.Remove(item);
-                        }
-                    }, obj => {
-                        return (obj as ICollection).Count != 0;
-                    }));
-            }
-        }
-
-        private RelayCommand editCommand;
-        public RelayCommand EditCommand {
-            get {
-                return editCommand ??
-                    (editCommand = new RelayCommand(obj => {
-                        List<Violation> selectedViolations = new List<Violation>((obj as ICollection).Cast<Violation>());
-                        Violation curViolation = selectedViolations.First();
-                        SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.ViolationTypeId).First();
-                        CarNumber = curViolation.CarNumber;
-                        Penalty = curViolation.Penalty;
-                        LocationN = curViolation.LocationN;
-                        LocationE = curViolation.LocationE;
-                        Address = curViolation.Address;
-                        Description = curViolation.Description;
-                        ProtocolId = curViolation.ProtocolId;
-                        if (curViolation.PersonId != NO_LIC_PERSON_ID) {
-                            DriverLicense = CurrentPerson.DriverLicense;
-                            CheckPersonCommand.Execute(null);
-                            NoLic = false;
+                        curViolation.violationTypeId = SelectedViolationType.Id;
+                        curViolation.carNumber = CarNumber;
+                        curViolation.penalty = Penalty;
+                        curViolation.locationN = LocationN;
+                        curViolation.locationE = LocationE;
+                        curViolation.address = Address;
+                        curViolation.description = Description;
+                        curViolation.protocolId = ProtocolId;
+                        curViolation.shiftId = ShiftId;
+                        curViolation.date = ViolationDate;
+                        if (NoLic) {
+                            curViolation.personId = NO_LIC_PERSON_ID;
                         } else {
-                            NoLic = true;
+                            curViolation.personId = userClient.GetPersonByDriverLicense(DriverLicense).id;
                         }
+
+                        userClient.EditViolation(curViolation);
+                        ResetForm();
+
+                        (obj as Window).Close();
                     }, obj => {
-                        return (obj as ICollection).Count == 1;
+                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.Id != 0 || NoLic);
                     }));
             }
         }
@@ -272,7 +286,7 @@ namespace Client.ViewModel {
             get {
                 return checkPersonCommand ??
                     (checkPersonCommand = new RelayCommand(obj => {
-                        MainService.PersonDto personDto = client.GetPersonByDriverLicense(DriverLicense);
+                        MainService.PersonDto personDto = userClient.GetPersonByDriverLicense(DriverLicense);
                         if (personDto == null) {
                             MessageBox.Show($"Человека с водительским удостоверением № {DriverLicense} не существует", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                             ResetPersonProfile();
@@ -282,7 +296,7 @@ namespace Client.ViewModel {
                                 currentPerson, 
                                 typeof (MainService.PersonDto),
                                 currentPerson.GetType());
-                            CurrentPersonsViolations.AddRange(client.GetAllViolations(CurrentPerson.Id)
+                            CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.Id)
                                 .Select(val => Mapper.mapper.Map<Violation>(val))
                                 .ToList());
                         }
@@ -292,58 +306,38 @@ namespace Client.ViewModel {
             }
         }
 
-        private RelayCommand cancelEditCommand;
-        public RelayCommand CancelEditCommand {
-            get {
-                return cancelEditCommand ??
-                    (cancelEditCommand = new RelayCommand(obj => {
-                        ResetForm();
-                        ResetPersonProfile();
-                    }));
-            }
-        }
-
-        private RelayCommand acceptEditCommand;
-        public RelayCommand AcceptEditCommand {
-            get {
-                return acceptEditCommand ??
-                    (acceptEditCommand = new RelayCommand(obj => {
-                        List<Violation> selectedViolations = new List<Violation>((obj as ICollection).Cast<Violation>());
-                        Violation curViolation = selectedViolations.First();
-                        curViolation.ViolationTypeId = SelectedViolationType.Id;
-                        curViolation.CarNumber = CarNumber;
-                        curViolation.Penalty = Penalty;
-                        curViolation.LocationN = LocationN;
-                        curViolation.LocationE = LocationE;
-                        curViolation.Address = Address;
-                        curViolation.Description = Description;
-                        curViolation.ProtocolId = ProtocolId;
-                        if (NoLic) {
-                            curViolation.PersonId = NO_LIC_PERSON_ID;
-                        } else {
-                            curViolation.PersonId = client.GetPersonByDriverLicense(DriverLicense).id;
-                        }
-                        client.EditViolation(Mapper.mapper.Map<MainService.ViolationDto>(curViolation));
-                        ResetForm();
-                    }, obj => {
-                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.Id != 0 || NoLic);
-                    }));
-            }
-        }
         #endregion
 
         #region Form management
-        public ViolationsUserViewModel(Shift shift) : base() {
-            client = new MainService.UserServiceClient();
+        public EditViolationWindowViewModel(ObservableCollection<ViolationDto> col, ViolationDto curViolation) : base() {
+            userClient = new MainService.UserServiceClient();
+            adminClient = new AdminServiceClient(new InstanceContext(new DummyCallbackClass()));
+            this.curViolation = curViolation;
 
-            Violations = new ObservableCollection<Violation>();
-            ViolationTypes = new ReadOnlyCollection<ViolationType>(client
+            Violations = col;
+            ViolationTypes = new ReadOnlyCollection<ViolationType>(userClient
                 .GetAllViolationTypes()
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))
                 .ToList());
             currentPerson = new Person();
-            Violations.CollectionChanged += ViolationCollectionChanged;
-            CurrentShift = shift;
+
+            SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.violationTypeId).SingleOrDefault();
+            CarNumber = curViolation.carNumber;
+            Penalty = curViolation.penalty;
+            LocationN = curViolation.locationN;
+            LocationE = curViolation.locationE;
+            Address = curViolation.address;
+            Description = curViolation.description;
+            ProtocolId = curViolation.protocolId;
+            ShiftId = curViolation.shiftId;
+            ViolationDate = curViolation.date;
+            if (curViolation.personId != NO_LIC_PERSON_ID) {
+                DriverLicense = adminClient.GetPerson(curViolation.personId).driverLicense;
+                CheckPersonCommand.Execute(null);
+                NoLic = false;
+            } else {
+                NoLic = true;
+            }
         }
 
         public void ResetPersonProfile() {
@@ -374,17 +368,17 @@ namespace Client.ViewModel {
                 }
                 string error = "";
                 switch (columnName) {
-                    case "SelectedViolationType":
+                    case nameof(SelectedViolationType):
                         if (SelectedViolationType == null) {
                             error = "Тип нарушения обязателен для заполнения";
                         }
                         break;
-                    case "Address":
+                    case nameof(Address):
                         if (Address == null) {
                             error = "Адрес обязателен для заполнения";
                         }
                         break;
-                    case "CarNumber":
+                    case nameof(CarNumber):
                         if (CarNumber == null) {
                             error = "Номер автомобиля обязателен для заполнения";
                             break;
@@ -397,7 +391,7 @@ namespace Client.ViewModel {
                             }
                         }
                         break;
-                    case "ProtocolId":
+                    case nameof(ProtocolId):
                         if (ProtocolId == null) {
                             error = "Номер протокола обязателен для заполнения";
                             break;
@@ -411,43 +405,10 @@ namespace Client.ViewModel {
                         }
 
                         break;
-                    case "DriverLicense":
-                        if (DriverLicense == null) {
-                            error = "Номер водительского удостоверения обязателен для заполнения";
-                            break;
-                        }
-
-                        foreach (char ch in DriverLicense) {
-                            if (!char.IsLetterOrDigit(ch)) {
-                                if (!NoLic) {
-                                    error = "Номер ВУ может содержать только буквы и цифры";
-                                }
-                                break;
-                            }
-                        }
-
-                        break;
                 }
                 return error;
             }
         }
-
-        public void ViolationCollectionChanged(object obj, NotifyCollectionChangedEventArgs args) {
-            switch (args.Action) {
-                case NotifyCollectionChangedAction.Add:
-                    Violation newItem = (Violation)args.NewItems[0];
-                    MainService.ViolationDto dto = Mapper.mapper.Map<MainService.ViolationDto>(newItem);
-                    MainService.ViolationDto saved = client.AddViolation(dto);
-                    newItem.Id = saved.id;
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (Violation item in args.OldItems) {
-                        client.DeleteViolation(item.Id);
-                    }
-                    break;
-            }
-        }
-
         public string Error => throw new NotImplementedException();
         #endregion
     }

@@ -34,6 +34,12 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         HashSet<UserDto> getAllUsers();
+
+        [OperationContract]
+        List<UserDto> SearchUsers(UserDto searchedUser);
+
+        [OperationContract]
+        void DeleteUser(string login);
         #endregion
 
         #region Employee
@@ -65,6 +71,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         List<ShiftDto> GetAllShiftsByResponsibleId(int responsibleId);
+
+        [OperationContract]
+        ShiftDto GetShiftById(int shiftId);
         #endregion
 
         #region Violation
@@ -73,6 +82,12 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         List<ViolationDto> GetAllViolationsByResponsibleId(int responsibleId);
+
+        [OperationContract]
+        List<ViolationDto> SearchViolationsPenaltyRange(ViolationDto searchedViolation, double penaltyMin, double penaltyMax);
+
+        [OperationContract]
+        List<ViolationDto> SearchViolationsDateRange(ViolationDto searchedViolation, DateTime start, DateTime end);
         #endregion
 
         #region ViolationType
@@ -98,6 +113,20 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void DeletePerson(int id);
+
+        [OperationContract]
+        List<PaymentDto> GetPayments(int personId);
+
+        [OperationContract]
+        PersonDto GetPerson(int personId);
+        #endregion
+
+        #region Payments
+        #endregion
+
+        #region Roles
+        [OperationContract]
+        List<RoleDto> GetAllRoles();
         #endregion
     }
 }

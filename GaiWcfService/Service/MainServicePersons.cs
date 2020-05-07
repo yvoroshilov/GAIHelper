@@ -28,8 +28,18 @@ namespace GaiWcfService.Service {
                 .ToList();
         }
 
-        public PersonDto GetPerson(string driverLicense) {
+        public PersonDto GetPersonByDriverLicense(string driverLicense) {
             return Mapper.mapper.Map<PersonDto>(personRepository.GetPersonByLicense(driverLicense));
+        }
+
+        public PersonDto GetPerson(int personId) {
+            return Mapper.mapper.Map<PersonDto>(personRepository.GetPerson(personId));
+        }
+
+        public List<PaymentDto> GetPayments(int personId) {
+            return personRepository.GetPerson(personId).Payments
+                .Select(val => Mapper.mapper.Map<PaymentDto>(val))
+                .ToList();
         }
     }
 }

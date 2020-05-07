@@ -32,5 +32,19 @@ namespace GaiWcfService.Repository.implementation {
         public HashSet<User> GetAll() {
             return dbEntities.Users.ToHashSet();
         }
+
+        public List<User> SearchUser(User searchedUser) {
+            return dbEntities.Users.Where(val =>
+                (searchedUser.login == default || val.login.Equals(searchedUser.login)) &&
+                (searchedUser.role == default || val.role.Equals(searchedUser.role)))
+                .ToList();
+                
+        }
+
+        public void DeleteUser(string login) {
+            User user = dbEntities.Users.Find(login);
+            dbEntities.Users.Remove(user);
+            dbEntities.SaveChanges();
+        }
     }
 }

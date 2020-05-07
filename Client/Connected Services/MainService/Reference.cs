@@ -841,6 +841,144 @@ namespace Client.MainService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaymentDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.SerializableAttribute()]
+    public partial class PaymentDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isPaidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime paydayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int personIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isPaid {
+            get {
+                return this.isPaidField;
+            }
+            set {
+                if ((this.isPaidField.Equals(value) != true)) {
+                    this.isPaidField = value;
+                    this.RaisePropertyChanged("isPaid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime payday {
+            get {
+                return this.paydayField;
+            }
+            set {
+                if ((this.paydayField.Equals(value) != true)) {
+                    this.paydayField = value;
+                    this.RaisePropertyChanged("payday");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int personId {
+            get {
+                return this.personIdField;
+            }
+            set {
+                if ((this.personIdField.Equals(value) != true)) {
+                    this.personIdField = value;
+                    this.RaisePropertyChanged("personId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleDto", Namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto")]
+    [System.SerializableAttribute()]
+    public partial class RoleDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string roleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string role {
+            get {
+                return this.roleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.roleField, value) != true)) {
+                    this.roleField = value;
+                    this.RaisePropertyChanged("role");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdminService", CallbackContract=typeof(Client.MainService.IAdminServiceCallback))]
     public interface IAdminService {
@@ -886,6 +1024,18 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
         System.Threading.Tasks.Task<Client.MainService.UserDto[]> getAllUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchUsers", ReplyAction="http://tempuri.org/IAdminService/SearchUsersResponse")]
+        Client.MainService.UserDto[] SearchUsers(Client.MainService.UserDto searchedUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchUsers", ReplyAction="http://tempuri.org/IAdminService/SearchUsersResponse")]
+        System.Threading.Tasks.Task<Client.MainService.UserDto[]> SearchUsersAsync(Client.MainService.UserDto searchedUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteUser", ReplyAction="http://tempuri.org/IAdminService/DeleteUserResponse")]
+        void DeleteUser(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteUser", ReplyAction="http://tempuri.org/IAdminService/DeleteUserResponse")]
+        System.Threading.Tasks.Task DeleteUserAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddEmployee", ReplyAction="http://tempuri.org/IAdminService/AddEmployeeResponse")]
         void AddEmployee(Client.MainService.EmployeeDto employee);
@@ -941,6 +1091,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleId", ReplyAction="http://tempuri.org/IAdminService/GetAllShiftsByResponsibleIdResponse")]
         System.Threading.Tasks.Task<Client.MainService.ShiftDto[]> GetAllShiftsByResponsibleIdAsync(int responsibleId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetShiftById", ReplyAction="http://tempuri.org/IAdminService/GetShiftByIdResponse")]
+        Client.MainService.ShiftDto GetShiftById(int shiftId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetShiftById", ReplyAction="http://tempuri.org/IAdminService/GetShiftByIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ShiftDto> GetShiftByIdAsync(int shiftId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolations", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsResponse")]
         Client.MainService.ViolationDto[] SearchViolations(Client.MainService.ViolationDto violation);
         
@@ -952,6 +1108,18 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleId", ReplyAction="http://tempuri.org/IAdminService/GetAllViolationsByResponsibleIdResponse")]
         System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsByResponsibleIdAsync(int responsibleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolationsPenaltyRange", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsPenaltyRangeResponse")]
+        Client.MainService.ViolationDto[] SearchViolationsPenaltyRange(Client.MainService.ViolationDto searchedViolation, double penaltyMin, double penaltyMax);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolationsPenaltyRange", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsPenaltyRangeResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsPenaltyRangeAsync(Client.MainService.ViolationDto searchedViolation, double penaltyMin, double penaltyMax);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolationsDateRange", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsDateRangeResponse")]
+        Client.MainService.ViolationDto[] SearchViolationsDateRange(Client.MainService.ViolationDto searchedViolation, System.DateTime start, System.DateTime end);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolationsDateRange", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsDateRangeResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsDateRangeAsync(Client.MainService.ViolationDto searchedViolation, System.DateTime start, System.DateTime end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
@@ -994,6 +1162,24 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePerson", ReplyAction="http://tempuri.org/IAdminService/DeletePersonResponse")]
         System.Threading.Tasks.Task DeletePersonAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
+        Client.MainService.PaymentDto[] GetPayments(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPerson", ReplyAction="http://tempuri.org/IAdminService/GetPersonResponse")]
+        Client.MainService.PersonDto GetPerson(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPerson", ReplyAction="http://tempuri.org/IAdminService/GetPersonResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllRoles", ReplyAction="http://tempuri.org/IAdminService/GetAllRolesResponse")]
+        Client.MainService.RoleDto[] GetAllRoles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllRoles", ReplyAction="http://tempuri.org/IAdminService/GetAllRolesResponse")]
+        System.Threading.Tasks.Task<Client.MainService.RoleDto[]> GetAllRolesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1087,6 +1273,22 @@ namespace Client.MainService {
             return base.Channel.getAllUsersAsync();
         }
         
+        public Client.MainService.UserDto[] SearchUsers(Client.MainService.UserDto searchedUser) {
+            return base.Channel.SearchUsers(searchedUser);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.UserDto[]> SearchUsersAsync(Client.MainService.UserDto searchedUser) {
+            return base.Channel.SearchUsersAsync(searchedUser);
+        }
+        
+        public void DeleteUser(string login) {
+            base.Channel.DeleteUser(login);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserAsync(string login) {
+            return base.Channel.DeleteUserAsync(login);
+        }
+        
         public void AddEmployee(Client.MainService.EmployeeDto employee) {
             base.Channel.AddEmployee(employee);
         }
@@ -1159,6 +1361,14 @@ namespace Client.MainService {
             return base.Channel.GetAllShiftsByResponsibleIdAsync(responsibleId);
         }
         
+        public Client.MainService.ShiftDto GetShiftById(int shiftId) {
+            return base.Channel.GetShiftById(shiftId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ShiftDto> GetShiftByIdAsync(int shiftId) {
+            return base.Channel.GetShiftByIdAsync(shiftId);
+        }
+        
         public Client.MainService.ViolationDto[] SearchViolations(Client.MainService.ViolationDto violation) {
             return base.Channel.SearchViolations(violation);
         }
@@ -1173,6 +1383,22 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetAllViolationsByResponsibleIdAsync(int responsibleId) {
             return base.Channel.GetAllViolationsByResponsibleIdAsync(responsibleId);
+        }
+        
+        public Client.MainService.ViolationDto[] SearchViolationsPenaltyRange(Client.MainService.ViolationDto searchedViolation, double penaltyMin, double penaltyMax) {
+            return base.Channel.SearchViolationsPenaltyRange(searchedViolation, penaltyMin, penaltyMax);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsPenaltyRangeAsync(Client.MainService.ViolationDto searchedViolation, double penaltyMin, double penaltyMax) {
+            return base.Channel.SearchViolationsPenaltyRangeAsync(searchedViolation, penaltyMin, penaltyMax);
+        }
+        
+        public Client.MainService.ViolationDto[] SearchViolationsDateRange(Client.MainService.ViolationDto searchedViolation, System.DateTime start, System.DateTime end) {
+            return base.Channel.SearchViolationsDateRange(searchedViolation, start, end);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsDateRangeAsync(Client.MainService.ViolationDto searchedViolation, System.DateTime start, System.DateTime end) {
+            return base.Channel.SearchViolationsDateRangeAsync(searchedViolation, start, end);
         }
         
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {
@@ -1230,6 +1456,30 @@ namespace Client.MainService {
         public System.Threading.Tasks.Task DeletePersonAsync(int id) {
             return base.Channel.DeletePersonAsync(id);
         }
+        
+        public Client.MainService.PaymentDto[] GetPayments(int personId) {
+            return base.Channel.GetPayments(personId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId) {
+            return base.Channel.GetPaymentsAsync(personId);
+        }
+        
+        public Client.MainService.PersonDto GetPerson(int personId) {
+            return base.Channel.GetPerson(personId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId) {
+            return base.Channel.GetPersonAsync(personId);
+        }
+        
+        public Client.MainService.RoleDto[] GetAllRoles() {
+            return base.Channel.GetAllRoles();
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.RoleDto[]> GetAllRolesAsync() {
+            return base.Channel.GetAllRolesAsync();
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1266,11 +1516,11 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllViolationTypes", ReplyAction="http://tempuri.org/IUserService/GetAllViolationTypesResponse")]
         System.Threading.Tasks.Task<Client.MainService.ViolationTypeDto[]> GetAllViolationTypesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPerson", ReplyAction="http://tempuri.org/IUserService/GetPersonResponse")]
-        Client.MainService.PersonDto GetPerson(string driverLicense);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPersonByDriverLicense", ReplyAction="http://tempuri.org/IUserService/GetPersonByDriverLicenseResponse")]
+        Client.MainService.PersonDto GetPersonByDriverLicense(string driverLicense);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPerson", ReplyAction="http://tempuri.org/IUserService/GetPersonResponse")]
-        System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(string driverLicense);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPersonByDriverLicense", ReplyAction="http://tempuri.org/IUserService/GetPersonByDriverLicenseResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonByDriverLicenseAsync(string driverLicense);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1340,12 +1590,12 @@ namespace Client.MainService {
             return base.Channel.GetAllViolationTypesAsync();
         }
         
-        public Client.MainService.PersonDto GetPerson(string driverLicense) {
-            return base.Channel.GetPerson(driverLicense);
+        public Client.MainService.PersonDto GetPersonByDriverLicense(string driverLicense) {
+            return base.Channel.GetPersonByDriverLicense(driverLicense);
         }
         
-        public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(string driverLicense) {
-            return base.Channel.GetPersonAsync(driverLicense);
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonByDriverLicenseAsync(string driverLicense) {
+            return base.Channel.GetPersonByDriverLicenseAsync(driverLicense);
         }
     }
 }

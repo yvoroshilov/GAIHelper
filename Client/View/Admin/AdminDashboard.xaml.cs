@@ -15,6 +15,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Client.Util;
+using Client.View.Admin.UsersTabSubWindows;
+using Client.View.Admin.ViolationsTabSubWindows;
+using System.Collections;
+using Client.MainService;
 
 namespace Client.View.Admin {
     /// <summary>
@@ -26,6 +30,8 @@ namespace Client.View.Admin {
         }
 
         private EmployeesViewModel employeesViewModel = new EmployeesViewModel();
+        private UsersViewModel usersViewModel = new UsersViewModel();
+        private ViolationsAdminViewModel violationsAdminViewModel = new ViolationsAdminViewModel();
 
         private void Button_Click(object sender, RoutedEventArgs e) {
 
@@ -35,7 +41,13 @@ namespace Client.View.Admin {
             if (!(e.Source is TabControl)) return;
             switch((e.AddedItems[0] as TabItem).Name) {
                 case "EmployeesTab":
-                    DataContext = employeesViewModel;
+                    EmployeesTabGrid.DataContext = employeesViewModel;
+                    break;
+                case "UsersTab":
+                    UsersTabGrid.DataContext = usersViewModel;
+                    break;
+                case "ViolationsTab":
+                    ViolationsTabGrid.DataContext = violationsAdminViewModel;
                     break;
             }
         }
@@ -44,7 +56,7 @@ namespace Client.View.Admin {
             StackPanel stackPanel = (StackPanel)VisualTreeHelper.GetParent((CheckBox)sender);
             foreach (var item in stackPanel.Children) {
                 if (item != sender) {
-                    (item as Control).IsEnabled = true;
+                    (item as FrameworkElement).IsEnabled = true;
                 }
             }
         }
@@ -53,11 +65,18 @@ namespace Client.View.Admin {
             StackPanel stackPanel = (StackPanel)VisualTreeHelper.GetParent((CheckBox)sender);
             foreach (var item in stackPanel.Children) {
                 if (item != sender) {
-                    (item as Control).IsEnabled = false;
+                    (item as FrameworkElement).IsEnabled = false;
                 }
                 if (item is TextBox) {
-                    string propName = (item as TextBox).GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName;
-                    object source = (item as TextBox).GetBindingExpression(TextBox.TextProperty).DataItem;
+                    TextBox curTextBox = item as TextBox;
+                    string propName = curTextBox.GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName;
+                    object source = curTextBox.GetBindingExpression(TextBox.TextProperty).DataItem;
+                    PropertyInfo propInfo = source.GetType().GetProperty(propName);
+                    propInfo.SetValue(source, Utility.GetDefault(propInfo.PropertyType));
+                } else if (item is ComboBox) {
+                    ComboBox curComboBox = item as ComboBox;
+                    string propName = curComboBox.GetBindingExpression(ComboBox.SelectedItemProperty).ResolvedSourcePropertyName;
+                    object source = curComboBox.GetBindingExpression(ComboBox.SelectedItemProperty).DataItem;
                     PropertyInfo propInfo = source.GetType().GetProperty(propName);
                     propInfo.SetValue(source, Utility.GetDefault(propInfo.PropertyType));
                 }
@@ -69,20 +88,7 @@ namespace Client.View.Admin {
             Application.Current.Shutdown();
         }
 
-        private void EditEmployeeButton_Click(object sender, RoutedEventArgs e) {
-            this.IsEnabled = false;
-            EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(this);
-
-            editEmployeeWindow.Show();
-
-            editEmployeeWindow.DataContext = this.DataContext;
-            editEmployeeWindow.PatronymicField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.NameField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.SurnameField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.HireDateField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.LoginField.ClearValue(TextBox.ToolTipProperty);
-        }
-
+        #region Employees tab
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
             HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
             if (r.VisualHit.GetType() != typeof(ListBoxItem))
@@ -104,6 +110,20 @@ namespace Client.View.Admin {
             }
         }
 
+        private void EditEmployeeButton_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+            EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(this);
+
+            editEmployeeWindow.Show();
+
+            editEmployeeWindow.DataContext = employeesViewModel;
+            editEmployeeWindow.PatronymicField.ClearValue(TextBox.ToolTipProperty);
+            editEmployeeWindow.NameField.ClearValue(TextBox.ToolTipProperty);
+            editEmployeeWindow.SurnameField.ClearValue(TextBox.ToolTipProperty);
+            editEmployeeWindow.HireDateField.ClearValue(TextBox.ToolTipProperty);
+            editEmployeeWindow.LoginField.ClearValue(TextBox.ToolTipProperty);
+        }
+
         private void SeeAddedViolationsButton_Click(object sender, RoutedEventArgs e) {
             EmployeeAddedViolationsWindow window = new EmployeeAddedViolationsWindow();
             window.DataContext = employeesViewModel.EmployeeAddedViolations;
@@ -122,7 +142,39 @@ namespace Client.View.Admin {
 
             addEmployeeWindow.Show();
 
-            addEmployeeWindow.DataContext = this.DataContext;
+            addEmployeeWindow.DataContext = employeesViewModel;
         }
+
+        #endregion
+
+        #region Users tab
+        private void EditUserPasswordBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+            ChangePasswordWindow changePasswordWindow = new ChangePasswordWindow(this); 
+
+            changePasswordWindow.Show();
+
+            changePasswordWindow.DataContext = usersViewModel;
+
+        }
+        #endregion
+
+        #region Violation
+        private void AddViolationBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+            AddViolationWindow addViolationWindow = new AddViolationWindow(violationsAdminViewModel.Violations, this);
+            addViolationWindow.Show();
+        }
+
+        private void EditViolationBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+            EditViolationWindow editViolationWindow = new EditViolationWindow(violationsAdminViewModel.Violations, violationsAdminViewModel.curViolation, this);
+            editViolationWindow.Show();
+        }
+
+        private void ViolationsTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            violationsAdminViewModel.curViolation = e.AddedItems[0] as ViolationDto;
+        }
+        #endregion
     }
 }

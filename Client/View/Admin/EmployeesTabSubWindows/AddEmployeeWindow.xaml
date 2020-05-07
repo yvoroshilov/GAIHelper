@@ -70,7 +70,7 @@
         </StackPanel>
         <StackPanel Margin="10,3.6,9.8,5.4" Orientation="Vertical" x:Name="LoginStackPanel" Grid.Row="1">
             <Label Margin="0,0,-0.2,0" VerticalAlignment="Top" Height="26" Content="Логин"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="15">
                 <Binding Path="LoginAdd" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>

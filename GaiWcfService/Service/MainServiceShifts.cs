@@ -44,5 +44,9 @@ namespace GaiWcfService.Service {
                 .Select(val => Mapper.mapper.Map<ShiftDto>(val))
                 .ToList();
         }
+
+        public ShiftDto GetShiftById(int shiftId) {
+            return Mapper.mapper.Map<ShiftDto>(shiftRepository.GetShift(shiftId));
+        }
     }
 }

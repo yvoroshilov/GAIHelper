@@ -28,6 +28,6 @@ namespace GaiWcfService.Service {
         List<ViolationTypeDto> GetAllViolationTypes();
 
         [OperationContract]
-        PersonDto GetPerson(string driverLicense);
+        PersonDto GetPersonByDriverLicense(string driverLicense);
     }
 }

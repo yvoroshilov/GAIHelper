@@ -118,10 +118,14 @@
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
     <Compile Include="Util\Utility.cs" />
+    <Compile Include="ViewModel\EditViolationWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddViolationWindowViewModel.cs" />
     <Compile Include="ViewModel\EmployeesViewModel.cs" />
     <Compile Include="ViewModel\InputProperty.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\ViolationsAdminViewModel.cs" />
     <Compile Include="ViewModel\ViolationsUserViewModel.cs" />
     <Compile Include="View\Admin\AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
@@ -137,6 +141,15 @@
     </Compile>
     <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml.cs">
       <DependentUpon>EmployeeAddedViolationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UsersTabSubWindows\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ViolationsTabSubWindows\EditViolationWindow.xaml.cs">
+      <DependentUpon>EditViolationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ViolationsTabSubWindows\AddViolationWindow.xaml.cs">
+      <DependentUpon>AddViolationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\PersonsViolations.xaml.cs">
       <DependentUpon>PersonsViolations.xaml</DependentUpon>
@@ -166,6 +179,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\UsersTabSubWindows\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ViolationsTabSubWindows\EditViolationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\ViolationsTabSubWindows\AddViolationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -223,7 +248,13 @@
     <None Include="Connected Services\MainService\Client.MainService.MainServiceSubscribeState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\MainService\Client.MainService.PaymentDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\MainService\Client.MainService.PersonDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MainService\Client.MainService.RoleDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MainService\Client.MainService.ShiftDto.datasource">
