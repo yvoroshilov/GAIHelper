@@ -117,11 +117,6 @@ namespace Client.View.Admin {
             editEmployeeWindow.Show();
 
             editEmployeeWindow.DataContext = employeesViewModel;
-            editEmployeeWindow.PatronymicField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.NameField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.SurnameField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.HireDateField.ClearValue(TextBox.ToolTipProperty);
-            editEmployeeWindow.LoginField.ClearValue(TextBox.ToolTipProperty);
         }
 
         private void SeeAddedViolationsButton_Click(object sender, RoutedEventArgs e) {
@@ -176,6 +171,13 @@ namespace Client.View.Admin {
             if (e.AddedItems.Count == 1) {
                 violationsAdminViewModel.curViolation = e.AddedItems[0] as ViolationDto;
             }
+        }
+
+        private void SeeViolatorProfileBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+            ViolatorProfileWindow violatorProfileWindow = new ViolatorProfileWindow(this);
+            violatorProfileWindow.DataContext = violationsAdminViewModel.CurPerson;
+            violatorProfileWindow.Show();
         }
         #endregion
     }

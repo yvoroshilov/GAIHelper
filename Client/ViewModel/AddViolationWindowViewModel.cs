@@ -75,9 +75,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double locationN;
+        private double? locationN;
         [InputProperty]
-        public double LocationN{
+        public double? LocationN{
             get {
                 return locationN;
             }
@@ -87,9 +87,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double locationE;
+        private double? locationE;
         [InputProperty]
-        public double LocationE {
+        public double? LocationE {
             get {
                 return locationE;
             }

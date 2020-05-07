@@ -2,6 +2,7 @@
 using Client.Model;
 using Client.Util;
 using Client.View.Admin.EmployeesTabSubWindows;
+using Client.View.Admin.ViolationsTabSubWindows;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Windows;
 
 namespace Client.ViewModel {
     public class ViolationsAdminViewModel : ViewModel, IDataErrorInfo {
+
         private const string searchMark = "searchMark";
         private const string addMark = "addMark";
         private AdminServiceClient adminClient;
@@ -22,7 +24,6 @@ namespace Client.ViewModel {
         public ObservableCollection<ViolationDto> Violations { get; }
         public PersonDto profile;
         public ObservableCollection<Object> Payments { get; }
-        public ObservableCollection<ViolationDto> StatisticsViolations { get; }
         public ObservableCollection<ViolationType> ViolationTypes { get; }
         public ViolationDto curViolation;
 
@@ -239,11 +240,22 @@ namespace Client.ViewModel {
         }
         #endregion
 
+        private PersonDto curPerson;
+        public PersonDto CurPerson {
+            get {
+                return curPerson;
+            }
+            set {
+                curPerson = value;
+                OnPropertyChanged();
+            }
+        }
+
         private DateTime statisticsStartDate;
         [InputProperty]
         public DateTime StatisticsStartDate {
             get {
-                return statisticsEndDate;
+                return statisticsStartDate == default ? DateTime.Now : statisticsStartDate;
             }
             set {
                 statisticsStartDate = value;
@@ -255,7 +267,7 @@ namespace Client.ViewModel {
         [InputProperty]
         public DateTime StatisticsEndDate {
             get {
-                return statisticsEndDate;
+                return statisticsEndDate == default ? DateTime.Now : statisticsEndDate;
             }
             set {
                 statisticsEndDate = value;
@@ -285,28 +297,50 @@ namespace Client.ViewModel {
             }
         }
 
-        /*
-        private RelayCommand seeViolatorProfile;
-        public RelayCommand SeeViolatorProfile {
-            get {
-                return seeViolatorProfile;
-            }
-        }
-
-        private RelayCommand seeViolatorPayments;
-        public RelayCommand SeeViolatorPayments {
-            get {
-                return seeViolatorPayments;
-            }
-        }
-
         private RelayCommand seeStatistics;
         public RelayCommand SeeStatistics {
             get {
-                return seeStatistics;
+                return seeStatistics ??
+                    (seeStatistics = new RelayCommand(obj => {
+                        if (StatisticsStartDate.CompareTo(StatisticsEndDate) == 1) {
+                            MessageBox.Show("Начальная дата для просмотра статистики должна быть раньше, чем конечная", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
+                        List<ViolationDto> violations = adminClient.SearchViolationsDateRange(new ViolationDto(), StatisticsStartDate, StatisticsEndDate).ToList();
+
+                        (obj as Window).IsEnabled = false;
+                        StatisticsWindow statisticsWindow = new StatisticsWindow(violations, obj as Window);
+                        statisticsWindow.Show();
+                    }, obj => {
+                        return StatisticsStartDate != default && StatisticsEndDate != default;
+                    }));
             }
         }
-        */
+
+        private RelayCommand seeViolatorProfile;
+        public RelayCommand SeeViolatorProfile {
+            get {
+                return seeViolatorProfile ??
+                    (seeViolatorProfile = new RelayCommand(obj => {
+                        List<ViolationDto> selectedViolations = new List<ViolationDto>((obj as ICollection).Cast<ViolationDto>());
+                        ViolationDto curViolation = selectedViolations.First();
+                        PersonDto curPerson = adminClient.GetPerson(curViolation.personId);
+
+                        CurPerson.actualPenalty = curPerson.actualPenalty;
+                        CurPerson.birthday = curPerson.birthday;
+                        CurPerson.driverLicense = curPerson.driverLicense;
+                        CurPerson.id = curPerson.id;
+                        CurPerson.name = curPerson.name;
+                        CurPerson.paidPenalty = curPerson.paidPenalty;
+                        CurPerson.passportId = curPerson.passportId;
+                        CurPerson.patronymic = curPerson.patronymic;
+                        CurPerson.surname = curPerson.surname;
+                    }, obj => {
+                        return (obj as ICollection).Count == 1;
+                    }));
+            }
+        }
 
         private RelayCommand editCommand;
         public RelayCommand EditCommand {
@@ -383,9 +417,9 @@ namespace Client.ViewModel {
             adminClient = new AdminServiceClient(cntxt);
             userClient = new UserServiceClient();
 
+            CurPerson = new PersonDto();
             Violations = new ObservableCollection<ViolationDto>();
             Payments = new ObservableCollection<object>();
-            StatisticsViolations = new ObservableCollection<ViolationDto>();
             ViolationTypes = new ObservableCollection<ViolationType>(userClient.GetAllViolationTypes()
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))
                 .ToList());
@@ -459,7 +493,7 @@ namespace Client.ViewModel {
                 case nameof(CarNumberSearch):
                     return FindCarNumberCheckbox;
                 default:
-                    return false;
+                    return true;
             }
         }
         #endregion

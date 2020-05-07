@@ -42,14 +42,14 @@
                     <GridViewColumn Header="Начало смены" Width="110">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding start, Converter={StaticResource DateConverter}}"/>
+                                <TextBlock Text="{Binding start}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Конец смены" Width="110">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding end, Converter={StaticResource DateConverter}}"/>
+                                <TextBlock Text="{Binding end}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

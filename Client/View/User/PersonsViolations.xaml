@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding}">
+        <ListView ItemsSource="{Binding}" Foreground="Black">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="№" Width="30">
@@ -56,7 +56,7 @@
                     <GridViewColumn Header="Штраф, р." Width="70">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding penalty}"/>
+                                <TextBlock Text="{Binding penalty, Converter={StaticResource MoneyConverter}}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

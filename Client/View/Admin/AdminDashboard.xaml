@@ -33,7 +33,7 @@
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="74*"/>
                     </Grid.RowDefinitions>
-                    <ListView x:Name="EmployeeTable" Margin="10,10,2.2,8" AlternationCount="2" Grid.ColumnSpan="3" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView x:Name="EmployeeTable" Margin="10,10,2.2,8" AlternationCount="2" Grid.ColumnSpan="3" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">
@@ -178,7 +178,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ListView x:Name="UserTable" Margin="10,10,2.6,9.6" ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView x:Name="UserTable" Margin="10,10,2.6,9.6" ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">
@@ -242,7 +242,7 @@
                     <Button Content="Поиск" VerticalAlignment="Top" Grid.Column="1" Margin="9.4,147,10.4,0" Height="50" Grid.ColumnSpan="2" Command="{Binding SearchCommand}"/>
                     <StackPanel x:Name="LoginAddStackPanel" Margin="9.4,192,10.4,389.6" Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="2">
                         <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Логин"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" MaxLength="15" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <TextBox x:Name="LoginAddTextBox" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" MaxLength="15" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                             <Binding Path="LoginAdd" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
@@ -289,7 +289,7 @@
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="85*"/>
                     </Grid.RowDefinitions>
-                    <ListView x:Name="ViolationsTable" Margin="10,10,4.8,4.6" AlternationCount="2" Grid.ColumnSpan="4" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="ViolationsTable_SelectionChanged" >
+                    <ListView x:Name="ViolationsTable" Margin="10,10,4.8,4.6" AlternationCount="2" Grid.ColumnSpan="4" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="ViolationsTable_SelectionChanged" Foreground="Black" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">
@@ -338,7 +338,7 @@
                                 <GridViewColumn Header="Штраф, р." Width="70">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding penalty}"/>
+                                            <TextBlock Text="{Binding penalty, Converter={StaticResource MoneyConverter}}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -352,7 +352,14 @@
                                 <GridViewColumn Header="Координаты" Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource CoordConverter}}"/>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource CoordConverter}" UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding Path="locationN" UpdateSourceTrigger="PropertyChanged"/>
+                                                        <Binding Path="locationE" UpdateSourceTrigger="PropertyChanged"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -454,16 +461,15 @@
                     <Button Content="Удалить" Grid.Column="4" Margin="10.2,62,1.8,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}"/>
                     <Button x:Name="EditViolationBtn" Content="Изменить" Grid.Column="5" Margin="7.2,62,10.4,0" VerticalAlignment="Top" Height="35" Command="{Binding EditCommand}"  CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="EditViolationBtn_Click"/>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" VerticalAlignment="Top" Grid.Column="4" Margin="10.2,10,10.4,0" Grid.ColumnSpan="2" Height="45" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
-                    <Button Grid.ColumnSpan="2" Content="Посмотреть профиль&#xD;&#xA;        нарушителя" Grid.Column="4" Margin="10.2,105,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeViolatorProfile}"/>
-                    <Button Grid.ColumnSpan="2" Content="Посмотреть выплаты&#xA;        нарушителя" Grid.Column="4" Margin="10.2,150,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeViolatorPayments}"/>
-                    <Button Grid.ColumnSpan="2" Content="Посмотреть статистику&#xA;           за период" Grid.Column="4" Margin="10.2,195,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeStatistics}"/>
-                    <Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="10.2,235,10.4,217.6">
+                    <Button x:Name="SeeViolatorProfileBtn" Grid.ColumnSpan="2" Content="Посмотреть профиль&#xD;&#xA;        нарушителя" Grid.Column="4" Margin="10.2,105,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeViolatorProfile}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="SeeViolatorProfileBtn_Click" />
+                    <Button x:Name="SeeStatisticsBtn" Grid.ColumnSpan="2" Content="Посмотреть статистику&#xA;           за период" Grid.Column="4" Margin="10.2,147,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeStatistics}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"/>
+                    <Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="10.2,187,10.4,265.6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="13*"/>
                             <ColumnDefinition Width="11*"/>
                         </Grid.ColumnDefinitions>
-                        <DatePicker Margin="0,0,10.4,0" VerticalAlignment="Top"/>
-                        <DatePicker Margin="0.6,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <DatePicker Margin="0,0,10.4,0" VerticalAlignment="Top" SelectedDate="{Binding StatisticsStartDate}"/>
+                        <DatePicker Margin="0.6,0,0,0" VerticalAlignment="Top" Grid.Column="1" SelectedDate="{Binding StatisticsEndDate}"/>
                         <Label Content="-" Margin="0,2,0.4,0" VerticalAlignment="Top" Height="22" Padding="3,0,0,0" HorizontalAlignment="Right" Width="10"/>
                     </Grid>
                     <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10.6,0.4,9.8,4.8" Grid.Column="3">

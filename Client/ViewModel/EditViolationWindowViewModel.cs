@@ -204,47 +204,6 @@ namespace Client.ViewModel {
         #endregion
 
         #region Commands
-        private RelayCommand addCommand;
-        public RelayCommand AddCommand {
-            get {
-                return addCommand ?? 
-                    (addCommand = new RelayCommand(obj => {
-                        if (adminClient.GetShiftById(ShiftId) == null) {
-                            MessageBox.Show("Смены с таким номером не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return;
-                        }
-
-
-                        if (!NoLic) {
-                            PersonDto pers = userClient.GetPersonByDriverLicense(DriverLicense);
-                            PersonId = pers.id;
-                        } else {
-                            PersonId = NO_LIC_PERSON_ID;
-                        }
-
-                        ViolationDto violation = new ViolationDto();
-                        violation.violationTypeId = SelectedViolationType.Id;
-                        violation.personId = PersonId;
-                        violation.carNumber = CarNumber;
-                        violation.penalty = Penalty;
-                        violation.locationN = LocationN;
-                        violation.locationE = LocationE;
-                        violation.address = Address;
-                        violation.description = Description;
-                        violation.protocolId = ProtocolId;
-                        violation.shiftId = ShiftId;
-                        violation.date = ViolationDate;
-
-                        userClient.AddViolation(violation);
-                        Violations.Add(violation);
-                        ResetPersonProfile();
-                        ResetForm();
-                    }, (obj) => {
-                        return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.id != 0 || NoLic);
-                    }));
-            }
-        }
-
         private RelayCommand acceptEditCommand;
         public RelayCommand AcceptEditCommand {
             get {

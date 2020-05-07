@@ -14,7 +14,7 @@ using System.Windows;
 
 namespace Client.ViewModel {
     public class EmployeesViewModel : ViewModel, IDataErrorInfo {
-
+        private const string addMark = "addMark";
         private AdminServiceClient client;
         public ObservableCollection<EmployeeDto> Employees { get; }
         public ObservableCollection<ViolationDto> EmployeeAddedViolations { get; }
@@ -73,7 +73,7 @@ namespace Client.ViewModel {
         [InputProperty]
         public DateTime HireDate {
             get {
-                return hireDate;
+                return hireDate == default ? DateTime.Now : hireDate;
             }
             set {
                 hireDate = value;   
@@ -195,7 +195,7 @@ namespace Client.ViewModel {
         [InputProperty(true, Mark = "addMark")]
         public DateTime HireDateAdd {
             get {
-                return hireDateAdd;
+                return hireDateAdd == default ? DateTime.Now : hireDateAdd;
             }
             set {
                 hireDateAdd = value;
@@ -252,6 +252,12 @@ namespace Client.ViewModel {
                             return;
                         }
 
+                        if (client.GetEmployeeByUserLogin(LoginAdd) != null) {
+                            MessageBox.Show("Под логином " + LoginAdd + " уже зарегистрирован пользователь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            LoginAdd = "";
+                            return;
+                        }
+
                         EmployeeDto addedEmpl = new EmployeeDto();
                         addedEmpl.certificateId = CertificateIdAdd;
                         addedEmpl.userLogin = LoginAdd;
@@ -265,7 +271,7 @@ namespace Client.ViewModel {
 
                         (obj as Window).Close();
                     }, obj => {
-                        return IsAllRequiredFieldsFilled("addMark");
+                        return IsAllRequiredFieldsFilled("addMark") && IsAllInputPropsValid(this, addMark);
                     }));
             }
         }
@@ -422,26 +428,21 @@ namespace Client.ViewModel {
         public string this[string columnName] {
             get {
                 string error = "";
+
+                if (!GetAssociatedCheckBox(columnName)) return "";
+
+                var props = GetProps().ToList();
+                var prop = props.Where(val => val.Name == columnName).Single();
+                if (prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true) {
+                    return "Это поле должно быть заполнено";
+                }
+
                 switch (columnName) {
                     case nameof(CertificateIdAdd):
-                        if (CertificateIdAdd == default) {
-                            error = "Номер удостоверения должен быть заполнен";
-                            break;
-                        }
                         break;
                     case nameof(CertificateId):
-                        if (CertificateId == default && FindCertificateIdFieldCheckbox) {
-                            error = "Номер удостоверения должен быть заполнен";
-                            break;
-                        }
                         break;
                     case nameof(LoginAdd):
-                        if (!FindLoginCheckbox) break;
-                        if (LoginAdd == default) {
-                            error = "Логин должен быть заполнен";
-                            break;
-                        }
-
                         foreach (var chr in LoginAdd) {
                             if (!Char.IsLetterOrDigit(chr)) {
                                 error = "Логин может содержать только буквы и цифры";
@@ -450,12 +451,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Login):
-                        if (!FindLoginCheckbox) break;
-                        if (Login == default && FindLoginCheckbox) {
-                            error = "Логин должен быть заполнен";
-                            break;
-                        }
-
                         foreach (var chr in Login) {
                             if (!Char.IsLetterOrDigit(chr)) {
                                 error = "Логин может содержать только буквы и цифры";
@@ -464,12 +459,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(SurnameAdd):
-                        if (!FindSurnameCheckbox) break;
-                        if (SurnameAdd == default) {
-                            error = "Фамилия должна быть заполнена";
-                            break;
-                        }
-
                         foreach (var chr in SurnameAdd) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Фамилия может содержать только буквы";
@@ -478,12 +467,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Surname):
-                        if (!FindSurnameCheckbox) break;
-                        if (Surname == default && FindSurnameCheckbox) {
-                            error = "Фамилия должна быть заполнена";
-                            break;
-                        }
-
                         foreach (var chr in Surname) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Фамилия может содержать только буквы";
@@ -492,12 +475,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(NameAdd):
-                        if (!FindNameCheckbox) break;
-                        if (NameAdd == default) {
-                            error = "Имя должено быть заполнено";
-                            break;
-                        }
-
                         foreach (var chr in NameAdd) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Имя может содержать только буквы";
@@ -506,12 +483,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Name):
-                        if (!FindNameCheckbox) break;
-                        if (Name == default && FindNameCheckbox) {
-                            error = "Имя должено быть заполнено";
-                            break;
-                        }
-
                         foreach (var chr in Name) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Имя может содержать только буквы";
@@ -520,12 +491,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(PatronymicAdd):
-                        if (!FindPatronymicCheckbox) break;
-                        if (PatronymicAdd == default) {
-                            error = "Фамилия должен быть заполнена";
-                            break;
-                        }
-
                         foreach (var chr in PatronymicAdd) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Фамилия может содержать только буквы";
@@ -534,12 +499,6 @@ namespace Client.ViewModel {
                         }
                         break;
                     case nameof(Patronymic):
-                        if (!FindPatronymicCheckbox) break;
-                        if (Patronymic == default && FindPatronymicCheckbox) {
-                            error = "Фамилия должен быть заполнена";
-                            break;
-                        }
-
                         foreach (var chr in Patronymic) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Фамилия может содержать только буквы";
@@ -549,6 +508,25 @@ namespace Client.ViewModel {
                         break;
                 }
                 return error;
+            }
+        }
+
+        private bool GetAssociatedCheckBox(string columnName) {
+            switch (columnName) {
+                case nameof(CertificateId):
+                    return FindCertificateIdFieldCheckbox;
+                case nameof(Login):
+                    return FindLoginCheckbox;
+                case nameof(HireDate):
+                    return FindHireDateCheckbox;
+                case nameof(Name):
+                    return FindNameCheckbox;
+                case nameof(Surname):
+                    return FindSurnameCheckbox;
+                case nameof(Patronymic):
+                    return FindPatronymicCheckbox;
+                default:
+                    return true;
             }
         }
 

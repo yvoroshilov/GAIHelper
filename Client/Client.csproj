@@ -49,6 +49,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -106,6 +112,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Converter\FIOConverter.cs" />
+    <Compile Include="Resources\Converter\MoneyConverter.cs" />
     <Compile Include="Resources\Rule\DoubleValidationRule.cs" />
     <Compile Include="Resources\Converter\CoordConverter.cs" />
     <Compile Include="Resources\Converter\DateConverter.cs" />
@@ -140,6 +147,9 @@
     <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml.cs">
       <DependentUpon>EmployeeAddedViolationsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\ViolationsTabSubWindows\StatisticsWindow.xaml.cs">
+      <DependentUpon>StatisticsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\UsersTabSubWindows\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -148,6 +158,9 @@
     </Compile>
     <Compile Include="View\Admin\ViolationsTabSubWindows\AddViolationWindow.xaml.cs">
       <DependentUpon>AddViolationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ViolationsTabSubWindows\ViolatorProfileWindow.xaml.cs">
+      <DependentUpon>ViolatorProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\PersonsViolations.xaml.cs">
       <DependentUpon>PersonsViolations.xaml</DependentUpon>
@@ -180,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Admin\ViolationsTabSubWindows\StatisticsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\UsersTabSubWindows\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +208,10 @@
     <Page Include="View\Admin\ViolationsTabSubWindows\AddViolationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\ViolationsTabSubWindows\ViolatorProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\User\UserDashboard.xaml">
       <SubType>Designer</SubType>

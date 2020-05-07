@@ -8,18 +8,15 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Client.Resources.Converter {
-    public class CoordConverter : IValueConverter {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (value != null) {
-                ViolationDto val = value as ViolationDto;
-                return val.locationN + "N " + val.locationE + "E";
-            } else {
-                return null;
-            }
+    public class CoordConverter : IMultiValueConverter {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
+            double? coordN = values[0] as double?;
+            double? coordE = values[1] as double?;
+            return Math.Round(coordN ?? 0, 5) + "N " + Math.Round(coordE ?? 0, 5) + "E";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
-            return value;
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
         }
     }
 }

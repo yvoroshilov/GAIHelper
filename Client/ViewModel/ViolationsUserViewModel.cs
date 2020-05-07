@@ -246,7 +246,7 @@ namespace Client.ViewModel {
                 return editCommand ??
                     (editCommand = new RelayCommand(obj => {
                         List<ViolationDto> selectedViolations = new List<ViolationDto>((obj as ICollection).Cast<ViolationDto>());
-                        ViolationDto curViolation = selectedViolations.First();
+                        ViolationDto curViolation = selectedViolations.SingleOrDefault();
                         SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.violationTypeId).First();
                         CarNumber = curViolation.carNumber;
                         Penalty = curViolation.penalty;
