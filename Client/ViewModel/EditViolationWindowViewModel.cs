@@ -326,6 +326,14 @@ namespace Client.ViewModel {
                 }
                 string error = "";
                 switch (columnName) {
+                    case nameof(LocationE):
+                    case nameof(LocationN):
+                        if ((LocationN == null && LocationE != null) ||
+                            (LocationE == null && LocationN != null)) {
+                            error = "Координаты должны быть либо указаны оба либо не указаны оба";
+                            break;
+                        }
+                        break;
                     case nameof(SelectedViolationType):
                         if (SelectedViolationType == null) {
                             error = "Тип нарушения обязателен для заполнения";

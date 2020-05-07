@@ -25,6 +25,7 @@ namespace Client.View.User {
             DataContext = new ViolationsUserViewModel(shift);
             dataContext = (ViolationsUserViewModel)DataContext;
             dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;
+            dataContext.PropertyChanged += OnLocationChanged;
             InitializeComponent();
         }
 
@@ -131,6 +132,14 @@ namespace Client.View.User {
                 ShowPersonsViolationsBtn.IsEnabled = false;
             } else {
                 ShowPersonsViolationsBtn.IsEnabled = true;
+            }
+        }
+
+        private void OnLocationChanged(object sender, PropertyChangedEventArgs args) {
+            if (args.PropertyName == nameof(dataContext.LocationN) ||
+                args.PropertyName == nameof(dataContext.LocationE)) {
+                CoordNField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                CoordEField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             }
         }
 

@@ -28,6 +28,7 @@ namespace Client.View.Admin.ViolationsTabSubWindows {
             dataContext = (AddViolationWindowViewModel)DataContext;
             dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;
             this.parent = parent;
+            dataContext.PropertyChanged += OnLocationChanged;
             InitializeComponent();
         }
 
@@ -109,6 +110,14 @@ namespace Client.View.Admin.ViolationsTabSubWindows {
                 ShowPersonsViolationsBtn.IsEnabled = false;
             } else {
                 ShowPersonsViolationsBtn.IsEnabled = true;
+            }
+        }
+
+        private void OnLocationChanged(object sender, PropertyChangedEventArgs args) {
+            if (args.PropertyName == nameof(dataContext.LocationN) ||
+                args.PropertyName == nameof(dataContext.LocationE)) {
+                CoordNField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                CoordEField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             }
         }
 

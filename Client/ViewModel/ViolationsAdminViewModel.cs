@@ -13,6 +13,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel {
     public class ViolationsAdminViewModel : ViewModel, IDataErrorInfo {
@@ -26,6 +27,7 @@ namespace Client.ViewModel {
         public ObservableCollection<Object> Payments { get; }
         public ObservableCollection<ViolationType> ViolationTypes { get; }
         public ViolationDto curViolation;
+        public MapImageGrabber mapImageGrabber;
 
         #region InputFields
         private string protocolIdSearch;
@@ -276,6 +278,23 @@ namespace Client.ViewModel {
         }
 
         #region Command
+        private RelayCommand showMapCommand;
+        public RelayCommand ShowMapCommand {
+            get {
+                return showMapCommand ?? 
+                    (showMapCommand = new RelayCommand(async obj => {
+                        List<ViolationDto> selectedViolations = new List<ViolationDto>((obj as ICollection).Cast<ViolationDto>());
+                        ViolationDto curViolation = selectedViolations.Single();
+                        BitmapImage img = await mapImageGrabber.GetImage(curViolation);
+                        
+                        MapWindow mapWindow = new MapWindow(img);
+                        mapWindow.Show();
+                    }, obj => {
+                        return (obj as ICollection).Count == 1;
+                    }));
+            }
+        }
+
         private RelayCommand deleteCommand;
         public RelayCommand DeleteCommand {
             get {
@@ -416,6 +435,7 @@ namespace Client.ViewModel {
             InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
             adminClient = new AdminServiceClient(cntxt);
             userClient = new UserServiceClient();
+            mapImageGrabber = new MapImageGrabber();
 
             CurPerson = new PersonDto();
             Violations = new ObservableCollection<ViolationDto>();
@@ -467,6 +487,8 @@ namespace Client.ViewModel {
                             }
                         }
                         break;
+                    case nameof(DescriptionSearch):
+                        break;
                 }
                 return error;
             }
@@ -492,6 +514,8 @@ namespace Client.ViewModel {
                     return FindProtocolIdCheckbox;
                 case nameof(CarNumberSearch):
                     return FindCarNumberCheckbox;
+                case nameof(DescriptionSearch):
+                    return FindDescriptionCheckbox;
                 default:
                     return true;
             }

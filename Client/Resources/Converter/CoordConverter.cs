@@ -12,7 +12,7 @@ namespace Client.Resources.Converter {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
             double? coordN = values[0] as double?;
             double? coordE = values[1] as double?;
-            return Math.Round(coordN ?? 0, 5) + "N " + Math.Round(coordE ?? 0, 5) + "E";
+            return Math.Round(coordN ?? 0, 6) + "N " + Math.Round(coordE ?? 0, 6) + "E";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {

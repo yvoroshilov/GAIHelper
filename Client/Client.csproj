@@ -117,11 +117,13 @@
     <Compile Include="Resources\Converter\CoordConverter.cs" />
     <Compile Include="Resources\Converter\DateConverter.cs" />
     <Compile Include="Resources\Converter\DescriptionConverter.cs" />
-    <Compile Include="Resources\Converter\FloatConverter.cs" />
     <Compile Include="Resources\Converter\IndexOfConverter.cs" />
     <Compile Include="Resources\Converter\ViolationToTextConverter.cs" />
+    <Compile Include="Util\MapImageGrabber.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
+    <Compile Include="Util\UrlBuilder\IMapQueryBuilder.cs" />
+    <Compile Include="Util\UrlBuilder\MapQueryBuilder.cs" />
     <Compile Include="Util\Utility.cs" />
     <Compile Include="ViewModel\EditViolationWindowViewModel.cs" />
     <Compile Include="ViewModel\AddViolationWindowViewModel.cs" />
@@ -146,6 +148,9 @@
     </Compile>
     <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml.cs">
       <DependentUpon>EmployeeAddedViolationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ViolationsTabSubWindows\MapWindow.xaml.cs">
+      <DependentUpon>MapWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\ViolationsTabSubWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
@@ -192,6 +197,10 @@
     <Page Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\ViolationsTabSubWindows\MapWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\ViolationsTabSubWindows\StatisticsWindow.xaml">
       <SubType>Designer</SubType>

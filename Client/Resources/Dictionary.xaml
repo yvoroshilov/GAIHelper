@@ -6,7 +6,6 @@
     <converter:DateConverter x:Key="DateConverter" />
     <converter:CoordConverter x:Key="CoordConverter" />
     <converter:DescriptionConverter x:Key="DescriptionConverter" />
-    <converter:FloatConverter x:Key="FloatConverter" />
     <converter:MoneyConverter x:Key="MoneyConverter"/>
 
     <BitmapImage UriSource="Img/img.png" x:Key="SamplePersonImage" />
