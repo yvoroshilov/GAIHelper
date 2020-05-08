@@ -397,7 +397,6 @@ namespace Client.ViewModel {
                             break;
                         }
                         break;
-
                     case nameof(SelectedViolationType):
                         if (SelectedViolationType == null) {
                             error = "Тип нарушения обязателен для заполнения";

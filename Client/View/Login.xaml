@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="Вход в систему" Height="501.3" Width="648.1" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Вход в систему" Height="501.3" Width="648.1" ResizeMode="NoResize" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

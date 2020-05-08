@@ -8,7 +8,7 @@
         xmlns:res="clr-namespace:Client.Resources.Rule"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.View.User.UserDashboard"
         mc:Ignorable="d"
-        Title="Dashboard" Height="751.4" Width="1028.175" MinHeight="600" MinWidth="800" SizeChanged="Window_SizeChanged" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
+        Title="Dashboard" Height="751.4" Width="1028.175" MinHeight="600" MinWidth="800" SizeChanged="Window_SizeChanged" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

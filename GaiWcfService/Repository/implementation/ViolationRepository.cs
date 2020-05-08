@@ -59,6 +59,7 @@ namespace GaiWcfService.Repository.implementation {
         public List<Violation> SearchViolations(Violation searchedViolation) {
             return dbEntities.Violations.Where(val =>
                 (searchedViolation.violation_type_id == default || val.violation_type_id.Equals(searchedViolation.violation_type_id)) &&
+                (searchedViolation.shift_id == default || val.shift_id == searchedViolation.shift_id) &&
                 (searchedViolation.car_number == default || val.car_number == searchedViolation.car_number) &&
                 (searchedViolation.protocol_id == default || val.protocol_id == searchedViolation.protocol_id) &&
                 (searchedViolation.date == default || val.date == searchedViolation.date) &&

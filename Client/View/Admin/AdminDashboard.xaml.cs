@@ -93,17 +93,16 @@ namespace Client.View.Admin {
             HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
             if (r.VisualHit.GetType() != typeof(ListBoxItem))
                 EmployeeTable.UnselectAll();
+                UserTable.UnselectAll();
+                ViolationsTable.UnselectAll();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
             switch (e.Key) {
                 case Key.Escape:
                     EmployeeTable.UnselectAll();
-                    break;
-                case Key.Delete:
-                    if (employeesViewModel.DeleteCommand.CanExecute(EmployeeTable.SelectedItems)) {
-                        employeesViewModel.DeleteCommand.Execute(EmployeeTable.SelectedItems);
-                    }
+                    UserTable.UnselectAll();
+                    ViolationsTable.UnselectAll();
                     break;
                 default:
                     break;

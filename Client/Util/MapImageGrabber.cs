@@ -25,7 +25,11 @@ namespace Client.Util {
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("image/jpg"));
         }
         // zoom = -1 - auto
-        public async Task<BitmapImage> GetImage(int zoom, params ViolationDto[] violations) {
+        public async Task<BitmapImage> GetImage(int zoom, int[] numbers, params ViolationDto[] violations) {
+            if (numbers.Length != violations.Length) {
+                throw new Exception("Array lengths do not match");
+            }
+
             List<ViolationDto> violationsList = violations.ToList();
             IMapQueryBuilder localBuilder = mapUriBuilder;
             for (int i = 0; i < violationsList.Count; i++) {
@@ -34,8 +38,12 @@ namespace Client.Util {
                     throw new Exception("Both coordinates must be not null");
                 }
 
+                if (numbers[i] < 1 || numbers[i] > 99) {
+                    throw new Exception("Number must be bigger than 1 and less than 99");
+                }
+
                 localBuilder = localBuilder
-                    .WithPointer(violation.latitude.Value, violation.longitude.Value, (i + 1).ToString());
+                    .WithPointer(violation.longitude.Value, violation.latitude.Value, numbers[i].ToString());
             }
             if (zoom != -1) {
                 localBuilder = localBuilder.WithZoom(zoom);

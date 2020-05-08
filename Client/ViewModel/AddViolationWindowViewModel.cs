@@ -300,7 +300,7 @@ namespace Client.ViewModel {
         #endregion
 
         #region Util
-        private const int MAX_INIT_VALID_FIELDS = 7;
+        private const int MAX_INIT_VALID_FIELDS = 11;
         private int initValid = 0;
 
         public string this[string columnName] {
@@ -312,10 +312,26 @@ namespace Client.ViewModel {
                 string error = "";
                 switch (columnName) {
                     case nameof(Longitude):
+                        if ((Latitude == null && Longitude != null) ||
+                            (Longitude == null && Latitude != null)) {
+                            error = "Координаты должны быть либо указаны оба либо не указаны оба";
+                            break;
+                        }
+
+                        if (Longitude != null && (Longitude > 180 || Longitude < -180)) {
+                            error = "Долгота должна быть в пределах от -180 до 180 градусов";
+                            break;
+                        }
+                        break;
                     case nameof(Latitude):
                         if ((Latitude == null && Longitude != null) ||
                             (Longitude == null && Latitude != null)) {
                             error = "Координаты должны быть либо указаны оба либо не указаны оба";
+                            break;
+                        }
+
+                        if (Latitude != null && (Latitude > 90 || Longitude < -90)) {
+                            error = "Широта должна быть в пределах от -90 до 90 градусов";
                             break;
                         }
                         break;

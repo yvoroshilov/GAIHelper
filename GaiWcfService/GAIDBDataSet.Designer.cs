@@ -2484,15 +2484,15 @@ namespace GaiWcfService {
             
             private global::System.Data.DataColumn columnpenalty;
             
-            private global::System.Data.DataColumn columnlatitude;
-            
-            private global::System.Data.DataColumn columnlongitude;
-            
             private global::System.Data.DataColumn columnaddress;
             
             private global::System.Data.DataColumn columndescription;
             
             private global::System.Data.DataColumn columnshift_id;
+            
+            private global::System.Data.DataColumn columnlatitude;
+            
+            private global::System.Data.DataColumn columnlongitude;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -2585,22 +2585,6 @@ namespace GaiWcfService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn latitudeColumn {
-                get {
-                    return this.columnlatitude;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn longitudeColumn {
-                get {
-                    return this.columnlongitude;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn addressColumn {
                 get {
                     return this.columnaddress;
@@ -2620,6 +2604,22 @@ namespace GaiWcfService {
             public global::System.Data.DataColumn shift_idColumn {
                 get {
                     return this.columnshift_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn latitudeColumn {
+                get {
+                    return this.columnlatitude;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn longitudeColumn {
+                get {
+                    return this.columnlongitude;
                 }
             }
             
@@ -2660,7 +2660,7 @@ namespace GaiWcfService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ViolationsRow AddViolationsRow(ViolationTypesRow parentViolationTypesRowByFK_Violations_ViolationsTypes, PersonsRow parentPersonsRowByFK_Violations_Violators, string car_number, string protocol_id, System.DateTime date, float penalty, float latitude, float longitude, string address, string description, ShiftsRow parentShiftsRowByFK_Violations_Shifts) {
+            public ViolationsRow AddViolationsRow(ViolationTypesRow parentViolationTypesRowByFK_Violations_ViolationsTypes, PersonsRow parentPersonsRowByFK_Violations_Violators, string car_number, string protocol_id, System.DateTime date, float penalty, string address, string description, ShiftsRow parentShiftsRowByFK_Violations_Shifts, float latitude, float longitude) {
                 ViolationsRow rowViolationsRow = ((ViolationsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2670,11 +2670,11 @@ namespace GaiWcfService {
                         protocol_id,
                         date,
                         penalty,
-                        latitude,
-                        longitude,
                         address,
                         description,
-                        null};
+                        null,
+                        latitude,
+                        longitude};
                 if ((parentViolationTypesRowByFK_Violations_ViolationsTypes != null)) {
                     columnValuesArray[1] = parentViolationTypesRowByFK_Violations_ViolationsTypes[0];
                 }
@@ -2682,7 +2682,7 @@ namespace GaiWcfService {
                     columnValuesArray[2] = parentPersonsRowByFK_Violations_Violators[0];
                 }
                 if ((parentShiftsRowByFK_Violations_Shifts != null)) {
-                    columnValuesArray[11] = parentShiftsRowByFK_Violations_Shifts[0];
+                    columnValuesArray[9] = parentShiftsRowByFK_Violations_Shifts[0];
                 }
                 rowViolationsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViolationsRow);
@@ -2720,11 +2720,11 @@ namespace GaiWcfService {
                 this.columnprotocol_id = base.Columns["protocol_id"];
                 this.columndate = base.Columns["date"];
                 this.columnpenalty = base.Columns["penalty"];
-                this.columnlatitude = base.Columns["latitude"];
-                this.columnlongitude = base.Columns["longitude"];
                 this.columnaddress = base.Columns["address"];
                 this.columndescription = base.Columns["description"];
                 this.columnshift_id = base.Columns["shift_id"];
+                this.columnlatitude = base.Columns["latitude"];
+                this.columnlongitude = base.Columns["longitude"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2744,16 +2744,16 @@ namespace GaiWcfService {
                 base.Columns.Add(this.columndate);
                 this.columnpenalty = new global::System.Data.DataColumn("penalty", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpenalty);
-                this.columnlatitude = new global::System.Data.DataColumn("latitude", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnlatitude);
-                this.columnlongitude = new global::System.Data.DataColumn("longitude", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnlongitude);
                 this.columnaddress = new global::System.Data.DataColumn("address", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnaddress);
                 this.columndescription = new global::System.Data.DataColumn("description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescription);
                 this.columnshift_id = new global::System.Data.DataColumn("shift_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnshift_id);
+                this.columnlatitude = new global::System.Data.DataColumn("latitude", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlatitude);
+                this.columnlongitude = new global::System.Data.DataColumn("longitude", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlongitude);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -3862,38 +3862,6 @@ namespace GaiWcfService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public float latitude {
-                get {
-                    try {
-                        return ((float)(this[this.tableViolations.latitudeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'latitude\' in table \'Violations\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableViolations.latitudeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public float longitude {
-                get {
-                    try {
-                        return ((float)(this[this.tableViolations.longitudeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'longitude\' in table \'Violations\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableViolations.longitudeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string address {
                 get {
                     return ((string)(this[this.tableViolations.addressColumn]));
@@ -3932,6 +3900,38 @@ namespace GaiWcfService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public float latitude {
+                get {
+                    try {
+                        return ((float)(this[this.tableViolations.latitudeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'latitude\' in table \'Violations\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViolations.latitudeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public float longitude {
+                get {
+                    try {
+                        return ((float)(this[this.tableViolations.longitudeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'longitude\' in table \'Violations\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViolations.longitudeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ShiftsRow ShiftsRow {
                 get {
                     return ((ShiftsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Violations_Shifts"])));
@@ -3965,6 +3965,18 @@ namespace GaiWcfService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsdescriptionNull() {
+                return this.IsNull(this.tableViolations.descriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetdescriptionNull() {
+                this[this.tableViolations.descriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IslatitudeNull() {
                 return this.IsNull(this.tableViolations.latitudeColumn);
             }
@@ -3985,18 +3997,6 @@ namespace GaiWcfService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetlongitudeNull() {
                 this[this.tableViolations.longitudeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsdescriptionNull() {
-                return this.IsNull(this.tableViolations.descriptionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetdescriptionNull() {
-                this[this.tableViolations.descriptionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6803,15 +6803,15 @@ SELECT id, responsible_id, start, [end] FROM Shifts WHERE (id = @id)";
             tableMapping.ColumnMappings.Add("protocol_id", "protocol_id");
             tableMapping.ColumnMappings.Add("date", "date");
             tableMapping.ColumnMappings.Add("penalty", "penalty");
-            tableMapping.ColumnMappings.Add("latitude", "latitude");
-            tableMapping.ColumnMappings.Add("longitude", "longitude");
             tableMapping.ColumnMappings.Add("address", "address");
             tableMapping.ColumnMappings.Add("description", "description");
             tableMapping.ColumnMappings.Add("shift_id", "shift_id");
+            tableMapping.ColumnMappings.Add("latitude", "latitude");
+            tableMapping.ColumnMappings.Add("longitude", "longitude");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Violations] WHERE (([id] = @Original_id) AND ([violation_type_id] = @Original_violation_type_id) AND ([person_id] = @Original_person_id) AND ([car_number] = @Original_car_number) AND ([date] = @Original_date) AND ([penalty] = @Original_penalty) AND ((@IsNull_latitude = 1 AND [latitude] IS NULL) OR ([latitude] = @Original_latitude)) AND ((@IsNull_longitude = 1 AND [longitude] IS NULL) OR ([longitude] = @Original_longitude)) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ([shift_id] = @Original_shift_id))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Violations] WHERE (([id] = @Original_id) AND ([violation_type_id] = @Original_violation_type_id) AND ([person_id] = @Original_person_id) AND ([car_number] = @Original_car_number) AND ([date] = @Original_date) AND ([penalty] = @Original_penalty) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ([shift_id] = @Original_shift_id) AND ((@IsNull_latitude = 1 AND [latitude] IS NULL) OR ([latitude] = @Original_latitude)) AND ((@IsNull_longitude = 1 AND [longitude] IS NULL) OR ([longitude] = @Original_longitude)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_violation_type_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "violation_type_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6819,17 +6819,17 @@ SELECT id, responsible_id, start, [end] FROM Shifts WHERE (id = @id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_car_number", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "car_number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_penalty", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "penalty", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_description", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_shift_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "shift_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_latitude", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_longitude", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_description", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_shift_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "shift_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Violations] ([violation_type_id], [person_id], [car_number], [protocol_id], [date], [penalty], [latitude], [longitude], [address], [description], [shift_id]) VALUES (@violation_type_id, @person_id, @car_number, @protocol_id, @date, @penalty, @latitude, @longitude, @address, @description, @shift_id);
-SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty, latitude, longitude, address, description, shift_id FROM Violations WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Violations] ([violation_type_id], [person_id], [car_number], [protocol_id], [date], [penalty], [address], [description], [shift_id], [latitude], [longitude]) VALUES (@violation_type_id, @person_id, @car_number, @protocol_id, @date, @penalty, @address, @description, @shift_id, @latitude, @longitude);
+SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty, address, description, shift_id, latitude, longitude FROM Violations WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@violation_type_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "violation_type_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@person_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "person_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6837,15 +6837,15 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@protocol_id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "protocol_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@penalty", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "penalty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@address", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shift_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "shift_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Violations] SET [violation_type_id] = @violation_type_id, [person_id] = @person_id, [car_number] = @car_number, [protocol_id] = @protocol_id, [date] = @date, [penalty] = @penalty, [latitude] = @latitude, [longitude] = @longitude, [address] = @address, [description] = @description, [shift_id] = @shift_id WHERE (([id] = @Original_id) AND ([violation_type_id] = @Original_violation_type_id) AND ([person_id] = @Original_person_id) AND ([car_number] = @Original_car_number) AND ([date] = @Original_date) AND ([penalty] = @Original_penalty) AND ((@IsNull_latitude = 1 AND [latitude] IS NULL) OR ([latitude] = @Original_latitude)) AND ((@IsNull_longitude = 1 AND [longitude] IS NULL) OR ([longitude] = @Original_longitude)) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ([shift_id] = @Original_shift_id));
-SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty, latitude, longitude, address, description, shift_id FROM Violations WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Violations] SET [violation_type_id] = @violation_type_id, [person_id] = @person_id, [car_number] = @car_number, [protocol_id] = @protocol_id, [date] = @date, [penalty] = @penalty, [address] = @address, [description] = @description, [shift_id] = @shift_id, [latitude] = @latitude, [longitude] = @longitude WHERE (([id] = @Original_id) AND ([violation_type_id] = @Original_violation_type_id) AND ([person_id] = @Original_person_id) AND ([car_number] = @Original_car_number) AND ([date] = @Original_date) AND ([penalty] = @Original_penalty) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ([shift_id] = @Original_shift_id) AND ((@IsNull_latitude = 1 AND [latitude] IS NULL) OR ([latitude] = @Original_latitude)) AND ((@IsNull_longitude = 1 AND [longitude] IS NULL) OR ([longitude] = @Original_longitude)));
+SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty, address, description, shift_id, latitude, longitude FROM Violations WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@violation_type_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "violation_type_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@person_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "person_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6853,24 +6853,24 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@protocol_id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "protocol_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@penalty", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "penalty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@address", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shift_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "shift_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_violation_type_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "violation_type_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_person_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "person_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_car_number", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "car_number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_penalty", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "penalty", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_description", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_shift_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "shift_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_latitude", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitude", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_longitude", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitude", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitude", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_description", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_shift_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "shift_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6888,7 +6888,7 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty, " +
-                "latitude, longitude, address, description, shift_id FROM dbo.Violations";
+                "address, description, shift_id, latitude, longitude FROM Violations";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6949,7 +6949,7 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_violation_type_id, int Original_person_id, string Original_car_number, System.DateTime Original_date, float Original_penalty, global::System.Nullable<float> Original_latitude, global::System.Nullable<float> Original_longitude, string Original_description, int Original_shift_id) {
+        public virtual int Delete(int Original_id, string Original_violation_type_id, int Original_person_id, string Original_car_number, System.DateTime Original_date, float Original_penalty, string Original_description, int Original_shift_id, global::System.Nullable<float> Original_latitude, global::System.Nullable<float> Original_longitude) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_violation_type_id == null)) {
                 throw new global::System.ArgumentNullException("Original_violation_type_id");
@@ -6966,31 +6966,31 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             }
             this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_date));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((float)(Original_penalty));
-            if ((Original_latitude.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((float)(Original_latitude.Value));
-            }
-            else {
+            if ((Original_description == null)) {
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_description));
+            }
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_shift_id));
+            if ((Original_latitude.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((float)(Original_latitude.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             if ((Original_longitude.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((float)(Original_longitude.Value));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((float)(Original_longitude.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((Original_description == null)) {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_description));
-            }
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_shift_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7011,7 +7011,7 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string violation_type_id, int person_id, string car_number, string protocol_id, System.DateTime date, float penalty, global::System.Nullable<float> latitude, global::System.Nullable<float> longitude, string address, string description, int shift_id) {
+        public virtual int Insert(string violation_type_id, int person_id, string car_number, string protocol_id, System.DateTime date, float penalty, string address, string description, int shift_id, global::System.Nullable<float> latitude, global::System.Nullable<float> longitude) {
             if ((violation_type_id == null)) {
                 throw new global::System.ArgumentNullException("violation_type_id");
             }
@@ -7033,31 +7033,31 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(date));
             this.Adapter.InsertCommand.Parameters[5].Value = ((float)(penalty));
-            if ((latitude.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((float)(latitude.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((longitude.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((float)(longitude.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
             if ((address == null)) {
                 throw new global::System.ArgumentNullException("address");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(address));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(address));
             }
             if ((description == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(description));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(description));
             }
-            this.Adapter.InsertCommand.Parameters[10].Value = ((int)(shift_id));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((int)(shift_id));
+            if ((latitude.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((float)(latitude.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((longitude.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((float)(longitude.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7085,21 +7085,21 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
                     string protocol_id, 
                     System.DateTime date, 
                     float penalty, 
-                    global::System.Nullable<float> latitude, 
-                    global::System.Nullable<float> longitude, 
                     string address, 
                     string description, 
                     int shift_id, 
+                    global::System.Nullable<float> latitude, 
+                    global::System.Nullable<float> longitude, 
                     int Original_id, 
                     string Original_violation_type_id, 
                     int Original_person_id, 
                     string Original_car_number, 
                     System.DateTime Original_date, 
                     float Original_penalty, 
-                    global::System.Nullable<float> Original_latitude, 
-                    global::System.Nullable<float> Original_longitude, 
                     string Original_description, 
                     int Original_shift_id, 
+                    global::System.Nullable<float> Original_latitude, 
+                    global::System.Nullable<float> Original_longitude, 
                     int id) {
             if ((violation_type_id == null)) {
                 throw new global::System.ArgumentNullException("violation_type_id");
@@ -7122,31 +7122,31 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(date));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((float)(penalty));
-            if ((latitude.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((float)(latitude.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((longitude.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((float)(longitude.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
             if ((address == null)) {
                 throw new global::System.ArgumentNullException("address");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(address));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(address));
             }
             if ((description == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(description));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(description));
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(shift_id));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(shift_id));
+            if ((latitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((float)(latitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((longitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((float)(longitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_id));
             if ((Original_violation_type_id == null)) {
                 throw new global::System.ArgumentNullException("Original_violation_type_id");
@@ -7163,31 +7163,31 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
             }
             this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_date));
             this.Adapter.UpdateCommand.Parameters[16].Value = ((float)(Original_penalty));
-            if ((Original_latitude.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((float)(Original_latitude.Value));
-            }
-            else {
+            if ((Original_description == null)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_description));
+            }
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_shift_id));
+            if ((Original_latitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((float)(Original_latitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
             if ((Original_longitude.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((float)(Original_longitude.Value));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((float)(Original_longitude.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            if ((Original_description == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_description));
-            }
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_shift_id));
             this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7216,22 +7216,22 @@ SELECT id, violation_type_id, person_id, car_number, protocol_id, date, penalty,
                     string protocol_id, 
                     System.DateTime date, 
                     float penalty, 
-                    global::System.Nullable<float> latitude, 
-                    global::System.Nullable<float> longitude, 
                     string address, 
                     string description, 
                     int shift_id, 
+                    global::System.Nullable<float> latitude, 
+                    global::System.Nullable<float> longitude, 
                     int Original_id, 
                     string Original_violation_type_id, 
                     int Original_person_id, 
                     string Original_car_number, 
                     System.DateTime Original_date, 
                     float Original_penalty, 
-                    global::System.Nullable<float> Original_latitude, 
-                    global::System.Nullable<float> Original_longitude, 
                     string Original_description, 
-                    int Original_shift_id) {
-            return this.Update(violation_type_id, person_id, car_number, protocol_id, date, penalty, latitude, longitude, address, description, shift_id, Original_id, Original_violation_type_id, Original_person_id, Original_car_number, Original_date, Original_penalty, Original_latitude, Original_longitude, Original_description, Original_shift_id, Original_id);
+                    int Original_shift_id, 
+                    global::System.Nullable<float> Original_latitude, 
+                    global::System.Nullable<float> Original_longitude) {
+            return this.Update(violation_type_id, person_id, car_number, protocol_id, date, penalty, address, description, shift_id, latitude, longitude, Original_id, Original_violation_type_id, Original_person_id, Original_car_number, Original_date, Original_penalty, Original_description, Original_shift_id, Original_latitude, Original_longitude, Original_id);
         }
     }
     

@@ -10,11 +10,11 @@ using System.Windows.Data;
 namespace Client.Resources.Converter {
     public class CoordConverter : IMultiValueConverter {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
-            double? coordN = values[0] as double?;
-            double? coordE = values[1] as double?;
-            if (coordN != null && coordE != null) {
-                return Math.Round(coordN.Value, 6) + "N " + Math.Round(coordE.Value, 6) + "E";
-            } else if (coordN == null && coordE == null) {
+            double? latitude = values[0] as double?;
+            double? longitude = values[1] as double?;
+            if (latitude != null && longitude != null) {
+                return Math.Round(latitude.Value, 6) + " " + Math.Round(longitude.Value, 6) + "";
+            } else if (latitude == null && longitude == null) {
                 return null;
             } else {
                 throw new Exception("One of coords is null");

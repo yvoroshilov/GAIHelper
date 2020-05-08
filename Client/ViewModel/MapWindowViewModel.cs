@@ -54,7 +54,11 @@ namespace Client.ViewModel {
                     (acceptCommand = new RelayCommand(async obj => {
                         List<ViolationDto> selectedViolations = new List<ViolationDto>((obj as ICollection).Cast<ViolationDto>());
                         if (selectedViolations.Count > 0) {
-                            BitmapImage result = await mapImageGrabber.GetImage(Zoom, selectedViolations.ToArray());
+                            int[] numbers = new int[selectedViolations.Count];
+                            for (int i = 0; i < numbers.Length; i++) {
+                                numbers[i] = Violations.IndexOf(selectedViolations[i]) + 1;
+                            }
+                            BitmapImage result = await mapImageGrabber.GetImage(Zoom, numbers, selectedViolations.ToArray());
                             if (result != null) {
                                 Src = result;
                             } else {
