@@ -112,6 +112,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Converter\FIOConverter.cs" />
+    <Compile Include="Resources\Converter\ListViewAndParentConverter.cs" />
     <Compile Include="Resources\Converter\MoneyConverter.cs" />
     <Compile Include="Resources\Rule\DoubleValidationRule.cs" />
     <Compile Include="Resources\Converter\CoordConverter.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="ViewModel\EmployeesViewModel.cs" />
     <Compile Include="ViewModel\InputProperty.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MapWindowViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViolationsAdminViewModel.cs" />
@@ -340,6 +342,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Img\map_not_found.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Img\choose_map.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

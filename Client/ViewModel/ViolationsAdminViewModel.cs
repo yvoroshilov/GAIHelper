@@ -282,15 +282,24 @@ namespace Client.ViewModel {
         public RelayCommand ShowMapCommand {
             get {
                 return showMapCommand ?? 
-                    (showMapCommand = new RelayCommand(async obj => {
-                        List<ViolationDto> selectedViolations = new List<ViolationDto>((obj as ICollection).Cast<ViolationDto>());
-                        ViolationDto curViolation = selectedViolations.Single();
-                        BitmapImage img = await mapImageGrabber.GetImage(curViolation);
+                    (showMapCommand = new RelayCommand(obj => {
+                        ICollection selected = (((ICollection, Window))obj).Item1;
+                        Window parent = (((ICollection, Window))obj).Item2;
+
+                        List<ViolationDto> selectedViolations = new List<ViolationDto>(selected.Cast<ViolationDto>());
+
+                        foreach (var item in selectedViolations) {
+                            if (item.locationN == null || item.locationE == null) {
+                                MessageBox.Show("В одном или нескольких выбранных нарушениях отсуствуют координаты", "ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+                        }
                         
-                        MapWindow mapWindow = new MapWindow(img);
+                        parent.IsEnabled = false;
+                        MapWindow mapWindow = new MapWindow(selectedViolations, parent);
                         mapWindow.Show();
                     }, obj => {
-                        return (obj as ICollection).Count == 1;
+                        return (((ICollection, Window))obj).Item1.Count > 0;
                     }));
             }
         }

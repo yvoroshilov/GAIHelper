@@ -19,7 +19,7 @@ namespace Client.Util.UrlBuilder {
         public MapQueryBuilder(string baseUri) {
             uri = new UriBuilder(baseUri);
             uri.Query += "l=map";
-            AppendToQuery($"size={SIZE}");
+            AppendParameter($"size={SIZE}");
             BASE_URI = uri.ToString();
         }
 
@@ -30,7 +30,15 @@ namespace Client.Util.UrlBuilder {
         }
 
         public IMapQueryBuilder WithPointer(double coordN, double coordE, string content) {
-            AppendToQuery($"pt={coordN},{coordE},{POINTER_STYLE}{POINTER_COLOR}{POINTER_SIZE}{content}");
+            if (!CanAppendPointer()) {
+                throw new Exception("Pointer cannot be appended");
+            }
+            
+            if (uri.Query.IndexOf("&pt") == -1) {
+                AppendParameter($"pt={coordN},{coordE},{POINTER_STYLE}{POINTER_COLOR}{POINTER_SIZE}{content}");
+            } else {
+                Append($"~{coordN},{coordE},{POINTER_STYLE}{POINTER_COLOR}{POINTER_SIZE}{content}");
+            }
             return this;
         }
 
@@ -38,12 +46,26 @@ namespace Client.Util.UrlBuilder {
             if (zoom < 0 || zoom > 23) {
                 throw new Exception("Size should be within 0 and 23");
             }
-            AppendToQuery($"z={zoom}");
+
+            AppendParameter($"z={zoom}");
             return this;
         }
 
-        private void AppendToQuery(string content) {
-            uri.Query = uri.Query.Substring(1) + "&" + content;
+        private void AppendParameter(string content) {
+            Append("&" + content);
+        }
+
+        private void Append(string content) {
+            uri.Query = uri.Query.Substring(1) + content;
+        }
+
+        private bool CanAppendPointer() {
+            int indexOfPtParam = uri.Query.IndexOf("&pt");
+            if (indexOfPtParam == -1) {
+                return true;
+            } else {
+                return indexOfPtParam == uri.Query.LastIndexOf("&pt");
+            }
         }
     }
 }

@@ -24,22 +24,32 @@ namespace Client.Util {
             httpClient.BaseAddress = new Uri(BASE_URL);
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("image/jpg"));
         }
+        // zoom = -1 - auto
+        public async Task<BitmapImage> GetImage(int zoom, params ViolationDto[] violations) {
+            List<ViolationDto> violationsList = violations.ToList();
+            IMapQueryBuilder localBuilder = mapUriBuilder;
+            for (int i = 0; i < violationsList.Count; i++) {
+                ViolationDto violation = violationsList[i];
+                if (violation.locationN == null || violation.locationE == null) {
+                    throw new Exception("Both coordinates must be not null");
+                }
 
-        public async Task<BitmapImage> GetImage(ViolationDto violation, int zoom = 16) {
-            if (violation.locationN == null || violation.locationE == null) {
-                throw new Exception("Both coordinates must be not null");
+                localBuilder = localBuilder
+                    .WithPointer(violation.locationN.Value, violation.locationE.Value, (i + 1).ToString());
+            }
+            if (zoom != -1) {
+                localBuilder = localBuilder.WithZoom(zoom);
             }
 
-            Uri query = mapUriBuilder
-                .WithPointer(violation.locationN.Value, violation.locationE.Value, "9")
-                .WithZoom(zoom)
-                .Build();
+            Uri query = localBuilder.Build();
             HttpResponseMessage response = (await httpClient.GetAsync(query));
             byte[] img = null;
             if (response.IsSuccessStatusCode) {
-                 img = response.Content.ReadAsByteArrayAsync().Result;
+                 img = await response.Content.ReadAsByteArrayAsync();
+                return LoadImage(img);
+            } else {
+                return null;
             }
-            return LoadImage(img);
         }
 
         private BitmapImage LoadImage(byte[] imageData) {

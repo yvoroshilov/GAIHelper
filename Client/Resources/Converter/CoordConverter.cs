@@ -12,7 +12,13 @@ namespace Client.Resources.Converter {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
             double? coordN = values[0] as double?;
             double? coordE = values[1] as double?;
-            return Math.Round(coordN ?? 0, 6) + "N " + Math.Round(coordE ?? 0, 6) + "E";
+            if (coordN != null && coordE != null) {
+                return Math.Round(coordN.Value, 6) + "N " + Math.Round(coordE.Value, 6) + "E";
+            } else if (coordN == null && coordE == null) {
+                return null;
+            } else {
+                throw new Exception("One of coords is null");
+            }
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {

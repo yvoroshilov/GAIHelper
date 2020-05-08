@@ -4,4 +4,5 @@
                     xmlns:converter="clr-namespace:Client.Resources.Converter">
 
     <converter:FIOConverter x:Key="FIOConverter" />
+    <converter:ListViewAndParentConverter x:Key="ListViewAndParentConverter"/>
 </ResourceDictionary>

@@ -180,5 +180,6 @@ namespace Client.View.Admin {
             violatorProfileWindow.Show();
         }
         #endregion
+
     }
 }
