@@ -75,26 +75,26 @@ namespace Client.ViewModel {
             }
         }
 
-        private double? locationN;
+        private double? latitude;
         [InputProperty]
-        public double? LocationN{
+        public double? Latitude{
             get {
-                return locationN;
+                return latitude;
             }
             set {
-                locationN = value;
+                latitude = value;
                 OnPropertyChanged();
             }
         }
 
-        private double? locationE;
+        private double? longitude;
         [InputProperty]
-        public double? LocationE {
+        public double? Longitude {
             get {
-                return locationE;
+                return longitude;
             }
             set {
-                locationE = value;
+                longitude = value;
                 OnPropertyChanged();
             }
         }
@@ -217,8 +217,8 @@ namespace Client.ViewModel {
                         curViolation.violationTypeId = SelectedViolationType.Id;
                         curViolation.carNumber = CarNumber;
                         curViolation.penalty = Penalty;
-                        curViolation.locationN = LocationN;
-                        curViolation.locationE = LocationE;
+                        curViolation.latitude = Latitude;
+                        curViolation.longitude = Longitude;
                         curViolation.address = Address;
                         curViolation.description = Description;
                         curViolation.protocolId = ProtocolId;
@@ -282,8 +282,8 @@ namespace Client.ViewModel {
             SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.violationTypeId).SingleOrDefault();
             CarNumber = curViolation.carNumber;
             Penalty = curViolation.penalty;
-            LocationN = curViolation.locationN;
-            LocationE = curViolation.locationE;
+            Latitude = curViolation.latitude;
+            Longitude = curViolation.longitude;
             Address = curViolation.address;
             Description = curViolation.description;
             ProtocolId = curViolation.protocolId;
@@ -326,10 +326,10 @@ namespace Client.ViewModel {
                 }
                 string error = "";
                 switch (columnName) {
-                    case nameof(LocationE):
-                    case nameof(LocationN):
-                        if ((LocationN == null && LocationE != null) ||
-                            (LocationE == null && LocationN != null)) {
+                    case nameof(Longitude):
+                    case nameof(Latitude):
+                        if ((Latitude == null && Longitude != null) ||
+                            (Longitude == null && Latitude != null)) {
                             error = "Координаты должны быть либо указаны оба либо не указаны оба";
                             break;
                         }

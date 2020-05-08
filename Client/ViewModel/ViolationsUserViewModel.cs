@@ -79,26 +79,26 @@ namespace Client.ViewModel {
             }
         }
 
-        private double? locationN;
+        private double? latitude;
         [InputProperty]
-        public double? LocationN{
+        public double? Latitude{
             get {
-                return locationN;
+                return latitude;
             }
             set {
-                locationN = value;
+                latitude = value;
                 OnPropertyChanged();
             }
         }
 
-        private double? locationE;
+        private double? longitude;
         [InputProperty]
-        public double? LocationE {
+        public double? Longitude {
             get {
-                return locationE;
+                return longitude;
             }
             set {
-                locationE = value;
+                longitude = value;
                 OnPropertyChanged();
             }
         }
@@ -203,8 +203,8 @@ namespace Client.ViewModel {
                         violation.carNumber = CarNumber;
                         violation.date = Date;
                         violation.penalty = Penalty;
-                        violation.locationN = LocationN;
-                        violation.locationE = LocationE;
+                        violation.latitude = Latitude;
+                        violation.longitude = Longitude;
                         violation.address = Address;
                         violation.description = Description;
                         violation.protocolId = ProtocolId;
@@ -249,8 +249,8 @@ namespace Client.ViewModel {
                         SelectedViolationType = ViolationTypes.Where(val => val.Id == curViolation.violationTypeId).First();
                         CarNumber = curViolation.carNumber;
                         Penalty = curViolation.penalty;
-                        LocationN = curViolation.locationN;
-                        LocationE = curViolation.locationE;
+                        Latitude = curViolation.latitude;
+                        Longitude = curViolation.longitude;
                         Address = curViolation.address;
                         Description = curViolation.description;
                         ProtocolId = curViolation.protocolId;
@@ -312,8 +312,8 @@ namespace Client.ViewModel {
                         curViolation.violationTypeId = SelectedViolationType.Id;
                         curViolation.carNumber = CarNumber;
                         curViolation.penalty = Penalty;
-                        curViolation.locationN = LocationN;
-                        curViolation.locationE = LocationE;
+                        curViolation.latitude = Latitude;
+                        curViolation.longitude = Longitude;
                         curViolation.address = Address;
                         curViolation.description = Description;
                         curViolation.protocolId = ProtocolId;
@@ -373,14 +373,31 @@ namespace Client.ViewModel {
                 }
                 string error = "";
                 switch (columnName) {
-                    case nameof(LocationE):
-                    case nameof(LocationN):
-                        if ((LocationN == null && LocationE != null) ||
-                            (LocationE == null && LocationN != null)) {
+                    case nameof(Longitude):
+                        if ((Latitude == null && Longitude != null) ||
+                            (Longitude == null && Latitude != null)) {
                             error = "Координаты должны быть либо указаны оба либо не указаны оба";
                             break;
                         }
+
+                        if (Longitude != null && (Longitude > 180 || Longitude < -180)) {
+                            error = "Долгота должна быть в пределах от -180 до 180 градусов";
+                            break;
+                        }
                         break;
+                    case nameof(Latitude):
+                        if ((Latitude == null && Longitude != null) ||
+                            (Longitude == null && Latitude != null)) {
+                            error = "Координаты должны быть либо указаны оба либо не указаны оба";
+                            break;
+                        }
+
+                        if (Latitude != null && (Latitude > 90 || Longitude < -90)) {
+                            error = "Широта должна быть в пределах от -90 до 90 градусов";
+                            break;
+                        }
+                        break;
+
                     case nameof(SelectedViolationType):
                         if (SelectedViolationType == null) {
                             error = "Тип нарушения обязателен для заполнения";

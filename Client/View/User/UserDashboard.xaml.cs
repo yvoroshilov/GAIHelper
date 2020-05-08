@@ -136,8 +136,8 @@ namespace Client.View.User {
         }
 
         private void OnLocationChanged(object sender, PropertyChangedEventArgs args) {
-            if (args.PropertyName == nameof(dataContext.LocationN) ||
-                args.PropertyName == nameof(dataContext.LocationE)) {
+            if (args.PropertyName == nameof(dataContext.Latitude) ||
+                args.PropertyName == nameof(dataContext.Longitude)) {
                 CoordNField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
                 CoordEField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             }

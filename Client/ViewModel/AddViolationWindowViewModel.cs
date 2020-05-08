@@ -75,26 +75,26 @@ namespace Client.ViewModel {
             }
         }
 
-        private double? locationN;
+        private double? latitude;
         [InputProperty]
-        public double? LocationN{
+        public double? Latitude{
             get {
-                return locationN;
+                return latitude;
             }
             set {
-                locationN = value;
+                latitude = value;
                 OnPropertyChanged();
             }
         }
 
-        private double? locationE;
+        private double? longitude;
         [InputProperty]
-        public double? LocationE {
+        public double? Longitude {
             get {
-                return locationE;
+                return longitude;
             }
             set {
-                locationE = value;
+                longitude = value;
                 OnPropertyChanged();
             }
         }
@@ -226,8 +226,8 @@ namespace Client.ViewModel {
                         violation.personId = PersonId;
                         violation.carNumber = CarNumber;
                         violation.penalty = Penalty;
-                        violation.locationN = LocationN;
-                        violation.locationE = LocationE;
+                        violation.latitude = Latitude;
+                        violation.longitude = Longitude;
                         violation.address = Address;
                         violation.description = Description;
                         violation.protocolId = ProtocolId;
@@ -311,10 +311,10 @@ namespace Client.ViewModel {
                 }
                 string error = "";
                 switch (columnName) {
-                    case nameof(LocationE):
-                    case nameof(LocationN):
-                        if ((LocationN == null && LocationE != null) ||
-                            (LocationE == null && LocationN != null)) {
+                    case nameof(Longitude):
+                    case nameof(Latitude):
+                        if ((Latitude == null && Longitude != null) ||
+                            (Longitude == null && Latitude != null)) {
                             error = "Координаты должны быть либо указаны оба либо не указаны оба";
                             break;
                         }

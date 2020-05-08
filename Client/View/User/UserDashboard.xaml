@@ -127,7 +127,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="CoordNField" Height="24" VerticalAlignment="Top" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10" Margin="0,24,16.2,0" >
-                    <Binding Path="LocationN" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <Binding Path="Latitude" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>
                             <res:DoubleValidationRule />
@@ -136,7 +136,7 @@
                 </TextBox>
                 <Label Content="Широта" Margin="0,0,4,0" Height="24" VerticalAlignment="Top"/>
                 <TextBox x:Name="CoordEField" Margin="0.8,24,14.4,0" Padding="0,3,0,0" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontSize="10" Grid.Column="1">
-                    <Binding Path="LocationE" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <Binding Path="Longitude" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>
                             <res:DoubleValidationRule />

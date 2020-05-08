@@ -355,8 +355,8 @@
                                             <TextBlock TextTrimming="CharacterEllipsis">
                                                 <TextBlock.Text>
                                                     <MultiBinding Converter="{StaticResource CoordConverter}" UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding Path="locationN" UpdateSourceTrigger="PropertyChanged"/>
-                                                        <Binding Path="locationE" UpdateSourceTrigger="PropertyChanged"/>
+                                                        <Binding Path="latitude" UpdateSourceTrigger="PropertyChanged"/>
+                                                        <Binding Path="longitude" UpdateSourceTrigger="PropertyChanged"/>
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>

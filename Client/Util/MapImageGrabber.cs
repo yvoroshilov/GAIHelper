@@ -30,12 +30,12 @@ namespace Client.Util {
             IMapQueryBuilder localBuilder = mapUriBuilder;
             for (int i = 0; i < violationsList.Count; i++) {
                 ViolationDto violation = violationsList[i];
-                if (violation.locationN == null || violation.locationE == null) {
+                if (violation.latitude == null || violation.longitude == null) {
                     throw new Exception("Both coordinates must be not null");
                 }
 
                 localBuilder = localBuilder
-                    .WithPointer(violation.locationN.Value, violation.locationE.Value, (i + 1).ToString());
+                    .WithPointer(violation.latitude.Value, violation.longitude.Value, (i + 1).ToString());
             }
             if (zoom != -1) {
                 localBuilder = localBuilder.WithZoom(zoom);

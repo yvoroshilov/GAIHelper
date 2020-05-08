@@ -30,10 +30,10 @@ namespace GaiWcfService.Dto{
         public double penalty;
 
         [DataMember]
-        public double? locationN;
+        public double? latitude;
 
         [DataMember]
-        public double? locationE;
+        public double? longitude;
 
         [DataMember]
         public string address;

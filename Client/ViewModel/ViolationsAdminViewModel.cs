@@ -289,7 +289,7 @@ namespace Client.ViewModel {
                         List<ViolationDto> selectedViolations = new List<ViolationDto>(selected.Cast<ViolationDto>());
 
                         foreach (var item in selectedViolations) {
-                            if (item.locationN == null || item.locationE == null) {
+                            if (item.latitude == null || item.longitude == null) {
                                 MessageBox.Show("В одном или нескольких выбранных нарушениях отсуствуют координаты", "ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }

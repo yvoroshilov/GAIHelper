@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
         Title="Вход в систему" Height="501.3" Width="648.1" ResizeMode="NoResize" KeyDown="Window_KeyDown">
-    <Grid Margin="0,0,-0.4,0" RenderTransformOrigin="0.502,0.445">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="../Resources/AdminDashboardDict.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="0,0,-0.4,0" RenderTransformOrigin="0.502,0.445" Background="{StaticResource BackgroundPrimary}">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="237" Width="199" Margin="221,105,222,130" FocusManager.FocusedElement="{Binding ElementName=LoginField}">
             <Label Content="Вход в систему" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,9,0" Height="50" Width="175" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
             <TextBox HorizontalAlignment="Center" Name="LoginField" Height="30" VerticalAlignment="Top" Width="170" Margin="17,78,12,0" Padding="0,5,0,0" FontSize="14" Text="{Binding Login}" />

@@ -363,10 +363,10 @@ namespace Client.MainService {
         private int idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<double> locationEField;
+        private System.Nullable<double> latitudeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<double> locationNField;
+        private System.Nullable<double> longitudeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double penaltyField;
@@ -459,27 +459,27 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<double> locationE {
+        public System.Nullable<double> latitude {
             get {
-                return this.locationEField;
+                return this.latitudeField;
             }
             set {
-                if ((this.locationEField.Equals(value) != true)) {
-                    this.locationEField = value;
-                    this.RaisePropertyChanged("locationE");
+                if ((this.latitudeField.Equals(value) != true)) {
+                    this.latitudeField = value;
+                    this.RaisePropertyChanged("latitude");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<double> locationN {
+        public System.Nullable<double> longitude {
             get {
-                return this.locationNField;
+                return this.longitudeField;
             }
             set {
-                if ((this.locationNField.Equals(value) != true)) {
-                    this.locationNField = value;
-                    this.RaisePropertyChanged("locationN");
+                if ((this.longitudeField.Equals(value) != true)) {
+                    this.longitudeField = value;
+                    this.RaisePropertyChanged("longitude");
                 }
             }
         }

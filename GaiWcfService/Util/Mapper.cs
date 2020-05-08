@@ -36,8 +36,6 @@ namespace GaiWcfService.Util {
                     .ForMember("personId", expr => expr.MapFrom("person_id"))
                     .ForMember("carNumber", expr => expr.MapFrom("car_number"))
                     .ForMember("protocolId", expr => expr.MapFrom("protocol_id"))
-                    .ForMember("locationN", expr => expr.MapFrom("location_n"))
-                    .ForMember("locationE", expr => expr.MapFrom("location_e"))
                     .ForMember("shiftId", expr => expr.MapFrom("shift_id"))
                     .ReverseMap()
                     .ForMember("Person", expr => expr.Ignore())

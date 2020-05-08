@@ -32,8 +32,8 @@ namespace GaiWcfService.Repository.implementation {
             editedViolation.car_number = newViolation.car_number;
             editedViolation.date = newViolation.date;
             editedViolation.penalty = newViolation.penalty;
-            editedViolation.location_n = newViolation.location_n;
-            editedViolation.location_e = newViolation.location_e;
+            editedViolation.latitude = newViolation.latitude;
+            editedViolation.longitude = newViolation.longitude;
             editedViolation.address = newViolation.address;
             editedViolation.description = newViolation.description;
 
@@ -63,8 +63,8 @@ namespace GaiWcfService.Repository.implementation {
                 (searchedViolation.protocol_id == default || val.protocol_id == searchedViolation.protocol_id) &&
                 (searchedViolation.date == default || val.date == searchedViolation.date) &&
                 (searchedViolation.penalty == default || val.penalty == searchedViolation.penalty) &&
-                (searchedViolation.location_e == default || val.location_e == searchedViolation.location_e) &&
-                (searchedViolation.location_n == default || val.location_n == searchedViolation.location_n) &&
+                (searchedViolation.longitude == default || val.longitude == searchedViolation.longitude) &&
+                (searchedViolation.latitude == default || val.latitude == searchedViolation.latitude) &&
                 (searchedViolation.address == default || val.address.Contains(searchedViolation.address)) &&
                 (searchedViolation.description == default || val.description.Contains(searchedViolation.description)))
                 .ToList();
