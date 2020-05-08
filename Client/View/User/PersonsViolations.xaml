@@ -10,10 +10,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="../../Resources/AdminDashboardDict.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+
+    <Grid Background="{StaticResource BackgroundPrimary}">
         <ListView ItemsSource="{Binding}" Foreground="Black">
             <ListView.View>
                 <GridView>

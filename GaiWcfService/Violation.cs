@@ -21,8 +21,8 @@ namespace GaiWcfService
         public string protocol_id { get; set; }
         public System.DateTime date { get; set; }
         public float penalty { get; set; }
-        public Nullable<float> location_n { get; set; }
-        public Nullable<float> location_e { get; set; }
+        public Nullable<float> latitude { get; set; }
+        public Nullable<float> longitude { get; set; }
         public string address { get; set; }
         public string description { get; set; }
         public int shift_id { get; set; }

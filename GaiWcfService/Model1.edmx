@@ -73,8 +73,8 @@
           <Property Name="protocol_id" Type="nvarchar(max)" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
           <Property Name="penalty" Type="real" Nullable="false" />
-          <Property Name="location_n" Type="real" />
-          <Property Name="location_e" Type="real" />
+          <Property Name="latitude" Type="real" />
+          <Property Name="longitude" Type="real" />
           <Property Name="address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="255" />
           <Property Name="shift_id" Type="int" Nullable="false" />
@@ -337,8 +337,8 @@
           <Property Name="protocol_id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="penalty" Type="Single" Nullable="false" />
-          <Property Name="location_n" Type="Single" />
-          <Property Name="location_e" Type="Single" />
+          <Property Name="latitude" Type="Single" />
+          <Property Name="longitude" Type="Single" />
           <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="shift_id" Type="Int32" Nullable="false" />
@@ -522,8 +522,8 @@
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="location_e" ColumnName="location_e" />
-                <ScalarProperty Name="location_n" ColumnName="location_n" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
                 <ScalarProperty Name="penalty" ColumnName="penalty" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="protocol_id" ColumnName="protocol_id" />

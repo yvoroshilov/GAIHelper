@@ -10,6 +10,7 @@
 
     <BitmapImage UriSource="Img/img.png" x:Key="SamplePersonImage" />
 
+
     <ControlTemplate x:Key="ValidationTemplate">
         <Grid>
             <Ellipse Margin="0,2,2,0" Fill="Red" Opacity="0.8" Width="10" Height="10"
@@ -18,6 +19,10 @@
             <AdornedElementPlaceholder />
         </Grid>
     </ControlTemplate>
+
+    <SolidColorBrush Color="#FFE5E5E5" x:Key="BackgroundPrimary"/>
+
+    <SolidColorBrush Color="#FFBCBCBC" x:Key="BackgroundSecondary"/>
 
     <Style TargetType="{x:Type ListViewItem}" x:Key="ListViewItemStyle">
         <Style.Triggers>

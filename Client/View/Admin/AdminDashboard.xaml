@@ -17,10 +17,10 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="{StaticResource BackgroundSecondary}">
         <TabControl TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="EmployeesTab" Header="Сотрудники" Padding="32,20">
-                <Grid x:Name="EmployeesTabGrid" Background="#FFE5E5E5">
+                <Grid x:Name="EmployeesTabGrid" Background="{StaticResource BackgroundPrimary}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="177*"/>
                         <ColumnDefinition Width="196*"/>
@@ -169,7 +169,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="UsersTab" Header="Пользователи" Padding="32,20">
-                <Grid x:Name="UsersTabGrid" Background="#FFE5E5E5" DataContext="{Binding UsersViewModel}">
+                <Grid x:Name="UsersTabGrid" Background="{StaticResource BackgroundPrimary}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="554*"/>
                         <ColumnDefinition Width="97*"/>
@@ -275,7 +275,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="ViolationsTab" Header="Нарушения" Padding="32,20">
-                <Grid x:Name="ViolationsTabGrid" Background="#FFE5E5E5">
+                <Grid x:Name="ViolationsTabGrid" Background="{StaticResource BackgroundPrimary}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="192*"/>
                         <ColumnDefinition Width="225*"/>

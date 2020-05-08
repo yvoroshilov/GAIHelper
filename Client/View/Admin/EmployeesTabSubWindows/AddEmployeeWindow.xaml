@@ -7,18 +7,14 @@
         mc:Ignorable="d"
         Title="Добавить сотрудника" Height="501.4" Width="243.2" ResizeMode="NoResize">
     <Window.Resources>
-
-        <ControlTemplate x:Key="ValidationTemplate">
-            <Grid>
-                <Ellipse Margin="0,2,2,0" Fill="Red" Opacity="0.8" Width="10" Height="10"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    ToolTip="{Binding /ErrorContent}" />
-                <AdornedElementPlaceholder />
-            </Grid>
-        </ControlTemplate>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="../../../Resources/AdminDashboardDict.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Background="{StaticResource BackgroundPrimary}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="60*"/>

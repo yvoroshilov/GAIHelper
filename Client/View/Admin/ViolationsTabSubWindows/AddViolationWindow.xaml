@@ -13,11 +13,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="../../../Resources/AdminDashboardDict.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Grid Background="#FFE5E5E5">
+
+    <Grid Background="{StaticResource BackgroundPrimary}">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="95*"/>
                 <ColumnDefinition Width="103*"/>

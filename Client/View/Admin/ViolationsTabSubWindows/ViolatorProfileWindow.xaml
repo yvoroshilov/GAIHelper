@@ -10,10 +10,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="../../../Resources/AdminDashboardDict.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="0,0,-0.4,0.6">
+
+    <Grid Margin="0,0,-0.4,0.6" Background="{StaticResource BackgroundPrimary}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="175*"/>
             <ColumnDefinition Width="206*"/>
