@@ -1,5 +1,6 @@
 ﻿using GaiWcfService.Callback;
 using GaiWcfService.Dto;
+using GaiWcfService.Util;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -22,15 +23,17 @@ namespace GaiWcfService.Service {
 
         public SubscribeState Subscribe(string login) {
             lock (clients.removeMethodLock) {
-                ICallbackService callback = OperationContext.Current.GetCallbackChannel<ICallbackService>();
                 User user = userRepository.GetUser(login);
                 if (user.role != "ROLE_USER") {
                     return SubscribeState.NOT_SUBSCRIBED;
                 }
+                ICallbackService callback = OperationContext.Current.GetCallbackChannel<ICallbackService>();
 
                 bool addRes = clients.RegisterChannel(login, callback);
                 if (addRes) {
+                    MyLogger.Instance.Write(user.Employees.Count.ToString());
                     OpenShift(user.Employees.First().certificate_id);
+                    MyLogger.Instance.Write(user.Employees.First().certificate_id.ToString());
                     return SubscribeState.SUBSCRIBED;
                 } else {
                     if (clients.IsOpened(login)) {

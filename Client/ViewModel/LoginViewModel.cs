@@ -57,7 +57,13 @@ namespace Client.ViewModel {
                             return;
                         }
 
+
                         if (user.role == "ROLE_USER") {
+                            if (client.GetEmployeeByUserLogin(user.login) == null) {
+                                MessageBox.Show("Под этой учётной записью не зарегистрировано ни одного работника", "Внимание", MessageBoxButton.OK, MessageBoxImage.Error);
+                                passwordBox.Password = "";
+                                return;
+                            }
                             MainServiceSubscribeState res = client.Subscribe(user.login);
                             switch (res) {
                                 case MainServiceSubscribeState.SUBSCRIBED:

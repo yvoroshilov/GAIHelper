@@ -35,9 +35,9 @@ namespace Client.View.Admin {
         private UsersViewModel usersViewModel;
         private ViolationsAdminViewModel violationsAdminViewModel;
         private PersonsViewModel personsViewModel;
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
-        }
+        private PaymentsViewModel paymentsViewModel;
+        private ViolationTypesViewModel violationTypesViewModel;
+        public bool closedByExit = false;
 
         #region Common
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -68,6 +68,25 @@ namespace Client.View.Admin {
                         PersonsTabGrid.DataContext = personsViewModel;
                     }
                     break;
+                case "PaymentsTab":
+                    if (PaymentsTabGrid.DataContext == null) {
+                        paymentsViewModel = new PaymentsViewModel();
+                        PaymentsTabGrid.DataContext = paymentsViewModel;
+                    }
+                    break;
+                case "ViolationTypesTab":
+                    if (ViolationTypesTabGrid.DataContext == null) {
+                        violationTypesViewModel = new ViolationTypesViewModel();
+                        ViolationTypesTabGrid.DataContext = violationTypesViewModel;
+                    }
+                    break;
+                case "ExitTab":
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    closedByExit = true;
+                    this.Close();
+                    break;
+
             }
         }
 
@@ -114,7 +133,7 @@ namespace Client.View.Admin {
 
         protected override void OnClosed(EventArgs e) {
             base.OnClosed(e);
-            Application.Current.Shutdown();
+            if (!closedByExit) Application.Current.Shutdown();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) {

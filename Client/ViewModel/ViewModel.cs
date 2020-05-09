@@ -62,7 +62,7 @@ namespace Client.ViewModel {
             return true;
         }
 
-        protected class DummyCallbackClass : IAdminServiceCallback {
+        public class DummyCallbackClass : IAdminServiceCallback {
             public string Test(string str) {
                 throw new NotImplementedException();
             }

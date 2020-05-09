@@ -13,24 +13,14 @@ namespace GaiWcfService.Service {
 
         private IPaymentRepository paymentRepository = new PaymentRepository();
 
-        public void AddPayment(PaymentDto payment) {
-            paymentRepository.AddPayment(Mapper.mapper.Map<Payment>(payment));
-        }
-
-        public void EditPayment(int id, PaymentDto payment) {
-            paymentRepository.EditPayment(id, Mapper.mapper.Map<Payment>(payment));
-        }
-
-        public void DeletePayment(int id) {
-            paymentRepository.DeletePayment(id);
-        }
-
-        public void AddShift(ShiftDto shift) {
-            shiftRepository.AddShift(Mapper.mapper.Map<Shift>(shift));
-        }
-
         public List<PaymentDto> GetPaymentsByPersonId(int personId) {
             return paymentRepository.GetPaymentsByPersonId(personId)
+                .Select(val => Mapper.mapper.Map<PaymentDto>(val))
+                .ToList();
+        }
+
+        public List<PaymentDto> GetLastNPayments(int n) {
+            return paymentRepository.GetLastNPayments(n)
                 .Select(val => Mapper.mapper.Map<PaymentDto>(val))
                 .ToList();
         }

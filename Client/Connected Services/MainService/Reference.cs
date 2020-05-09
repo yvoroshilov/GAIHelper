@@ -37,9 +37,6 @@ namespace Client.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string loginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -55,19 +52,6 @@ namespace Client.MainService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
             }
         }
         
@@ -1203,6 +1187,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPaymentsByPersonId", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsByPersonIdResponse")]
         System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsByPersonIdAsync(int personId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetLastNPayments", ReplyAction="http://tempuri.org/IAdminService/GetLastNPaymentsResponse")]
+        Client.MainService.PaymentDto[] GetLastNPayments(int n);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetLastNPayments", ReplyAction="http://tempuri.org/IAdminService/GetLastNPaymentsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetLastNPaymentsAsync(int n);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllRoles", ReplyAction="http://tempuri.org/IAdminService/GetAllRolesResponse")]
         Client.MainService.RoleDto[] GetAllRoles();
         
@@ -1515,6 +1505,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsByPersonIdAsync(int personId) {
             return base.Channel.GetPaymentsByPersonIdAsync(personId);
+        }
+        
+        public Client.MainService.PaymentDto[] GetLastNPayments(int n) {
+            return base.Channel.GetLastNPayments(n);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetLastNPaymentsAsync(int n) {
+            return base.Channel.GetLastNPaymentsAsync(n);
         }
         
         public Client.MainService.RoleDto[] GetAllRoles() {

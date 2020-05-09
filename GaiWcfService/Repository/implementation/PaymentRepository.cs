@@ -38,6 +38,14 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Payments.Find(id);
         }
 
+        public List<Payment> GetLastNPayments(int n) {
+            int count = dbEntities.Payments.Count();
+            return dbEntities.Payments
+                .OrderByDescending(val => val.date)
+                .Take(Math.Min(count, n))
+                .ToList();
+        }
+
         public List<Payment> GetPaymentsByPersonId(int personId) {
             return dbEntities.Payments
                 .Where(val => val.person_id == personId)

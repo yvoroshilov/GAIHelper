@@ -258,7 +258,7 @@ namespace Client.ViewModel {
                         List<EmployeeDto> selectedEmployee = new List<EmployeeDto>((obj as ICollection).Cast<EmployeeDto>());
                         EmployeeDto curEmployee = selectedEmployee.Single();
 
-                        EmployeeAddedViolations.Clear();
+                        EmployeeDoneShifts.Clear();
                         client.GetAllShiftsByResponsibleId(curEmployee.certificateId).ToList().ForEach(val => EmployeeDoneShifts.Add(val));
                     }, obj => {
                         return (obj as ICollection).Count == 1;

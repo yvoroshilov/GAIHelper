@@ -204,6 +204,7 @@
             </TextBox>
             <Label x:Name="ProtocolNumberLabel" Content="№ Протокола*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="8.8,163,0,0"/>
             <Rectangle Stroke="#FF828790" Margin="10,9,0.6,9.6" Fill="{x:Null}" StrokeThickness="2" Grid.ColumnSpan="4"/>
+            <Button x:Name="ExitBtn" Content="Выход" Grid.Column="5" Margin="0,0,9.6,10.6" Background="#FF868686" Click="ExitBtn_Click" HorizontalAlignment="Right" Width="82" Height="21" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 </Window>

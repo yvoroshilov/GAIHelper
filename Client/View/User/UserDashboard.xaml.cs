@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,6 +33,8 @@ namespace Client.View.User {
         private readonly ViolationsUserViewModel dataContext;
 
         private PersonsViolations personsViolationsWindow;
+
+        private bool closedByExit = false;
 
         private void NoDriverLicenseCheckBox_Checked(object sender, RoutedEventArgs e) {
             foreach (var item in PersonInfoGrid.Children) {
@@ -181,7 +184,16 @@ namespace Client.View.User {
 
         protected override void OnClosed(EventArgs e) {
             base.OnClosed(e);
-            Application.Current.Shutdown();
+            if (!closedByExit) Application.Current.Shutdown();
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e) {
+            AdminServiceClient client = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+            client.CloseShift(dataContext.CurrentShift.responsibleId);
+            MainWindow main = new MainWindow();
+            main.Show();
+            closedByExit = true;
+            this.Close();
         }
     }
 }

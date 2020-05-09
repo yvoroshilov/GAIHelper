@@ -10,9 +10,6 @@ namespace GaiWcfService.Dto {
     public class UserDto {
 
         [DataMember]
-        public int id;
-
-        [DataMember]
         public string login;
 
         [DataMember]

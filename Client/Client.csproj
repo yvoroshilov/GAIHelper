@@ -136,11 +136,13 @@
     <Compile Include="ViewModel\InputProperty.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MapWindowViewModel.cs" />
+    <Compile Include="ViewModel\PaymentsViewModel.cs" />
     <Compile Include="ViewModel\PersonsViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViolationsAdminViewModel.cs" />
     <Compile Include="ViewModel\ViolationsUserViewModel.cs" />
+    <Compile Include="ViewModel\ViolationTypesViewModel.cs" />
     <Compile Include="View\Admin\AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
     </Compile>

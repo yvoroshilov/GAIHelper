@@ -445,6 +445,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetLastNPayments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="n" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastNPaymentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetLastNPaymentsResult" nillable="true" type="q36:ArrayOfPaymentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllRoles">
     <xs:complexType>
       <xs:sequence />
@@ -453,7 +467,7 @@
   <xs:element name="GetAllRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllRolesResult" nillable="true" type="q36:ArrayOfRoleDto" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllRolesResult" nillable="true" type="q37:ArrayOfRoleDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -481,28 +495,28 @@
   <xs:element name="GetAllViolationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationsResult" nillable="true" type="q37:ArrayOfViolationDto" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationsResult" nillable="true" type="q38:ArrayOfViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddViolation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q38:ViolationDto" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q39:ViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddViolationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="AddViolationResult" nillable="true" type="q39:ViolationDto" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="AddViolationResult" nillable="true" type="q40:ViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditViolation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q40:ViolationDto" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="violation" nillable="true" type="q41:ViolationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -531,7 +545,7 @@
   <xs:element name="GetAllViolationTypesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationTypesResult" nillable="true" type="q41:ArrayOfViolationTypeDto" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetAllViolationTypesResult" nillable="true" type="q42:ArrayOfViolationTypeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -545,7 +559,7 @@
   <xs:element name="GetPersonByDriverLicenseResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetPersonByDriverLicenseResult" nillable="true" type="q42:PersonDto" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetPersonByDriverLicenseResult" nillable="true" type="q43:PersonDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

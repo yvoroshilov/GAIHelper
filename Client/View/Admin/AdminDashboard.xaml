@@ -132,7 +132,7 @@
                         <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindPatronymicCheckbox, UpdateSourceTrigger=PropertyChanged}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
                     <StackPanel Margin="10,4,16.8,5.2" Orientation="Vertical" Grid.Row="1" x:Name="CertificateIdStackPanel">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Номер удостоверения" IsEnabled="False"/>
+                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Номер удостоверения (ID)" IsEnabled="False"/>
                         <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" IsEnabled="False" >
                             <Binding Path="CertificateId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
@@ -193,13 +193,6 @@
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="ID" Width="30">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding id}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -725,11 +718,129 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Платежи" Padding="32,20">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="PaymentsTab" Header="Платежи" Padding="32,20">
+                <Grid x:Name="PaymentsTabGrid" Background="{StaticResource BackgroundPrimary}">
+                    <ListView x:Name="PaymentTable" Margin="10,10,10.4,9.6" AlternationCount="2" ItemsSource="{Binding Payments}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="№" Width="30">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource IndexOfConverter}">
+                                                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}" Path="ItemsSource" />
+                                                        <Binding />
+                                                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}" Path="ItemsSource.Count" UpdateSourceTrigger="PropertyChanged" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="ID" Width="30">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding id}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="ID профиля" Width="90">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding personId}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Сумма" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding amount, Converter={StaticResource MoneyConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Дата" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding date, Converter={StaticResource DateConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,10,10.4,9.6"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="Типы нарушений" Padding="32,20">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="ViolationTypesTab" Header="Типы нарушений" Padding="32,20">
+                <Grid x:Name="ViolationTypesTabGrid" Background="{StaticResource BackgroundPrimary}">
+                    <ListView x:Name="ViolationTypesTable" Margin="10,10,10.4,9.6" AlternationCount="2" ItemsSource="{Binding ViolationTypes, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="№" Width="30">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource IndexOfConverter}">
+                                                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}" Path="ItemsSource" />
+                                                        <Binding />
+                                                        <Binding RelativeSource="{RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}" Path="ItemsSource.Count" UpdateSourceTrigger="PropertyChanged" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Номер">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding id}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Название" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding title}" TextTrimming="CharacterEllipsis"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Минимальный штраф, р.">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding minPenalty, Converter={StaticResource MoneyConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Максмиальный штраф, р." >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding maxPenalty, Converter={StaticResource MoneyConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Максимум дней до выплаты">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding paydayAfter}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Описание" Width="300">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock ToolTip="{Binding description}"  Text="{Binding description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,10,10.4,9.6"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ExitTab" Height="54" Header="Выход" Background="#FF868686">
             </TabItem>
         </TabControl>
     </Grid>

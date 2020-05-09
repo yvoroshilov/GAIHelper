@@ -16,6 +16,11 @@ namespace GaiWcfService.Service {
 
         private IShiftRepository shiftRepository = new ShiftRepository();
 
+        public void AddShift(ShiftDto shift) {
+            shiftRepository.AddShift(Mapper.mapper.Map<Shift>(shift));
+        }
+
+
         public int OpenShift(int responsibleId) {
 
             Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(responsibleId);
@@ -32,6 +37,7 @@ namespace GaiWcfService.Service {
             Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(responsibleId);
             shift.end = DateTime.Now;
             shiftRepository.EditShift(shift.id, shift);
+            ConnectedClientsSingleton.Instance.CloseConnection(shift.Employee.user_login);
         }
 
         public ShiftDto GetCurrentShift(int resposibleId) {

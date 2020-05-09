@@ -87,5 +87,10 @@ namespace GaiWcfService.Callback {
             channels.TryGetValue(login, out res);
             return (res.Item1 as ICommunicationObject).State == CommunicationState.Opened;
         }
+
+        public void CloseConnection(string login) {
+            (ICallbackService, bool) stub = default;
+            channels.TryRemove(login, out stub);
+        }
     }
 }

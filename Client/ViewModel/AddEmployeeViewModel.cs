@@ -122,7 +122,6 @@ namespace Client.ViewModel {
                         Employees.Add(addedEmpl);
                         ResetForm(addMark);
 
-                        (obj as Window).Close();
                     }, obj => {
                         return IsAllRequiredFieldsFilled("addMark") && IsAllInputPropsValid(this, addMark);
                     }));
