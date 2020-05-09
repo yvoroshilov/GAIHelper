@@ -39,7 +39,7 @@ namespace Client.ViewModel {
                 if (Attribute.IsDefined(prop, inputPropertyType)) {
                     InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);
                     
-                    if ((attr.isRequred() && prop.GetValue(this) == Utility.GetDefault(prop.PropertyType)) &&
+                    if ((attr.isRequred() && (prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true)) &&
                      (mark == null || mark.Equals(attr.Mark))) {
                         return false;
                     }

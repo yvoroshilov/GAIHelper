@@ -142,34 +142,43 @@ namespace Client.View.Admin {
         #endregion
 
         #region Employees tab
+        private void EmployeeTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (EmployeeTable.SelectedItems.Count == 1) {
+                employeesViewModel.CurrentEmployee = EmployeeTable.SelectedItems[0] as EmployeeDto;
+            }
+        }
+
         private void EditEmployeeButton_Click(object sender, RoutedEventArgs e) {
+            EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(employeesViewModel.CurrentEmployee, this);
+
             this.IsEnabled = false;
-            EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(this);
 
             editEmployeeWindow.Show();
 
-            editEmployeeWindow.DataContext = employeesViewModel;
         }
 
         private void SeeAddedViolationsButton_Click(object sender, RoutedEventArgs e) {
-            EmployeeAddedViolationsWindow window = new EmployeeAddedViolationsWindow();
-            window.DataContext = employeesViewModel.EmployeeAddedViolations;
+            EmployeeAddedViolationsWindow window = new EmployeeAddedViolationsWindow(employeesViewModel.EmployeeAddedViolations, this);
+
+            this.IsEnabled = false;
+
             window.Show();
         }
 
         private void SeeDoneShiftsButton_Click(object sender, RoutedEventArgs e) {
-            EmployeeDoneShiftsWindow window = new EmployeeDoneShiftsWindow();
-            window.DataContext = employeesViewModel.EmployeeDoneShifts;
+            EmployeeDoneShiftsWindow window = new EmployeeDoneShiftsWindow(employeesViewModel.EmployeeDoneShifts, this);
+
+            this.IsEnabled = false;
+
             window.Show();
         }
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e) {
+            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow(employeesViewModel.Employees, this);
+
             this.IsEnabled = false;
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow(this);
 
             addEmployeeWindow.Show();
-
-            addEmployeeWindow.DataContext = employeesViewModel;
         }
 
         #endregion

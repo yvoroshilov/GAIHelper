@@ -33,7 +33,7 @@
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="74*"/>
                     </Grid.RowDefinitions>
-                    <ListView x:Name="EmployeeTable" Margin="10,10,2.2,8" AlternationCount="2" Grid.ColumnSpan="3" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
+                    <ListView x:Name="EmployeeTable" Margin="10,10,2.2,8" AlternationCount="2" Grid.ColumnSpan="3" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black" SelectionChanged="EmployeeTable_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">

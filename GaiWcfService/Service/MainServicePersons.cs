@@ -47,11 +47,5 @@ namespace GaiWcfService.Service {
         public PersonDto GetPerson(int personId) {
             return Mapper.mapper.Map<PersonDto>(personRepository.GetPerson(personId));
         }
-
-        public List<PaymentDto> GetPayments(int personId) {
-            return personRepository.GetPerson(personId).Payments
-                .Select(val => Mapper.mapper.Map<PaymentDto>(val))
-                .ToList();
-        }
     }
 }

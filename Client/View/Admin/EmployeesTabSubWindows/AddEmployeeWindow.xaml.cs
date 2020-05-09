@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Client.MainService;
+using Client.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +20,9 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
     /// Interaction logic for AddEmployeeWindow.xaml
     /// </summary>
     public partial class AddEmployeeWindow : Window {
-        public AddEmployeeWindow(Window parent) {
+        public AddEmployeeWindow(ObservableCollection<EmployeeDto> col, Window parent) {
             InitializeComponent();
+            DataContext = new AddEmployeeViewModel(col);
             this.parent = parent;
         }
 

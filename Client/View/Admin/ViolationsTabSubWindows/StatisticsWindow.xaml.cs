@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
+using System.Collections.ObjectModel;
 
 namespace Client.View.Admin.ViolationsTabSubWindows {
     public partial class StatisticsWindow : Window {

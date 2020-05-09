@@ -126,7 +126,7 @@ namespace GaiWcfService.Service {
 
         #region Payments
         [OperationContract]
-        List<PaymentDto> GetPayments(int personId);
+        List<PaymentDto> GetPaymentsByPersonId(int personId);
         #endregion
 
         #region Roles

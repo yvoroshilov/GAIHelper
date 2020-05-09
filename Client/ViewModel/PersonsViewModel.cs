@@ -22,7 +22,7 @@ namespace Client.ViewModel {
         private AdminServiceClient client;
         public ObservableCollection<PersonDto> Persons { get; }
         public PersonDto curSelectedPerson;
-        public List<PaymentDto> CurrentPersonPayments { get; }
+        public ObservableCollection<PaymentDto> CurrentPersonPayments { get; }
 
         #region Search fields
         private string passportIdSearch;
@@ -283,7 +283,7 @@ namespace Client.ViewModel {
                         PersonDto selectedPerson = selectedPersons.Single();
 
                         CurrentPersonPayments.Clear();
-                        CurrentPersonPayments.AddRange(client.GetPayments(selectedPerson.id));
+                        client.GetPaymentsByPersonId(selectedPerson.id).ToList().ForEach(val => CurrentPersonPayments.Add(val));
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));
@@ -344,7 +344,7 @@ namespace Client.ViewModel {
             client = new AdminServiceClient(cntxt);
 
             Persons = new ObservableCollection<PersonDto>();
-            CurrentPersonPayments = new List<PaymentDto>();
+            CurrentPersonPayments = new ObservableCollection<PaymentDto>();
         }
 
         public string this[string columnName] {

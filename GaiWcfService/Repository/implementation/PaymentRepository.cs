@@ -37,5 +37,11 @@ namespace GaiWcfService.Repository.implementation {
         public Payment GetPayment(int id) {
             return dbEntities.Payments.Find(id);
         }
+
+        public List<Payment> GetPaymentsByPersonId(int personId) {
+            return dbEntities.Payments
+                .Where(val => val.person_id == personId)
+                .ToList();
+        }
     }
 }

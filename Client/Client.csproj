@@ -126,7 +126,9 @@
     <Compile Include="Util\UrlBuilder\IMapQueryBuilder.cs" />
     <Compile Include="Util\UrlBuilder\MapQueryBuilder.cs" />
     <Compile Include="Util\Utility.cs" />
+    <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddPersonViewModel.cs" />
+    <Compile Include="ViewModel\EditEmployeeViewModel.cs" />
     <Compile Include="ViewModel\EditPersonViewModel.cs" />
     <Compile Include="ViewModel\EditViolationWindowViewModel.cs" />
     <Compile Include="ViewModel\AddViolationWindowViewModel.cs" />

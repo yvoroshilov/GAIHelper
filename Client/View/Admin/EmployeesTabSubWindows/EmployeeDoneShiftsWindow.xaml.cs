@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Client.MainService;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +19,17 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
     /// Interaction logic for EmployeeDoneShifts.xaml
     /// </summary>
     public partial class EmployeeDoneShiftsWindow : Window {
-        public EmployeeDoneShiftsWindow() {
+        public EmployeeDoneShiftsWindow(ObservableCollection<ShiftDto> col, Window parent) {
             InitializeComponent();
+            DataContext = col;
+            this.parent = parent;
+        }
+
+        private Window parent;
+
+        protected override void OnClosed(EventArgs e) {
+            parent.IsEnabled = true;
+            base.OnClosed(e);
         }
     }
 }

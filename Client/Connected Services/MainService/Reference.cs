@@ -1197,11 +1197,11 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPerson", ReplyAction="http://tempuri.org/IAdminService/GetPersonResponse")]
         System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
-        Client.MainService.PaymentDto[] GetPayments(int personId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPaymentsByPersonId", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsByPersonIdResponse")]
+        Client.MainService.PaymentDto[] GetPaymentsByPersonId(int personId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
-        System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPaymentsByPersonId", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsByPersonIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsByPersonIdAsync(int personId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllRoles", ReplyAction="http://tempuri.org/IAdminService/GetAllRolesResponse")]
         Client.MainService.RoleDto[] GetAllRoles();
@@ -1509,12 +1509,12 @@ namespace Client.MainService {
             return base.Channel.GetPersonAsync(personId);
         }
         
-        public Client.MainService.PaymentDto[] GetPayments(int personId) {
-            return base.Channel.GetPayments(personId);
+        public Client.MainService.PaymentDto[] GetPaymentsByPersonId(int personId) {
+            return base.Channel.GetPaymentsByPersonId(personId);
         }
         
-        public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId) {
-            return base.Channel.GetPaymentsAsync(personId);
+        public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsByPersonIdAsync(int personId) {
+            return base.Channel.GetPaymentsByPersonIdAsync(personId);
         }
         
         public Client.MainService.RoleDto[] GetAllRoles() {

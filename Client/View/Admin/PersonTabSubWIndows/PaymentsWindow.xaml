@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View.Admin.PersonTabSubWIndows"
         mc:Ignorable="d"
-        Title="PaymentsWindow" Height="450" Width="800">
+        Title="PaymentsWindow" Height="450" Width="368.2">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

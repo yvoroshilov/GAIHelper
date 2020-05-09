@@ -28,5 +28,11 @@ namespace GaiWcfService.Service {
         public void AddShift(ShiftDto shift) {
             shiftRepository.AddShift(Mapper.mapper.Map<Shift>(shift));
         }
+
+        public List<PaymentDto> GetPaymentsByPersonId(int personId) {
+            return paymentRepository.GetPaymentsByPersonId(personId)
+                .Select(val => Mapper.mapper.Map<PaymentDto>(val))
+                .ToList();
+        }
     }
 }

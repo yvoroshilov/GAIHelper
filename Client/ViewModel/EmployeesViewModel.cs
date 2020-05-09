@@ -17,8 +17,9 @@ namespace Client.ViewModel {
         private const string addMark = "addMark";
         private AdminServiceClient client;
         public ObservableCollection<EmployeeDto> Employees { get; }
-        public List<ViolationDto> EmployeeAddedViolations { get; }
-        public List<ShiftDto> EmployeeDoneShifts { get; }
+        public ObservableCollection<ViolationDto> EmployeeAddedViolations { get; }
+        public ObservableCollection<ShiftDto> EmployeeDoneShifts { get; }
+        public EmployeeDto CurrentEmployee;
 
         #region Search fields
         private int certificateId;
@@ -167,115 +168,9 @@ namespace Client.ViewModel {
         #endregion
 
         #region Add input fields
-        private int certificateIdAdd;
-        [InputProperty(true, Mark = "addMark")]
-        public int CertificateIdAdd {
-            get {
-                return certificateIdAdd;
-            }
-            set {
-                certificateIdAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string loginAdd;
-        [InputProperty(true, Mark = "addMark")]
-        public string LoginAdd {
-            get {
-                return loginAdd;
-            }
-            set {
-                loginAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private DateTime hireDateAdd;
-        [InputProperty(true, Mark = "addMark")]
-        public DateTime HireDateAdd {
-            get {
-                return hireDateAdd == default ? DateTime.Now : hireDateAdd;
-            }
-            set {
-                hireDateAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string surnameAdd;
-        [InputProperty(true, Mark = "addMark")]
-        public string SurnameAdd {
-            get {
-                return surnameAdd;
-            }
-            set {
-                surnameAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string nameAdd;
-        [InputProperty(true, Mark = "addMark")]
-        public string NameAdd {
-            get {
-                return nameAdd;
-            }
-            set {
-                nameAdd = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string patronymicAdd;
-        [InputProperty(true, Mark = "addMark")]
-        public string PatronymicAdd {
-            get {
-                return patronymicAdd;
-            }
-            set {
-                patronymicAdd = value;
-                OnPropertyChanged();
-            }
-        }
         #endregion
 
         #region Commands
-        private RelayCommand addCommand;
-        public RelayCommand AddCommand {
-            get {
-                return addCommand ??
-                    (addCommand = new RelayCommand(obj => {
-                        if (client.GetUser(LoginAdd) == null) {
-                            MessageBox.Show("Аккаунта с логином " + LoginAdd + " не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LoginAdd = "";
-                            return;
-                        }
-
-                        if (client.GetEmployeeByUserLogin(LoginAdd) != null) {
-                            MessageBox.Show("Под логином " + LoginAdd + " уже зарегистрирован пользователь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LoginAdd = "";
-                            return;
-                        }
-
-                        EmployeeDto addedEmpl = new EmployeeDto();
-                        addedEmpl.certificateId = CertificateIdAdd;
-                        addedEmpl.userLogin = LoginAdd;
-                        addedEmpl.hireDate = HireDateAdd;
-                        addedEmpl.surname = SurnameAdd;
-                        addedEmpl.patronymic = PatronymicAdd;
-                        addedEmpl.name = NameAdd;
-                        client.AddEmployee(addedEmpl);
-                        Employees.Add(addedEmpl);
-                        ResetForm(addMark);
-
-                        (obj as Window).Close();
-                    }, obj => {
-                        return IsAllRequiredFieldsFilled("addMark") && IsAllInputPropsValid(this, addMark);
-                    }));
-            }
-        }
-
         private RelayCommand searchCommand;
         public RelayCommand SearchCommand {
             get {
@@ -303,14 +198,6 @@ namespace Client.ViewModel {
             get {
                 return editCommand ??
                     (editCommand = new RelayCommand(obj => {
-                        List<EmployeeDto> selectedEmployee = new List<EmployeeDto>((obj as ICollection).Cast<EmployeeDto>());
-                        EmployeeDto curEmployee = selectedEmployee.Single();
-                        CertificateIdAdd = curEmployee.certificateId;
-                        LoginAdd = curEmployee.userLogin;
-                        HireDateAdd = curEmployee.hireDate;
-                        SurnameAdd = curEmployee.surname;
-                        PatronymicAdd = curEmployee.patronymic;
-                        NameAdd = curEmployee.name;
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));
@@ -338,42 +225,6 @@ namespace Client.ViewModel {
             }
         }
 
-        private RelayCommand acceptEditCommand;
-        public RelayCommand AcceptEditCommand {
-            get {
-                return acceptEditCommand ??
-                    (acceptEditCommand = new RelayCommand(obj => {
-                        EmployeeDto addedEmpl = new EmployeeDto();
-                        
-                        if (client.GetUser(LoginAdd) == null) {
-                            MessageBox.Show("Аккаунта с логином " + LoginAdd + " не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LoginAdd = "";
-                            return;
-                        }
-
-                        addedEmpl.certificateId = CertificateIdAdd;
-                        addedEmpl.userLogin = LoginAdd;
-                        addedEmpl.hireDate = HireDateAdd;
-                        addedEmpl.surname = SurnameAdd;
-                        addedEmpl.patronymic = PatronymicAdd;
-                        addedEmpl.name = NameAdd;
-
-                        client.EditEmployee(addedEmpl);
-                        EmployeeDto found = Employees.Where(val => addedEmpl.certificateId == val.certificateId).Single();
-
-                        found.userLogin = LoginAdd;
-                        found.hireDate = HireDateAdd;
-                        found.surname = SurnameAdd;
-                        found.patronymic = PatronymicAdd;
-                        found.name = NameAdd;
-
-                        (obj as Window).Close();
-                    }, obj => {
-                        return IsAllRequiredFieldsFilled("addMark");
-                    }));
-            }
-        }
-
         private RelayCommand clearFormCommand;
         public RelayCommand ClearFormCommand {
             get {
@@ -392,7 +243,7 @@ namespace Client.ViewModel {
                         EmployeeDto curEmployee = selectedEmployee.Single();
 
                         EmployeeAddedViolations.Clear();
-                        EmployeeAddedViolations.AddRange(client.GetAllViolationsByResponsibleId(curEmployee.certificateId));
+                        client.GetAllViolationsByResponsibleId(curEmployee.certificateId).ToList().ForEach(val => EmployeeAddedViolations.Add(val));
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));
@@ -408,7 +259,7 @@ namespace Client.ViewModel {
                         EmployeeDto curEmployee = selectedEmployee.Single();
 
                         EmployeeAddedViolations.Clear();
-                        EmployeeDoneShifts.AddRange(client.GetAllShiftsByResponsibleId(curEmployee.certificateId));
+                        client.GetAllShiftsByResponsibleId(curEmployee.certificateId).ToList().ForEach(val => EmployeeDoneShifts.Add(val));
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));
@@ -418,10 +269,11 @@ namespace Client.ViewModel {
 
         public EmployeesViewModel() {
             Employees = new ObservableCollection<EmployeeDto>();
-            EmployeeAddedViolations = new List<ViolationDto>();
-            EmployeeDoneShifts = new List<ShiftDto>();
+            EmployeeAddedViolations = new ObservableCollection<ViolationDto>();
+            EmployeeDoneShifts = new ObservableCollection<ShiftDto>();
             InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
             client = new AdminServiceClient(cntxt);
+            CurrentEmployee = new EmployeeDto();
         }
 
         #region Error handle
@@ -433,35 +285,17 @@ namespace Client.ViewModel {
 
                 var props = GetProps().ToList();
                 var prop = props.Where(val => val.Name == columnName).Single();
-                if (prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true) {
+                if (prop.GetValue(this) == Utility.GetDefault(prop.PropertyType)) {
                     return "Это поле должно быть заполнено";
                 }
 
                 switch (columnName) {
-                    case nameof(CertificateIdAdd):
-                        break;
                     case nameof(CertificateId):
-                        break;
-                    case nameof(LoginAdd):
-                        foreach (var chr in LoginAdd) {
-                            if (!Char.IsLetterOrDigit(chr)) {
-                                error = "Логин может содержать только буквы и цифры";
-                                break;
-                            }
-                        }
                         break;
                     case nameof(Login):
                         foreach (var chr in Login) {
                             if (!Char.IsLetterOrDigit(chr)) {
                                 error = "Логин может содержать только буквы и цифры";
-                                break;
-                            }
-                        }
-                        break;
-                    case nameof(SurnameAdd):
-                        foreach (var chr in SurnameAdd) {
-                            if (!Char.IsLetter(chr)) {
-                                error = "Фамилия может содержать только буквы";
                                 break;
                             }
                         }
@@ -474,26 +308,10 @@ namespace Client.ViewModel {
                             }
                         }
                         break;
-                    case nameof(NameAdd):
-                        foreach (var chr in NameAdd) {
-                            if (!Char.IsLetter(chr)) {
-                                error = "Имя может содержать только буквы";
-                                break;
-                            }
-                        }
-                        break;
                     case nameof(Name):
                         foreach (var chr in Name) {
                             if (!Char.IsLetter(chr)) {
                                 error = "Имя может содержать только буквы";
-                                break;
-                            }
-                        }
-                        break;
-                    case nameof(PatronymicAdd):
-                        foreach (var chr in PatronymicAdd) {
-                            if (!Char.IsLetter(chr)) {
-                                error = "Фамилия может содержать только буквы";
                                 break;
                             }
                         }

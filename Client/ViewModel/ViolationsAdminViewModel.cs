@@ -24,7 +24,7 @@ namespace Client.ViewModel {
         private UserServiceClient userClient;
         public ObservableCollection<ViolationDto> Violations { get; }
         public PersonDto profile;
-        public ObservableCollection<Object> Payments { get; }
+        public ObservableCollection<PaymentDto> Payments { get; }
         public ObservableCollection<ViolationType> ViolationTypes { get; }
         public ViolationDto curViolation;
         public MapImageGrabber mapImageGrabber;
@@ -301,7 +301,7 @@ namespace Client.ViewModel {
                         }
                         
                         parent.IsEnabled = false;
-                        MapWindow mapWindow = new MapWindow(selectedViolations, parent);
+                        MapWindow mapWindow = new MapWindow(new ObservableCollection<ViolationDto>(selectedViolations), parent);
                         mapWindow.Show();
                     }, obj => {
                         return (((ICollection, Window))obj).Item1.Count > 0;
@@ -455,7 +455,7 @@ namespace Client.ViewModel {
 
             CurPerson = new PersonDto();
             Violations = new ObservableCollection<ViolationDto>();
-            Payments = new ObservableCollection<object>();
+            Payments = new ObservableCollection<PaymentDto>();
             ViolationTypes = new ObservableCollection<ViolationType>(userClient.GetAllViolationTypes()
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))
                 .ToList());

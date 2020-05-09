@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Client.MainService;
+using Client.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +19,9 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
     /// Interaction logic for AddEmployeeWindow.xaml
     /// </summary>
     public partial class EditEmployeeWindow : Window {
-        public EditEmployeeWindow(Window parent) {
+        public EditEmployeeWindow(EmployeeDto empl, Window parent) {
             InitializeComponent();
+            DataContext = new EditEmployeeViewModel(empl);
             this.parent = parent;
         }
 

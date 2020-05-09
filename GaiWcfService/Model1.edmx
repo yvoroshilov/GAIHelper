@@ -105,7 +105,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payments_Persons">
-          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persons">
@@ -388,7 +390,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payments_Persons">
-          <End Type="GAIDBModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="GAIDBModel.Person" Role="Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="GAIDBModel.Payment" Role="Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">

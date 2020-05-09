@@ -431,17 +431,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetPayments">
+  <xs:element name="GetPaymentsByPersonId">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="personId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetPaymentsResponse">
+  <xs:element name="GetPaymentsByPersonIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetPaymentsResult" nillable="true" type="q35:ArrayOfPaymentDto" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" minOccurs="0" name="GetPaymentsByPersonIdResult" nillable="true" type="q35:ArrayOfPaymentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

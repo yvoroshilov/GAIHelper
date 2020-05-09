@@ -3,6 +3,7 @@ using Client.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Client.View.Admin.ViolationsTabSubWindows {
     /// Interaction logic for MapWindow.xaml
     /// </summary>
     public partial class MapWindow : Window {
-        public MapWindow(ICollection<ViolationDto> violations, Window parent) {
+        public MapWindow(ObservableCollection<ViolationDto> violations, Window parent) {
             InitializeComponent();
             DataContext = new MapWindowViewModel(violations);
             dataContext = DataContext as MapWindowViewModel;
