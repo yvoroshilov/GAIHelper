@@ -16,8 +16,8 @@ namespace GaiWcfService
     {
         public long id { get; set; }
         public int person_id { get; set; }
-        public System.DateTime payday { get; set; }
-        public bool is_paid { get; set; }
+        public decimal amount { get; set; }
+        public System.DateTime date { get; set; }
     
         public virtual Person Person { get; set; }
     }

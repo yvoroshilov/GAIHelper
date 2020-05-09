@@ -79,6 +79,7 @@ namespace Client.ViewModel {
         }
 
         private DateTime violationDateStart;
+        [InputProperty(Mark = searchMark)]
         public DateTime ViolationDateStart {
             get {
                 return violationDateStart == default ? DateTime.Now : violationDateStart;
@@ -90,6 +91,7 @@ namespace Client.ViewModel {
         }
 
         private DateTime violationDateEnd;
+        [InputProperty(Mark = searchMark)]
         public DateTime ViolationDateEnd {
             get {
                 return violationDateEnd == default ? DateTime.Now : violationDateEnd;
@@ -209,6 +211,7 @@ namespace Client.ViewModel {
         }
 
         private bool findDescriptionCheckbox;
+        [InputProperty(Mark = searchMark)]
         public bool FindDescriptionCheckbox {
             get {
                 return findDescriptionCheckbox;
@@ -220,6 +223,7 @@ namespace Client.ViewModel {
         }
 
         private ViolationType violationTypeSearch;
+        [InputProperty(Mark = searchMark)]
         public ViolationType ViolationTypeSearch {
             get {
                 return violationTypeSearch;
@@ -231,6 +235,7 @@ namespace Client.ViewModel {
         }
 
         private bool findViolationTypeCheckbox;
+        [InputProperty(Mark = searchMark)]
         public bool FindViolationTypeCheckbox {
             get {
                 return findViolationTypeCheckbox;
@@ -418,13 +423,15 @@ namespace Client.ViewModel {
                                 result = partialResult;
                             } else {
                                 partialResult = adminClient.SearchViolationsPenaltyRange(violation, PenaltyMin, PenaltyMax).ToList();
-                                if (FindViolationDateCheckbox) partialResult = partialResult.Where(val => (val.date.CompareTo(ViolationDateStart) + val.date.CompareTo(ViolationDateEnd)) == 0).ToList();
+
                                 result = partialResult;
                             }
                         } else {
                             result = adminClient.SearchViolations(violation).ToList();
                         }
                         result.ForEach(val => Violations.Add(val));
+                    }, obj => {
+                        return IsAllInputPropsValid(this, searchMark);
                     }));
             }
         }

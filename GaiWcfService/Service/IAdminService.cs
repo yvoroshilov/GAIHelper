@@ -103,7 +103,7 @@ namespace GaiWcfService.Service {
 
         #region Person
         [OperationContract]
-        void AddPerson(PersonDto person);
+        PersonDto AddPerson(PersonDto person);
 
         [OperationContract]
         void EditPerson(PersonDto person);
@@ -112,16 +112,21 @@ namespace GaiWcfService.Service {
         List<PersonDto> SearchPersons(PersonDto searchedPerson);
 
         [OperationContract]
-        void DeletePerson(int id);
+        List<PersonDto> SearchPersonsByPaidPenalty(PersonDto searchedPerson, double minPaidPenalty, double maxPaidPenalty);
 
         [OperationContract]
-        List<PaymentDto> GetPayments(int personId);
+        List<PersonDto> SearchPersonsByActualPenalty(PersonDto searchedPerson, double minActualPenalty, double maxActualPenalty);
+
+        [OperationContract]
+        void DeletePerson(int id);
 
         [OperationContract]
         PersonDto GetPerson(int personId);
         #endregion
 
         #region Payments
+        [OperationContract]
+        List<PaymentDto> GetPayments(int personId);
         #endregion
 
         #region Roles

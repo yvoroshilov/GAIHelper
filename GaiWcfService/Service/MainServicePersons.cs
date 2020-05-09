@@ -10,8 +10,8 @@ namespace GaiWcfService.Service {
 
         private IPersonRepository personRepository = new PersonRepository();
 
-        public void AddPerson(PersonDto person) { 
-            personRepository.AddPerson(Mapper.mapper.Map<Person>(person));
+        public PersonDto AddPerson(PersonDto person) { 
+            return Mapper.mapper.Map<PersonDto>(personRepository.AddPerson(Mapper.mapper.Map<Person>(person)));
         }
 
         public void EditPerson(PersonDto person) {
@@ -25,6 +25,18 @@ namespace GaiWcfService.Service {
         public List<PersonDto> SearchPersons(PersonDto person) {
             return personRepository.SearchPersons(Mapper.mapper.Map<Person>(person))
                 .Select(val => Mapper.mapper.Map<PersonDto>(val))
+                .ToList();
+        }
+
+        public List<PersonDto> SearchPersonsByPaidPenalty(PersonDto searchedPerson, double minPaidPenalty, double maxPaidPenalty) {
+            List<PersonDto> partialResult = SearchPersons(searchedPerson);
+            return partialResult.Where(val => val.paidPenalty >= minPaidPenalty && val.paidPenalty <= maxPaidPenalty)
+                .ToList();
+        }
+
+        public List<PersonDto> SearchPersonsByActualPenalty(PersonDto searchedPerson, double minActualPenalty, double maxActualPenalty) {
+            List<PersonDto> partialResult = SearchPersons(searchedPerson);
+            return partialResult.Where(val => val.actualPenalty >= minActualPenalty && val.actualPenalty <= maxActualPenalty)
                 .ToList();
         }
 

@@ -247,23 +247,35 @@
   <wsdl:message name="IAdminService_SearchPersons_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchPersonsResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_SearchPersonsByPaidPenalty_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPersonsByPaidPenalty" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchPersonsByPaidPenalty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPersonsByPaidPenaltyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchPersonsByActualPenalty_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPersonsByActualPenalty" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_SearchPersonsByActualPenalty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPersonsByActualPenaltyResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_DeletePerson_InputMessage">
     <wsdl:part name="parameters" element="tns:DeletePerson" />
   </wsdl:message>
   <wsdl:message name="IAdminService_DeletePerson_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeletePersonResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_GetPayments_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPayments" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_GetPayments_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPaymentsResponse" />
-  </wsdl:message>
   <wsdl:message name="IAdminService_GetPerson_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPerson" />
   </wsdl:message>
   <wsdl:message name="IAdminService_GetPerson_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetPayments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayments" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetPayments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentsResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_GetAllRoles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllRoles" />
@@ -430,17 +442,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchPersons" message="tns:IAdminService_SearchPersons_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchPersonsResponse" message="tns:IAdminService_SearchPersons_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SearchPersonsByPaidPenalty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchPersonsByPaidPenalty" message="tns:IAdminService_SearchPersonsByPaidPenalty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchPersonsByPaidPenaltyResponse" message="tns:IAdminService_SearchPersonsByPaidPenalty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersonsByActualPenalty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchPersonsByActualPenalty" message="tns:IAdminService_SearchPersonsByActualPenalty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchPersonsByActualPenaltyResponse" message="tns:IAdminService_SearchPersonsByActualPenalty_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeletePerson">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeletePerson" message="tns:IAdminService_DeletePerson_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeletePersonResponse" message="tns:IAdminService_DeletePerson_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetPayments">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPayments" message="tns:IAdminService_GetPayments_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPaymentsResponse" message="tns:IAdminService_GetPayments_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetPerson">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPerson" message="tns:IAdminService_GetPerson_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPersonResponse" message="tns:IAdminService_GetPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPayments" message="tns:IAdminService_GetPayments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPaymentsResponse" message="tns:IAdminService_GetPayments_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllRoles" message="tns:IAdminService_GetAllRoles_InputMessage" />
@@ -742,6 +762,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SearchPersonsByPaidPenalty">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchPersonsByPaidPenalty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersonsByActualPenalty">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchPersonsByActualPenalty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeletePerson">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/DeletePerson" style="document" />
       <wsdl:input>
@@ -751,8 +789,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetPayments">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPayments" style="document" />
+    <wsdl:operation name="GetPerson">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPerson" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -760,8 +798,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetPerson">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPerson" style="document" />
+    <wsdl:operation name="GetPayments">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPayments" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

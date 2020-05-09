@@ -76,6 +76,7 @@
       <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="maxPenalty" type="xs:decimal" />
       <xs:element minOccurs="0" name="minPenalty" type="xs:decimal" />
+      <xs:element minOccurs="0" name="paydayAfter" type="xs:int" />
       <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -108,9 +109,9 @@
   <xs:element name="ArrayOfPaymentDto" nillable="true" type="tns:ArrayOfPaymentDto" />
   <xs:complexType name="PaymentDto">
     <xs:sequence>
+      <xs:element minOccurs="0" name="amount" type="xs:double" />
+      <xs:element minOccurs="0" name="date" type="xs:dateTime" />
       <xs:element minOccurs="0" name="id" type="xs:int" />
-      <xs:element minOccurs="0" name="isPaid" type="xs:boolean" />
-      <xs:element minOccurs="0" name="payday" type="xs:dateTime" />
       <xs:element minOccurs="0" name="personId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

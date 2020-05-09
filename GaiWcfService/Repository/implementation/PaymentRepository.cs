@@ -25,8 +25,8 @@ namespace GaiWcfService.Repository.implementation {
         public void EditPayment(int id, Payment payment) {
             Payment oldPayment = dbEntities.Payments.Find(id);
             oldPayment.person_id = payment.person_id;
-            oldPayment.payday = payment.payday;
-            oldPayment.is_paid = payment.is_paid;
+            oldPayment.amount = payment.amount;
+            oldPayment.date = payment.date;
             dbEntities.SaveChanges();            
         }
 

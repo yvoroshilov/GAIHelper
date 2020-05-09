@@ -27,9 +27,9 @@ namespace GaiWcfService
         public string name { get; set; }
         public string surname { get; set; }
         public string patronymic { get; set; }
-        public Nullable<System.DateTime> birthday { get; set; }
+        public System.DateTime birthday { get; set; }
         public float actual_penalty { get; set; }
-        public Nullable<float> paid_penalty { get; set; }
+        public float paid_penalty { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }

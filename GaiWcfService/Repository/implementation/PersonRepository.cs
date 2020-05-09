@@ -10,9 +10,10 @@ namespace GaiWcfService.Repository.implementation {
     public class PersonRepository : IPersonRepository {
         private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
 
-        public void AddPerson(Person person) {
-            dbEntities.Persons.Add(person);
+        public Person AddPerson(Person person) {
+            Person added = dbEntities.Persons.Add(person);
             dbEntities.SaveChanges();
+            return added;
         }
 
         public void EditPerson(Person person) {
@@ -49,8 +50,8 @@ namespace GaiWcfService.Repository.implementation {
         public List<Person> SearchPersons(Person searchedPerson) {
             return dbEntities.Persons.Where(val =>
                 (searchedPerson.id == default || val.id == searchedPerson.id) &&
-                (searchedPerson.passport_id == default || val.passport_id.Contains(searchedPerson.passport_id)) &&
-                (searchedPerson.driver_license == default || val.driver_license.Contains(searchedPerson.driver_license)) &&
+                (searchedPerson.passport_id == default || val.passport_id == searchedPerson.passport_id) &&
+                (searchedPerson.driver_license == default || val.driver_license == searchedPerson.driver_license) &&
                 (searchedPerson.name == default || val.name.Contains(searchedPerson.name)) &&
                 (searchedPerson.surname == default || val.surname.Contains(searchedPerson.surname)) &&
                 (searchedPerson.patronymic == default || val.patronymic.Contains(searchedPerson.patronymic)) &&

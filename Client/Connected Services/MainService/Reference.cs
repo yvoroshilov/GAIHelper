@@ -581,6 +581,9 @@ namespace Client.MainService {
         private decimal minPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int paydayAfterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string titleField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -641,6 +644,19 @@ namespace Client.MainService {
                 if ((this.minPenaltyField.Equals(value) != true)) {
                     this.minPenaltyField = value;
                     this.RaisePropertyChanged("minPenalty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int paydayAfter {
+            get {
+                return this.paydayAfterField;
+            }
+            set {
+                if ((this.paydayAfterField.Equals(value) != true)) {
+                    this.paydayAfterField = value;
+                    this.RaisePropertyChanged("paydayAfter");
                 }
             }
         }
@@ -851,13 +867,13 @@ namespace Client.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double amountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool isPaidField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime paydayField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int personIdField;
@@ -873,6 +889,32 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public double amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                if ((this.amountField.Equals(value) != true)) {
+                    this.amountField = value;
+                    this.RaisePropertyChanged("amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((this.dateField.Equals(value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int id {
             get {
                 return this.idField;
@@ -881,32 +923,6 @@ namespace Client.MainService {
                 if ((this.idField.Equals(value) != true)) {
                     this.idField = value;
                     this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool isPaid {
-            get {
-                return this.isPaidField;
-            }
-            set {
-                if ((this.isPaidField.Equals(value) != true)) {
-                    this.isPaidField = value;
-                    this.RaisePropertyChanged("isPaid");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime payday {
-            get {
-                return this.paydayField;
-            }
-            set {
-                if ((this.paydayField.Equals(value) != true)) {
-                    this.paydayField = value;
-                    this.RaisePropertyChanged("payday");
                 }
             }
         }
@@ -1140,10 +1156,10 @@ namespace Client.MainService {
         System.Threading.Tasks.Task DeleteViolationTypeAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPerson", ReplyAction="http://tempuri.org/IAdminService/AddPersonResponse")]
-        void AddPerson(Client.MainService.PersonDto person);
+        Client.MainService.PersonDto AddPerson(Client.MainService.PersonDto person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPerson", ReplyAction="http://tempuri.org/IAdminService/AddPersonResponse")]
-        System.Threading.Tasks.Task AddPersonAsync(Client.MainService.PersonDto person);
+        System.Threading.Tasks.Task<Client.MainService.PersonDto> AddPersonAsync(Client.MainService.PersonDto person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditPerson", ReplyAction="http://tempuri.org/IAdminService/EditPersonResponse")]
         void EditPerson(Client.MainService.PersonDto person);
@@ -1157,23 +1173,35 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersons", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsResponse")]
         System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsAsync(Client.MainService.PersonDto searchedPerson);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersonsByPaidPenalty", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsByPaidPenaltyResponse")]
+        Client.MainService.PersonDto[] SearchPersonsByPaidPenalty(Client.MainService.PersonDto searchedPerson, double minPaidPenalty, double maxPaidPenalty);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersonsByPaidPenalty", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsByPaidPenaltyResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsByPaidPenaltyAsync(Client.MainService.PersonDto searchedPerson, double minPaidPenalty, double maxPaidPenalty);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersonsByActualPenalty", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsByActualPenaltyResponse")]
+        Client.MainService.PersonDto[] SearchPersonsByActualPenalty(Client.MainService.PersonDto searchedPerson, double minActualPenalty, double maxActualPenalty);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchPersonsByActualPenalty", ReplyAction="http://tempuri.org/IAdminService/SearchPersonsByActualPenaltyResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsByActualPenaltyAsync(Client.MainService.PersonDto searchedPerson, double minActualPenalty, double maxActualPenalty);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePerson", ReplyAction="http://tempuri.org/IAdminService/DeletePersonResponse")]
         void DeletePerson(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeletePerson", ReplyAction="http://tempuri.org/IAdminService/DeletePersonResponse")]
         System.Threading.Tasks.Task DeletePersonAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
-        Client.MainService.PaymentDto[] GetPayments(int personId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
-        System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPerson", ReplyAction="http://tempuri.org/IAdminService/GetPersonResponse")]
         Client.MainService.PersonDto GetPerson(int personId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPerson", ReplyAction="http://tempuri.org/IAdminService/GetPersonResponse")]
         System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
+        Client.MainService.PaymentDto[] GetPayments(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPayments", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllRoles", ReplyAction="http://tempuri.org/IAdminService/GetAllRolesResponse")]
         Client.MainService.RoleDto[] GetAllRoles();
@@ -1425,11 +1453,11 @@ namespace Client.MainService {
             return base.Channel.DeleteViolationTypeAsync(id);
         }
         
-        public void AddPerson(Client.MainService.PersonDto person) {
-            base.Channel.AddPerson(person);
+        public Client.MainService.PersonDto AddPerson(Client.MainService.PersonDto person) {
+            return base.Channel.AddPerson(person);
         }
         
-        public System.Threading.Tasks.Task AddPersonAsync(Client.MainService.PersonDto person) {
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto> AddPersonAsync(Client.MainService.PersonDto person) {
             return base.Channel.AddPersonAsync(person);
         }
         
@@ -1449,6 +1477,22 @@ namespace Client.MainService {
             return base.Channel.SearchPersonsAsync(searchedPerson);
         }
         
+        public Client.MainService.PersonDto[] SearchPersonsByPaidPenalty(Client.MainService.PersonDto searchedPerson, double minPaidPenalty, double maxPaidPenalty) {
+            return base.Channel.SearchPersonsByPaidPenalty(searchedPerson, minPaidPenalty, maxPaidPenalty);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsByPaidPenaltyAsync(Client.MainService.PersonDto searchedPerson, double minPaidPenalty, double maxPaidPenalty) {
+            return base.Channel.SearchPersonsByPaidPenaltyAsync(searchedPerson, minPaidPenalty, maxPaidPenalty);
+        }
+        
+        public Client.MainService.PersonDto[] SearchPersonsByActualPenalty(Client.MainService.PersonDto searchedPerson, double minActualPenalty, double maxActualPenalty) {
+            return base.Channel.SearchPersonsByActualPenalty(searchedPerson, minActualPenalty, maxActualPenalty);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto[]> SearchPersonsByActualPenaltyAsync(Client.MainService.PersonDto searchedPerson, double minActualPenalty, double maxActualPenalty) {
+            return base.Channel.SearchPersonsByActualPenaltyAsync(searchedPerson, minActualPenalty, maxActualPenalty);
+        }
+        
         public void DeletePerson(int id) {
             base.Channel.DeletePerson(id);
         }
@@ -1457,20 +1501,20 @@ namespace Client.MainService {
             return base.Channel.DeletePersonAsync(id);
         }
         
-        public Client.MainService.PaymentDto[] GetPayments(int personId) {
-            return base.Channel.GetPayments(personId);
-        }
-        
-        public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId) {
-            return base.Channel.GetPaymentsAsync(personId);
-        }
-        
         public Client.MainService.PersonDto GetPerson(int personId) {
             return base.Channel.GetPerson(personId);
         }
         
         public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId) {
             return base.Channel.GetPersonAsync(personId);
+        }
+        
+        public Client.MainService.PaymentDto[] GetPayments(int personId) {
+            return base.Channel.GetPayments(personId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetPaymentsAsync(int personId) {
+            return base.Channel.GetPaymentsAsync(personId);
         }
         
         public Client.MainService.RoleDto[] GetAllRoles() {

@@ -15,9 +15,9 @@ namespace GaiWcfService.Dto {
         public int personId { get; set; }
 
         [DataMember]
-        public DateTime payday { get; set; }
+        public double amount { get; set; }
 
         [DataMember]
-        public Boolean isPaid { get; set; }
+        public DateTime date { get; set; }
     }
 }

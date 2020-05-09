@@ -22,5 +22,8 @@ namespace GaiWcfService.Dto {
 
         [DataMember]
         public string description { get; set; }
+
+        [DataMember]
+        public int paydayAfter { get; set; }
     }
 }

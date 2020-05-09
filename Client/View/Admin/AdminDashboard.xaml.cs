@@ -19,6 +19,8 @@ using Client.View.Admin.UsersTabSubWindows;
 using Client.View.Admin.ViolationsTabSubWindows;
 using System.Collections;
 using Client.MainService;
+using Client.View.Admin.PersonTabSubWIndows;
+using System.ComponentModel;
 
 namespace Client.View.Admin {
     /// <summary>
@@ -29,25 +31,42 @@ namespace Client.View.Admin {
             InitializeComponent();
         }
 
-        private EmployeesViewModel employeesViewModel = new EmployeesViewModel();
-        private UsersViewModel usersViewModel = new UsersViewModel();
-        private ViolationsAdminViewModel violationsAdminViewModel = new ViolationsAdminViewModel();
-
+        private EmployeesViewModel employeesViewModel;
+        private UsersViewModel usersViewModel;
+        private ViolationsAdminViewModel violationsAdminViewModel;
+        private PersonsViewModel personsViewModel;
         private void Button_Click(object sender, RoutedEventArgs e) {
 
         }
 
+        #region Common
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (!(e.Source is TabControl)) return;
             switch((e.AddedItems[0] as TabItem).Name) {
                 case "EmployeesTab":
-                    EmployeesTabGrid.DataContext = employeesViewModel;
+                    if (EmployeesTabGrid.DataContext == null) {
+                        employeesViewModel = new EmployeesViewModel();
+                        EmployeesTabGrid.DataContext = employeesViewModel;
+                    }
                     break;
                 case "UsersTab":
-                    UsersTabGrid.DataContext = usersViewModel;
+                    if (UsersTabGrid.DataContext == null) {
+                        usersViewModel = new UsersViewModel();
+                        UsersTabGrid.DataContext = usersViewModel;
+                    }
                     break;
                 case "ViolationsTab":
-                    ViolationsTabGrid.DataContext = violationsAdminViewModel;
+                    if (ViolationsTabGrid.DataContext == null) {
+                        violationsAdminViewModel = new ViolationsAdminViewModel();
+                        ViolationsTabGrid.DataContext = violationsAdminViewModel;
+                    }
+                    break;
+                case "PersonsTab":
+                    if (PersonsTabGrid.DataContext == null) {
+                        personsViewModel = new PersonsViewModel();
+                        personsViewModel.PropertyChanged += OnPenaltyChanged;
+                        PersonsTabGrid.DataContext = personsViewModel;
+                    }
                     break;
             }
         }
@@ -67,19 +86,29 @@ namespace Client.View.Admin {
                 if (item != sender) {
                     (item as FrameworkElement).IsEnabled = false;
                 }
-                if (item is TextBox) {
-                    TextBox curTextBox = item as TextBox;
-                    string propName = curTextBox.GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName;
-                    object source = curTextBox.GetBindingExpression(TextBox.TextProperty).DataItem;
-                    PropertyInfo propInfo = source.GetType().GetProperty(propName);
-                    propInfo.SetValue(source, Utility.GetDefault(propInfo.PropertyType));
-                } else if (item is ComboBox) {
-                    ComboBox curComboBox = item as ComboBox;
-                    string propName = curComboBox.GetBindingExpression(ComboBox.SelectedItemProperty).ResolvedSourcePropertyName;
-                    object source = curComboBox.GetBindingExpression(ComboBox.SelectedItemProperty).DataItem;
-                    PropertyInfo propInfo = source.GetType().GetProperty(propName);
-                    propInfo.SetValue(source, Utility.GetDefault(propInfo.PropertyType));
+                if (item is Grid) {
+                    foreach (var item2 in (item as Grid).Children) {
+                        ClearStackPanel(item2 as FrameworkElement);
+                    }
+                } else {
+                    ClearStackPanel(item as FrameworkElement);
                 }
+            }
+        }
+
+        private void ClearStackPanel(FrameworkElement item) {
+            if (item is TextBox) {
+                TextBox curTextBox = item as TextBox;
+                string propName = curTextBox.GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName;
+                object source = curTextBox.GetBindingExpression(TextBox.TextProperty).DataItem;
+                PropertyInfo propInfo = source.GetType().GetProperty(propName);
+                propInfo.SetValue(source, Utility.GetDefault(propInfo.PropertyType));
+            } else if (item is ComboBox) {
+                ComboBox curComboBox = item as ComboBox;
+                string propName = curComboBox.GetBindingExpression(ComboBox.SelectedItemProperty).ResolvedSourcePropertyName;
+                object source = curComboBox.GetBindingExpression(ComboBox.SelectedItemProperty).DataItem;
+                PropertyInfo propInfo = source.GetType().GetProperty(propName);
+                propInfo.SetValue(source, Utility.GetDefault(propInfo.PropertyType));
             }
         }
 
@@ -88,13 +117,14 @@ namespace Client.View.Admin {
             Application.Current.Shutdown();
         }
 
-        #region Employees tab
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
             HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
-            if (r.VisualHit.GetType() != typeof(ListBoxItem))
+            if (r.VisualHit.GetType() != typeof(ListBoxItem)) {
                 EmployeeTable.UnselectAll();
                 UserTable.UnselectAll();
                 ViolationsTable.UnselectAll();
+                PersonTable.UnselectAll();
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
@@ -103,12 +133,15 @@ namespace Client.View.Admin {
                     EmployeeTable.UnselectAll();
                     UserTable.UnselectAll();
                     ViolationsTable.UnselectAll();
+                    PersonTable.UnselectAll();
                     break;
                 default:
                     break;
             }
         }
+        #endregion
 
+        #region Employees tab
         private void EditEmployeeButton_Click(object sender, RoutedEventArgs e) {
             this.IsEnabled = false;
             EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(this);
@@ -167,8 +200,8 @@ namespace Client.View.Admin {
         }
 
         private void ViolationsTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (e.AddedItems.Count == 1) {
-                violationsAdminViewModel.curViolation = e.AddedItems[0] as ViolationDto;
+            if (ViolationsTable.SelectedItems.Count == 1) {
+                violationsAdminViewModel.curViolation = ViolationsTable.SelectedItems[0] as ViolationDto;
             }
         }
 
@@ -180,5 +213,48 @@ namespace Client.View.Admin {
         }
         #endregion
 
+        #region Persons
+        private void AddPersonBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+
+            AddPersonWindow addPersonWindow = new AddPersonWindow(personsViewModel.Persons, this);
+
+            addPersonWindow.Show();
+        }
+
+        private void EditPersonButton_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+
+            EditPersonWindow editPersonWindow = new EditPersonWindow(personsViewModel.curSelectedPerson, this);
+
+            editPersonWindow.Show();
+        }
+
+        private void PersonTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (PersonTable.SelectedItems.Count == 1) {
+                personsViewModel.curSelectedPerson = PersonTable.SelectedItems[0] as PersonDto;
+            }
+        }
+
+        private void SeePaymentsBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+
+            PaymentsWindow paymentsWindow = new PaymentsWindow(personsViewModel.CurrentPersonPayments, this);
+
+            paymentsWindow.Show();
+        }
+
+        private void OnPenaltyChanged(object sender, PropertyChangedEventArgs e) {
+            if (e.PropertyName == nameof(personsViewModel.MinPaidPenaltySearch) || 
+                e.PropertyName == nameof(personsViewModel.MinActualPenaltySearch) ||
+                e.PropertyName == nameof(personsViewModel.MaxPaidPenaltySearch) ||
+                e.PropertyName == nameof(personsViewModel.MaxActualPenaltySearch)) {
+                MinPaidPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                MinActualPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                MaxPaidPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                MaxActualPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            }
+        }
+        #endregion
     }
 }

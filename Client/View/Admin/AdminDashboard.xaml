@@ -93,11 +93,11 @@
                     <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,10,2.2,8" Grid.ColumnSpan="3"/>
                     <Button Content="Очистить поисковые поля" Grid.Column="3" Margin="9.8,9.8,10.4,9.6" Grid.ColumnSpan="2" Grid.Row="2" Command="{Binding ClearFormCommand}"/>
                     <Button Content="Поиск" Grid.Column="3" Margin="9.8,8,10.4,10.2" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding SearchCommand}"/>
-                    <Button Content="Удалить" Grid.Column="3" Margin="9.8,84,7.2,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
-                    <Button x:Name="EditEmployeeButton" Content="Изменить" Grid.Column="4" Margin="6.8,84,10.4,0" VerticalAlignment="Top" Height="35" Click="EditEmployeeButton_Click" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
-                    <Button x:Name="SeeAddedViolationsButton" Content="Просмотреть выявленные &#xA;              нарушения" Grid.Column="3" Margin="9.8,139,10.4,0" VerticalAlignment="Top" Height="58" Grid.ColumnSpan="2" Click="SeeAddedViolationsButton_Click" Command="{Binding SeeAddedViolationsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
-                    <Button x:Name="SeeDoneShiftsButton" Content="Посмотреть отработанные&#xA;                смены" Grid.Column="3" Margin="9.8,223,10.4,0" VerticalAlignment="Top" Height="59" Grid.ColumnSpan="2" Click="SeeDoneShiftsButton_Click" Command="{Binding SeeEmployeeDoneShiftsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
-                    <Button x:Name="AddEmployeeButton" Content="Добавить сотрудника" VerticalAlignment="Top" Grid.Column="3" Margin="9.8,18,10.4,0" Grid.ColumnSpan="2" Height="45" Click="AddEmployeeButton_Click"/>
+                    <Button Content="Удалить" Grid.Column="3" Margin="9.8,60,7.2,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
+                    <Button x:Name="EditEmployeeButton" Content="Изменить" Grid.Column="4" Margin="6.8,60,10.4,0" VerticalAlignment="Top" Height="35" Click="EditEmployeeButton_Click" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
+                    <Button x:Name="SeeAddedViolationsButton" Content="Просмотреть выявленные &#xA;              нарушения" Grid.Column="3" Margin="9.8,100,10.4,0" VerticalAlignment="Top" Height="58" Grid.ColumnSpan="2" Click="SeeAddedViolationsButton_Click" Command="{Binding SeeAddedViolationsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
+                    <Button x:Name="SeeDoneShiftsButton" Content="Посмотреть отработанные&#xA;                смены" Grid.Column="3" Margin="9.8,163,10.4,0" VerticalAlignment="Top" Height="59" Grid.ColumnSpan="2" Click="SeeDoneShiftsButton_Click" Command="{Binding SeeEmployeeDoneShiftsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
+                    <Button x:Name="AddEmployeeButton" Content="Добавить сотрудника" VerticalAlignment="Top" Grid.Column="3" Margin="9.8,10,10.4,0" Grid.ColumnSpan="2" Height="45" Click="AddEmployeeButton_Click"/>
                     <StackPanel Margin="10,2.8,16.8,6.6" Orientation="Vertical" Grid.Row="2" x:Name="SurnameStackPanel">
                         <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Фамилия&#x9;" IsEnabled="False"/>
                         <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" IsEnabled="False">
@@ -513,13 +513,14 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Нарушители" Padding="32,20">
-                <Grid Background="#FFE5E5E5">
+            <TabItem x:Name="PersonsTab" Header="Профили" Padding="32,20">
+                <Grid x:Name="PersonsTabGrid" Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="252*"/>
-                        <ColumnDefinition Width="300*"/>
-                        <ColumnDefinition Width="245*"/>
-                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="192*"/>
+                        <ColumnDefinition Width="225*"/>
+                        <ColumnDefinition Width="210*"/>
+                        <ColumnDefinition Width="174*"/>
+                        <ColumnDefinition Width="82*"/>
                         <ColumnDefinition Width="85*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -527,7 +528,7 @@
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="85*"/>
                     </Grid.RowDefinitions>
-                    <ListView Margin="10,13,4.8,4.6" Grid.ColumnSpan="3">
+                    <ListView x:Name="PersonTable" Margin="10,10,5,4.6" AlternationCount="2" Grid.ColumnSpan="4" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="PersonTable_SelectionChanged" ItemsSource="{Binding Persons, UpdateSourceTrigger=PropertyChanged}" Foreground="Black">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">
@@ -548,139 +549,180 @@
                                 <GridViewColumn Header="ID" Width="30">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock Text="{Binding id}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="№ Паспорта" Width="80">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock Text="{Binding passportId}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="№ ВУ" Width="80">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock Text="{Binding driverLicense}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="ФИО" Width="170">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource FIOConverter}">
+                                                        <Binding Path="surname" />
+                                                        <Binding Path="name"/>
+                                                        <Binding Path="patronymic"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Дата рождения" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock Text="{Binding birthday, Converter={StaticResource DateConverter}}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Задолженность" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock Text="{Binding actualPenalty, Converter={StaticResource MoneyConverter}}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Выплаченная сумма" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text=""/>
+                                            <TextBlock Text="{Binding paidPenalty, Converter={StaticResource MoneyConverter}}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,13,4.8,4.6" Grid.ColumnSpan="3"/>
-                    <StackPanel Margin="28,5.2,67,14.6" Orientation="Vertical" Grid.Row="2" Grid.Column="1">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0">
-                            <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,10,4,4.6" Grid.ColumnSpan="4"/>
+                    <Button Content="Удалить" Grid.Column="4" Margin="5,60,4.6,0" VerticalAlignment="Top" Height="35" Command="{Binding DeletePersonCommand}" CommandParameter="{Binding SelectedItems, ElementName=PersonTable}"/>
+                    <Button x:Name="EditPersonButton" Content="Изменить" Grid.Column="5" Margin="4.4,60,11.4,0" VerticalAlignment="Top" Height="35" Click="EditPersonButton_Click" Command="{Binding EditPersonCommand}" CommandParameter="{Binding SelectedItems, ElementName=PersonTable}"/>
+                    <Button x:Name="AddPersonBtn" Content="Добавить профиль" VerticalAlignment="Top" Grid.Column="4" Margin="5,10,11.4,0" Grid.ColumnSpan="2" Height="45" Click="AddPersonBtn_Click"/>
+                    <Button x:Name="SeePaymentsBtn" Grid.ColumnSpan="2" Content="Посмотреть выплаты" Grid.Column="4" Margin="4,100,11.4,0" VerticalAlignment="Top" Height="39" Click="SeePaymentsBtn_Click" Command="{Binding SeePaymentsCommand}" CommandParameter="{Binding SelectedItems, ElementName=PersonTable}"/>
+                    <Button Content="Очистить поисковые &#xA;              поля" Grid.Column="4" Margin="15.6,10.2,11.6,19.6" Grid.Row="2" Grid.ColumnSpan="2" Command="{Binding ResetSearchFields}"/>
+                    <Button Content="Поиск" Grid.Column="4" Margin="15.6,8.4,11.6,9.8" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding SearchCommand}"/>
+                    <StackPanel Margin="19.2,0.4,34.4,4.8" Orientation="Vertical" Grid.Row="1" Grid.Column="2">
+                        <Label VerticalAlignment="Top" Height="26" Content="Дата рождения" HorizontalAlignment="Left" Width="142" IsEnabled="False"/>
+                        <DatePicker VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" SelectedDate="{Binding BirthdaySearch}" IsEnabled="False"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindBirthdayCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
+                    </StackPanel>
+                    <StackPanel Margin="27,0.4,50.8,4.8" Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ ВУ" IsEnabled="False"/>
+                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                            <Binding Path="DriverLicenseSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindDriverLicenseCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <StackPanel Margin="10,5.2,29.8,14.6" Orientation="Vertical" Grid.Row="2" Grid.Column="2">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0">
-                            <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10,0.4,25,4.8">
+                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ Паспорта" IsEnabled="False"/>
+                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                            <Binding Path="PassportIdSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindPassportIdCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <StackPanel Margin="28,4.4,67,84.6" Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0">
-                            <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <StackPanel  Orientation="Vertical" Grid.Row="2" Margin="10,5.2,25,9.6">
+                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Фамилия" IsEnabled="False"/>
+                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                            <Binding Path="SurnameSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindSurnameCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <StackPanel Margin="10,4.4,29.8,84.6" Orientation="Vertical" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0">
-                            <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <StackPanel Margin="27,5.2,50.8,9.6" Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя" IsEnabled="False"/>
+                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                            <Binding Path="NameSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindNameCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <StackPanel Margin="10,4.4,37,84.6" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0">
-                            <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <StackPanel Margin="10.6,5.2,7,9.6" Orientation="Vertical" Grid.Row="2" Grid.Column="3">
+                        <Label VerticalAlignment="Top" Height="26" Content="Задолженность" HorizontalAlignment="Left" Width="142" IsEnabled="False"/>
+                        <Grid IsEnabled="False" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="26*"/>
+                                <ColumnDefinition Width="23*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="-" Margin="0,2,0.6,0" Padding="3,0,0,0" HorizontalAlignment="Right" Width="11" Height="22" VerticalAlignment="Top" IsEnabled="False"/>
+                            <TextBox x:Name="MinActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Margin="0,0,11.6,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                                <Binding Path="MinActualPenaltySearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                            <TextBox x:Name="MaxActualPenaltyField" Margin="1.4,0,0.4,0" Padding="3" Height="24" VerticalAlignment="Top" Grid.Column="1" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                                <Binding Path="MaxActualPenaltySearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                        </Grid>
+                        <CheckBox Content="Искать по этому полю" VerticalAlignment="Top" IsChecked="{Binding FindActualPenaltyCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Margin="19.2,5.2,36.4,9.6" Grid.Column="2">
+                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество" IsEnabled="False"/>
+                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                            <Binding Path="PatronymicSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindPatronymicCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <StackPanel Margin="10,5.2,37,14.6" Orientation="Vertical" Grid.Row="2">
-                        <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0">
-                            <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <StackPanel Margin="10.6,0.4,7,4.8" Orientation="Vertical" Grid.Row="1" Grid.Column="3">
+                        <Label VerticalAlignment="Top" Height="26" Content="Выплаченная сумма" HorizontalAlignment="Left" Width="142" IsEnabled="False"/>
+                        <Grid IsEnabled="False" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="26*"/>
+                                <ColumnDefinition Width="23*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="-" Margin="0,2,0.6,0" Padding="3,0,0,0" HorizontalAlignment="Right" Width="11" Height="22" VerticalAlignment="Top" IsEnabled="False"/>
+                            <TextBox x:Name="MinPaidPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Margin="0,0,11.6,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                                <Binding Path="MinPaidPenaltySearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                            <TextBox x:Name="MaxPaidPenaltyField" Margin="1.4,0,0.4,0" Padding="3" Height="24" VerticalAlignment="Top" Grid.Column="1" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                                <Binding Path="MaxPaidPenaltySearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                        </Grid>
+                        <CheckBox Content="Искать по этому полю" VerticalAlignment="Top" IsChecked="{Binding FindPaidPenaltyCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <Button Content="Удалить" Grid.Column="3" Margin="15.2,65,1.6,0" VerticalAlignment="Top" Height="35"/>
-                    <Button Content="Изменить" Grid.Column="4" Margin="7.4,65,10.4,0" VerticalAlignment="Top" Height="35"/>
-                    <Button Content="Добавить нарушение" VerticalAlignment="Top" Grid.Column="3" Margin="15.2,13,10.4,0" Grid.ColumnSpan="2" Height="45"/>
-                    <Button Grid.ColumnSpan="2" Content="Посмотреть профиль&#xA;        нарушителя" Grid.Column="3" Margin="15.2,108,10.4,0" VerticalAlignment="Top" Height="37"/>
-                    <Button Grid.ColumnSpan="2" Content="Посмотреть выплаты&#xA;        нарушителя" Grid.Column="3" Margin="15.2,153,10.4,0" VerticalAlignment="Top" Height="37"/>
-                    <Button Grid.ColumnSpan="2" Content="Найти нарушителей&#xD;&#xA; с задолженностью &#xD;&#xA;       в интервале" Grid.Column="3" Margin="15.2,201,10.4,0" VerticalAlignment="Top" Height="54"/>
-                    <Grid Grid.ColumnSpan="2" Grid.Column="3" Margin="15.2,260,10.4,192.6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="13*"/>
-                            <ColumnDefinition Width="11*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="-" Margin="0,1,2.4,0" VerticalAlignment="Top" Height="22" Padding="3,0,0,0" HorizontalAlignment="Right" Width="8"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="2,0,0,0" Text="TextBox" VerticalAlignment="Top" Width="66" Padding="3"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,0,-1,0" Text="TextBox" VerticalAlignment="Top" Width="64" Padding="3"/>
-                    </Grid>
-                    <Button Content="Очистить поисковые &#xA;              поля" Grid.Column="3" Margin="15.2,10.2,10.4,19.6" Grid.Row="2" Grid.ColumnSpan="2"/>
-                    <Button Content="Поиск" Grid.Column="3" Margin="15.2,8.4,10.4,9.8" Grid.Row="1" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Платежи" Padding="32,20">

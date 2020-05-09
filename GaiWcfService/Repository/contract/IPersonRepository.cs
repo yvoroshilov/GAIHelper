@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Repository.contract {
     public interface IPersonRepository {
-        void AddPerson(Person person);
+        Person AddPerson(Person person);
 
         void EditPerson(Person person);
 

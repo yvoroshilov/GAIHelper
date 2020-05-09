@@ -24,7 +24,6 @@ namespace GaiWcfService.Util {
                     .ForMember("User", expr => expr.Ignore());
                 cfg.CreateMap<Payment, PaymentDto>()
                     .ForMember("personId", expr => expr.MapFrom("person_id"))
-                    .ForMember("isPaid", expr => expr.MapFrom("is_paid"))
                     .ReverseMap()
                     .ForMember("Person", expr => expr.Ignore());
                 cfg.CreateMap<Shift, ShiftDto>()
@@ -44,6 +43,7 @@ namespace GaiWcfService.Util {
                 cfg.CreateMap<ViolationType, ViolationTypeDto>()
                     .ForMember("minPenalty", expr => expr.MapFrom("min_penalty"))
                     .ForMember("maxPenalty", expr => expr.MapFrom("max_penalty"))
+                    .ForMember("paydayAfter", expr => expr.MapFrom("payday_after"))
                     .ReverseMap();
                 cfg.CreateMap<Person, PersonDto>()
                     .ForMember("passportId", expr => expr.MapFrom("passport_id"))

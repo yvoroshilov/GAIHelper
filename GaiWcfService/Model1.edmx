@@ -22,8 +22,8 @@
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="person_id" Type="int" Nullable="false" />
-          <Property Name="payday" Type="date" Nullable="false" />
-          <Property Name="is_paid" Type="bit" Nullable="false" />
+          <Property Name="amount" Type="money" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Persons">
           <Key>
@@ -35,9 +35,9 @@
           <Property Name="name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="birthday" Type="date" />
+          <Property Name="birthday" Type="date" Nullable="false" />
           <Property Name="actual_penalty" Type="real" Nullable="false" />
-          <Property Name="paid_penalty" Type="real" />
+          <Property Name="paid_penalty" Type="real" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -88,6 +88,7 @@
           <Property Name="min_penalty" Type="money" Nullable="false" />
           <Property Name="max_penalty" Type="money" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="payday_after" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Employees_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1">
@@ -278,8 +279,8 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="person_id" Type="Int32" Nullable="false" />
-          <Property Name="payday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="is_paid" Type="Boolean" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Person" Relationship="GAIDBModel.FK_Payments_Persons" FromRole="Payment" ToRole="Person" />
         </EntityType>
         <EntityType Name="Person">
@@ -292,9 +293,9 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="actual_penalty" Type="Single" Nullable="false" />
-          <Property Name="paid_penalty" Type="Single" />
+          <Property Name="paid_penalty" Type="Single" Nullable="false" />
           <NavigationProperty Name="Payments" Relationship="GAIDBModel.FK_Payments_Persons" FromRole="Person" ToRole="Payment" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Person" ToRole="Violation" />
         </EntityType>
@@ -355,6 +356,7 @@
           <Property Name="min_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="max_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="payday_after" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="ViolationType" ToRole="Violation" />
         </EntityType>
         <Association Name="FK_Employees_Users">
@@ -468,8 +470,8 @@
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="GAIDBModel.Payment">
               <MappingFragment StoreEntitySet="Payments">
-                <ScalarProperty Name="is_paid" ColumnName="is_paid" />
-                <ScalarProperty Name="payday" ColumnName="payday" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="person_id" ColumnName="person_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -537,6 +539,7 @@
           <EntitySetMapping Name="ViolationTypes">
             <EntityTypeMapping TypeName="GAIDBModel.ViolationType">
               <MappingFragment StoreEntitySet="ViolationTypes">
+                <ScalarProperty Name="payday_after" ColumnName="payday_after" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="max_penalty" ColumnName="max_penalty" />
                 <ScalarProperty Name="min_penalty" ColumnName="min_penalty" />

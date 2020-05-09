@@ -17,12 +17,12 @@ namespace Client.ViewModel {
         private const string addMark = "addMark";
         private AdminServiceClient client;
         public ObservableCollection<EmployeeDto> Employees { get; }
-        public ObservableCollection<ViolationDto> EmployeeAddedViolations { get; }
-        public ObservableCollection<ShiftDto> EmployeeDoneShifts { get; }
+        public List<ViolationDto> EmployeeAddedViolations { get; }
+        public List<ShiftDto> EmployeeDoneShifts { get; }
 
         #region Search fields
         private int certificateId;
-        [InputProperty]
+        [InputProperty(true)]
         public int CertificateId {
             get {
                 return certificateId;
@@ -46,7 +46,7 @@ namespace Client.ViewModel {
         }
 
         private string login;
-        [InputProperty]
+        [InputProperty(true)]
         public string Login {
             get {
                 return login;
@@ -70,7 +70,7 @@ namespace Client.ViewModel {
         }
 
         private DateTime hireDate;
-        [InputProperty]
+        [InputProperty(true)]
         public DateTime HireDate {
             get {
                 return hireDate == default ? DateTime.Now : hireDate;
@@ -94,7 +94,7 @@ namespace Client.ViewModel {
         }
 
         private string name;
-        [InputProperty]
+        [InputProperty(true)]
         public string Name {
             get {
                 return name;
@@ -118,7 +118,7 @@ namespace Client.ViewModel {
         }
 
         private string surname;
-        [InputProperty]
+        [InputProperty(true)]
         public string Surname {
             get {
                 return surname;
@@ -142,7 +142,7 @@ namespace Client.ViewModel {
         }
 
         private string patronymic;
-        [InputProperty]
+        [InputProperty(true)]
         public string Patronymic {
             get {
                 return patronymic;
@@ -267,7 +267,7 @@ namespace Client.ViewModel {
                         addedEmpl.name = NameAdd;
                         client.AddEmployee(addedEmpl);
                         Employees.Add(addedEmpl);
-                        ResetForm("addMark");
+                        ResetForm(addMark);
 
                         (obj as Window).Close();
                     }, obj => {
@@ -293,7 +293,7 @@ namespace Client.ViewModel {
                         Employees.Clear();
                         found.ForEach(val => Employees.Add(val));
                     }, obj => {
-                        return true;
+                        return IsAllInputPropsValid(this);
                     }));
             }
         }
@@ -391,8 +391,8 @@ namespace Client.ViewModel {
                         List<EmployeeDto> selectedEmployee = new List<EmployeeDto>((obj as ICollection).Cast<EmployeeDto>());
                         EmployeeDto curEmployee = selectedEmployee.Single();
 
-                        List<ViolationDto> violations = client.GetAllViolationsByResponsibleId(curEmployee.certificateId).ToList();
-                        violations.ForEach(val => EmployeeAddedViolations.Add(val));
+                        EmployeeAddedViolations.Clear();
+                        EmployeeAddedViolations.AddRange(client.GetAllViolationsByResponsibleId(curEmployee.certificateId));
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));
@@ -407,8 +407,8 @@ namespace Client.ViewModel {
                         List<EmployeeDto> selectedEmployee = new List<EmployeeDto>((obj as ICollection).Cast<EmployeeDto>());
                         EmployeeDto curEmployee = selectedEmployee.Single();
 
-                        List<ShiftDto> shifts = client.GetAllShiftsByResponsibleId(curEmployee.certificateId).ToList();
-                        shifts.ForEach(val => EmployeeDoneShifts.Add(val));
+                        EmployeeAddedViolations.Clear();
+                        EmployeeDoneShifts.AddRange(client.GetAllShiftsByResponsibleId(curEmployee.certificateId));
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));
@@ -418,8 +418,8 @@ namespace Client.ViewModel {
 
         public EmployeesViewModel() {
             Employees = new ObservableCollection<EmployeeDto>();
-            EmployeeAddedViolations = new ObservableCollection<ViolationDto>();
-            EmployeeDoneShifts = new ObservableCollection<ShiftDto>();
+            EmployeeAddedViolations = new List<ViolationDto>();
+            EmployeeDoneShifts = new List<ShiftDto>();
             InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
             client = new AdminServiceClient(cntxt);
         }

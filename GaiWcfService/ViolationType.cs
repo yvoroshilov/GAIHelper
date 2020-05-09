@@ -25,6 +25,7 @@ namespace GaiWcfService
         public decimal min_penalty { get; set; }
         public decimal max_penalty { get; set; }
         public string description { get; set; }
+        public int payday_after { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Violation> Violations { get; set; }

@@ -35,6 +35,7 @@ namespace Client.ViewModel {
         }
 
         private bool findLoginCheckbox;
+        [InputProperty]
         public bool FindLoginCheckbox {
             get {
                 return findLoginCheckbox;
@@ -58,6 +59,7 @@ namespace Client.ViewModel {
         }
 
         private bool findRoleCheckbox;
+        [InputProperty]
         public bool FindRoleCheckbox {
             get {
                 return findRoleCheckbox;
@@ -142,7 +144,7 @@ namespace Client.ViewModel {
                         found.ForEach(val => Users.Add(val));
                         ResetForm("serachMark");
                     }, obj => {
-                        return true;
+                        return IsAllInputPropsValid(this, searchMark);
                     }));
             }
         }
@@ -222,43 +224,41 @@ namespace Client.ViewModel {
         public string this[string columnName] {
             get {
                 string error = "";
+
+                if (!GetAssociatedCheckBox(columnName)) return "";
+
+                var props = GetProps().ToList();
+                var prop = props.Where(val => val.Name == columnName).Single();
+                if (prop.GetValue(this) == Utility.GetDefault(prop.PropertyType)) {
+                    return "Это поле должно быть заполнено";
+                }
+
                 switch (columnName) {
                     case nameof(LoginSearch):
-                        if (!FindLoginCheckbox) break;
-                        if (LoginSearch == default) {
-                            error = "Логин обязателен для заполнения";
-                            break;
-                        }
                         break;
                     case nameof(RoleSearch):
-                        if (!FindRoleCheckbox) break;
-                        if (RoleSearch == default) {
-                            error = "Роль обязательна для заполнения";
-                            break;
-                        }
                         break;
                     case nameof(RoleAdd):
-                        if (RoleAdd == default) {
-                            error = "Роль обязательна для заполнения";
-                            break;
-                        }
                         break;
                     case nameof(PasswordAdd):
-                        if (PasswordAdd == default) {
-                            error = "Пароль обязателен для заполнения";
-                            break;
-                        }
                         break;
                     case nameof(LoginAdd):
-                        if (LoginAdd == default) {
-                            error = "Логин обязателен для заполнения";
-                            break;
-                        }
                         break;
                     default:
                         break;
                 }
                 return error;
+            }
+        }
+
+        private bool GetAssociatedCheckBox(string columnName) {
+            switch (columnName) {
+                case nameof(LoginSearch):
+                    return FindLoginCheckbox;
+                case nameof(RoleSearch):
+                    return FindRoleCheckbox;
+                default:
+                    return true;
             }
         }
 
