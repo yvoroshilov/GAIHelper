@@ -12,12 +12,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using ToastNotifications;
+using ToastNotifications.Core;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Client.ViewModel {
     public class LoginViewModel : ViewModel {
 
         private AdminServiceClient client;
         public EventHandler ClosingRequest;
+        private static AdminDashboard adminDashboard = null;
 
         private string login;
         [InputProperty(true)]
@@ -31,9 +37,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private  class Cllbck : IAdminServiceCallback {
-            public string Test(string str) {
-                return "zdarova";
+        private class Cllbck : IAdminServiceCallback {
+            public void SendPenaltyExpired(PersonDto[] persons) {
+                adminDashboard?.ShowNotification(persons.ToList());
             }
         }
 
@@ -58,13 +64,13 @@ namespace Client.ViewModel {
                         }
 
 
+                        MainServiceSubscribeState res = client.Subscribe(user.login);
                         if (user.role == "ROLE_USER") {
                             if (client.GetEmployeeByUserLogin(user.login) == null) {
                                 MessageBox.Show("Под этой учётной записью не зарегистрировано ни одного работника", "Внимание", MessageBoxButton.OK, MessageBoxImage.Error);
                                 passwordBox.Password = "";
                                 return;
                             }
-                            MainServiceSubscribeState res = client.Subscribe(user.login);
                             switch (res) {
                                 case MainServiceSubscribeState.SUBSCRIBED:
                                     break;
@@ -79,15 +85,14 @@ namespace Client.ViewModel {
                             }
                         }
 
-                        Window dashboard = null;
                         if (user.role == "ROLE_USER") {
                             EmployeeDto empDto = client.GetEmployeeByUserLogin(user.login);
                             ShiftDto curShift = client.GetCurrentShift(empDto.certificateId);
-                            dashboard = new UserDashboard(curShift);
+                            new UserDashboard(curShift).Show();
                         } else if (user.role == "ROLE_ADMIN") {
-                            dashboard = new AdminDashboard();
+                            adminDashboard = new AdminDashboard();
+                            adminDashboard.Show();
                         }
-                        dashboard.Show();
                         ClosingRequest(null, null);
                     }, obj => {
                         return IsAllRequiredFieldsFilled() && (obj as PasswordBox).Password != "";

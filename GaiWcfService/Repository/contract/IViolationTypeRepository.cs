@@ -15,6 +15,6 @@ namespace GaiWcfService.Repository.contract {
 
         ViolationType GetViolationType(int id);
 
-        HashSet<ViolationType> GetAll();
+        List<ViolationType> GetAll();
     }
 }

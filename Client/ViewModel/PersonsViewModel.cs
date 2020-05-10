@@ -20,9 +20,11 @@ namespace Client.ViewModel {
     public class PersonsViewModel : ViewModel, IDataErrorInfo {
 
         private AdminServiceClient client;
+        private UserServiceClient userClient = new UserServiceClient();
         public ObservableCollection<PersonDto> Persons { get; }
         public PersonDto curSelectedPerson;
         public ObservableCollection<PaymentDto> CurrentPersonPayments { get; }
+        public ObservableCollection<ViolationDto> CurrentPersonViolations { get; set; }
 
         #region Search fields
         private string passportIdSearch;
@@ -239,6 +241,17 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        private bool onlyDebtorsCheckbox;
+        public bool OnlyDebtorsCheckbox {
+            get {
+                return onlyDebtorsCheckbox;
+            }
+            set {
+                onlyDebtorsCheckbox = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Command
@@ -321,9 +334,42 @@ namespace Client.ViewModel {
                         } else {
                             result = client.SearchPersons(searchedPerson).ToList();
                         }
+
+                        if (OnlyDebtorsCheckbox) {
+                            result = result
+                                .Where(val => (val.actualPenalty - val.paidPenalty) > 0.0)
+                                .ToList();
+                        }
                         result.ForEach(val => Persons.Add(val));
                     }, obj => {
                         return IsAllInputPropsValid(this);
+                    }));
+            }
+        }
+
+        private RelayCommand seeCurrentPersonViolations;
+        public RelayCommand SeeCurrentPersonViolations {
+            get {
+                return seeCurrentPersonViolations ??
+                    (seeCurrentPersonViolations = new RelayCommand(obj => {
+                        List<PersonDto> selectedPersons = new List<PersonDto>((obj as ICollection).Cast<PersonDto>());
+                        PersonDto selectedPerson = selectedPersons.Single();
+
+                        CurrentPersonViolations.Clear();
+                        userClient.GetAllViolations(selectedPerson.id).ToList().ForEach(val => CurrentPersonViolations.Add(val));
+                    }, obj => {
+                        return (obj as ICollection).Count == 1;
+                    }));
+            }
+        }
+
+        private RelayCommand getPersonsWithExpiredPenalties;
+        public RelayCommand GetPersonsWithExpiredPenalties {
+            get {
+                return getPersonsWithExpiredPenalties ??
+                    (getPersonsWithExpiredPenalties = new RelayCommand(obj => {
+                        Persons.Clear();
+                        client.GetPersonsWithExpiredPenalties().ToList().ForEach(val => Persons.Add(val));
                     }));
             }
         }
@@ -345,6 +391,7 @@ namespace Client.ViewModel {
 
             Persons = new ObservableCollection<PersonDto>();
             CurrentPersonPayments = new ObservableCollection<PaymentDto>();
+            CurrentPersonViolations = new ObservableCollection<ViolationDto>();
         }
 
         public string this[string columnName] {

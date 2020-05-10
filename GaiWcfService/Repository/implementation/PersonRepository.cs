@@ -39,10 +39,6 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Persons.Find(id);
         }
 
-        public HashSet<Person> GetAll() {
-            return dbEntities.Persons.ToHashSet();
-        }
-
         public Person GetPersonByLicense(string driverLicense) {
             return dbEntities.Persons.Where(val => val.driver_license == driverLicense).FirstOrDefault();
         }
@@ -59,6 +55,15 @@ namespace GaiWcfService.Repository.implementation {
                 (searchedPerson.actual_penalty == default || val.actual_penalty == searchedPerson.actual_penalty) &&
                 (searchedPerson.paid_penalty == default || val.paid_penalty == searchedPerson.paid_penalty))
                 .ToList();
+        }
+
+        public List<Person> GetExpiredDebtors() {
+            return dbEntities.Violations
+                .Where(val => !val.paid)
+                .GroupBy(val => val.Person.id)
+                .Select(val => val.FirstOrDefault().Person)
+                .ToList();
+
         }
     }
 }

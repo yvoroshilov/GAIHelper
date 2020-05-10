@@ -1,4 +1,5 @@
-﻿using GaiWcfService.Repository.contract;
+﻿using GaiWcfService.Dto;
+using GaiWcfService.Repository.contract;
 using GaiWcfService.Repository.implementation;
 using GaiWcfService.Util;
 using System;
@@ -40,7 +41,7 @@ namespace GaiWcfService.Callback {
             timer.AutoReset = true;
             timer.Interval = 1000 * 60 * 0.5;
             timer.Start();
-            logger.Write("timer1 started");
+            logger.Write("CONNECTED CLIENTS TIMER STARTED");
         }
 
         private void RemoveNotOpened() {
@@ -51,21 +52,30 @@ namespace GaiWcfService.Callback {
                     logger.Write(item.Key + " ------------- " + commObj.State);
                     if (commObj.State != CommunicationState.Opened) {
                         (ICallbackService, bool) stub = default;
-                        if (item.Value.isCandidateForDeletion) {
+                        User user = userRepository.GetUser(item.Key);
+                        if (user.role == "ROLE_ADMIN") {
                             if (channels.TryRemove(item.Key, out stub)) {
                                 logger.Write(item.Key + " ---------- " + "CALLBACK REMOVED");
                             } else {
                                 logger.Write(item.Key + " ---------- " + "CALLBACK NOT REMOVED");
                             }
-
-                            int responsibleId = userRepository.GetUser(item.Key)
-                                .Employees.First().certificate_id;
-                            Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(responsibleId);
-                            shift.end = DateTime.Now;
-                            shiftRepository.EditShift(shift.id, shift);
-                            logger.Write(item.Key + " ---------- " + "SHIFT CLOSED");
                         } else {
-                            channels.TryUpdate(item.Key, (item.Value.callback, true), item.Value);
+                            if (item.Value.isCandidateForDeletion) {
+                                if (channels.TryRemove(item.Key, out stub)) {
+                                    logger.Write(item.Key + " ---------- " + "CALLBACK REMOVED");
+                                } else {
+                                    logger.Write(item.Key + " ---------- " + "CALLBACK NOT REMOVED");
+                                }
+
+                                int responsibleId = user
+                                    .Employees.First().certificate_id;
+                                Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(responsibleId);
+                                shift.end = DateTime.Now;
+                                shiftRepository.EditShift(shift.id, shift);
+                                logger.Write(item.Key + " ---------- " + "SHIFT CLOSED");
+                            } else {
+                                channels.TryUpdate(item.Key, (item.Value.callback, true), item.Value);
+                            }
                         }
                     }
                 }
@@ -91,6 +101,15 @@ namespace GaiWcfService.Callback {
         public void CloseConnection(string login) {
             (ICallbackService, bool) stub = default;
             channels.TryRemove(login, out stub);
+        }
+
+        public void InvokeAdminCallback(List<PersonDto> persons) {
+            foreach (var item in channels) {
+                User user = userRepository.GetUser(item.Key);
+                if (user.role == "ROLE_ADMIN");
+                item.Value.callback.SendPenaltyExpired(persons);
+                logger.Write("CALLBACK INVOKED");
+            }
         }
     }
 }

@@ -21,6 +21,11 @@ using System.Collections;
 using Client.MainService;
 using Client.View.Admin.PersonTabSubWIndows;
 using System.ComponentModel;
+using ToastNotifications;
+using ToastNotifications.Position;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Core;
 
 namespace Client.View.Admin {
     /// <summary>
@@ -30,6 +35,20 @@ namespace Client.View.Admin {
         public AdminDashboard() {
             InitializeComponent();
         }
+
+        public Notifier notifier = new Notifier(cfg => {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,  
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         private EmployeesViewModel employeesViewModel;
         private UsersViewModel usersViewModel;
@@ -272,6 +291,14 @@ namespace Client.View.Admin {
             paymentsWindow.Show();
         }
 
+        private void SeePersonsViolationsBtn_Click(object sender, RoutedEventArgs e) {
+            this.IsEnabled = false;
+
+            PersonsViolations personsViolations = new PersonsViolations(personsViewModel.CurrentPersonViolations, this);
+
+            personsViolations.Show();
+        }
+
         private void OnPenaltyChanged(object sender, PropertyChangedEventArgs e) {
             if (e.PropertyName == nameof(personsViewModel.MinPaidPenaltySearch) || 
                 e.PropertyName == nameof(personsViewModel.MinActualPenaltySearch) ||
@@ -284,5 +311,18 @@ namespace Client.View.Admin {
             }
         }
         #endregion
+
+        public void ShowNotification(List<PersonDto> debtors) {
+            MessageOptions opts = new MessageOptions() {
+                NotificationClickAction = new Action<NotificationBase>((notificationBase) => {
+                    MainTabControl.SelectedItem = PersonsTab;
+
+                    debtors.ForEach(val => personsViewModel.Persons.Add(val));
+
+                    notificationBase.Close();
+                })
+            };
+            notifier.ShowWarning("Просрочены сроки по уплате штрафов. Количество людей: " + debtors.Count, opts);
+        }
     }
 }

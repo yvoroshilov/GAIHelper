@@ -63,7 +63,7 @@ namespace Client.ViewModel {
         }
 
         public class DummyCallbackClass : IAdminServiceCallback {
-            public string Test(string str) {
+            public void SendPenaltyExpired(PersonDto[] persons) {
                 throw new NotImplementedException();
             }
         }

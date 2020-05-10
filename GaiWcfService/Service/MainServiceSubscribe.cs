@@ -24,12 +24,16 @@ namespace GaiWcfService.Service {
         public SubscribeState Subscribe(string login) {
             lock (clients.removeMethodLock) {
                 User user = userRepository.GetUser(login);
-                if (user.role != "ROLE_USER") {
-                    return SubscribeState.NOT_SUBSCRIBED;
-                }
+
                 ICallbackService callback = OperationContext.Current.GetCallbackChannel<ICallbackService>();
 
                 bool addRes = clients.RegisterChannel(login, callback);
+
+                if (user.role != "ROLE_USER") {
+                    ExpiredPenaltiesChecker.Instance.aa = 3;
+                    return SubscribeState.NOT_SUBSCRIBED;
+                }
+                
                 if (addRes) {
                     MyLogger.Instance.Write(user.Employees.Count.ToString());
                     OpenShift(user.Employees.First().certificate_id);

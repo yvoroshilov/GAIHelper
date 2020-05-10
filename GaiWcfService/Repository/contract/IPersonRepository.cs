@@ -19,6 +19,6 @@ namespace GaiWcfService.Repository.contract {
 
         List<Person> SearchPersons(Person searchedPerson);
 
-        HashSet<Person> GetAll();
+        List<Person> GetExpiredDebtors();
     }
 }

@@ -122,6 +122,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         PersonDto GetPerson(int personId);
+
+        [OperationContract]
+        List<PersonDto> GetPersonsWithExpiredPenalties();
         #endregion
 
         #region Payments

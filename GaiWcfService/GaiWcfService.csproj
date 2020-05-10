@@ -143,6 +143,7 @@
     <Compile Include="Service\MainServiceShifts.cs" />
     <Compile Include="Service\MainServicePayments.cs" />
     <Compile Include="Service\MainServiceEmployees.cs" />
+    <Compile Include="Util\ExpiredPenaltiesChecker.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\MyLogger.cs" />
     <Compile Include="Util\SearchMatcher.cs" />

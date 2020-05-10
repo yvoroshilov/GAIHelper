@@ -43,5 +43,8 @@ namespace GaiWcfService.Dto{
 
         [DataMember]
         public int shiftId;
+
+        [DataMember]
+        public bool paid;
     }
 }

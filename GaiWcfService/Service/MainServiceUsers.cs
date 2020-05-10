@@ -22,9 +22,7 @@ namespace GaiWcfService.Service {
         }
 
         public void SetTest(int test) {
-            Employee empl = new Employee();
-            empl.hire_date = new DateTime(2001, 1, 1);
-            var testt = employeeRepository.SearchEmployees(empl);
+            personRepository.GetExpiredDebtors();
         }
         
         public void AddUser(UserDto user) {

@@ -5,4 +5,47 @@
 
     <converter:FIOConverter x:Key="FIOConverter" />
     <converter:ListViewAndParentConverter x:Key="ListViewAndParentConverter"/>
+    <Style TargetType="{x:Type TabItem}" x:Key="TabItemDebtorsStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border>
+                        <Grid>
+                            <Grid>
+                                <Border x:Name="border" 
+                                        CornerRadius="3,3,0,0"
+                                        Background="WhiteSmoke"/>
+                            </Grid>
+                             <ContentPresenter  VerticalAlignment="Center" Margin="5"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header" >                                   
+                            </ContentPresenter>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter TargetName="border"
+                                    Property="Background"
+                                    Value="#FFFFAA00" />
+                        </Trigger>
+                         <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#FFFFC754" />
+                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#FFFFD98D" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

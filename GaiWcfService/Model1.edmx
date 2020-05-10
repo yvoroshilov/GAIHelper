@@ -78,6 +78,7 @@
           <Property Name="address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="255" />
           <Property Name="shift_id" Type="int" Nullable="false" />
+          <Property Name="paid" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ViolationTypes">
           <Key>
@@ -345,6 +346,7 @@
           <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="shift_id" Type="Int32" Nullable="false" />
+          <Property Name="paid" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Violation" ToRole="Person" />
           <NavigationProperty Name="Shift" Relationship="GAIDBModel.FK_Violations_Shifts" FromRole="Violation" ToRole="Shift" />
           <NavigationProperty Name="ViolationType" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="Violation" ToRole="ViolationType" />
@@ -525,6 +527,7 @@
           <EntitySetMapping Name="Violations">
             <EntityTypeMapping TypeName="GAIDBModel.Violation">
               <MappingFragment StoreEntitySet="Violations">
+                <ScalarProperty Name="paid" ColumnName="paid" />
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="address" ColumnName="address" />

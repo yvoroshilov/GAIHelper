@@ -26,6 +26,7 @@ namespace GaiWcfService
         public string address { get; set; }
         public string description { get; set; }
         public int shift_id { get; set; }
+        public bool paid { get; set; }
     
         public virtual Person Person { get; set; }
         public virtual Shift Shift { get; set; }

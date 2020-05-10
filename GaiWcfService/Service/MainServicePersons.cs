@@ -47,5 +47,11 @@ namespace GaiWcfService.Service {
         public PersonDto GetPerson(int personId) {
             return Mapper.mapper.Map<PersonDto>(personRepository.GetPerson(personId));
         }
+
+        public List<PersonDto> GetPersonsWithExpiredPenalties() {
+            return personRepository.GetExpiredDebtors()
+                .Select(val => Mapper.mapper.Map<PersonDto>(val))
+                .ToList();
+        }
     }
 }

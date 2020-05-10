@@ -16,7 +16,7 @@
     </Window.Resources>
 
     <Grid Background="{StaticResource BackgroundPrimary}">
-        <ListView ItemsSource="{Binding}" Foreground="Black">
+        <ListView ItemsSource="{Binding}" AlternationCount="2" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="№" Width="30">
@@ -73,6 +73,13 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock ToolTip="{Binding description}"  Text="{Binding description, Converter={StaticResource DescriptionConverter}}" TextTrimming="CharacterEllipsis" Height="16" LineStackingStrategy="BlockLineHeight" LineHeight="16"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Оплачено">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding paid, Converter={StaticResource BoolConverter}}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

@@ -18,7 +18,7 @@
     </Window.Resources>
 
     <Grid Background="{StaticResource BackgroundSecondary}">
-        <TabControl TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl x:Name="MainTabControl" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="EmployeesTab" Header="Сотрудники" Padding="32,20">
                 <Grid x:Name="EmployeesTabGrid" Background="{StaticResource BackgroundPrimary}">
                     <Grid.ColumnDefinitions>
@@ -716,6 +716,9 @@
                         </Grid>
                         <CheckBox Content="Искать по этому полю" VerticalAlignment="Top" IsChecked="{Binding FindPaidPenaltyCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
+                    <CheckBox x:Name="OnlyDebtorsCheckbox" Content="Только должники" Grid.Column="4" Margin="37,457,10.4,0" Grid.ColumnSpan="2" IsChecked="{Binding OnlyDebtorsCheckbox}" Height="15" VerticalAlignment="Top"/>
+                    <Button x:Name="SeePersonsViolationsBtn" Content="Посмотреть нарушения" Grid.Column="4" Margin="4,144,11.4,0" Grid.ColumnSpan="2" Command="{Binding SeeCurrentPersonViolations}" CommandParameter="{Binding SelectedItems, ElementName=PersonTable}" Click="SeePersonsViolationsBtn_Click" Height="39" VerticalAlignment="Top"/>
+                    <Button x:Name="SearchWithExpiredPenalties" Content="Найти людей с просроченными штрафами" Grid.Column="4" Margin="5,188,10.4,0" Grid.ColumnSpan="2" Command="{Binding GetPersonsWithExpiredPenalties}" Height="39" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="PaymentsTab" Header="Платежи" Padding="32,20">

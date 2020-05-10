@@ -353,6 +353,9 @@ namespace Client.MainService {
         private System.Nullable<double> longitudeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool paidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double penaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -464,6 +467,19 @@ namespace Client.MainService {
                 if ((this.longitudeField.Equals(value) != true)) {
                     this.longitudeField = value;
                     this.RaisePropertyChanged("longitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool paid {
+            get {
+                return this.paidField;
+            }
+            set {
+                if ((this.paidField.Equals(value) != true)) {
+                    this.paidField = value;
+                    this.RaisePropertyChanged("paid");
                 }
             }
         }
@@ -1181,6 +1197,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPerson", ReplyAction="http://tempuri.org/IAdminService/GetPersonResponse")]
         System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenalties", ReplyAction="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenaltiesResponse")]
+        Client.MainService.PersonDto[] GetPersonsWithExpiredPenalties();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenalties", ReplyAction="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenaltiesResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto[]> GetPersonsWithExpiredPenaltiesAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPaymentsByPersonId", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsByPersonIdResponse")]
         Client.MainService.PaymentDto[] GetPaymentsByPersonId(int personId);
         
@@ -1203,8 +1225,8 @@ namespace Client.MainService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IAdminServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Test", ReplyAction="http://tempuri.org/IAdminService/TestResponse")]
-        string Test(string str);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SendPenaltyExpired", ReplyAction="http://tempuri.org/IAdminService/SendPenaltyExpiredResponse")]
+        void SendPenaltyExpired(Client.MainService.PersonDto[] persons);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1497,6 +1519,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonAsync(int personId) {
             return base.Channel.GetPersonAsync(personId);
+        }
+        
+        public Client.MainService.PersonDto[] GetPersonsWithExpiredPenalties() {
+            return base.Channel.GetPersonsWithExpiredPenalties();
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto[]> GetPersonsWithExpiredPenaltiesAsync() {
+            return base.Channel.GetPersonsWithExpiredPenaltiesAsync();
         }
         
         public Client.MainService.PaymentDto[] GetPaymentsByPersonId(int personId) {

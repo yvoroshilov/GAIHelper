@@ -33,8 +33,8 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.ViolationTypes.Find(id);
         }
 
-        public HashSet<ViolationType> GetAll() {
-            return dbEntities.ViolationTypes.ToHashSet();
+        public List<ViolationType> GetAll() {
+            return dbEntities.ViolationTypes.ToList();
         }
     }
 }

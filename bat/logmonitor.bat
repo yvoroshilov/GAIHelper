@@ -1,2 +1,2 @@
-cd /d D:\labs\kursach\GAIHelper\bat
-Tail -n 0 -f test.txt
+cd /d 
+Tail -n 0 -f D:\labs\kursach\GAIHelper\bat\test.txt
