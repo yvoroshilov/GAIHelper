@@ -146,6 +146,7 @@
     <Compile Include="Util\ExpiredPenaltiesChecker.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\MyLogger.cs" />
+    <Compile Include="Util\PaymentsChecker.cs" />
     <Compile Include="Util\SearchMatcher.cs" />
     <Compile Include="Violation.cs">
       <DependentUpon>Model1.tt</DependentUpon>

@@ -30,8 +30,8 @@ namespace GaiWcfService.Repository.implementation {
             dbEntities.SaveChanges();            
         }
 
-        public HashSet<Payment> GetAll() {
-            return dbEntities.Payments.ToHashSet();
+        public List<Payment> GetAll() {
+            return dbEntities.Payments.ToList();
         }
 
         public Payment GetPayment(int id) {
@@ -50,6 +50,18 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Payments
                 .Where(val => val.person_id == personId)
                 .ToList();
+        }
+
+        public List<Payment> GetPaymentsAfterLast(int lastPaymentId) {
+            return dbEntities.Payments
+                .OrderBy(val => val.id)
+                .SkipWhile(val => val.id <= lastPaymentId)
+                .ToList();
+        }
+
+        public void DeleteAllPayments() {
+            dbEntities.Payments.RemoveRange(dbEntities.Payments);
+            dbEntities.SaveChanges();
         }
     }
 }

@@ -106,9 +106,11 @@ namespace GaiWcfService.Callback {
         public void InvokeAdminCallback(List<PersonDto> persons) {
             foreach (var item in channels) {
                 User user = userRepository.GetUser(item.Key);
-                if (user.role == "ROLE_ADMIN");
-                item.Value.callback.SendPenaltyExpired(persons);
-                logger.Write("CALLBACK INVOKED");
+                if (user.role == "ROLE_ADMIN") {
+                    item.Value.callback.SendPenaltyExpired(persons);
+                    logger.Write((item.Value.callback == null).ToString());
+                    logger.Write("CALLBACK INVOKED");
+                }
             }
         }
     }

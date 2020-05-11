@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GaiWcfService.Service {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
     public partial class MainService : IAdminService, IUserService {
-        static MainService() {
+        public static void Configure(ServiceConfiguration config) {
+            config.LoadFromConfiguration();
+            typeof(ExpiredPenaltiesChecker).GetProperty("Instance").GetValue(ExpiredPenaltiesChecker.Instance);
+            typeof(PaymentsChecker).GetProperty("Instance").GetValue(PaymentsChecker.Instance);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,7 +62,7 @@ namespace Client.ViewModel {
             }
             return true;
         }
-
+        [CallbackBehavior(ConcurrencyMode=ConcurrencyMode.Multiple, AutomaticSessionShutdown = false)] 
         public class DummyCallbackClass : IAdminServiceCallback {
             public void SendPenaltyExpired(PersonDto[] persons) {
                 throw new NotImplementedException();

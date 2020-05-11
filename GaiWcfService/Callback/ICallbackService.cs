@@ -5,7 +5,7 @@ using System.ServiceModel;
 namespace GaiWcfService.Callback {
     public interface ICallbackService {
         
-        [OperationContract]
+        [OperationContract(IsOneWay = true, IsInitiating = true)]
         void SendPenaltyExpired(List<PersonDto> persons);
     }
 }

@@ -28,8 +28,8 @@ namespace GaiWcfService
         public string surname { get; set; }
         public string patronymic { get; set; }
         public System.DateTime birthday { get; set; }
-        public float actual_penalty { get; set; }
-        public float paid_penalty { get; set; }
+        public decimal actual_penalty { get; set; }
+        public decimal paid_penalty { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }

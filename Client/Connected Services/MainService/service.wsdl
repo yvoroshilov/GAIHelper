@@ -298,9 +298,6 @@
   <wsdl:message name="IAdminService_SendPenaltyExpired_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SendPenaltyExpired" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_SendPenaltyExpired_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:SendPenaltyExpiredResponse" />
-  </wsdl:message>
   <wsdl:message name="IUserService_GetAllViolations_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllViolations" />
   </wsdl:message>
@@ -488,7 +485,6 @@
     </wsdl:operation>
     <wsdl:operation name="SendPenaltyExpired">
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SendPenaltyExpired" message="tns:IAdminService_SendPenaltyExpired_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SendPenaltyExpiredResponse" message="tns:IAdminService_SendPenaltyExpired_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserService">
@@ -856,9 +852,6 @@
     </wsdl:operation>
     <wsdl:operation name="SendPenaltyExpired">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/SendPenaltyExpired" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

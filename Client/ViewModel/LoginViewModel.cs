@@ -37,6 +37,7 @@ namespace Client.ViewModel {
             }
         }
 
+        [CallbackBehavior(ConcurrencyMode=ConcurrencyMode.Multiple, AutomaticSessionShutdown = false)] 
         private class Cllbck : IAdminServiceCallback {
             public void SendPenaltyExpired(PersonDto[] persons) {
                 adminDashboard?.ShowNotification(persons.ToList());

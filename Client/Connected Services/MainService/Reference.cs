@@ -575,10 +575,10 @@ namespace Client.MainService {
         private string idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal maxPenaltyField;
+        private double maxPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal minPenaltyField;
+        private double minPenaltyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int paydayAfterField;
@@ -623,7 +623,7 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal maxPenalty {
+        public double maxPenalty {
             get {
                 return this.maxPenaltyField;
             }
@@ -636,7 +636,7 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal minPenalty {
+        public double minPenalty {
             get {
                 return this.minPenaltyField;
             }
@@ -1225,7 +1225,7 @@ namespace Client.MainService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IAdminServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SendPenaltyExpired", ReplyAction="http://tempuri.org/IAdminService/SendPenaltyExpiredResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAdminService/SendPenaltyExpired")]
         void SendPenaltyExpired(Client.MainService.PersonDto[] persons);
     }
     

@@ -34,22 +34,24 @@ namespace Client.View.Admin {
     public partial class AdminDashboard : Window {
         public AdminDashboard() {
             InitializeComponent();
+            notifier = new Notifier(cfg => {
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: this,
+                    corner: Corner.TopRight,
+                    offsetX: 10,  
+                    offsetY: 10);
+
+                cfg.DisplayOptions.TopMost = false;
+
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(5),
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                cfg.Dispatcher = this.Dispatcher;
+            });
         }
 
-        public Notifier notifier = new Notifier(cfg => {
-            cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
-                corner: Corner.TopRight,
-                offsetX: 10,  
-                offsetY: 10);
-
-            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                notificationLifetime: TimeSpan.FromSeconds(3),
-                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
-
-            cfg.Dispatcher = Application.Current.Dispatcher;
-        });
-
+        public Notifier notifier;
         private EmployeesViewModel employeesViewModel;
         private UsersViewModel usersViewModel;
         private ViolationsAdminViewModel violationsAdminViewModel;
@@ -88,16 +90,15 @@ namespace Client.View.Admin {
                     }
                     break;
                 case "PaymentsTab":
-                    if (PaymentsTabGrid.DataContext == null) {
-                        paymentsViewModel = new PaymentsViewModel();
-                        PaymentsTabGrid.DataContext = paymentsViewModel;
-                    }
+                    paymentsViewModel = new PaymentsViewModel();
+                    PaymentsTabGrid.DataContext = paymentsViewModel;
                     break;
                 case "ViolationTypesTab":
                     if (ViolationTypesTabGrid.DataContext == null) {
                         violationTypesViewModel = new ViolationTypesViewModel();
                         ViolationTypesTabGrid.DataContext = violationTypesViewModel;
                     }
+                    notifier.ShowInformation("test");
                     break;
                 case "ExitTab":
                     MainWindow main = new MainWindow();
@@ -317,12 +318,13 @@ namespace Client.View.Admin {
                 NotificationClickAction = new Action<NotificationBase>((notificationBase) => {
                     MainTabControl.SelectedItem = PersonsTab;
 
+                    personsViewModel.Persons.Clear();
                     debtors.ForEach(val => personsViewModel.Persons.Add(val));
 
                     notificationBase.Close();
                 })
             };
-            notifier.ShowWarning("Просрочены сроки по уплате штрафов. Количество людей: " + debtors.Count, opts);
+            notifier?.ShowWarning("Просрочены сроки по уплате штрафов. Количество людей: " + debtors.Count, opts);
         }
     }
 }

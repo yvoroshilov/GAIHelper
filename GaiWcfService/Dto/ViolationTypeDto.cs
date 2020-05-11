@@ -15,10 +15,10 @@ namespace GaiWcfService.Dto {
         public string title { get; set; }
         
         [DataMember]
-        public decimal minPenalty { get; set; }
+        public double minPenalty { get; set; }
 
         [DataMember]
-        public decimal maxPenalty { get; set; }
+        public double maxPenalty { get; set; }
 
         [DataMember]
         public string description { get; set; }

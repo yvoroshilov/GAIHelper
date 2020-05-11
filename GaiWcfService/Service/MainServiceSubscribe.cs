@@ -30,7 +30,6 @@ namespace GaiWcfService.Service {
                 bool addRes = clients.RegisterChannel(login, callback);
 
                 if (user.role != "ROLE_USER") {
-                    ExpiredPenaltiesChecker.Instance.aa = 3;
                     return SubscribeState.NOT_SUBSCRIBED;
                 }
                 

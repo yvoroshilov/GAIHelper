@@ -19,6 +19,10 @@ namespace GaiWcfService.Repository.contract {
 
         List<Payment> GetLastNPayments(int n);
 
-        HashSet<Payment> GetAll();
+        List<Payment> GetAll();
+
+        List<Payment> GetPaymentsAfterLast(int lastPaymentId);
+        
+        void DeleteAllPayments();
     }
 }

@@ -74,8 +74,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="maxPenalty" type="xs:decimal" />
-      <xs:element minOccurs="0" name="minPenalty" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxPenalty" type="xs:double" />
+      <xs:element minOccurs="0" name="minPenalty" type="xs:double" />
       <xs:element minOccurs="0" name="paydayAfter" type="xs:int" />
       <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
     </xs:sequence>

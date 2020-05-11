@@ -36,8 +36,8 @@
           <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="birthday" Type="date" Nullable="false" />
-          <Property Name="actual_penalty" Type="real" Nullable="false" />
-          <Property Name="paid_penalty" Type="real" Nullable="false" />
+          <Property Name="actual_penalty" Type="money" Nullable="false" />
+          <Property Name="paid_penalty" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -297,8 +297,8 @@
           <Property Name="surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="patronymic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="actual_penalty" Type="Single" Nullable="false" />
-          <Property Name="paid_penalty" Type="Single" Nullable="false" />
+          <Property Name="actual_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="paid_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="Payments" Relationship="GAIDBModel.FK_Payments_Persons" FromRole="Person" ToRole="Payment" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Person" ToRole="Violation" />
         </EntityType>
