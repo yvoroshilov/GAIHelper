@@ -17,6 +17,9 @@ namespace GaiWcfService.Service {
         MainService.SubscribeState Subscribe(string login);
 
         [OperationContract]
+        void Unsubscribe(string login);
+
+        [OperationContract]
         void SetTest(int lel);
 
         [OperationContract]
@@ -48,6 +51,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         EmployeeDto GetEmployeeByUserLogin(string login);
+
+        [OperationContract]
+        EmployeeDto GetEmployeeById(int id);
             
         [OperationContract]
         void EditEmployee(EmployeeDto employee);

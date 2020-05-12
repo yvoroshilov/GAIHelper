@@ -99,15 +99,21 @@ namespace Client.ViewModel {
             get {
                 return addCommand ??
                     (addCommand = new RelayCommand(obj => {
+                        if (client.GetEmployeeById(CertificateIdAdd) != null) {
+                            MessageBox.Show("Сотрудник с номером удостоверения " + CertificateIdAdd + " уже зарегистрирован ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            CertificateIdAdd = default;
+                            return;
+                        }
+
                         if (client.GetUser(LoginAdd) == null) {
                             MessageBox.Show("Аккаунта с логином " + LoginAdd + " не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LoginAdd = "";
+                            LoginAdd = null;
                             return;
                         }
 
                         if (client.GetEmployeeByUserLogin(LoginAdd) != null) {
                             MessageBox.Show("Под логином " + LoginAdd + " уже зарегистрирован пользователь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LoginAdd = "";
+                            LoginAdd = null;
                             return;
                         }
 

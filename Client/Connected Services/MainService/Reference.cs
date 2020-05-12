@@ -703,6 +703,9 @@ namespace Client.MainService {
         private string driverLicenseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string emailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -716,6 +719,9 @@ namespace Client.MainService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string patronymicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string photoPathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string surnameField;
@@ -765,6 +771,19 @@ namespace Client.MainService {
                 if ((object.ReferenceEquals(this.driverLicenseField, value) != true)) {
                     this.driverLicenseField = value;
                     this.RaisePropertyChanged("driverLicense");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.emailField, value) != true)) {
+                    this.emailField = value;
+                    this.RaisePropertyChanged("email");
                 }
             }
         }
@@ -830,6 +849,19 @@ namespace Client.MainService {
                 if ((object.ReferenceEquals(this.patronymicField, value) != true)) {
                     this.patronymicField = value;
                     this.RaisePropertyChanged("patronymic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string photoPath {
+            get {
+                return this.photoPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.photoPathField, value) != true)) {
+                    this.photoPathField = value;
+                    this.RaisePropertyChanged("photoPath");
                 }
             }
         }
@@ -1005,6 +1037,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Subscribe", ReplyAction="http://tempuri.org/IAdminService/SubscribeResponse")]
         System.Threading.Tasks.Task<Client.MainService.MainServiceSubscribeState> SubscribeAsync(string login);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Unsubscribe", ReplyAction="http://tempuri.org/IAdminService/UnsubscribeResponse")]
+        void Unsubscribe(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/Unsubscribe", ReplyAction="http://tempuri.org/IAdminService/UnsubscribeResponse")]
+        System.Threading.Tasks.Task UnsubscribeAsync(string login);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SetTest", ReplyAction="http://tempuri.org/IAdminService/SetTestResponse")]
         void SetTest(int lel);
         
@@ -1064,6 +1102,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetEmployeeByUserLogin", ReplyAction="http://tempuri.org/IAdminService/GetEmployeeByUserLoginResponse")]
         System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByUserLoginAsync(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetEmployeeById", ReplyAction="http://tempuri.org/IAdminService/GetEmployeeByIdResponse")]
+        Client.MainService.EmployeeDto GetEmployeeById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetEmployeeById", ReplyAction="http://tempuri.org/IAdminService/GetEmployeeByIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditEmployee", ReplyAction="http://tempuri.org/IAdminService/EditEmployeeResponse")]
         void EditEmployee(Client.MainService.EmployeeDto employee);
@@ -1265,6 +1309,14 @@ namespace Client.MainService {
             return base.Channel.SubscribeAsync(login);
         }
         
+        public void Unsubscribe(string login) {
+            base.Channel.Unsubscribe(login);
+        }
+        
+        public System.Threading.Tasks.Task UnsubscribeAsync(string login) {
+            return base.Channel.UnsubscribeAsync(login);
+        }
+        
         public void SetTest(int lel) {
             base.Channel.SetTest(lel);
         }
@@ -1343,6 +1395,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByUserLoginAsync(string login) {
             return base.Channel.GetEmployeeByUserLoginAsync(login);
+        }
+        
+        public Client.MainService.EmployeeDto GetEmployeeById(int id) {
+            return base.Channel.GetEmployeeById(id);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.EmployeeDto> GetEmployeeByIdAsync(int id) {
+            return base.Channel.GetEmployeeByIdAsync(id);
         }
         
         public void EditEmployee(Client.MainService.EmployeeDto employee) {

@@ -21,6 +21,10 @@ namespace GaiWcfService.Service {
             return empDto;
         }
 
+        public EmployeeDto GetEmployeeById(int id) {
+            return Mapper.mapper.Map<EmployeeDto>(employeeRepository.GetEmployee(id));
+        }
+
         public void EditEmployee(EmployeeDto employee) {
             employeeRepository.EditEmployee(Mapper.mapper.Map<Employee>(employee));
         }

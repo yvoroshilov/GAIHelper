@@ -26,13 +26,14 @@ using ToastNotifications.Position;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Core;
+using System.ServiceModel;
 
 namespace Client.View.Admin {
     /// <summary>
     /// Interaction logic for AdminDashboard.xaml
     /// </summary>
     public partial class AdminDashboard : Window {
-        public AdminDashboard() {
+        public AdminDashboard(string login) {
             InitializeComponent();
             notifier = new Notifier(cfg => {
                 cfg.PositionProvider = new WindowPositionProvider(
@@ -49,8 +50,10 @@ namespace Client.View.Admin {
 
                 cfg.Dispatcher = this.Dispatcher;
             });
+            this.curLogin = login;
         }
-
+        
+        public string curLogin;
         public Notifier notifier;
         private EmployeesViewModel employeesViewModel;
         private UsersViewModel usersViewModel;
@@ -98,10 +101,11 @@ namespace Client.View.Admin {
                         violationTypesViewModel = new ViolationTypesViewModel();
                         ViolationTypesTabGrid.DataContext = violationTypesViewModel;
                     }
-                    notifier.ShowInformation("test");
                     break;
                 case "ExitTab":
                     MainWindow main = new MainWindow();
+                    AdminServiceClient client = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+                    client.Unsubscribe(curLogin);
                     main.Show();
                     closedByExit = true;
                     this.Close();

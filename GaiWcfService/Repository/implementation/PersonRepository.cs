@@ -17,15 +17,17 @@ namespace GaiWcfService.Repository.implementation {
         }
 
         public void EditPerson(Person person) {
-            Person oldViolatior = dbEntities.Persons.Find(person.id);
-            oldViolatior.name = person.name;
-            oldViolatior.actual_penalty = person.actual_penalty;
-            oldViolatior.paid_penalty = person.paid_penalty;
-            oldViolatior.passport_id = person.passport_id;
-            oldViolatior.patronymic = person.patronymic;
-            oldViolatior.surname = person.surname;
-            oldViolatior.birthday = person.birthday;
-            oldViolatior.driver_license = person.driver_license;
+            Person oldPerson = dbEntities.Persons.Find(person.id);
+            oldPerson.name = person.name;
+            oldPerson.actual_penalty = person.actual_penalty;
+            oldPerson.paid_penalty = person.paid_penalty;
+            oldPerson.passport_id = person.passport_id;
+            oldPerson.patronymic = person.patronymic;
+            oldPerson.surname = person.surname;
+            oldPerson.birthday = person.birthday;
+            oldPerson.driver_license = person.driver_license;
+            oldPerson.email = person.email;
+            oldPerson.photo_path = person.photo_path;
             dbEntities.SaveChanges();
         }
 
@@ -48,9 +50,9 @@ namespace GaiWcfService.Repository.implementation {
                 (searchedPerson.id == default || val.id == searchedPerson.id) &&
                 (searchedPerson.passport_id == default || val.passport_id == searchedPerson.passport_id) &&
                 (searchedPerson.driver_license == default || val.driver_license == searchedPerson.driver_license) &&
-                (searchedPerson.name == default || val.name.Contains(searchedPerson.name)) &&
-                (searchedPerson.surname == default || val.surname.Contains(searchedPerson.surname)) &&
-                (searchedPerson.patronymic == default || val.patronymic.Contains(searchedPerson.patronymic)) &&
+                (searchedPerson.name == default || val.name.ToLower().Contains(searchedPerson.name.ToLower())) &&
+                (searchedPerson.surname == default || val.surname.ToLower().Contains(searchedPerson.surname.ToLower())) &&
+                (searchedPerson.patronymic == default || val.patronymic.ToLower().Contains(searchedPerson.patronymic.ToLower())) &&
                 (searchedPerson.birthday == default || val.birthday == searchedPerson.birthday) &&
                 (searchedPerson.actual_penalty == default || val.actual_penalty == searchedPerson.actual_penalty) &&
                 (searchedPerson.paid_penalty == default || val.paid_penalty == searchedPerson.paid_penalty))
@@ -59,7 +61,7 @@ namespace GaiWcfService.Repository.implementation {
 
         public List<Person> GetExpiredDebtors() {
             return dbEntities.Violations
-                .Where(val => !val.paid)
+                .Where(val => !val.paid && !(val.Person.driver_license != "NO_LIC"))
                 .GroupBy(val => val.Person.id)
                 .Select(val => val.FirstOrDefault().Person)
                 .ToList();

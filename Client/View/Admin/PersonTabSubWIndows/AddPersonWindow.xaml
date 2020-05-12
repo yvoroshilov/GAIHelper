@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View.Admin.PersonTabSubWIndows"
         mc:Ignorable="d"
-        Title="Добвить профиль" Height="351.4" Width="323.2" ResizeMode="NoResize">
+        Title="Добвить профиль" Height="401.4" Width="323.2" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,23 +15,23 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Margin="0,0,-0.2,0.6" Background="{StaticResource BackgroundPrimary}">
+    <Grid Margin="0,0,-0.2,1" Background="{StaticResource BackgroundPrimary}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="58*"/>
+            <RowDefinition Height="65*"/>
             <RowDefinition Height="60*"/>
-            <RowDefinition Height="76*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="131*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160*"/>
             <ColumnDefinition Width="157*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="5,2,9.8,2.2" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+        <StackPanel Margin="5,5.2,9.8,3.8" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
             <Label VerticalAlignment="Top" Height="26" Content="Дата рождения" HorizontalAlignment="Left" Width="142"/>
             <DatePicker VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" SelectedDate="{Binding Birthday}"/>
         </StackPanel>
-        <StackPanel Margin="5,10,9.8,3" Orientation="Vertical" Grid.Column="1">
+        <StackPanel Margin="5,10,9.8,3.8" Orientation="Vertical" Grid.Column="1">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ ВУ"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="DriverLicense" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -41,7 +41,7 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="10,10,4,3">
+        <StackPanel Orientation="Vertical" Margin="10,10,4,3.8">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ Паспорта"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="PassportId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -51,7 +51,7 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel  Orientation="Vertical" Margin="10,2,4,2.2" Grid.Row="1">
+        <StackPanel  Orientation="Vertical" Margin="10,5.2,4,3.8" Grid.Row="1">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Фамилия"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -61,7 +61,7 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="10,2.8,4,2.8" Orientation="Vertical" Grid.Row="2">
+        <StackPanel Margin="10,1.2,4,2.8" Orientation="Vertical" Grid.Row="2">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -71,7 +71,7 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="5,5.2,9.8,2.8" Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+        <StackPanel Margin="5,5.2,9.8,2" Orientation="Vertical" Grid.Column="1" Grid.Row="3">
             <Label VerticalAlignment="Top" Height="26" Content="Задолженность" HorizontalAlignment="Left" Width="142"/>
             <TextBox x:Name="ActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0">
                 <Binding Path="ActualPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -81,7 +81,7 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="10,5.2,4,2.8" Grid.Row="3">
+        <StackPanel Orientation="Vertical" Margin="10,5.2,4,2" Grid.Row="3">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="Patronymic" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -91,7 +91,7 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="5,2.8,9.8,2.8" Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+        <StackPanel Margin="5,1.2,9.8,2.8" Orientation="Vertical" Grid.Column="1" Grid.Row="2">
             <Label VerticalAlignment="Top" Height="26" Content="Выплаченная сумма" HorizontalAlignment="Left" Width="142"/>
             <TextBox x:Name="PaidPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0">
                 <Binding Path="PaidPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
@@ -101,7 +101,17 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <Button Content="Добавить" Margin="10,5.2,9.8,9.8" Grid.ColumnSpan="2" Grid.Row="4" Command="{Binding AddCommand}"/>
+        <Button Content="Добавить" Margin="10,60,9.8,5.2" Grid.ColumnSpan="2" Grid.Row="4" Command="{Binding AddCommand}"/>
+        <StackPanel Orientation="Vertical" Margin="10,3,4,71.2" Grid.Row="4">
+            <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Электронная почта"/>
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+        </StackPanel>
 
     </Grid>
 </Window>

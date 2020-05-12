@@ -15,6 +15,7 @@ using System.Windows;
 using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
+using System.Net.Mail;
 
 namespace Client.ViewModel {
     public class AddPersonViewModel : ViewModel, IDataErrorInfo {
@@ -118,6 +119,18 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        private string email;
+        [InputProperty]
+        public string Email {
+            get {
+                return email;
+            }
+            set {
+                email = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         private RelayCommand addCommand;
@@ -134,6 +147,7 @@ namespace Client.ViewModel {
                         person.name = Name;
                         person.patronymic = Patronymic;
                         person.actualPenalty = ActualPenalty;
+                        person.email = Email;
 
                         PersonDto added = client.AddPerson(person);
                         persons.Add(added);
@@ -157,7 +171,8 @@ namespace Client.ViewModel {
 
                 var props = GetProps().ToList();
                 var prop = props.Where(val => val.Name == columnName).Single();
-                if (prop.GetValue(this) == Utility.GetDefault(prop.PropertyType)) {
+                if ((prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true) &&
+                    columnName != nameof(Email)) {
                     return "Это поле должно быть заполнено";
                 }
 
@@ -218,6 +233,14 @@ namespace Client.ViewModel {
                                 error = "Фамилия может содержать только буквы";
                                 break;
                             }
+                        }
+                        break;
+                    case nameof(Email):
+                        if (Email == null) break;
+                        try {
+                            new MailAddress(Email);
+                        } catch {
+                            error = "Электронный записан неверно";
                         }
                         break;
                 }

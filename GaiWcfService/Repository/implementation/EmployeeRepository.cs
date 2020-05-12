@@ -47,10 +47,10 @@ namespace GaiWcfService.Repository.implementation {
         public List<Employee> SearchEmployees(Employee searchedEmpl) {
             return dbEntities.Employees.Where(val => 
                 (searchedEmpl.certificate_id == default || val.certificate_id == searchedEmpl.certificate_id) &&
-                (searchedEmpl.user_login == default || val.user_login.Contains(searchedEmpl.user_login)) &&
-                (searchedEmpl.name == default || val.name.Contains(searchedEmpl.name)) && 
-                (searchedEmpl.surname == default || val.surname.Contains(searchedEmpl.surname)) &&
-                (searchedEmpl.patronymic == default || val.patronymic.Contains(searchedEmpl.patronymic)) &&
+                (searchedEmpl.user_login == default || val.user_login.ToLower().Contains(searchedEmpl.user_login.ToLower())) &&
+                (searchedEmpl.name == default || val.name.ToLower().Contains(searchedEmpl.name.ToLower())) && 
+                (searchedEmpl.surname == default || val.surname.ToLower().Contains(searchedEmpl.surname.ToLower())) &&
+                (searchedEmpl.patronymic == default || val.patronymic.ToLower().Contains(searchedEmpl.patronymic.ToLower())) &&
                 (searchedEmpl.hire_date == default || val.hire_date == searchedEmpl.hire_date))
                 .ToList();
         }

@@ -369,6 +369,7 @@ namespace Client.ViewModel {
                         CurPerson.passportId = curPerson.passportId;
                         CurPerson.patronymic = curPerson.patronymic;
                         CurPerson.surname = curPerson.surname;
+                        CurPerson.email = curPerson.email;
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));

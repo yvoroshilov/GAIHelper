@@ -56,15 +56,11 @@ namespace GaiWcfService.Callback {
                         if (user.role == "ROLE_ADMIN") {
                             if (channels.TryRemove(item.Key, out stub)) {
                                 logger.Write(item.Key + " ---------- " + "CALLBACK REMOVED");
-                            } else {
-                                logger.Write(item.Key + " ---------- " + "CALLBACK NOT REMOVED");
                             }
                         } else {
                             if (item.Value.isCandidateForDeletion) {
                                 if (channels.TryRemove(item.Key, out stub)) {
                                     logger.Write(item.Key + " ---------- " + "CALLBACK REMOVED");
-                                } else {
-                                    logger.Write(item.Key + " ---------- " + "CALLBACK NOT REMOVED");
                                 }
 
                                 int responsibleId = user
@@ -100,7 +96,9 @@ namespace GaiWcfService.Callback {
 
         public void CloseConnection(string login) {
             (ICallbackService, bool) stub = default;
-            channels.TryRemove(login, out stub);
+            if (channels.TryRemove(login, out stub)) {
+                logger.Write(login + " ---------- " + "CALLBACK REMOVED");
+            }
         }
 
         public void InvokeAdminCallback(List<PersonDto> persons) {

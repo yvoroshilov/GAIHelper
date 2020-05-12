@@ -48,6 +48,7 @@ namespace GaiWcfService.Util {
                     paidPenalty -= item.penalty;
                     item.paid = true;
                 }
+                logger.Write("PAYMENT " + payment.id + " PROCEED");
             }
             paymentRepository.DeleteAllPayments();
         }

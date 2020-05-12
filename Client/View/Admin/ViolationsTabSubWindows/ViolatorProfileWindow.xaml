@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View.Admin.ViolationsTabSubWindows"
         mc:Ignorable="d"
-        Title="ViolatorProfileWindow" Height="271.4" Width="388.2" ResizeMode="NoResize">
+        Title="ViolatorProfileWindow" Height="271.4" Width="438.2" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,28 +15,30 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid Margin="0,0,-0.4,0.6" Background="{StaticResource BackgroundPrimary}">
+    <Grid Margin="0,0,-1,0.6" Background="{StaticResource BackgroundPrimary}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="175*"/>
             <ColumnDefinition Width="206*"/>
         </Grid.ColumnDefinitions>
         <Image x:Name="PersonPhoto1" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{StaticResource SamplePersonImage}" Margin="27,21,0,0"/>
-        <Label Content="Имя:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="26" Margin="9.8,21,0,0" Grid.Column="1"/>
-        <Label Content="Фамилия:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="26" Margin="9.8,52,0,0" Grid.Column="1"/>
-        <Label Content="Отчество:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="64" Margin="9.8,83,0,0" Grid.Column="1"/>
-        <Label Content="Дата рождения:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="98" Margin="9.8,114,0,0" Grid.Column="1"/>
-        <Label x:Name="NameLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="26" Content="{Binding name, UpdateSourceTrigger=PropertyChanged}" Margin="42.8,21,0,0" Grid.Column="1"/>
-        <Label x:Name="SurnameLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="26" Content="{Binding surname, UpdateSourceTrigger=PropertyChanged}" Margin="67.8,52,0,0" Grid.Column="1"/>
-        <Label x:Name="PatronymicLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109" Height="26" Content="{Binding patronymic, UpdateSourceTrigger=PropertyChanged}" Margin="68.8,83,0,0" Grid.Column="1"/>
-        <Label x:Name="BirthdayLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="26" Content="{Binding birthday, UpdateSourceTrigger=PropertyChanged}" Margin="102.8,114,0,0" Grid.Column="1"/>
-        <Label Content="К выплате:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="68" Height="26" Margin="9.8,195,0,0" Grid.Column="1"/>
-        <Label x:Name="ActualPenaltyLabel" Content="{Binding actualPenalty, UpdateSourceTrigger=PropertyChanged}" Margin="70.8,195,0,0" HorizontalAlignment="Left" Width="98" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Имя:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="26" Margin="185,21,0,0" Grid.ColumnSpan="2"/>
+        <Label Content="Фамилия:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="26" Margin="185,47,0,0" Grid.ColumnSpan="2"/>
+        <Label Content="Отчество:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="64" Margin="185,73,0,0" Grid.ColumnSpan="2"/>
+        <Label Content="Дата рождения:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="98" Margin="185,99,0,0" Grid.ColumnSpan="2"/>
+        <Label x:Name="NameLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Height="26" Content="{Binding name, UpdateSourceTrigger=PropertyChanged}" Margin="19.6,21,0,0" Grid.Column="1"/>
+        <Label x:Name="SurnameLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="26" Content="{Binding surname, UpdateSourceTrigger=PropertyChanged}" Margin="44.6,47,0,0" Grid.Column="1"/>
+        <Label x:Name="PatronymicLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="26" Content="{Binding patronymic, UpdateSourceTrigger=PropertyChanged}" Margin="45.6,73,0,0" Grid.Column="1"/>
+        <Label x:Name="BirthdayLabel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Height="26" Content="{Binding birthday, UpdateSourceTrigger=PropertyChanged}" Margin="79.6,99,0,0" Grid.Column="1"/>
+        <Label Content="К выплате:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="68" Height="26" Margin="185,195,0,0" Grid.ColumnSpan="2"/>
+        <Label x:Name="ActualPenaltyLabel" Content="{Binding actualPenalty, UpdateSourceTrigger=PropertyChanged}" Margin="47.6,195,0,0" HorizontalAlignment="Left" Width="98" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
         <Label Content="Выплачено:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="78" Height="26" Margin="27,195,0,0"/>
         <Label x:Name="PaidPenaltyLabel" Content="{Binding paidPenalty, UpdateSourceTrigger=PropertyChanged}" Margin="95,195,0,0" HorizontalAlignment="Left" Width="72" Height="26" VerticalAlignment="Top"/>
         <Label Content="№ ВУ:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="43" Height="26" Margin="27,164,0,0"/>
         <Label x:Name="DriverLicenseLabel" Content="{Binding driverLicense, UpdateSourceTrigger=PropertyChanged}" Margin="65,164,0,0" HorizontalAlignment="Left" Width="102" Height="26" VerticalAlignment="Top"/>
-        <Label Content="№ паспорта:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="26" Margin="9.8,164,0,0" Grid.Column="1"/>
-        <Label x:Name="PassportIdLabel" Content="{Binding passportId, UpdateSourceTrigger=PropertyChanged}" Margin="82.8,164,0,0" HorizontalAlignment="Left" Width="86" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="№ паспорта:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="26" Margin="185,164,0,0" Grid.ColumnSpan="2"/>
+        <Label x:Name="PassportIdLabel" Content="{Binding passportId, UpdateSourceTrigger=PropertyChanged}" Margin="59.6,164,0,0" HorizontalAlignment="Left" Width="86" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Эл. почта:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="26" Margin="185,125,0,0" Grid.ColumnSpan="2"/>
+        <Label x:Name="EmailLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="26" Content="{Binding email, UpdateSourceTrigger=PropertyChanged}" Margin="45.6,125,0,0" Grid.Column="1"/>
 
     </Grid>
 </Window>

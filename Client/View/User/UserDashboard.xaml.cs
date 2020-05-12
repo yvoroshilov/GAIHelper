@@ -188,6 +188,11 @@ namespace Client.View.User {
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e) {
+            MessageBoxResult res = MessageBox.Show("Вы действительно хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res.Equals(MessageBoxResult.No)) {
+                return;
+            }
+            
             AdminServiceClient client = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
             client.CloseShift(dataContext.CurrentShift.responsibleId);
             MainWindow main = new MainWindow();

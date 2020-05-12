@@ -30,6 +30,8 @@ namespace GaiWcfService
         public System.DateTime birthday { get; set; }
         public decimal actual_penalty { get; set; }
         public decimal paid_penalty { get; set; }
+        public string email { get; set; }
+        public string photo_path { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }

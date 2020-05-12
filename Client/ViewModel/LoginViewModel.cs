@@ -91,7 +91,7 @@ namespace Client.ViewModel {
                             ShiftDto curShift = client.GetCurrentShift(empDto.certificateId);
                             new UserDashboard(curShift).Show();
                         } else if (user.role == "ROLE_ADMIN") {
-                            adminDashboard = new AdminDashboard();
+                            adminDashboard = new AdminDashboard(user.login);
                             adminDashboard.Show();
                         }
                         ClosingRequest(null, null);

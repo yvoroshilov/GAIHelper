@@ -9,6 +9,7 @@
     <converter:MoneyConverter x:Key="MoneyConverter"/>
     <converter:BoolConverter x:Key="BoolConverter"/>
 
+    
     <BitmapImage UriSource="Img/img.png" x:Key="SamplePersonImage" />
 
 

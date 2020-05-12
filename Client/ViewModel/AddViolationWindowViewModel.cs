@@ -300,7 +300,7 @@ namespace Client.ViewModel {
         #endregion
 
         #region Util
-        private const int MAX_INIT_VALID_FIELDS = 11;
+        private const int MAX_INIT_VALID_FIELDS = 7;
         private int initValid = 0;
 
         public string this[string columnName] {

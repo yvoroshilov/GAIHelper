@@ -22,7 +22,7 @@ namespace GaiWcfService.Service {
         }
 
         public void SetTest(int test) {
-            personRepository.GetExpiredDebtors();
+            MyLogger.Instance.Write((shiftRepository.GetShift(74).Employee == null).ToString());
         }
         
         public void AddUser(UserDto user) {

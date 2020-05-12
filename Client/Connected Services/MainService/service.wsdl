@@ -81,6 +81,12 @@
   <wsdl:message name="IAdminService_Subscribe_OutputMessage">
     <wsdl:part name="parameters" element="tns:SubscribeResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_Unsubscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Unsubscribe" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_Unsubscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnsubscribeResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_SetTest_InputMessage">
     <wsdl:part name="parameters" element="tns:SetTest" />
   </wsdl:message>
@@ -138,6 +144,12 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_GetEmployeeByUserLogin_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeByUserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetEmployeeById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeById" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetEmployeeById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_EditEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:EditEmployee" />
@@ -339,6 +351,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/Subscribe" message="tns:IAdminService_Subscribe_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SubscribeResponse" message="tns:IAdminService_Subscribe_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/Unsubscribe" message="tns:IAdminService_Unsubscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/UnsubscribeResponse" message="tns:IAdminService_Unsubscribe_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SetTest">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SetTest" message="tns:IAdminService_SetTest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SetTestResponse" message="tns:IAdminService_SetTest_OutputMessage" />
@@ -378,6 +394,10 @@
     <wsdl:operation name="GetEmployeeByUserLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetEmployeeByUserLogin" message="tns:IAdminService_GetEmployeeByUserLogin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetEmployeeByUserLoginResponse" message="tns:IAdminService_GetEmployeeByUserLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetEmployeeById" message="tns:IAdminService_GetEmployeeById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetEmployeeByIdResponse" message="tns:IAdminService_GetEmployeeById_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EditEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditEmployee" message="tns:IAdminService_EditEmployee_InputMessage" />
@@ -526,6 +546,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/Unsubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetTest">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/SetTest" style="document" />
       <wsdl:input>
@@ -609,6 +638,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetEmployeeByUserLogin">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/GetEmployeeByUserLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeById">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetEmployeeById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

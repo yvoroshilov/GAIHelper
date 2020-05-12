@@ -23,14 +23,9 @@ namespace GaiWcfService {
             }
         }
 
-        private GAIDBEntities entities;
-
-        private DbEntitiesSingleton() {
-            entities = new GAIDBEntities();
-            entities.Database.Log = s => MyLogger.Instance.Write(s);
-        }
-
         public GAIDBEntities GetDbEntities() {
+            GAIDBEntities entities = new GAIDBEntities();
+            entities.Database.Log = s => MyLogger.Instance.Write(s);
             return entities;
         }
     }

@@ -15,6 +15,7 @@ using System.Windows;
 using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
+using System.Net.Mail;
 
 namespace Client.ViewModel {
     public class EditPersonViewModel : ViewModel, IDataErrorInfo {
@@ -118,6 +119,18 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        private string email;
+        [InputProperty()]
+        public string Email {
+            get {
+                return email;
+            }
+            set {
+                email = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Command
@@ -134,6 +147,7 @@ namespace Client.ViewModel {
                         person.patronymic = Patronymic;
                         person.paidPenalty = PaidPenalty;
                         person.actualPenalty = ActualPenalty;
+                        person.email = Email;
 
                         client.EditPerson(person);
                         (obj as Window).Close();
@@ -156,6 +170,7 @@ namespace Client.ViewModel {
             Patronymic = person.patronymic;
             PaidPenalty = person.paidPenalty;
             ActualPenalty = person.actualPenalty;
+            Email = person.email;
 
             this.person = person;
         }
@@ -166,7 +181,8 @@ namespace Client.ViewModel {
 
                 var props = GetProps().ToList();
                 var prop = props.Where(val => val.Name == columnName).Single();
-                if (prop.GetValue(this) == Utility.GetDefault(prop.PropertyType)) {
+                if ((prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true) &&
+                    columnName != nameof(Email)) {
                     return "Это поле должно быть заполнено";
                 }
 
@@ -227,6 +243,14 @@ namespace Client.ViewModel {
                                 error = "Фамилия может содержать только буквы";
                                 break;
                             }
+                        }
+                        break;
+                    case nameof(Email):
+                        if (Email == null) break;
+                        try {
+                            new MailAddress(Email);
+                        } catch {
+                            error = "Электронный записан неверно";
                         }
                         break;
                 }

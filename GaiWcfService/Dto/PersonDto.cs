@@ -33,5 +33,11 @@ namespace GaiWcfService.Dto {
 
         [DataMember]
         public double paidPenalty;
+
+        [DataMember]
+        public string email;
+
+        [DataMember]
+        public string photoPath;
     }
 }

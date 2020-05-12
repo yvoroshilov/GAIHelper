@@ -71,11 +71,6 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="GAIDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GAIDBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Payment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -94,6 +89,7 @@
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Util\Configuration.cs" />
     <Compile Include="Util\DbEntitiesSingleton.cs" />
     <Compile Include="Dto\EmployeeDto.cs" />
     <Compile Include="Dto\PaymentDto.cs" />
@@ -143,6 +139,7 @@
     <Compile Include="Service\MainServiceShifts.cs" />
     <Compile Include="Service\MainServicePayments.cs" />
     <Compile Include="Service\MainServiceEmployees.cs" />
+    <Compile Include="Util\EmailSender.cs" />
     <Compile Include="Util\ExpiredPenaltiesChecker.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\MyLogger.cs" />
@@ -161,17 +158,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="GAIDBDataSet.xsc">
-      <DependentUpon>GAIDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GAIDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GAIDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GAIDBDataSet.xss">
-      <DependentUpon>GAIDBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>

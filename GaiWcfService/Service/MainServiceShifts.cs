@@ -37,6 +37,7 @@ namespace GaiWcfService.Service {
             Shift shift = shiftRepository.GetOpenedShiftByResponsibleId(responsibleId);
             shift.end = DateTime.Now;
             shiftRepository.EditShift(shift.id, shift);
+            //ConnectedClientsSingleton.Instance.CloseConnection(employeeRepository.GetEmployee(shift.responsible_id).user_login);
             ConnectedClientsSingleton.Instance.CloseConnection(shift.Employee.user_login);
         }
 

@@ -50,6 +50,7 @@ namespace GaiWcfService.Util {
                     .ForMember("driverLicense", expr => expr.MapFrom("driver_license"))
                     .ForMember("actualPenalty", expr => expr.MapFrom("actual_penalty"))
                     .ForMember("paidPenalty", expr => expr.MapFrom("paid_penalty"))
+                    .ForMember("photoPath", expr => expr.MapFrom("photo_path"))
                     .ReverseMap();
                 cfg.CreateMap<Role, RoleDto>()
                     .ForMember("role", expr => expr.MapFrom("role1"))

@@ -21,6 +21,9 @@ namespace GaiWcfService.Repository.implementation {
             oldShift.start = shift.start;
             oldShift.end = shift.end;
             oldShift.responsible_id = shift.responsible_id;
+            MyLogger.Instance.Write((oldShift.Employee == null).ToString());
+            MyLogger.Instance.Write((shift.Employee == null).ToString());
+            MyLogger.Instance.Write(shift.end + "-----" + oldShift.end);
             dbEntities.SaveChanges();
         }
 

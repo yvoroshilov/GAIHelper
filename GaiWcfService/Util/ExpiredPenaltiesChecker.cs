@@ -29,6 +29,7 @@ namespace GaiWcfService.Util {
         private IPersonRepository personRepository = new PersonRepository();
         private MyLogger logger = MyLogger.Instance;
         private Timer timer = new Timer();
+        private EmailSender emailSender = EmailSender.Instance;
         public int aa = 0;
 
         private ExpiredPenaltiesChecker() {
@@ -40,10 +41,26 @@ namespace GaiWcfService.Util {
         }
 
         private void NotifyClient() {
-            List<PersonDto> debts = personRepository.GetExpiredDebtors()
-                .Select(val => Mapper.mapper.Map<PersonDto>(val))
-                .ToList();
-            if (debts.Count > 0) clients.InvokeAdminCallback(debts);
+            List<Person> debts = personRepository.GetExpiredDebtors();
+            if (debts.Count > 0) {
+                clients.InvokeAdminCallback(debts
+                    .Select(val => Mapper.mapper.Map<PersonDto>(val))
+                    .ToList());
+                foreach (var debtor in debts) {
+                    if (debtor.email != null) {
+                        StringBuilder stringBuilder = new StringBuilder("Ваша задолженность по нарушениям: \n");
+                        foreach (var violation in debtor.Violations) {
+                            stringBuilder.AppendLine(violation.violation_type_id + " -- " + violation.ViolationType.title + " -- " + violation.date.ToShortDateString());
+                        }
+                        stringBuilder
+                            .Append("В совокупности составляет ")
+                            .AppendLine(debtor.actual_penalty.ToString()).Append(" р.")
+                            .AppendLine("Оплатите как можно скорее.");
+
+                        emailSender.SendMail(debtor.email, "Оповещение о задолженности", stringBuilder.ToString());
+                    }
+                }
+            }
         }
     }
 }

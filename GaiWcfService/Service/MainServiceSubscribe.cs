@@ -47,5 +47,9 @@ namespace GaiWcfService.Service {
                 }
             }
         }
+
+        public void Unsubscribe (string login) {
+            clients.CloseConnection(login);
+        }
     }
 }
