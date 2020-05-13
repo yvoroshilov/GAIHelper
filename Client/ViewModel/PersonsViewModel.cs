@@ -408,9 +408,21 @@ namespace Client.ViewModel {
 
                 switch (columnName) {
                     case nameof(PassportIdSearch):
-                        foreach (var ch in PassportIdSearch) {
-                            if (!char.IsLetterOrDigit(ch)) {
-                                error = "Номер паспорта может содержать только буквы и цифры";
+                        if (PassportIdSearch.Length != 9) {
+                            error = "Номер паспорта должен быть в формате 'AA1234567'";
+                            break;
+                        }
+
+                        for (int i = 0; i < Math.Min(2, PassportIdSearch.Length); i++) {
+                            if (PassportIdSearch[i] < 'A' || PassportIdSearch[i] > 'B') {
+                                error = "Номер паспорта должен быть в формате 'AA1234567'";
+                                break;
+                            }
+                        }
+
+                        for (int i = 2; i < PassportIdSearch.Length; i++) {
+                            if (!Char.IsDigit(PassportIdSearch[i])) {
+                                error = "Номер паспорта должен быть в формате 'AA1234567'";
                                 break;
                             }
                         }

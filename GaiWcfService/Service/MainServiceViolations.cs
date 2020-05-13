@@ -20,6 +20,7 @@ namespace GaiWcfService.Service {
         public ViolationDto AddViolation(ViolationDto violation) {
             Person person = personRepository.GetPerson(violation.personId);
             person.actual_penalty += (decimal)violation.penalty;
+            personRepository.EditPerson(person);
             return Mapper.mapper.Map<ViolationDto>(
                 violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation)));
         }

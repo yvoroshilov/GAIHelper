@@ -53,5 +53,9 @@ namespace GaiWcfService.Service {
                 .Select(val => Mapper.mapper.Map<PersonDto>(val))
                 .ToList();
         }
+
+        public PersonDto GetPersonByPassportId(string passportId) {
+            return Mapper.mapper.Map<PersonDto>(personRepository.GetPersonByPassportId(passportId));
+        }
     }
 }

@@ -1247,6 +1247,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenalties", ReplyAction="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenaltiesResponse")]
         System.Threading.Tasks.Task<Client.MainService.PersonDto[]> GetPersonsWithExpiredPenaltiesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPersonByPassportId", ReplyAction="http://tempuri.org/IAdminService/GetPersonByPassportIdResponse")]
+        Client.MainService.PersonDto GetPersonByPassportId(string passportId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPersonByPassportId", ReplyAction="http://tempuri.org/IAdminService/GetPersonByPassportIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonByPassportIdAsync(string passportId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetPaymentsByPersonId", ReplyAction="http://tempuri.org/IAdminService/GetPaymentsByPersonIdResponse")]
         Client.MainService.PaymentDto[] GetPaymentsByPersonId(int personId);
         
@@ -1587,6 +1593,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.PersonDto[]> GetPersonsWithExpiredPenaltiesAsync() {
             return base.Channel.GetPersonsWithExpiredPenaltiesAsync();
+        }
+        
+        public Client.MainService.PersonDto GetPersonByPassportId(string passportId) {
+            return base.Channel.GetPersonByPassportId(passportId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonByPassportIdAsync(string passportId) {
+            return base.Channel.GetPersonByPassportIdAsync(passportId);
         }
         
         public Client.MainService.PaymentDto[] GetPaymentsByPersonId(int personId) {

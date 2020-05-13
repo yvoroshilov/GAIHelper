@@ -60,9 +60,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double paidPenalty;
+        private double? paidPenalty;
         [InputProperty(true)]
-        public double PaidPenalty {
+        public double? PaidPenalty {
             get {
                 return paidPenalty;
             }
@@ -108,9 +108,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double actualPenalty;
+        private double? actualPenalty;
         [InputProperty(true)]
-        public double ActualPenalty {
+        public double? ActualPenalty {
             get {
                 return actualPenalty;
             }
@@ -138,15 +138,26 @@ namespace Client.ViewModel {
             get {
                 return addCommand ??
                     (addCommand = new RelayCommand(obj => {
+                        UserServiceClient userClient = new UserServiceClient();
+                        if (client.GetPersonByPassportId(PassportId) != null) {
+                            MessageBox.Show("Профиль с таким номером паспорта уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
+                        if (userClient.GetPersonByDriverLicense(DriverLicense) != null) {
+                            MessageBox.Show("Профиль с таким номером ВУ уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
                         PersonDto person = new PersonDto();
                         person.passportId = PassportId;
                         person.driverLicense = DriverLicense;
                         person.birthday = Birthday;
-                        person.paidPenalty = PaidPenalty;
+                        person.paidPenalty = PaidPenalty.Value;
                         person.surname = Surname;
                         person.name = Name;
                         person.patronymic = Patronymic;
-                        person.actualPenalty = ActualPenalty;
+                        person.actualPenalty = ActualPenalty.Value;
                         person.email = Email;
 
                         PersonDto added = client.AddPerson(person);
@@ -172,15 +183,28 @@ namespace Client.ViewModel {
                 var props = GetProps().ToList();
                 var prop = props.Where(val => val.Name == columnName).Single();
                 if ((prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true) &&
-                    columnName != nameof(Email)) {
+                    columnName != nameof(Email)
+                    ) {
                     return "Это поле должно быть заполнено";
                 }
 
                 switch (columnName) {
                     case nameof(PassportId):
-                        foreach (var ch in PassportId) {
-                            if (!char.IsLetterOrDigit(ch)) {
-                                error = "Номер паспорта может содержать только буквы и цифры";
+                        if (PassportId.Length != 9) {
+                            error = "Номер паспорта должен быть в формате 'AA1234567'";
+                            break;
+                        }
+
+                        for (int i = 0; i < Math.Min(2, PassportId.Length); i++) {
+                            if (PassportId[i] < 'A' || PassportId[i] > 'B') {
+                                error = "Номер паспорта должен быть в формате 'AA1234567'";
+                                break;
+                            }
+                        }
+
+                        for (int i = 2; i < PassportId.Length; i++) {
+                            if (!Char.IsDigit(PassportId[i])) {
+                                error = "Номер паспорта должен быть в формате 'AA1234567'";
                                 break;
                             }
                         }

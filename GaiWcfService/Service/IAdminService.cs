@@ -43,6 +43,7 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void DeleteUser(string login);
+
         #endregion
 
         #region Employee
@@ -131,6 +132,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         List<PersonDto> GetPersonsWithExpiredPenalties();
+
+        [OperationContract]
+        PersonDto GetPersonByPassportId(string passportId);
         #endregion
 
         #region Payments

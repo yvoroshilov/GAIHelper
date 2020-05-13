@@ -67,5 +67,17 @@ namespace GaiWcfService.Repository.implementation {
                 .ToList();
 
         }
+
+        public Person GetPersonByPassportId(string passportId) {
+            return dbEntities.Persons
+                .Where(val => val.passport_id == passportId)
+                .SingleOrDefault();
+        }
+
+        public Person GetPersonByDriverLicense(string driverLicense) {
+            return dbEntities.Persons
+                .Where(val => val.driver_license == driverLicense)
+                .SingleOrDefault();
+        }
     }
 }

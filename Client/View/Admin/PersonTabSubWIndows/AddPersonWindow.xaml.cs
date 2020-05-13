@@ -1,4 +1,5 @@
 ﻿using Client.MainService;
+using Client.Resources.Rule;
 using Client.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,11 @@ namespace Client.View.Admin.PersonTabSubWIndows {
 
         private void OnPenaltyChanged(object sender, PropertyChangedEventArgs e) {
             if (e.PropertyName == nameof(dataContext.PaidPenalty) || e.PropertyName == nameof(dataContext.ActualPenalty)) {
-                PaidPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-                ActualPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                if (new DoubleValidationRule().Validate(dataContext.PaidPenalty, null).IsValid &&
+                    new DoubleValidationRule().Validate(dataContext.ActualPenalty, null).IsValid) {
+                    PaidPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                    ActualPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                }
             }
         }
 

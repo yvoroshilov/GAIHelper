@@ -289,6 +289,12 @@
   <wsdl:message name="IAdminService_GetPersonsWithExpiredPenalties_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPersonsWithExpiredPenaltiesResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_GetPersonByPassportId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonByPassportId" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetPersonByPassportId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonByPassportIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_GetPaymentsByPersonId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPaymentsByPersonId" />
   </wsdl:message>
@@ -490,6 +496,10 @@
     <wsdl:operation name="GetPersonsWithExpiredPenalties">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenalties" message="tns:IAdminService_GetPersonsWithExpiredPenalties_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenaltiesResponse" message="tns:IAdminService_GetPersonsWithExpiredPenalties_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonByPassportId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPersonByPassportId" message="tns:IAdminService_GetPersonByPassportId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetPersonByPassportIdResponse" message="tns:IAdminService_GetPersonByPassportId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPaymentsByPersonId">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetPaymentsByPersonId" message="tns:IAdminService_GetPaymentsByPersonId_InputMessage" />
@@ -854,6 +864,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPersonsWithExpiredPenalties">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPersonsWithExpiredPenalties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonByPassportId">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetPersonByPassportId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

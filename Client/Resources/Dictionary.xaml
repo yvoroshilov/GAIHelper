@@ -8,8 +8,9 @@
     <converter:DescriptionConverter x:Key="DescriptionConverter" />
     <converter:MoneyConverter x:Key="MoneyConverter"/>
     <converter:BoolConverter x:Key="BoolConverter"/>
+    <converter:IntegerConverter x:Key="IntegerConverter"/>
 
-    
+
     <BitmapImage UriSource="Img/img.png" x:Key="SamplePersonImage" />
 
 
@@ -33,5 +34,4 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
 </ResourceDictionary>

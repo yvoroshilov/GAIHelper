@@ -293,22 +293,15 @@ namespace Client.ViewModel {
         }
 
         protected override void ResetForm(string mark = null) {
-            initValid = 0;
             NoLic = false;
             base.ResetForm();
         }
         #endregion
 
         #region Util
-        private const int MAX_INIT_VALID_FIELDS = 7;
-        private int initValid = 0;
 
         public string this[string columnName] {
             get {
-                if (initValid < MAX_INIT_VALID_FIELDS) {
-                    initValid++;
-                    return "";
-                }
                 string error = "";
                 switch (columnName) {
                     case nameof(Longitude):

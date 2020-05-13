@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
         <StackPanel Margin="11,4.6,8.8,0.4" Orientation="Vertical" x:Name="SurnameStackPanel" Grid.Row="2">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Фамилия&#x9;"/>
-            <TextBox x:Name="SurnameField" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox x:Name="SurnameField" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="20">
                 <Binding Path="SurnameAdd" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -35,7 +35,7 @@
         </StackPanel>
         <StackPanel Margin="12,9.6,7.8,2.2" Orientation="Vertical" x:Name="NameStackPanel" Grid.Row="3">
             <Label Margin="0,0,-0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
-            <TextBox x:Name="NameField" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox x:Name="NameField" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="15">
                 <Binding Path="NameAdd" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -45,7 +45,7 @@
         </StackPanel>
         <StackPanel Margin="12,2.8,8.8,0.2" Orientation="Vertical" x:Name="PatronymicStackPanel" Grid.Row="4">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество"/>
-            <TextBox x:Name="PatronymicField" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox x:Name="PatronymicField" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="20">
                 <Binding Path="PatronymicAdd" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>

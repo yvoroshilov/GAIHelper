@@ -91,7 +91,7 @@
             </Grid>
             <CheckBox x:Name="NoDriverLicenseCheckBox" Content="Нет ВУ" Grid.Column="1" Margin="0,240,21.8,0" VerticalAlignment="Top" Height="15" HorizontalAlignment="Right" Width="60" Checked="NoDriverLicenseCheckBox_Checked" Unchecked="NoDriverLicenseCheckBox_Unchecked" IsChecked="{Binding NoLic, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="№ Автомобиля" Margin="25,134,8.4,0" VerticalAlignment="Top" Height="26"/>
-            <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Margin="25,160,6.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox x:Name="CarNumberField" Height="24" VerticalAlignment="Top" Margin="25,160,6.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="10">
                 <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>

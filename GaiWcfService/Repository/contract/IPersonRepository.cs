@@ -20,5 +20,9 @@ namespace GaiWcfService.Repository.contract {
         List<Person> SearchPersons(Person searchedPerson);
 
         List<Person> GetExpiredDebtors();
+
+        Person GetPersonByPassportId(string passportId);
+
+        Person GetPersonByDriverLicense(string driverLicense);
     }
 }

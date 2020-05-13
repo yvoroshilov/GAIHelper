@@ -118,6 +118,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Converter\BoolConverter.cs" />
+    <Compile Include="Resources\Converter\IntegerConverter.cs" />
     <Compile Include="Resources\Converter\FIOConverter.cs" />
     <Compile Include="Resources\Converter\ListViewAndParentConverter.cs" />
     <Compile Include="Resources\Converter\MoneyConverter.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Resources\Converter\DescriptionConverter.cs" />
     <Compile Include="Resources\Converter\IndexOfConverter.cs" />
     <Compile Include="Resources\Converter\ViolationToTextConverter.cs" />
+    <Compile Include="Resources\Rule\IntegerValidationRule.cs" />
     <Compile Include="Util\MapImageGrabber.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />

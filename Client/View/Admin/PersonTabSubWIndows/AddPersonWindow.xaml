@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View.Admin.PersonTabSubWIndows"
+        xmlns:rule="clr-namespace:Client.Resources.Rule"
         mc:Ignorable="d"
         Title="Добвить профиль" Height="401.4" Width="323.2" ResizeMode="NoResize">
     <Window.Resources>
@@ -19,9 +20,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
             <RowDefinition Height="60*"/>
-            <RowDefinition Height="56*"/>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="131*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="129*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160*"/>
@@ -33,7 +34,7 @@
         </StackPanel>
         <StackPanel Margin="5,10,9.8,3.8" Orientation="Vertical" Grid.Column="1">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ ВУ"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="50">
                 <Binding Path="DriverLicense" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -43,7 +44,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="10,10,4,3.8">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ Паспорта"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="9">
                 <Binding Path="PassportId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -53,7 +54,7 @@
         </StackPanel>
         <StackPanel  Orientation="Vertical" Margin="10,5.2,4,3.8" Grid.Row="1">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Фамилия"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="20">
                 <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -61,9 +62,9 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="10,1.2,4,2.8" Orientation="Vertical" Grid.Row="2">
+        <StackPanel Margin="10,1.2,4,6.8" Orientation="Vertical" Grid.Row="2">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Имя"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="15">
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -71,19 +72,20 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="5,5.2,9.8,2" Orientation="Vertical" Grid.Column="1" Grid.Row="3">
-            <Label VerticalAlignment="Top" Height="26" Content="Задолженность" HorizontalAlignment="Left" Width="142"/>
-            <TextBox x:Name="ActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0">
-                <Binding Path="ActualPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+        <StackPanel Margin="5,1.2,9.8,4.4" Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+            <Label VerticalAlignment="Top" Height="26" Content="Задолженность, р." HorizontalAlignment="Left" Width="142"/>
+            <TextBox x:Name="ActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0" MaxLength="10">
+                <Binding Path="ActualPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="" Converter="{StaticResource MoneyConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
+                        <rule:DoubleValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="10,5.2,4,2" Grid.Row="3">
+        <StackPanel Orientation="Vertical" Margin="10,1.2,4,4.4" Grid.Row="3">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="20">
                 <Binding Path="Patronymic" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -91,18 +93,32 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="5,1.2,9.8,2.8" Orientation="Vertical" Grid.Column="1" Grid.Row="2">
-            <Label VerticalAlignment="Top" Height="26" Content="Выплаченная сумма" HorizontalAlignment="Left" Width="142"/>
-            <TextBox x:Name="PaidPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0">
-                <Binding Path="PaidPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
+        <StackPanel Margin="5,1.2,9.8,6.8" Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+            <Label VerticalAlignment="Top" Height="26" Content="Выплаченная сумма, р." HorizontalAlignment="Left" Width="142"/>
+            <TextBox x:Name="PaidPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0" MaxLength="10">
+                <Binding Path="PaidPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="" Converter="{StaticResource MoneyConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
+                        <rule:DoubleValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
         </StackPanel>
-        <Button Content="Добавить" Margin="10,60,9.8,5.2" Grid.ColumnSpan="2" Grid.Row="4" Command="{Binding AddCommand}"/>
-        <StackPanel Orientation="Vertical" Margin="10,3,4,71.2" Grid.Row="4">
+        <Button Content="Добавить" Margin="10,57.6,9.8,5.2" Grid.ColumnSpan="2" Grid.Row="4" Command="{Binding AddCommand}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=PaidPenaltyField, Path=(Validation.HasError)}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=ActualPenaltyField, Path=(Validation.HasError)}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <StackPanel Orientation="Vertical" Margin="10,0.6,4,71.2" Grid.Row="4">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Электронная почта"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
