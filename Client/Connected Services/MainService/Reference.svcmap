@@ -26,7 +26,6 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d29e2320-3ba0-453e-b9bb-4dbe2f807cb8" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9fa26db6-dec7-4b61-82e8-c441421397b0" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
     <MetadataFile FileName="GaiWcfService.Service.xsd" MetadataType="Schema" ID="2593b26a-8f29-4a8c-bc5f-26e60b77623d" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="Message.xsd" MetadataType="Schema" ID="5d517e27-6e27-443d-82fe-e08586e72152" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
     <MetadataFile FileName="GaiWcfService.Dto.xsd" MetadataType="Schema" ID="621f9b2d-8192-4966-bec1-f702372de67e" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
   </Metadata>
   <Extensions>

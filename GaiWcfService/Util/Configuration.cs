@@ -12,6 +12,8 @@ namespace GaiWcfService.Util {
 
         public static string MailPassword { get; private set; }
 
+        public static string FileDir { get; private set; }
+
         public static readonly string DEFAULT_PATH = Path.GetPathRoot(Environment.SystemDirectory) + @"GAIHelperConfig\config.properties";
 
         public static void LoadConfiguration(string path) {

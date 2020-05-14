@@ -27,7 +27,6 @@ namespace GaiWcfService.Util {
         private MyLogger logger = MyLogger.Instance;
 
         private EmailSender() {
-            Configuration.LoadConfiguration();
             smtpClient = new SmtpClient("smtp.mail.ru", 587);
             smtpClient.Credentials = new NetworkCredential(Configuration.MailLogin, Configuration.MailPassword);
             smtpClient.EnableSsl = true;

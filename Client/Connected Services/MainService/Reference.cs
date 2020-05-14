@@ -344,6 +344,9 @@ namespace Client.MainService {
         private string descriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string docPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -428,6 +431,19 @@ namespace Client.MainService {
                 if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
                     this.descriptionField = value;
                     this.RaisePropertyChanged("description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string docPath {
+            get {
+                return this.docPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.docPathField, value) != true)) {
+                    this.docPathField = value;
+                    this.RaisePropertyChanged("docPath");
                 }
             }
         }
@@ -1050,10 +1066,10 @@ namespace Client.MainService {
         System.Threading.Tasks.Task SetTestAsync(int lel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetTest", ReplyAction="http://tempuri.org/IAdminService/GetTestResponse")]
-        System.ServiceModel.Channels.Message GetTest();
+        byte[] GetTest();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetTest", ReplyAction="http://tempuri.org/IAdminService/GetTestResponse")]
-        System.Threading.Tasks.Task<System.ServiceModel.Channels.Message> GetTestAsync();
+        System.Threading.Tasks.Task<byte[]> GetTestAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddUser", ReplyAction="http://tempuri.org/IAdminService/AddUserResponse")]
         void AddUser(Client.MainService.UserDto User);
@@ -1331,11 +1347,11 @@ namespace Client.MainService {
             return base.Channel.SetTestAsync(lel);
         }
         
-        public System.ServiceModel.Channels.Message GetTest() {
+        public byte[] GetTest() {
             return base.Channel.GetTest();
         }
         
-        public System.Threading.Tasks.Task<System.ServiceModel.Channels.Message> GetTestAsync() {
+        public System.Threading.Tasks.Task<byte[]> GetTestAsync() {
             return base.Channel.GetTestAsync();
         }
         
@@ -1667,6 +1683,24 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPersonByDriverLicense", ReplyAction="http://tempuri.org/IUserService/GetPersonByDriverLicenseResponse")]
         System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonByDriverLicenseAsync(string driverLicense);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolationFile", ReplyAction="http://tempuri.org/IUserService/AddViolationFileResponse")]
+        Client.MainService.ViolationDto AddViolationFile(int violationId, byte[] file, string filename);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddViolationFile", ReplyAction="http://tempuri.org/IUserService/AddViolationFileResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto> AddViolationFileAsync(int violationId, byte[] file, string filename);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetViolationFile", ReplyAction="http://tempuri.org/IUserService/GetViolationFileResponse")]
+        byte[] GetViolationFile(int violationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetViolationFile", ReplyAction="http://tempuri.org/IUserService/GetViolationFileResponse")]
+        System.Threading.Tasks.Task<byte[]> GetViolationFileAsync(int violationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/RemoveViolationFile", ReplyAction="http://tempuri.org/IUserService/RemoveViolationFileResponse")]
+        void RemoveViolationFile(int violationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/RemoveViolationFile", ReplyAction="http://tempuri.org/IUserService/RemoveViolationFileResponse")]
+        System.Threading.Tasks.Task RemoveViolationFileAsync(int violationId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1742,6 +1776,30 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.PersonDto> GetPersonByDriverLicenseAsync(string driverLicense) {
             return base.Channel.GetPersonByDriverLicenseAsync(driverLicense);
+        }
+        
+        public Client.MainService.ViolationDto AddViolationFile(int violationId, byte[] file, string filename) {
+            return base.Channel.AddViolationFile(violationId, file, filename);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto> AddViolationFileAsync(int violationId, byte[] file, string filename) {
+            return base.Channel.AddViolationFileAsync(violationId, file, filename);
+        }
+        
+        public byte[] GetViolationFile(int violationId) {
+            return base.Channel.GetViolationFile(violationId);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> GetViolationFileAsync(int violationId) {
+            return base.Channel.GetViolationFileAsync(violationId);
+        }
+        
+        public void RemoveViolationFile(int violationId) {
+            base.Channel.RemoveViolationFile(violationId);
+        }
+        
+        public System.Threading.Tasks.Task RemoveViolationFileAsync(int violationId) {
+            return base.Channel.RemoveViolationFileAsync(violationId);
         }
     }
 }

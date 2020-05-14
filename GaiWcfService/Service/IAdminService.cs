@@ -23,7 +23,7 @@ namespace GaiWcfService.Service {
         void SetTest(int lel);
 
         [OperationContract]
-        Message GetTest();
+        byte[] GetTest();
 
         #region User
         [OperationContract]

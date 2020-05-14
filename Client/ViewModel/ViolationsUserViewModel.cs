@@ -14,6 +14,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Collections;
 using Client.MainService;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Client.ViewModel {
     public class ViolationsUserViewModel : ViewModel, IDataErrorInfo {
@@ -23,6 +25,19 @@ namespace Client.ViewModel {
         public ObservableCollection<ViolationDto> Violations { get; }
         public ReadOnlyCollection<ViolationType> ViolationTypes { get; }
         public ShiftDto CurrentShift { get; }
+
+        private string currentFilePath;
+        public string CurrentFilePath {
+            get {
+                return currentFilePath;
+            }
+            set {
+                currentFilePath = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private byte[] curFile;
         #endregion
 
         #region Input fields
@@ -211,6 +226,11 @@ namespace Client.ViewModel {
                         violation.shiftId = CurrentShift.id;
 
                         Violations.Add(violation);
+                        if (curFile != null) {
+                            ViolationDto withFile = client.AddViolationFile(violation.id, curFile, new FileInfo(CurrentFilePath).Name);
+                            violation.docPath = withFile.docPath;
+                        }
+
                         ResetPersonProfile();
                         ResetForm();
                     }, (obj) => {
@@ -254,6 +274,7 @@ namespace Client.ViewModel {
                         Address = curViolation.address;
                         Description = curViolation.description;
                         ProtocolId = curViolation.protocolId;
+                        CurrentFilePath = curViolation.docPath;
                         if (curViolation.personId != NO_LIC_PERSON_ID) {
                             DriverLicense = CurrentPerson.driverLicense;
                             CheckPersonCommand.Execute(null);
@@ -323,9 +344,81 @@ namespace Client.ViewModel {
                             curViolation.personId = client.GetPersonByDriverLicense(DriverLicense).id;
                         }
                         client.EditViolation(Mapper.mapper.Map<MainService.ViolationDto>(curViolation));
+
+                        if (curFile == null && curViolation.docPath != null) {
+                            client.RemoveViolationFile(curViolation.id);
+                            curViolation.docPath = null;
+                        }
+                        if (curFile != null) {
+                            curViolation.docPath = client.AddViolationFileAsync(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).Result.docPath;
+                        }
                         ResetForm();
+
                     }, obj => {
                         return IsAllRequiredFieldsFilled() && IsAllInputPropsValid(this) && (currentPerson.id != 0 || NoLic);
+                    }));
+            }
+        }
+
+        private RelayCommand chooseFile;
+        public RelayCommand ChooseFile {
+            get {
+                return chooseFile ??
+                    (chooseFile = new RelayCommand(obj => {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Multiselect = false;
+                        openFileDialog.AddExtension = true;
+                        bool? result = openFileDialog.ShowDialog();
+                        if (result == true) {
+                            if (!File.Exists(openFileDialog.FileName)) {
+                                MessageBox.Show("Выбранный файл больше не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+                            FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                            if (fileInfo.Length / (1024 * 1024) > 10) {
+                                MessageBox.Show("Файл должен иметь размер менее 10 мб", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+
+                            curFile = File.ReadAllBytes(openFileDialog.FileName);
+                            CurrentFilePath = openFileDialog.FileName;
+                        }
+                    }, obj => {
+                        return true;
+                    }));
+            }
+        }
+
+        private RelayCommand downloadFile;
+        public RelayCommand DownloadFile {
+            get {
+                return downloadFile ??
+                    (downloadFile = new RelayCommand(obj => {
+                        ViolationDto violation = (obj as ICollection).Cast<ViolationDto>().Single();
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.AddExtension = true;
+                        saveFileDialog.FileName = new FileInfo(violation.docPath).Name;
+                        bool? result = saveFileDialog.ShowDialog();
+                        if (result == true) {
+                            byte[] file = client.GetViolationFileAsync(violation.id).Result;
+                            File.WriteAllBytes(saveFileDialog.FileName, file);
+                        }
+                    }, obj => {
+                        return (obj as ICollection).Count == 1 && (obj as ICollection).Cast<ViolationDto>().SingleOrDefault()?.docPath != null;
+                    }));
+            }
+        }
+
+        private RelayCommand removeFile;
+        public RelayCommand RemoveFile {
+            get {
+                return removeFile ??
+                    (removeFile = new RelayCommand(obj => {
+                        ViolationDto violation = (obj as ICollection).Cast<ViolationDto>().Single();
+                        CurrentFilePath = null;
+                        curFile = null;
+                    }, obj => {
+                        return CurrentFilePath != null;
                     }));
             }
         }
@@ -356,6 +449,8 @@ namespace Client.ViewModel {
 
         protected override void ResetForm(string mark = null) {
             NoLic = false;
+            CurrentFilePath = null;
+            curFile = null;
             base.ResetForm();
         }
         #endregion

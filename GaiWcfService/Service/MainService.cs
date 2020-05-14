@@ -12,6 +12,7 @@ namespace GaiWcfService.Service {
     public partial class MainService : IAdminService, IUserService {
         public static void Configure(ServiceConfiguration config) {
             config.LoadFromConfiguration();
+            Configuration.LoadConfiguration();
             typeof(ExpiredPenaltiesChecker).GetProperty("Instance").GetValue(ExpiredPenaltiesChecker.Instance);
             typeof(PaymentsChecker).GetProperty("Instance").GetValue(PaymentsChecker.Instance);
         }

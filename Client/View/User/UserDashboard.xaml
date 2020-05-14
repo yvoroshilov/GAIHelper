@@ -29,7 +29,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <ListView x:Name="ViolationTable" Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black"   Margin="10,9,0.6,9.6" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Background="White" FocusVisualStyle="{x:Null}">
+            <ListView x:Name="ViolationTable" Grid.ColumnSpan="4" AlternationCount="2" Foreground="Black"   Margin="10,9,0.6,9.6" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Background="White" FocusVisualStyle="{x:Null}" SelectionChanged="ViolationTable_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="№" Width="30">
@@ -145,7 +145,7 @@
                 </TextBox>
                 <Label Content="Долгота" Margin="1,0,2.2,0" Height="24" VerticalAlignment="Top" Grid.Column="1"/>
             </Grid>
-            <TextBox x:Name="DescriptionField" Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.4,302,11,244.6" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
+            <TextBox x:Name="DescriptionField" Grid.Column="4"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="10.4,302,11,244.6" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="DescriptionField_TextChanged" />
             <Label Content="Описание" VerticalAlignment="Top" Grid.Column="4" Margin="11.4,277,7.2,0" Height="25"/>
             <Grid x:Name="PersonInfoGrid" Grid.ColumnSpan="2" Grid.Column="4" Margin="11.4,0,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="230" Width="318">
                 <Grid.ColumnDefinitions>
@@ -205,6 +205,19 @@
             <Label x:Name="ProtocolNumberLabel" Content="№ Протокола*" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="5" Margin="8.8,163,0,0"/>
             <Rectangle Stroke="#FF828790" Margin="10,9,0.6,9.6" Fill="{x:Null}" StrokeThickness="2" Grid.ColumnSpan="4"/>
             <Button x:Name="ExitBtn" Content="Выход" Grid.Column="5" Margin="0,0,9.6,10.6" Background="#FF868686" Click="ExitBtn_Click" HorizontalAlignment="Right" Width="82" Height="21" VerticalAlignment="Bottom"/>
+            <Grid x:Name="FileControlsGrid" Grid.Column="4" Margin="11.4,244,10,0" Height="24" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="84*"/>
+                    <ColumnDefinition Width="33*"/>
+                    <ColumnDefinition Width="32*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AddFileBtn" Content="Добавить файл" FontSize="10" Margin="0,0,2,0" Click="AddFileBtn_Click" CommandParameter="{Binding SelectedItems, ElementName=ViolationTable}" Command="{Binding ChooseFile}" Height="24" VerticalAlignment="Top"/>
+                <Button x:Name="RemoveFileBtn" Content="🗑" Margin="3.2,0,-0.2,0" FontSize="16" Padding="0" Grid.Column="2" CommandParameter="{Binding SelectedItems, ElementName=ViolationTable}" Command="{Binding RemoveFile}"/>
+                <Button x:Name="DownloadFileBtn" Content="⭳" Margin="3,0,0.8,0" FontSize="18" Padding="0" Grid.Column="1" CommandParameter="{Binding SelectedItems, ElementName=ViolationTable}" Command="{Binding DownloadFile}"/>
+            </Grid>
+            <Label VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" Height="26" Grid.Column="4" Margin="11.4,218,0,0">
+                <TextBlock x:Name="FileLabel" Text="{Binding CurrentFilePath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource PathToFilenameConverter}}" TextTrimming="CharacterEllipsis"/>
+            </Label>
         </Grid>
     </Grid>
 </Window>

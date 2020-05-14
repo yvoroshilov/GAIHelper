@@ -46,5 +46,8 @@ namespace GaiWcfService.Dto{
 
         [DataMember]
         public bool paid;
+
+        [DataMember]
+        public string docPath;
     }
 }

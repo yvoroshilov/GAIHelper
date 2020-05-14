@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace GaiWcfService.Util {
     public static class Mapper {
-       // TODO: configure mapper in order to prevent instantinating foreign entities
-       // TODO: shifts
         public static IMapper mapper;
         static Mapper() {
             var config = new MapperConfiguration(cfg => {
@@ -36,6 +34,7 @@ namespace GaiWcfService.Util {
                     .ForMember("carNumber", expr => expr.MapFrom("car_number"))
                     .ForMember("protocolId", expr => expr.MapFrom("protocol_id"))
                     .ForMember("shiftId", expr => expr.MapFrom("shift_id"))
+                    .ForMember("docPath", expr => expr.MapFrom("doc_path"))
                     .ReverseMap()
                     .ForMember("Person", expr => expr.Ignore())
                     .ForMember("Shift", expr => expr.Ignore())
@@ -58,5 +57,6 @@ namespace GaiWcfService.Util {
             });
             mapper = config.CreateMapper();
         }
+
     }
 }

@@ -81,13 +81,14 @@
           <Property Name="description" Type="nvarchar(max)" />
           <Property Name="shift_id" Type="int" Nullable="false" />
           <Property Name="paid" Type="bit" Nullable="false" />
+          <Property Name="doc_path" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="ViolationTypes">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="min_penalty" Type="money" Nullable="false" />
           <Property Name="max_penalty" Type="money" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="255" />
@@ -353,6 +354,7 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="shift_id" Type="Int32" Nullable="false" />
           <Property Name="paid" Type="Boolean" Nullable="false" />
+          <Property Name="doc_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Person" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Violation" ToRole="Person" />
           <NavigationProperty Name="Shift" Relationship="GAIDBModel.FK_Violations_Shifts" FromRole="Violation" ToRole="Shift" />
           <NavigationProperty Name="ViolationType" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="Violation" ToRole="ViolationType" />
@@ -362,7 +364,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="min_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="max_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -537,6 +539,7 @@
           <EntitySetMapping Name="Violations">
             <EntityTypeMapping TypeName="GAIDBModel.Violation">
               <MappingFragment StoreEntitySet="Violations">
+                <ScalarProperty Name="doc_path" ColumnName="doc_path" />
                 <ScalarProperty Name="paid" ColumnName="paid" />
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
                 <ScalarProperty Name="description" ColumnName="description" />

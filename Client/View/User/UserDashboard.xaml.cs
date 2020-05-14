@@ -1,10 +1,12 @@
 ﻿using Client.MainService;
 using Client.Model;
 using Client.ViewModel;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -199,6 +201,30 @@ namespace Client.View.User {
             main.Show();
             closedByExit = true;
             this.Close();
+        }
+
+        private void DescriptionField_TextChanged(object sender, TextChangedEventArgs e) {
+
+        }
+
+        
+
+        private void AddFileBtn_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void ViolationTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            /*
+            if (ViolationTable.SelectedItems.Count == 1) {
+                string path = (ViolationTable.SelectedItems[0] as ViolationDto).docPath;
+                if (path != null) {
+                    FileInfo fileInfo = new FileInfo(path);
+                    dataContext.CurrentFilename = fileInfo.Name;
+                } else {
+                    dataContext.CurrentFilename = "N/A";
+                }
+            }
+            */
         }
     }
 }

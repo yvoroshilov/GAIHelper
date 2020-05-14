@@ -4,6 +4,7 @@ using GaiWcfService.Repository.implementation;
 using GaiWcfService.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace GaiWcfService.Service {
@@ -23,6 +24,30 @@ namespace GaiWcfService.Service {
             personRepository.EditPerson(person);
             return Mapper.mapper.Map<ViolationDto>(
                 violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation)));
+        }
+
+        public ViolationDto AddViolationFile(int violationId, byte[] file, string filename) {
+            Violation violation = violationRepository.GetViolation(violationId);
+            if (violation.doc_path != null) {
+                RemoveViolationFile(violationId);
+            }
+
+            FileStream fs = File.Create($@"{Configuration.FileDir}\{violation.id}_{filename}");
+            fs.Write(file, 0, file.Length);
+            violation.doc_path = fs.Name;
+            fs.Close();
+            return Mapper.mapper.Map<ViolationDto>(violation);
+        }
+
+        public byte[] GetViolationFile(int violationId) {
+            Violation violation = violationRepository.GetViolation(violationId);
+            return File.ReadAllBytes(violation.doc_path);
+        }
+
+        public void RemoveViolationFile(int violationId) {
+            Violation violation = violationRepository.GetViolation(violationId);
+            File.Delete(violation.doc_path);
+            violation.doc_path = null;
         }
 
         public void EditViolation(ViolationDto violation) {

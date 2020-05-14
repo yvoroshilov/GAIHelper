@@ -29,5 +29,14 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         PersonDto GetPersonByDriverLicense(string driverLicense);
+
+        [OperationContract]
+        ViolationDto AddViolationFile(int violationId, byte[] file, string filename);
+
+        [OperationContract]
+        byte[] GetViolationFile(int violationId);
+
+        [OperationContract]
+        void RemoveViolationFile(int violationId);
     }
 }

@@ -71,7 +71,6 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Service" />
-      <xsd:import namespace="http://schemas.microsoft.com/Message" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/GaiWcfService.Dto" />
     </xsd:schema>
   </wsdl:types>
@@ -93,9 +92,11 @@
   <wsdl:message name="IAdminService_SetTest_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetTestResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdminService_GetTest_InputMessage" />
+  <wsdl:message name="IAdminService_GetTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTest" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_GetTest_OutputMessage">
-    <wsdl:part xmlns:q1="http://schemas.microsoft.com/Message" name="GetTestResult" type="q1:MessageBody" />
+    <wsdl:part name="parameters" element="tns:GetTestResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
@@ -352,6 +353,24 @@
   <wsdl:message name="IUserService_GetPersonByDriverLicense_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPersonByDriverLicenseResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_AddViolationFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddViolationFile" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddViolationFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddViolationFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetViolationFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViolationFile" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetViolationFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViolationFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RemoveViolationFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveViolationFile" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_RemoveViolationFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveViolationFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAdminService">
     <wsdl:operation name="Subscribe">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/Subscribe" message="tns:IAdminService_Subscribe_InputMessage" />
@@ -541,6 +560,18 @@
     <wsdl:operation name="GetPersonByDriverLicense">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetPersonByDriverLicense" message="tns:IUserService_GetPersonByDriverLicense_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetPersonByDriverLicenseResponse" message="tns:IUserService_GetPersonByDriverLicense_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddViolationFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddViolationFile" message="tns:IUserService_AddViolationFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddViolationFileResponse" message="tns:IUserService_AddViolationFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViolationFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetViolationFile" message="tns:IUserService_GetViolationFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetViolationFileResponse" message="tns:IUserService_GetViolationFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveViolationFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/RemoveViolationFile" message="tns:IUserService_RemoveViolationFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/RemoveViolationFileResponse" message="tns:IUserService_RemoveViolationFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AdminServiceTcpEndpointAdmin" type="tns:IAdminService">
@@ -965,6 +996,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetPersonByDriverLicense">
       <soap12:operation soapAction="http://tempuri.org/IUserService/GetPersonByDriverLicense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddViolationFile">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/AddViolationFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViolationFile">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/GetViolationFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveViolationFile">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/RemoveViolationFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
