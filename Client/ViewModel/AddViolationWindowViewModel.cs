@@ -15,6 +15,8 @@ using System.Windows;
 using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
+using System.IO;
+using Microsoft.Win32;
 
 namespace Client.ViewModel {
     public class AddViolationWindowViewModel : ViewModel, IDataErrorInfo {
@@ -25,6 +27,19 @@ namespace Client.ViewModel {
         public ObservableCollection<ViolationDto> Violations { get; }
         public ReadOnlyCollection<ViolationType> ViolationTypes { get; }
         public ShiftDto CurrentShift { get; }
+
+        private string currentFilePath;
+        public string CurrentFilePath {
+            get {
+                return currentFilePath;
+            }
+            set {
+                currentFilePath = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private byte[] curFile;
         #endregion
 
         #region Input fields
@@ -235,7 +250,12 @@ namespace Client.ViewModel {
                         violation.date = ViolationDate;
 
                         ViolationDto added = userClient.AddViolation(violation);
+                        if (curFile != null) {
+                            ViolationDto withFile = userClient.AddViolationFile(added.id, curFile, new FileInfo(CurrentFilePath).Name);
+                            added.docPath = withFile.docPath;
+                        }
                         Violations.Add(added);
+
                         ResetPersonProfile();
                         ResetForm();
                     }, (obj) => {
@@ -268,6 +288,47 @@ namespace Client.ViewModel {
             }
         }
 
+        private RelayCommand chooseFile;
+        public RelayCommand ChooseFile {
+            get {
+                return chooseFile ??
+                    (chooseFile = new RelayCommand(obj => {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Multiselect = false;
+                        openFileDialog.AddExtension = true;
+                        bool? result = openFileDialog.ShowDialog();
+                        if (result == true) {
+                            if (!File.Exists(openFileDialog.FileName)) {
+                                MessageBox.Show("Выбранный файл больше не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+                            FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                            if (fileInfo.Length / (1024 * 1024) > 10) {
+                                MessageBox.Show("Файл должен иметь размер менее 10 мб", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+
+                            curFile = File.ReadAllBytes(openFileDialog.FileName);
+                            CurrentFilePath = openFileDialog.FileName;
+                        }
+                    }, obj => {
+                        return true;
+                    }));
+            }
+        }
+
+        private RelayCommand removeFile;
+        public RelayCommand RemoveFile {
+            get {
+                return removeFile ??
+                    (removeFile = new RelayCommand(obj => {
+                        CurrentFilePath = null;
+                        curFile = null;
+                    }, obj => {
+                        return CurrentFilePath != null;
+                    }));
+            }
+        }
         #endregion
 
         #region Form management
@@ -294,6 +355,8 @@ namespace Client.ViewModel {
 
         protected override void ResetForm(string mark = null) {
             NoLic = false;
+            curFile = null;
+            CurrentFilePath = null;
             base.ResetForm();
         }
         #endregion

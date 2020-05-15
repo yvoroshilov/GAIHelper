@@ -343,7 +343,7 @@ namespace Client.ViewModel {
                         } else {
                             curViolation.personId = client.GetPersonByDriverLicense(DriverLicense).id;
                         }
-                        client.EditViolation(Mapper.mapper.Map<MainService.ViolationDto>(curViolation));
+                        client.EditViolation(curViolation);
 
                         if (curFile == null && curViolation.docPath != null) {
                             client.RemoveViolationFile(curViolation.id);
@@ -414,7 +414,6 @@ namespace Client.ViewModel {
             get {
                 return removeFile ??
                     (removeFile = new RelayCommand(obj => {
-                        ViolationDto violation = (obj as ICollection).Cast<ViolationDto>().Single();
                         CurrentFilePath = null;
                         curFile = null;
                     }, obj => {

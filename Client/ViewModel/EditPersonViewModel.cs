@@ -140,12 +140,12 @@ namespace Client.ViewModel {
                 return editCommand ??
                     (editCommand = new RelayCommand(obj => {
                         UserServiceClient userClient = new UserServiceClient();
-                        if (client.GetPersonByPassportId(PassportId) != null) {
+                        if (PassportId != person.passportId && client.GetPersonByPassportId(PassportId) != null) {
                             MessageBox.Show("Профиль с таким номером паспорта уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
-                        if (userClient.GetPersonByDriverLicense(DriverLicense) != null) {
+                        if (DriverLicense != person.driverLicense && userClient.GetPersonByDriverLicense(DriverLicense) != null) {
                             MessageBox.Show("Профиль с таким номером ВУ уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }

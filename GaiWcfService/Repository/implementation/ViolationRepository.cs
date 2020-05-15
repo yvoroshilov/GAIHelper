@@ -6,26 +6,22 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static GaiWcfService.Util.DbEntitiesSingleton;
 
 namespace GaiWcfService.Repository.implementation {
     public class ViolationRepository : IViolationRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
-        
         public Violation AddViolation(Violation violation) {
-            Violation added = dbEntities.Violations.Add(violation);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Violation added = entities.Violations.Add(violation);
+            entities.SaveChanges();
             return added;
         }
 
         public void EditViolation(Violation newViolation) {
-            Violation editedViolation = dbEntities.Violations.Find(newViolation.id);
-            if (newViolation.violation_type_id == editedViolation.violation_type_id) {
-                editedViolation.ViolationType = dbEntities.ViolationTypes.Find(editedViolation.violation_type_id);
-            }
-            if (newViolation.person_id == editedViolation.person_id) {
-                editedViolation.Person = dbEntities.Persons.Find(editedViolation.person_id);
-            }
+            GAIDBEntities entities = dbEntities;
+            Violation editedViolation = entities.Violations.Find(newViolation.id);
 
             editedViolation.violation_type_id = newViolation.violation_type_id;
             editedViolation.person_id = newViolation.person_id;
@@ -36,14 +32,17 @@ namespace GaiWcfService.Repository.implementation {
             editedViolation.longitude = newViolation.longitude;
             editedViolation.address = newViolation.address;
             editedViolation.description = newViolation.description;
+            editedViolation.paid = newViolation.paid;
+            editedViolation.doc_path = newViolation.doc_path;
 
-            dbEntities.SaveChanges();
+            entities.SaveChanges();
         }
 
         public void DeleteViolation(int id) {
-            Violation violation = dbEntities.Violations.Find(id);
-            dbEntities.Violations.Remove(violation);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Violation violation = entities.Violations.Find(id);
+            entities.Violations.Remove(violation);
+            entities.SaveChanges();
         }
 
         public Violation GetViolation(int id) {

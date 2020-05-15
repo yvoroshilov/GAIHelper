@@ -19,11 +19,9 @@ namespace GaiWcfService.Service {
         }
 
         public ViolationDto AddViolation(ViolationDto violation) {
-            Person person = personRepository.GetPerson(violation.personId);
-            person.actual_penalty += (decimal)violation.penalty;
-            personRepository.EditPerson(person);
-            return Mapper.mapper.Map<ViolationDto>(
-                violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation)));
+            Violation added = violationRepository.AddViolation(Mapper.mapper.Map<Violation>(violation));
+            Utility.CalculateViolationsPaid(added.person_id);
+            return Mapper.mapper.Map<ViolationDto>(added);
         }
 
         public ViolationDto AddViolationFile(int violationId, byte[] file, string filename) {
@@ -34,28 +32,37 @@ namespace GaiWcfService.Service {
 
             FileStream fs = File.Create($@"{Configuration.FileDir}\{violation.id}_{filename}");
             fs.Write(file, 0, file.Length);
-            violation.doc_path = fs.Name;
+            violation.doc_path = new FileInfo(fs.Name).Name;
+            violationRepository.EditViolation(violation);
             fs.Close();
             return Mapper.mapper.Map<ViolationDto>(violation);
         }
 
         public byte[] GetViolationFile(int violationId) {
             Violation violation = violationRepository.GetViolation(violationId);
-            return File.ReadAllBytes(violation.doc_path);
+            return File.ReadAllBytes(Configuration.FileDir + @"\" + violation.doc_path);
         }
 
         public void RemoveViolationFile(int violationId) {
             Violation violation = violationRepository.GetViolation(violationId);
-            File.Delete(violation.doc_path);
+            File.Delete(Configuration.FileDir + @"\" + violation.doc_path);
             violation.doc_path = null;
         }
 
         public void EditViolation(ViolationDto violation) {
+            Violation edited = violationRepository.GetViolation(violation.id);
             violationRepository.EditViolation(Mapper.mapper.Map<Violation>(violation));
+            if (edited.person_id != violation.personId) {
+                MyLogger.Instance.Write("NOT EQUALS");
+                Utility.CalculateViolationsPaid(violation.personId);
+            }
+            Utility.CalculateViolationsPaid(edited.person_id);
         }
 
         public void DeleteViolation(int id) {
+            Violation violation = violationRepository.GetViolation(id);
             violationRepository.DeleteViolation(id);
+            Utility.CalculateViolationsPaid(violation.person_id);
         }
 
         public List<ViolationDto> SearchViolations(ViolationDto violation) {

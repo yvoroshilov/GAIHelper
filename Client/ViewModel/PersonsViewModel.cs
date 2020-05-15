@@ -15,6 +15,7 @@ using System.Windows;
 using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
+using Client.View.Admin;
 
 namespace Client.ViewModel {
     public class PersonsViewModel : ViewModel, IDataErrorInfo {
@@ -352,13 +353,16 @@ namespace Client.ViewModel {
             get {
                 return seeCurrentPersonViolations ??
                     (seeCurrentPersonViolations = new RelayCommand(obj => {
-                        List<PersonDto> selectedPersons = new List<PersonDto>((obj as ICollection).Cast<PersonDto>());
+                        AdminDashboard adminDashboard = obj as AdminDashboard;
+                        List<PersonDto> selectedPersons = new List<PersonDto>((adminDashboard.PersonTable.SelectedItems as ICollection).Cast<PersonDto>());
                         PersonDto selectedPerson = selectedPersons.Single();
 
-                        CurrentPersonViolations.Clear();
-                        userClient.GetAllViolations(selectedPerson.id).ToList().ForEach(val => CurrentPersonViolations.Add(val));
+                        adminDashboard.MainTabControl.SelectedItem = adminDashboard.ViolationsTab;
+                        adminDashboard.violationsAdminViewModel.Violations.Clear();
+                        userClient.GetAllViolations(selectedPerson.id).ToList().ForEach(val => adminDashboard.violationsAdminViewModel.Violations.Add(val));
                     }, obj => {
-                        return (obj as ICollection).Count == 1;
+                        AdminDashboard adminDashboard = obj as AdminDashboard;
+                        return (adminDashboard.PersonTable.SelectedItems as ICollection).Count == 1;
                     }));
             }
         }

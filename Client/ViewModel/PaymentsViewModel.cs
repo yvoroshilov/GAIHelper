@@ -29,8 +29,6 @@ namespace Client.ViewModel {
             client = new AdminServiceClient(cntxt);
 
             Payments = new ObservableCollection<PaymentDto>(client.GetLastNPayments(COUNT));
-
-            byte[] arr = client.GetTest();
         }
     }
 }

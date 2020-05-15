@@ -15,6 +15,8 @@ using System.Windows;
 using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Client.ViewModel {
     public class EditViolationWindowViewModel : ViewModel, IDataErrorInfo {
@@ -25,7 +27,31 @@ namespace Client.ViewModel {
         public ObservableCollection<ViolationDto> Violations { get; }
         public ReadOnlyCollection<ViolationType> ViolationTypes { get; }
         public ViolationDto curViolation;
+
+        private string currentFilePath;
+        public string CurrentFilePath {
+            get {
+                return currentFilePath;
+            }
+            set {
+                currentFilePath = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private byte[] curFile;
         #endregion
+
+        private int id;
+        public int Id {
+            get {
+                return id;
+            }
+            set {
+                id = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region Input fields
         private ViolationType selectedViolationType;
@@ -181,6 +207,17 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        private string docPath;
+        public string DocPath {
+            get {
+                return docPath;
+            }
+            set {
+                docPath = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Person info
@@ -229,8 +266,15 @@ namespace Client.ViewModel {
                         } else {
                             curViolation.personId = userClient.GetPersonByDriverLicense(DriverLicense).id;
                         }
-
                         userClient.EditViolation(curViolation);
+
+                        if (curFile == null && curViolation.docPath != null) {
+                            userClient.RemoveViolationFile(curViolation.id);
+                            curViolation.docPath = null;
+                        }
+                        if (curFile != null) {
+                            curViolation.docPath = userClient.AddViolationFileAsync(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).Result.docPath;
+                        }
                         ResetForm();
 
                         (obj as Window).Close();
@@ -264,6 +308,47 @@ namespace Client.ViewModel {
             }
         }
 
+        private RelayCommand chooseFile;
+        public RelayCommand ChooseFile {
+            get {
+                return chooseFile ??
+                    (chooseFile = new RelayCommand(obj => {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Multiselect = false;
+                        openFileDialog.AddExtension = true;
+                        bool? result = openFileDialog.ShowDialog();
+                        if (result == true) {
+                            if (!File.Exists(openFileDialog.FileName)) {
+                                MessageBox.Show("Выбранный файл больше не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+                            FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                            if (fileInfo.Length / (1024 * 1024) > 10) {
+                                MessageBox.Show("Файл должен иметь размер менее 10 мб", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+
+                            curFile = File.ReadAllBytes(openFileDialog.FileName);
+                            CurrentFilePath = openFileDialog.FileName;
+                        }
+                    }, obj => {
+                        return true;
+                    }));
+            }
+        }
+
+        private RelayCommand removeFile;
+        public RelayCommand RemoveFile {
+            get {
+                return removeFile ??
+                    (removeFile = new RelayCommand(obj => {
+                        CurrentFilePath = null;
+                        curFile = null;
+                    }, obj => {
+                        return CurrentFilePath != null;
+                    }));
+            }
+        }
         #endregion
 
         #region Form management

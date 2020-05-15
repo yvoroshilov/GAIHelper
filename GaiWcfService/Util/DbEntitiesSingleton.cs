@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace GaiWcfService {
+namespace GaiWcfService.Util {
     public class DbEntitiesSingleton {
 
         private static readonly object padlock = new object();
@@ -23,12 +24,12 @@ namespace GaiWcfService {
             }
         }
 
-        public GAIDBEntities GetDbEntities() {
-            GAIDBEntities entities = new GAIDBEntities();
-            entities.Database.Log = s => MyLogger.Instance.Write(s);
-            MyLogger.Instance.Write(entities.Database.Connection.ConnectionString);
-            return entities;
+        public static GAIDBEntities dbEntities {
+            get {
+                GAIDBEntities entities = new GAIDBEntities();
+                entities.Database.Log = (s) => MyLogger.Instance.Write(s);
+                return entities;
+            }
         }
     }
-
 }

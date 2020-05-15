@@ -26,7 +26,9 @@ namespace GaiWcfService.Service {
         }
 
         public void SetTest(int test) {
-            MyLogger.Instance.Write((shiftRepository.GetShift(74).Employee == null).ToString());
+            ViolationDto viol = GetAllViolations(1).Last();
+            viol.personId = 12;
+            EditViolation(viol);
         }
         
         public void AddUser(UserDto user) {

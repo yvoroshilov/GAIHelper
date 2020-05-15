@@ -1,39 +1,45 @@
 ﻿using GaiWcfService.Repository.contract;
+using GaiWcfService.Service;
 using GaiWcfService.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GaiWcfService.Util.DbEntitiesSingleton;
 
 namespace GaiWcfService.Repository.implementation {
     public class EmployeeRepository : IEmployeeRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
 
         public void AddEmployee(Employee employee) {
-            dbEntities.Employees.Add(employee);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            entities.Employees.Add(employee);
+            entities.SaveChanges();
         }
 
         public Employee GetEmployeeByUserLogin(string login) {
-            return dbEntities.Employees.Where(val => val.user_login == login).SingleOrDefault();
+            return dbEntities.Employees
+                .Where(val => val.user_login == login)
+                .SingleOrDefault();
         }
 
         public void DeleteEmployee(int id) {
-            Employee employee = dbEntities.Employees.Find(id);
-            dbEntities.Employees.Remove(employee);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Employee employee = entities.Employees.Find(id);
+            entities.Employees.Remove(employee);
+            entities.SaveChanges();
         }
 
         public void EditEmployee(Employee employee) {
-            Employee oldEmployee = dbEntities.Employees.Find(employee.certificate_id);
+            GAIDBEntities entities = dbEntities;
+            Employee oldEmployee = entities.Employees.Find(employee.certificate_id);
             oldEmployee.user_login = employee.user_login;
             oldEmployee.name = employee.name;
             oldEmployee.surname = employee.surname;
             oldEmployee.patronymic = employee.patronymic;
             oldEmployee.hire_date = employee.hire_date;
             
-            dbEntities.SaveChanges();
+            entities.SaveChanges();
         }
 
         public HashSet<Employee> GetAll() {

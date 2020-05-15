@@ -521,6 +521,7 @@
                             </MultiBinding>
                         </Button.CommandParameter>
                     </Button>
+                    <Button x:Name="DownloadFileBtn" Content="⭳ Загрузить файл" Margin="10.2,267,10.4,177.6" FontSize="17" Padding="0" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Command="{Binding DownloadFile}" Grid.Column="4" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="PersonsTab" Header="Профили" Padding="32,20">
@@ -764,7 +765,7 @@
                         <CheckBox Content="Искать по этому полю" VerticalAlignment="Top" IsChecked="{Binding FindPaidPenaltyCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
                     <CheckBox x:Name="OnlyDebtorsCheckbox" Content="Только должники" Grid.Column="4" Margin="37,457,10.4,0" Grid.ColumnSpan="2" IsChecked="{Binding OnlyDebtorsCheckbox}" Height="15" VerticalAlignment="Top"/>
-                    <Button x:Name="SeePersonsViolationsBtn" Content="Посмотреть нарушения" Grid.Column="4" Margin="4,144,11.4,0" Grid.ColumnSpan="2" Command="{Binding SeeCurrentPersonViolations}" CommandParameter="{Binding SelectedItems, ElementName=PersonTable}" Click="SeePersonsViolationsBtn_Click" Height="39" VerticalAlignment="Top"/>
+                    <Button x:Name="SeePersonsViolationsBtn" Content="Посмотреть нарушения" Grid.Column="4" Margin="4,144,11.4,0" Grid.ColumnSpan="2" Command="{Binding SeeCurrentPersonViolations}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Height="39" VerticalAlignment="Top"/>
                     <Button x:Name="SearchWithExpiredPenalties" Content="              Найти людей &#xD;&#xA;с просроченными штрафами" Grid.Column="4" Margin="5,188,10.4,0" Grid.ColumnSpan="2" Command="{Binding GetPersonsWithExpiredPenalties}" Height="39" VerticalAlignment="Top" FontSize="10"/>
                 </Grid>
             </TabItem>

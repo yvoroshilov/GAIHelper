@@ -4,33 +4,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static GaiWcfService.Util.DbEntitiesSingleton;
 
 namespace GaiWcfService.Repository.implementation {
     class ShiftRepository : IShiftRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
-
         public Shift AddShift(Shift shift) {
-            Shift added = dbEntities.Shifts.Add(shift);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Shift added = entities.Shifts.Add(shift);
+            entities.SaveChanges();
             return added;
         }
         
         public void EditShift(int id, Shift shift) {
-            Shift oldShift = dbEntities.Shifts.Find(id);
+            GAIDBEntities entities = dbEntities;
+            Shift oldShift = entities.Shifts.Find(id);
             oldShift.start = shift.start;
             oldShift.end = shift.end;
             oldShift.responsible_id = shift.responsible_id;
-            MyLogger.Instance.Write((oldShift.Employee == null).ToString());
-            MyLogger.Instance.Write((shift.Employee == null).ToString());
-            MyLogger.Instance.Write(shift.end + "-----" + oldShift.end);
-            dbEntities.SaveChanges();
+            entities.SaveChanges();
         }
 
         public void DeleteShift(int id) {
-            Shift shift = dbEntities.Shifts.Find(id);
-            dbEntities.Shifts.Remove(shift);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Shift shift = entities.Shifts.Find(id);
+            entities.Shifts.Remove(shift);
+            entities.SaveChanges();
         }
 
         public Shift GetShift(int id) {

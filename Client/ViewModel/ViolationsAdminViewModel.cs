@@ -3,11 +3,13 @@ using Client.Model;
 using Client.Util;
 using Client.View.Admin.EmployeesTabSubWindows;
 using Client.View.Admin.ViolationsTabSubWindows;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -443,6 +445,26 @@ namespace Client.ViewModel {
                 return resetSearchFieldsCommand ??
                     (resetSearchFieldsCommand = new RelayCommand(obj => {
                         ResetForm(searchMark);
+                    }));
+            }
+        }
+
+        private RelayCommand downloadFile;
+        public RelayCommand DownloadFile {
+            get {
+                return downloadFile ??
+                    (downloadFile = new RelayCommand(obj => {
+                        ViolationDto violation = (obj as ICollection).Cast<ViolationDto>().Single();
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.AddExtension = true;
+                        saveFileDialog.FileName = new FileInfo(violation.docPath).Name;
+                        bool? result = saveFileDialog.ShowDialog();
+                        if (result == true) {
+                            byte[] file = userClient.GetViolationFileAsync(violation.id).Result;
+                            File.WriteAllBytes(saveFileDialog.FileName, file);
+                        }
+                    }, obj => {
+                        return (obj as ICollection).Count == 1 && (obj as ICollection).Cast<ViolationDto>().SingleOrDefault()?.docPath != null;
                     }));
             }
         }

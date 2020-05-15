@@ -27,7 +27,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <ComboBox x:Name="ViolationField" Margin="24,40,10.4,0" Height="24" IsEditable="True" VerticalAlignment="Top" ItemsSource="{Binding ViolationTypes}" SelectionChanged="ViolationField_SelectionChanged" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <ComboBox x:Name="ViolationField" Margin="24,40,6.4,0" Height="24" IsEditable="True" VerticalAlignment="Top" ItemsSource="{Binding ViolationTypes}" SelectionChanged="ViolationField_SelectionChanged" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <ComboBox.SelectedItem>
                     <Binding Path="SelectedViolationType" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -38,9 +38,9 @@
             </ComboBox>
             <Label Content="Нарушение" Margin="24,14,10.4,0" VerticalAlignment="Top" Height="26"/>
             <Label Content="Штраф, р." VerticalAlignment="Top" Margin="24,74,10.4,0" Height="26"/>
-            <xctk:DoubleUpDown x:Name="PenaltyField" Margin="24,100,10.4,0" VerticalAlignment="Top" Height="24" Text="{Binding Penalty}" Maximum="{Binding SelectedViolationType.MaxPenalty}" Minimum="{Binding SelectedViolationType.MinPenalty}"/>
+            <xctk:DoubleUpDown x:Name="PenaltyField" Margin="24,100,6.4,0" VerticalAlignment="Top" Height="24" Text="{Binding Penalty}" Maximum="{Binding SelectedViolationType.MaxPenalty}" Minimum="{Binding SelectedViolationType.MinPenalty}"/>
             <Label Content="Адрес происшествия" VerticalAlignment="Top" Grid.Column="1" Margin="19.6,14,28.8,0" Height="26"/>
-            <TextBox x:Name="AddressField" Height="24" VerticalAlignment="Top" Grid.Column="1" Margin="19.6,45,21.8,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox x:Name="AddressField" Height="24" VerticalAlignment="Top" Grid.Column="1" Margin="19.6,40,21.8,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="Address" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -71,8 +71,8 @@
                 </TextBox>
                 <Label Content="Долгота" Margin="0.6,0,-0.2,0" Height="24" VerticalAlignment="Top" Grid.Column="1"/>
             </Grid>
-            <TextBox x:Name="DescriptionField"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="25,345,21.8,244.8" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
-            <Label Content="Описание" VerticalAlignment="Top" Margin="25,320,96.4,0" Height="25"/>
+            <TextBox x:Name="DescriptionField"  Grid.ColumnSpan="2" Block.LineHeight="1" Margin="25,380,21.8,244.8" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" />
+            <Label Content="Описание" VerticalAlignment="Top" Margin="25,355,96.4,0" Height="25"/>
             <Grid x:Name="PersonInfoGrid" Grid.Column="0" Margin="43,0,35.8,9.6" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="230" Width="318" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -106,7 +106,17 @@
                 </Binding>
             </TextBox>
             <Label x:Name="DriverLicenseLabel" Content="№ ВУ" VerticalAlignment="Top" HorizontalAlignment="Left" Width="156" Height="26" Grid.Column="1" Margin="19.6,190,0,0"/>
-            <Button x:Name="AddViolationBtn" Content="Сохранить" Margin="24,262,10.4,0" VerticalAlignment="Top" Height="43" Command="{Binding AcceptEditCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="AddViolationBtn_Click"/>
+            <Button x:Name="AddViolationBtn" Content="Сохранить нарушение" Margin="24,316,21.8,0" VerticalAlignment="Top" Height="39" Command="{Binding AcceptEditCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="AddViolationBtn_Click" Grid.ColumnSpan="2" FontSize="17">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ShiftIdField, Path=(Validation.HasError)}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <TextBox x:Name="ProtocolIdField" Height="24" VerticalAlignment="Top" Margin="19.6,161,21.8,0" Padding="0,3,0,0" Grid.Column="1" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="ProtocolId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
@@ -120,11 +130,23 @@
                 <Binding Path="ShiftId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
+                        <res:IntegerValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
             <Label Content="Дата происшествия" Margin="20.6,255,23.8,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
             <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="20.6,281,0,0" VerticalAlignment="Top" Width="164" SelectedDate="{Binding ViolationDate}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"/>
+            <Grid x:Name="FileControlsGrid" Margin="25,281,6.4,0" Height="23" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="17*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AddFileBtn" Content="Добавить файл" FontSize="10" Margin="0,0,1.6,0" CommandParameter="{Binding SelectedItems, ElementName=ViolationTable}" Command="{Binding ChooseFile}" Height="23" VerticalAlignment="Top"/>
+                <Button x:Name="RemoveFileBtn" Content="🗑" Margin="3.4,0,0.2,0" FontSize="16" Padding="0" Grid.Column="1" CommandParameter="{Binding SelectedItems, ElementName=ViolationTable}" Command="{Binding RemoveFile}"/>
+            </Grid>
+            <Label VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Height="26" Margin="25,255,0,0">
+                <TextBlock x:Name="FileLabel" Text="{Binding CurrentFilePath, Converter={StaticResource PathToFilenameConverter}, UpdateSourceTrigger=PropertyChanged}" TextTrimming="CharacterEllipsis"/>
+            </Label>
         </Grid>
     </Grid>
 </Window>

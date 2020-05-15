@@ -57,7 +57,7 @@ namespace Client.View.Admin {
         public Notifier notifier;
         private EmployeesViewModel employeesViewModel;
         private UsersViewModel usersViewModel;
-        private ViolationsAdminViewModel violationsAdminViewModel;
+        public ViolationsAdminViewModel violationsAdminViewModel;
         private PersonsViewModel personsViewModel;
         private PaymentsViewModel paymentsViewModel;
         private ViolationTypesViewModel violationTypesViewModel;
@@ -294,14 +294,6 @@ namespace Client.View.Admin {
             PaymentsWindow paymentsWindow = new PaymentsWindow(personsViewModel.CurrentPersonPayments, this);
 
             paymentsWindow.Show();
-        }
-
-        private void SeePersonsViolationsBtn_Click(object sender, RoutedEventArgs e) {
-            this.IsEnabled = false;
-
-            PersonsViolations personsViolations = new PersonsViolations(personsViewModel.CurrentPersonViolations, this);
-
-            personsViolations.Show();
         }
 
         private void OnPenaltyChanged(object sender, PropertyChangedEventArgs e) {

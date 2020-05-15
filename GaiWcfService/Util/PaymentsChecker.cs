@@ -24,6 +24,8 @@ namespace GaiWcfService.Util {
         }
 
         private IPaymentRepository paymentRepository = new PaymentRepository();
+        private IPersonRepository personRepository = new PersonRepository();
+        private IViolationRepository violationRepository = new ViolationRepository();
         private MyLogger logger = MyLogger.Instance;
 
         private PaymentsChecker() {
@@ -39,15 +41,8 @@ namespace GaiWcfService.Util {
             List<Payment> newPayments = paymentRepository.GetAll();
             foreach (Payment payment in newPayments) {
                 payment.Person.paid_penalty += payment.amount;
-                double overallCost = payment.Person.Violations.Aggregate(0.0, (sum, val) => sum + val.penalty);
-                double paidPenalty = (double)payment.Person.paid_penalty;
-                foreach (Violation item in payment.Person.Violations) {
-                    if (paidPenalty - item.penalty < 0) {
-                        break;
-                    }
-                    paidPenalty -= item.penalty;
-                    item.paid = true;
-                }
+                personRepository.EditPerson(payment.Person);
+                Utility.CalculateViolationsPaid(payment.person_id);
                 logger.Write("PAYMENT " + payment.id + " PROCEED");
             }
             paymentRepository.DeleteAllPayments();

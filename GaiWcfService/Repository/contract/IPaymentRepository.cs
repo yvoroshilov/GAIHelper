@@ -9,7 +9,7 @@ namespace GaiWcfService.Repository.contract {
     public interface IPaymentRepository {
         void AddPayment(Payment payment);
 
-        void EditPayment(int id, Payment payment);
+        void EditPayment(Payment payment);
 
         void DeletePayment(int id);
 

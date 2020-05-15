@@ -4,30 +4,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static GaiWcfService.Util.DbEntitiesSingleton;
 
 namespace GaiWcfService.Repository.implementation {
     class PaymentRepository : IPaymentRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
-
         public void AddPayment(Payment payment) {
-            payment.Person = dbEntities.Persons.Find(payment.person_id);
-            dbEntities.Payments.Add(payment);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            payment.Person = entities.Persons.Find(payment.person_id);
+            entities.Payments.Add(payment);
+            entities.SaveChanges();
         }
 
         public void DeletePayment(int id) {
-            Payment payment = dbEntities.Payments.Find(id);
-            dbEntities.Payments.Remove(payment);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Payment payment = entities.Payments.Find(id);
+            entities.Payments.Remove(payment);
+            entities.SaveChanges();
         }
 
-        public void EditPayment(int id, Payment payment) {
-            Payment oldPayment = dbEntities.Payments.Find(id);
+        public void EditPayment(Payment payment) {
+            GAIDBEntities entities = dbEntities;
+            Payment oldPayment = entities.Payments.Find(payment.id);
             oldPayment.person_id = payment.person_id;
             oldPayment.amount = payment.amount;
             oldPayment.date = payment.date;
-            dbEntities.SaveChanges();            
+            entities.SaveChanges();            
         }
 
         public List<Payment> GetAll() {
@@ -39,8 +42,9 @@ namespace GaiWcfService.Repository.implementation {
         }
 
         public List<Payment> GetLastNPayments(int n) {
-            int count = dbEntities.Payments.Count();
-            return dbEntities.Payments
+            GAIDBEntities entities = dbEntities;
+            int count = entities.Payments.Count();
+            return entities.Payments
                 .OrderByDescending(val => val.date)
                 .Take(Math.Min(count, n))
                 .ToList();
@@ -60,8 +64,9 @@ namespace GaiWcfService.Repository.implementation {
         }
 
         public void DeleteAllPayments() {
-            dbEntities.Payments.RemoveRange(dbEntities.Payments);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            entities.Payments.RemoveRange(entities.Payments);
+            entities.SaveChanges();
         }
     }
 }

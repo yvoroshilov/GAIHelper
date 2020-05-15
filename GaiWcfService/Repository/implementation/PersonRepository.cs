@@ -4,20 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static GaiWcfService.Util.DbEntitiesSingleton;
 
 namespace GaiWcfService.Repository.implementation {
     public class PersonRepository : IPersonRepository {
-        private GAIDBEntities dbEntities = DbEntitiesSingleton.Instance.GetDbEntities();
-
         public Person AddPerson(Person person) {
-            Person added = dbEntities.Persons.Add(person);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Person added = entities.Persons.Add(person);
+            entities.SaveChanges();
             return added;
         }
 
         public void EditPerson(Person person) {
-            Person oldPerson = dbEntities.Persons.Find(person.id);
+            GAIDBEntities entities = dbEntities;
+            Person oldPerson = entities.Persons.Find(person.id);
             oldPerson.name = person.name;
             oldPerson.actual_penalty = person.actual_penalty;
             oldPerson.paid_penalty = person.paid_penalty;
@@ -28,13 +30,14 @@ namespace GaiWcfService.Repository.implementation {
             oldPerson.driver_license = person.driver_license;
             oldPerson.email = person.email;
             oldPerson.photo_path = person.photo_path;
-            dbEntities.SaveChanges();
+            entities.SaveChanges();
         }
 
         public void DeletePerson(int id) {
-            Person person = dbEntities.Persons.Find(id);
-            dbEntities.Persons.Remove(person);
-            dbEntities.SaveChanges();
+            GAIDBEntities entities = dbEntities;
+            Person person = entities.Persons.Find(id);
+            entities.Persons.Remove(person);
+            entities.SaveChanges();
         }
 
         public Person GetPerson(int id) {
@@ -61,7 +64,7 @@ namespace GaiWcfService.Repository.implementation {
 
         public List<Person> GetExpiredDebtors() {
             return dbEntities.Violations
-                .Where(val => !val.paid && !(val.Person.driver_license != "NO_LIC"))
+                .Where(val => !val.paid && val.Person.driver_license != "NO_LIC")
                 .GroupBy(val => val.Person.id)
                 .Select(val => val.FirstOrDefault().Person)
                 .ToList();
