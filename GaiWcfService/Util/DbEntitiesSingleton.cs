@@ -26,6 +26,7 @@ namespace GaiWcfService {
         public GAIDBEntities GetDbEntities() {
             GAIDBEntities entities = new GAIDBEntities();
             entities.Database.Log = s => MyLogger.Instance.Write(s);
+            MyLogger.Instance.Write(entities.Database.Connection.ConnectionString);
             return entities;
         }
     }
