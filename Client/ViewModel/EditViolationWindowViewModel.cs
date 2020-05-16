@@ -285,7 +285,7 @@ namespace Client.ViewModel {
                             curViolation.docPath = null;
                         }
                         if (curFile != null && CurrentFilePath != null) {
-                            curViolation.docPath = userClient.AddViolationFileAsync(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).Result.docPath;
+                            curViolation.docPath = userClient.AddViolationFile(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).docPath;
                         }
                         ResetForm();
 

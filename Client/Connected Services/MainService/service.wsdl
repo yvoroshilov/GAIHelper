@@ -224,6 +224,12 @@
   <wsdl:message name="IAdminService_SearchViolationsDateRange_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchViolationsDateRangeResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_GetViolationsByShiftId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetViolationsByShiftId" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_GetViolationsByShiftId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetViolationsByShiftIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_AddViolationType_InputMessage">
     <wsdl:part name="parameters" element="tns:AddViolationType" />
   </wsdl:message>
@@ -471,6 +477,10 @@
     <wsdl:operation name="SearchViolationsDateRange">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsDateRange" message="tns:IAdminService_SearchViolationsDateRange_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchViolationsDateRangeResponse" message="tns:IAdminService_SearchViolationsDateRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViolationsByShiftId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetViolationsByShiftId" message="tns:IAdminService_GetViolationsByShiftId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetViolationsByShiftIdResponse" message="tns:IAdminService_GetViolationsByShiftId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddViolationType">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddViolationType" message="tns:IAdminService_AddViolationType_InputMessage" />
@@ -796,6 +806,15 @@
     </wsdl:operation>
     <wsdl:operation name="SearchViolationsDateRange">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/SearchViolationsDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViolationsByShiftId">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/GetViolationsByShiftId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

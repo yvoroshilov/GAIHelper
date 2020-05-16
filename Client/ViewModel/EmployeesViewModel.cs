@@ -1,5 +1,6 @@
 ﻿using Client.MainService;
 using Client.Util;
+using Client.View.Admin;
 using Client.View.Admin.EmployeesTabSubWindows;
 using System;
 using System.Collections;
@@ -19,6 +20,7 @@ namespace Client.ViewModel {
         public ObservableCollection<EmployeeDto> Employees { get; }
         public ObservableCollection<ViolationDto> EmployeeAddedViolations { get; }
         public ObservableCollection<ShiftDto> EmployeeDoneShifts { get; }
+        public List<ViolationDto> ViolationsForStats { get; }
         public EmployeeDto CurrentEmployee;
 
         #region Search fields
@@ -239,13 +241,15 @@ namespace Client.ViewModel {
         public RelayCommand SeeAddedViolationsCommand { get {
                 return seeAddedViolationsCommand ?? 
                     (seeAddedViolationsCommand = new RelayCommand(obj => {
-                        List<EmployeeDto> selectedEmployee = new List<EmployeeDto>((obj as ICollection).Cast<EmployeeDto>());
-                        EmployeeDto curEmployee = selectedEmployee.Single();
+                        AdminDashboard adminDashboard = obj as AdminDashboard;
+                        EmployeeDto selectedEmployee = new List<EmployeeDto>((adminDashboard.EmployeeTable.SelectedItems as ICollection).Cast<EmployeeDto>()).Single() as EmployeeDto;
 
-                        EmployeeAddedViolations.Clear();
-                        client.GetAllViolationsByResponsibleId(curEmployee.certificateId).ToList().ForEach(val => EmployeeAddedViolations.Add(val));
+                        adminDashboard.MainTabControl.SelectedItem = adminDashboard.ViolationsTab;
+                        adminDashboard.violationsAdminViewModel.Violations.Clear();
+                        client.GetAllViolationsByResponsibleId(selectedEmployee.certificateId).ToList().ForEach(val => adminDashboard.violationsAdminViewModel.Violations.Add(val));
                     }, obj => {
-                        return (obj as ICollection).Count == 1;
+                        AdminDashboard adminDashboard = obj as AdminDashboard;
+                        return (adminDashboard.EmployeeTable.SelectedItems as ICollection).Count == 1;
                     }));
             }
         }
@@ -259,9 +263,35 @@ namespace Client.ViewModel {
                         EmployeeDto curEmployee = selectedEmployee.Single();
 
                         EmployeeDoneShifts.Clear();
-                        client.GetAllShiftsByResponsibleId(curEmployee.certificateId).ToList().ForEach(val => EmployeeDoneShifts.Add(val));
+                        client.GetAllShiftsByResponsibleId(curEmployee.certificateId)
+                            .ToList()
+                            .ForEach(val => EmployeeDoneShifts.Add(val));
                     }, obj => {
                         return (obj as ICollection).Count == 1;
+                    }));
+            }
+        }
+
+        private RelayCommand seeAllTimeStatsCommand;
+        public RelayCommand SeeAllTimeStatsCommand {
+            get {
+                return seeAllTimeStatsCommand ??
+                    (seeAllTimeStatsCommand = new RelayCommand(obj => {
+                        AdminDashboard adminDashboard = obj as AdminDashboard;
+                        EmployeeDto selectedEmployee = new List<EmployeeDto>((adminDashboard.EmployeeTable.SelectedItems as ICollection).Cast<EmployeeDto>()).Single() as EmployeeDto;
+
+                        ViolationsForStats.Clear();
+                        client.GetAllViolationsByResponsibleId(selectedEmployee.certificateId)
+                            .ToList()
+                            .ForEach(val => ViolationsForStats.Add(val));
+
+
+                        (obj as Window).IsEnabled = false;
+                        AllTimeStatisticsWindow statisticsWindow = new AllTimeStatisticsWindow(ViolationsForStats, obj as Window);
+                        statisticsWindow.Show();
+                    }, obj => {
+                        AdminDashboard adminDashboard = obj as AdminDashboard;
+                        return (adminDashboard.EmployeeTable.SelectedItems as ICollection).Count == 1;
                     }));
             }
         }
@@ -271,6 +301,7 @@ namespace Client.ViewModel {
             Employees = new ObservableCollection<EmployeeDto>();
             EmployeeAddedViolations = new ObservableCollection<ViolationDto>();
             EmployeeDoneShifts = new ObservableCollection<ShiftDto>();
+            ViolationsForStats = new List<ViolationDto>();
             InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
             client = new AdminServiceClient(cntxt);
             CurrentEmployee = new EmployeeDto();

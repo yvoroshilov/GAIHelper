@@ -47,6 +47,7 @@ namespace GaiWcfService.Service {
             Violation violation = violationRepository.GetViolation(violationId);
             File.Delete(Configuration.DocDir + @"\" + violation.doc_path);
             violation.doc_path = null;
+            violationRepository.EditViolation(violation);
         }
 
         public void EditViolation(ViolationDto violation) {
@@ -99,6 +100,12 @@ namespace GaiWcfService.Service {
                     ((val.date.Date.CompareTo(start.Date) + val.date.Date.CompareTo(end.Date)) == 0) ||
                     (val.date.Date.CompareTo(start.Date) == 0) ||
                     (val.date.Date.CompareTo(end.Date) == 0))
+                .ToList();
+        }
+
+        public List<ViolationDto> GetViolationsByShiftId(int shiftId) {
+            return violationRepository.GetAllViolationsByShiftId(shiftId)
+                .Select(val => Mapper.mapper.Map<ViolationDto>(val))
                 .ToList();
         }
     }

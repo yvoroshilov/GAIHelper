@@ -103,6 +103,11 @@ namespace Client.View.Admin {
                     }
                     break;
                 case "ExitTab":
+                    MessageBoxResult res = MessageBox.Show("Вы действительно хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (res.Equals(MessageBoxResult.No)) {
+                        return;
+                    }
+
                     MainWindow main = new MainWindow();
                     AdminServiceClient client = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
                     client.Unsubscribe(curLogin);
@@ -210,14 +215,6 @@ namespace Client.View.Admin {
 
         }
 
-        private void SeeAddedViolationsButton_Click(object sender, RoutedEventArgs e) {
-            EmployeeAddedViolationsWindow window = new EmployeeAddedViolationsWindow(employeesViewModel.EmployeeAddedViolations, this);
-
-            this.IsEnabled = false;
-
-            window.Show();
-        }
-
         private void SeeDoneShiftsButton_Click(object sender, RoutedEventArgs e) {
             EmployeeDoneShiftsWindow window = new EmployeeDoneShiftsWindow(employeesViewModel.EmployeeDoneShifts, this);
 
@@ -233,7 +230,6 @@ namespace Client.View.Admin {
 
             addEmployeeWindow.Show();
         }
-
         #endregion
 
         #region Users tab

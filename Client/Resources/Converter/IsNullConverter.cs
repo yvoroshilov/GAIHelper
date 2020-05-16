@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Client.Resources.Converter {
-    public class DateConverter : IValueConverter {
+    public class IsNullConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            DateTime dateTime = (DateTime)value;
-            return dateTime != null ? dateTime.ToShortDateString() : null;
+            return (value == null);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
-            throw new NotImplementedException();
+            throw new InvalidOperationException("IsNullConverter can only be used OneWay.");
         }
     }
 }

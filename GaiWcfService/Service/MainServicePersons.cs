@@ -16,6 +16,7 @@ namespace GaiWcfService.Service {
 
         public void EditPerson(PersonDto person) {
             personRepository.EditPerson(Mapper.mapper.Map<Person>(person));
+            Utility.CalculateViolationsPaid(person.id);
         }
 
         public void DeletePerson(int id) {

@@ -367,7 +367,7 @@ namespace Client.ViewModel {
                             curViolation.docPath = null;
                         }
                         if (curFile != null && CurrentFilePath != null) {
-                            curViolation.docPath = client.AddViolationFileAsync(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).Result.docPath;
+                            curViolation.docPath = client.AddViolationFile(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).docPath;
                         }
                         ResetForm();
 
@@ -417,7 +417,7 @@ namespace Client.ViewModel {
                         saveFileDialog.FileName = new FileInfo(violation.docPath).Name;
                         bool? result = saveFileDialog.ShowDialog();
                         if (result == true) {
-                            byte[] file = client.GetViolationFileAsync(violation.id).Result;
+                            byte[] file = client.GetViolationFile(violation.id);
                             File.WriteAllBytes(saveFileDialog.FileName, file);
                         }
                     }, obj => {

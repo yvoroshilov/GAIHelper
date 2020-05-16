@@ -40,6 +40,7 @@ namespace GaiWcfService.Repository.implementation {
         public Shift GetOpenedShiftByResponsibleId(int responsibleId) {
             return dbEntities.Shifts
                 .Where(val => val.responsible_id == responsibleId && val.end == null)
+                .OrderBy(val => val.start)
                 .SingleOrDefault();
         }
 

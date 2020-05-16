@@ -1197,6 +1197,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchViolationsDateRange", ReplyAction="http://tempuri.org/IAdminService/SearchViolationsDateRangeResponse")]
         System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsDateRangeAsync(Client.MainService.ViolationDto searchedViolation, System.DateTime start, System.DateTime end);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetViolationsByShiftId", ReplyAction="http://tempuri.org/IAdminService/GetViolationsByShiftIdResponse")]
+        Client.MainService.ViolationDto[] GetViolationsByShiftId(int shiftId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetViolationsByShiftId", ReplyAction="http://tempuri.org/IAdminService/GetViolationsByShiftIdResponse")]
+        System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetViolationsByShiftIdAsync(int shiftId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddViolationType", ReplyAction="http://tempuri.org/IAdminService/AddViolationTypeResponse")]
         void AddViolationType(Client.MainService.ViolationTypeDto violationType);
         
@@ -1521,6 +1527,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> SearchViolationsDateRangeAsync(Client.MainService.ViolationDto searchedViolation, System.DateTime start, System.DateTime end) {
             return base.Channel.SearchViolationsDateRangeAsync(searchedViolation, start, end);
+        }
+        
+        public Client.MainService.ViolationDto[] GetViolationsByShiftId(int shiftId) {
+            return base.Channel.GetViolationsByShiftId(shiftId);
+        }
+        
+        public System.Threading.Tasks.Task<Client.MainService.ViolationDto[]> GetViolationsByShiftIdAsync(int shiftId) {
+            return base.Channel.GetViolationsByShiftIdAsync(shiftId);
         }
         
         public void AddViolationType(Client.MainService.ViolationTypeDto violationType) {

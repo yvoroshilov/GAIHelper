@@ -38,7 +38,7 @@
                     <ListView x:Name="EmployeeTable" Margin="10,10,2.2,8" AlternationCount="2" Grid.ColumnSpan="3" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black" SelectionChanged="EmployeeTable_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="№" Width="30">
+                                <GridViewColumn Header="№" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -53,7 +53,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="ID" Width="30">
+                                <GridViewColumn Header="ID" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding certificateId}"/>
@@ -107,7 +107,7 @@
                     </Button>
                     <Button Content="Удалить" Grid.Column="3" Margin="9.8,60,7.2,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
                     <Button x:Name="EditEmployeeButton" Content="Изменить" Grid.Column="4" Margin="6.8,60,10.4,0" VerticalAlignment="Top" Height="35" Click="EditEmployeeButton_Click" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
-                    <Button x:Name="SeeAddedViolationsButton" Content="Просмотреть выявленные &#xA;              нарушения" Grid.Column="3" Margin="9.8,100,10.4,0" VerticalAlignment="Top" Height="58" Grid.ColumnSpan="2" Click="SeeAddedViolationsButton_Click" Command="{Binding SeeAddedViolationsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
+                    <Button x:Name="SeeAddedViolationsButton" Content="Просмотреть выявленные &#xA;              нарушения" Grid.Column="3" Margin="9.8,100,10.4,0" VerticalAlignment="Top" Height="58" Grid.ColumnSpan="2" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Command="{Binding SeeAddedViolationsCommand}" />
                     <Button x:Name="SeeDoneShiftsButton" Content="Посмотреть отработанные&#xA;                смены" Grid.Column="3" Margin="9.8,163,10.4,0" VerticalAlignment="Top" Height="59" Grid.ColumnSpan="2" Click="SeeDoneShiftsButton_Click" Command="{Binding SeeEmployeeDoneShiftsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
                     <Button x:Name="AddEmployeeButton" Content="Добавить сотрудника" VerticalAlignment="Top" Grid.Column="3" Margin="9.8,10,10.4,0" Grid.ColumnSpan="2" Height="45" Click="AddEmployeeButton_Click"/>
                     <StackPanel Margin="10,2.8,16.8,6.6" Orientation="Vertical" Grid.Row="2" x:Name="SurnameStackPanel">
@@ -179,6 +179,7 @@
                         </DatePicker>
                         <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindHireDateCheckbox, UpdateSourceTrigger=PropertyChanged}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
+                    <Button x:Name="AllTimeEmplStatsBtn" Content="Посмотреть статистику за всё время" Grid.Column="3" Margin="9.8,227,10.4,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="59" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Command="{Binding SeeAllTimeStatsCommand}" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="UsersTab" Header="Пользователи" Padding="32,20">
@@ -194,7 +195,7 @@
                     <ListView x:Name="UserTable" Margin="10,10,2.6,9.6" ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="№" Width="30">
+                                <GridViewColumn Header="№" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -298,7 +299,7 @@
                     <ListView x:Name="ViolationsTable" Margin="10,10,4.8,4.6" AlternationCount="2" Grid.ColumnSpan="4" ItemsSource="{Binding Violations, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="ViolationsTable_SelectionChanged" Foreground="Black" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="№" Width="30">
+                                <GridViewColumn Header="№" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -564,7 +565,7 @@
                     <ListView x:Name="PersonTable" Margin="10,10,5,4.6" AlternationCount="2" Grid.ColumnSpan="4" ItemContainerStyle="{StaticResource ListViewItemStyle}" SelectionChanged="PersonTable_SelectionChanged" ItemsSource="{Binding Persons, UpdateSourceTrigger=PropertyChanged}" Foreground="Black">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="№" Width="30">
+                                <GridViewColumn Header="№" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -579,14 +580,14 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="ID" Width="30">
+                                <GridViewColumn Header="ID" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding id}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="№ Паспорта" Width="80">
+                                <GridViewColumn Header="№ Паспорта" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding passportId}"/>
@@ -786,10 +787,10 @@
                         </Grid>
                         <CheckBox Content="Искать по этому полю" VerticalAlignment="Top" IsChecked="{Binding FindPaidPenaltyCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <CheckBox x:Name="OnlyDebtorsCheckbox" Content="Только должники" Grid.Column="4" Margin="37,457,10.4,0" Grid.ColumnSpan="2" IsChecked="{Binding OnlyDebtorsCheckbox}" Height="15" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="OnlyDebtorsCheckbox" Content="Только должники" Grid.Column="4" Margin="0,0,14.4,9.6" Grid.ColumnSpan="2" IsChecked="{Binding OnlyDebtorsCheckbox}"  Width="119" Height="15" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                     <Button x:Name="SeePersonsViolationsBtn" Content="Посмотреть нарушения" Grid.Column="4" Margin="4,144,11.4,0" Grid.ColumnSpan="2" Command="{Binding SeeCurrentPersonViolations}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Height="39" VerticalAlignment="Top"/>
                     <Button x:Name="SearchWithExpiredPenalties" Content="              Найти людей &#xD;&#xA;с просроченными штрафами" Grid.Column="4" Margin="5,188,10.4,0" Grid.ColumnSpan="2" Command="{Binding GetPersonsWithExpiredPenalties}" Height="39" VerticalAlignment="Top" FontSize="10"/>
-                    <Image x:Name="PersonPhoto1" Stretch="Uniform" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{Binding CurPhoto}" Margin="16,237,0,0" Grid.ColumnSpan="2" Grid.Column="4"/>
+                    <Image x:Name="PersonPhoto1" Stretch="Uniform" Height="130" VerticalAlignment="Top" Width="130" Source="{Binding CurPhoto}" Margin="16,247,20.4,0" Grid.ColumnSpan="2" Grid.Column="4"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="PaymentsTab" Header="Платежи" Padding="32,20">

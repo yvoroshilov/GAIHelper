@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Client.Resources.Converter {
-    public class DateConverter : IValueConverter {
+    public class DateTimeConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             DateTime dateTime = (DateTime)value;
-            return dateTime != null ? dateTime.ToShortDateString() : null;
+            return dateTime != null ? dateTime.ToString(new CultureInfo("ru-RU")) : null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

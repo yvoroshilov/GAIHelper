@@ -95,6 +95,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         List<ViolationDto> SearchViolationsDateRange(ViolationDto searchedViolation, DateTime start, DateTime end);
+
+        [OperationContract]
+        List<ViolationDto> GetViolationsByShiftId(int shiftId);
         #endregion
 
         #region ViolationType

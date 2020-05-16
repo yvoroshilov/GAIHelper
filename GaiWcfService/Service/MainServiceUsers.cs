@@ -17,20 +17,6 @@ namespace GaiWcfService.Service {
 
         private IUserRepository userRepository = new UserRepository();
 
-        public byte[] GetTest() {
-            byte[] arr = new byte[5000000];
-            for (int i = 0; i < arr.Length; i++) {
-                arr[i] = 255;
-            }
-            return arr;
-        }
-
-        public void SetTest(int test) {
-            ViolationDto viol = GetAllViolations(1).Last();
-            viol.personId = 12;
-            EditViolation(viol);
-        }
-        
         public void AddUser(UserDto user) {
             userRepository.AddUser(Mapper.mapper.Map<User>(user));
         }
@@ -57,10 +43,6 @@ namespace GaiWcfService.Service {
 
         public void DeleteUser(string login) {
             userRepository.DeleteUser(login);
-        }
-
-        public string test() {
-            return "TEST";
         }
     }
 }

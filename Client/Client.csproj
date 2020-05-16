@@ -118,11 +118,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Converter\BoolConverter.cs" />
+    <Compile Include="Resources\Converter\DateTimeConverter.cs" />
     <Compile Include="Resources\Converter\IntegerConverter.cs" />
     <Compile Include="Resources\Converter\FIOConverter.cs" />
+    <Compile Include="Resources\Converter\IsNullConverter.cs" />
     <Compile Include="Resources\Converter\ListViewAndParentConverter.cs" />
     <Compile Include="Resources\Converter\MoneyConverter.cs" />
     <Compile Include="Resources\Converter\PathToFilenameConverter.cs" />
+    <Compile Include="Resources\Converter\ShiftToViolationsCountConverter.cs" />
     <Compile Include="Resources\Rule\DoubleValidationRule.cs" />
     <Compile Include="Resources\Converter\CoordConverter.cs" />
     <Compile Include="Resources\Converter\DateConverter.cs" />
@@ -165,8 +168,8 @@
     <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeDoneShiftsWindow.xaml.cs">
       <DependentUpon>EmployeeDoneShiftsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml.cs">
-      <DependentUpon>EmployeeAddedViolationsWindow.xaml</DependentUpon>
+    <Compile Include="View\Admin\EmployeesTabSubWindows\StatisticsWindow.xaml.cs">
+      <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\PersonTabSubWIndows\EditPersonWindow.xaml.cs">
       <DependentUpon>EditPersonWindow.xaml</DependentUpon>
@@ -182,6 +185,9 @@
     </Compile>
     <Compile Include="View\Admin\ViolationsTabSubWindows\MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\EmployeesTabSubWindows\AllTimeStatisticsWindow.xaml.cs">
+      <DependentUpon>AllTimeStatisticsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\ViolationsTabSubWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
@@ -225,7 +231,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\EmployeesTabSubWindows\EmployeeAddedViolationsWindow.xaml">
+    <Page Include="View\Admin\EmployeesTabSubWindows\StatisticsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -248,6 +254,10 @@
     <Page Include="View\Admin\ViolationsTabSubWindows\MapWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\EmployeesTabSubWindows\AllTimeStatisticsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Admin\ViolationsTabSubWindows\StatisticsWindow.xaml">
       <SubType>Designer</SubType>

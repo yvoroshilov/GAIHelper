@@ -10,7 +10,17 @@
     <converter:BoolConverter x:Key="BoolConverter"/>
     <converter:IntegerConverter x:Key="IntegerConverter"/>
     <converter:PathToFilenameConverter x:Key="PathToFilenameConverter"/>
+    <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+    <converter:IsNullConverter x:Key="IsNullConverter"/>
+    <converter:ShiftToViolationsCountConverter x:Key="ShiftToViolationsCountConverter"/>
 
+    <Style TargetType="{x:Type TextBlock}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}, Converter={StaticResource IsNullConverter}}" Value="False">
+                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <BitmapImage UriSource="Img/img.png" x:Key="SamplePersonImage" />
 

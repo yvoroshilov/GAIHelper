@@ -65,7 +65,7 @@ namespace GaiWcfService.Util {
                             .Append("В совокупности составляет ")
                             .Append(Math.Round(debtor.actual_penalty - debtor.paid_penalty, 2).ToString())
                             .AppendLine(" р.")
-                            .AppendLine("Оплатите как можно скорее.");
+                            .AppendLine("Оплатите как можно скорее!");
 
                         emailSender.SendMail(debtor.email, "Оповещение о задолженности", stringBuilder.ToString());
                     }

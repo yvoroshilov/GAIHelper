@@ -55,7 +55,15 @@ namespace Client.ViewModel {
             get {
                 return loginCommand ??
                     (loginCommand = new RelayCommand(obj => {
-                        UserDto user = client.GetUser(Login);
+                        UserDto user;
+                        try {
+                            user = client.GetUser(Login);
+                        } catch {
+                            MessageBox.Show("Сервер недопступен", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            InstanceContext cntx = new InstanceContext(new Cllbck());
+                            client = new AdminServiceClient(cntx);
+                            return;
+                        }
                         PasswordBox passwordBox = (PasswordBox)obj;
 
                         if (user == null || user.password != passwordBox.Password) {

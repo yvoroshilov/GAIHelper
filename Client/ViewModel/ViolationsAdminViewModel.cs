@@ -1,7 +1,6 @@
 ﻿using Client.MainService;
 using Client.Model;
 using Client.Util;
-using Client.View.Admin.EmployeesTabSubWindows;
 using Client.View.Admin.ViolationsTabSubWindows;
 using Microsoft.Win32;
 using System;
@@ -475,7 +474,7 @@ namespace Client.ViewModel {
                         saveFileDialog.FileName = new FileInfo(violation.docPath).Name;
                         bool? result = saveFileDialog.ShowDialog();
                         if (result == true) {
-                            byte[] file = userClient.GetViolationFileAsync(violation.id).Result;
+                            byte[] file = userClient.GetViolationFile(violation.id);
                             File.WriteAllBytes(saveFileDialog.FileName, file);
                         }
                     }, obj => {
