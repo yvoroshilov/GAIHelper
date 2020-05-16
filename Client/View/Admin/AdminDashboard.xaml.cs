@@ -119,6 +119,7 @@ namespace Client.View.Admin {
             foreach (var item in stackPanel.Children) {
                 if (item != sender) {
                     (item as FrameworkElement).IsEnabled = true;
+                    ForceValidation();
                 }
             }
         }
@@ -180,6 +181,15 @@ namespace Client.View.Admin {
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void ForceValidation() {
+            var fields = this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+            foreach (var item in fields) {
+                if (item.FieldType.IsSubclassOf(typeof(ViewModel.ViewModel))) {
+                    (item.GetValue(this) as ViewModel.ViewModel)?.OnPropertyChanged("");
+                }
             }
         }
         #endregion
@@ -329,4 +339,5 @@ namespace Client.View.Admin {
             notifier?.ShowWarning("Просрочены сроки по уплате штрафов. Количество людей: " + debtors.Count, opts);
         }
     }
+
 }

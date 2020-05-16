@@ -186,9 +186,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private int shiftId;
+        private int? shiftId;
         [InputProperty(true)]
-        public int ShiftId {
+        public int? ShiftId {
             get {
                 return shiftId;
             }
@@ -236,7 +236,7 @@ namespace Client.ViewModel {
             get {
                 return addCommand ?? 
                     (addCommand = new RelayCommand(obj => {
-                        if (adminClient.GetShiftById(ShiftId) == null) {
+                        if (adminClient.GetShiftById(ShiftId.Value) == null) {
                             MessageBox.Show("Смены с таким номером не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
@@ -258,7 +258,7 @@ namespace Client.ViewModel {
                         violation.address = Address;
                         violation.description = Description;
                         violation.protocolId = ProtocolId;
-                        violation.shiftId = ShiftId;
+                        violation.shiftId = ShiftId.Value;
                         violation.date = ViolationDate;
 
                         ViolationDto added = userClient.AddViolation(violation);

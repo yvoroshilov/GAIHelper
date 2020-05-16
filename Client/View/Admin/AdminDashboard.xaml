@@ -94,7 +94,17 @@
                     </ListView>
                     <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,10,2.2,8" Grid.ColumnSpan="3"/>
                     <Button Content="Очистить поисковые поля" Grid.Column="3" Margin="9.8,9.8,10.4,9.6" Grid.ColumnSpan="2" Grid.Row="2" Command="{Binding ClearFormCommand}"/>
-                    <Button Content="Поиск" Grid.Column="3" Margin="9.8,8,10.4,10.2" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding SearchCommand}"/>
+                    <Button Content="Поиск" Grid.Column="3" Margin="9.8,8,10.4,10.2" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding SearchCommand}">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=CertificateIdSearch, Path=(Validation.HasError)}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                     <Button Content="Удалить" Grid.Column="3" Margin="9.8,60,7.2,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
                     <Button x:Name="EditEmployeeButton" Content="Изменить" Grid.Column="4" Margin="6.8,60,10.4,0" VerticalAlignment="Top" Height="35" Click="EditEmployeeButton_Click" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
                     <Button x:Name="SeeAddedViolationsButton" Content="Просмотреть выявленные &#xA;              нарушения" Grid.Column="3" Margin="9.8,100,10.4,0" VerticalAlignment="Top" Height="58" Grid.ColumnSpan="2" Click="SeeAddedViolationsButton_Click" Command="{Binding SeeAddedViolationsCommand}" CommandParameter="{Binding SelectedItems, ElementName=EmployeeTable}"/>
@@ -135,10 +145,11 @@
                     </StackPanel>
                     <StackPanel Margin="10,4,16.8,5.2" Orientation="Vertical" Grid.Row="1" x:Name="CertificateIdStackPanel">
                         <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Номер удостоверения (ID)" IsEnabled="False"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" IsEnabled="False" MaxLength="50">
+                        <TextBox x:Name="CertificateIdSearch" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" IsEnabled="False" MaxLength="50">
                             <Binding Path="CertificateId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
+                                    <rule:IntegerValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
@@ -431,10 +442,11 @@
                     </StackPanel>
                     <StackPanel Margin="27,5.2,50.8,9.6" Orientation="Vertical" Grid.Row="2" Grid.Column="1">
                         <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Номер смены" IsEnabled="False"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <TextBox x:Name="ShiftIdSearch" Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                             <Binding Path="ShiftIdSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
+                                    <rule:IntegerValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
@@ -476,6 +488,9 @@
                                         <Setter Property="IsEnabled" Value="False"></Setter>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ElementName=PenaltyField, Path=(Validation.HasError)}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=ShiftIdSearch, Path=(Validation.HasError)}" Value="True">
                                         <Setter Property="IsEnabled" Value="False"></Setter>
                                     </DataTrigger>
                                 </Style.Triggers>

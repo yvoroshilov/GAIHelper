@@ -130,6 +130,7 @@
                 <Binding Path="ShiftId" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
+                        <res:IntegerValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>

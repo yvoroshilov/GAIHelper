@@ -150,9 +150,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private int shiftIdSearch;
+        private int? shiftIdSearch;
         [InputProperty(Mark = searchMark)]
-        public int ShiftIdSearch {
+        public int? ShiftIdSearch {
             get {
                 return shiftIdSearch;
             }
@@ -174,9 +174,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double penaltyMin;
+        private double? penaltyMin;
         [InputProperty(Mark = searchMark)]
-        public double PenaltyMin {
+        public double? PenaltyMin {
             get {
                 return penaltyMin;
             }
@@ -186,9 +186,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private double penaltyMax;
+        private double? penaltyMax;
         [InputProperty(Mark = searchMark)]
-        public double PenaltyMax {
+        public double? PenaltyMax {
             get {
                 return penaltyMax;
             }
@@ -424,7 +424,7 @@ namespace Client.ViewModel {
                         if (FindProtocolIdCheckbox) violation.protocolId = ProtocolIdSearch;
                         if (FindCarNumberCheckbox) violation.carNumber = CarNumberSearch;
                         if (FindAddressSearchCheckbox) violation.address = AddressSearch;
-                        if (FindShiftIdCheckbox) violation.shiftId = ShiftIdSearch;
+                        if (FindShiftIdCheckbox) violation.shiftId = ShiftIdSearch.Value;
                         if (FindDescriptionCheckbox) violation.description = DescriptionSearch;
                         if (FindViolationTypeCheckbox) violation.violationTypeId = ViolationTypeSearch.Id;
 
@@ -440,7 +440,7 @@ namespace Client.ViewModel {
                                     .ToList();
                                 result = partialResult;
                             } else {
-                                partialResult = adminClient.SearchViolationsPenaltyRange(violation, PenaltyMin, PenaltyMax).ToList();
+                                partialResult = adminClient.SearchViolationsPenaltyRange(violation, PenaltyMin.Value, PenaltyMax.Value).ToList();
 
                                 result = partialResult;
                             }

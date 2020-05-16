@@ -22,9 +22,9 @@ namespace Client.ViewModel {
         public EmployeeDto CurrentEmployee;
 
         #region Search fields
-        private int certificateId;
+        private int? certificateId;
         [InputProperty(true)]
-        public int CertificateId {
+        public int? CertificateId {
             get {
                 return certificateId;
             }
@@ -177,7 +177,7 @@ namespace Client.ViewModel {
                 return searchCommand ??
                     (searchCommand = new RelayCommand(obj => {
                         EmployeeDto searchedEmpl = new EmployeeDto();
-                        if (FindCertificateIdFieldCheckbox) searchedEmpl.certificateId = CertificateId;
+                        if (FindCertificateIdFieldCheckbox) searchedEmpl.certificateId = CertificateId.Value;
                         if (FindLoginCheckbox) searchedEmpl.userLogin = Login;
                         if (FindHireDateCheckbox) searchedEmpl.hireDate = HireDate;
                         if (FindNameCheckbox) searchedEmpl.name = Name;
