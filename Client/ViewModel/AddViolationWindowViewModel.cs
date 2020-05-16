@@ -17,6 +17,7 @@ using Client.MainService;
 using System.ServiceModel;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel {
     public class AddViolationWindowViewModel : ViewModel, IDataErrorInfo {
@@ -40,6 +41,17 @@ namespace Client.ViewModel {
         }
         
         private byte[] curFile;
+
+        private BitmapImage curPhoto;
+        public BitmapImage CurPhoto {
+            get {
+                return curPhoto;
+            }
+            set {
+                curPhoto = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Input fields
@@ -280,6 +292,7 @@ namespace Client.ViewModel {
                             CurrentPerson.name = personDto.name;
                             CurrentPerson.surname = personDto.surname;
                             CurrentPerson.patronymic = personDto.patronymic;
+                            CurPhoto = Utility.LoadImage(CurrentPerson.photo);
                             CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
@@ -303,8 +316,8 @@ namespace Client.ViewModel {
                                 return;
                             }
                             FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
-                            if (fileInfo.Length / (1024 * 1024) > 10) {
-                                MessageBox.Show("Файл должен иметь размер менее 10 мб", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            if (fileInfo.Length / (1024) > 100) {
+                                MessageBox.Show("Файл должен иметь размер менее 100 кб", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
 

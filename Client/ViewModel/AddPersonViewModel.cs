@@ -16,6 +16,9 @@ using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
 using System.Net.Mail;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Client.ViewModel {
     public class AddPersonViewModel : ViewModel, IDataErrorInfo {
@@ -23,6 +26,16 @@ namespace Client.ViewModel {
         private AdminServiceClient client;
         private ObservableCollection<PersonDto> persons;
 
+        private BitmapImage curPhoto;
+        public BitmapImage CurPhoto {
+            get {
+                return curPhoto;
+            }
+            set {
+                curPhoto = value;
+                OnPropertyChanged();
+            }
+        }
         #region Fields
         private string passportId;
         [InputProperty(true)]
@@ -131,6 +144,17 @@ namespace Client.ViewModel {
                 OnPropertyChanged();
             }
         }
+
+        private byte[] photo;
+        public byte[] Photo {
+            get {
+                return photo;
+            }
+            set {
+                photo = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         private RelayCommand addCommand;
@@ -159,6 +183,7 @@ namespace Client.ViewModel {
                         person.patronymic = Patronymic;
                         person.actualPenalty = ActualPenalty.Value;
                         person.email = Email;
+                        person.photo = Photo;
 
                         PersonDto added = client.AddPerson(person);
                         persons.Add(added);
@@ -169,13 +194,63 @@ namespace Client.ViewModel {
             }
         }
 
+
+        private RelayCommand choosePhoto;
+        public RelayCommand ChoosePhoto {
+            get {
+                return choosePhoto ??
+                    (choosePhoto = new RelayCommand(obj => {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Filter = "Image Files(*.PNG;*.JPG;*.BMP;*.GIF)|*.PNG;*.JPG;*.BMP;*.GIF";
+                        openFileDialog.Multiselect = false;
+                        openFileDialog.AddExtension = true;
+                        bool? result = openFileDialog.ShowDialog();
+                        if (result == true) {
+                            if (!File.Exists(openFileDialog.FileName)) {
+                                MessageBox.Show("Выбранный файл больше не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+                            FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                            if (fileInfo.Length / (1024) > 100) {
+                                MessageBox.Show("Файл должен иметь размер менее 100 кб", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
+
+                            Photo = File.ReadAllBytes(openFileDialog.FileName);
+                            CurPhoto = Utility.LoadImage(photo);
+                        }
+                    }, obj => {
+                        return true;
+                    }));
+            }
+        }
+
+        private RelayCommand removePhoto;
+        public RelayCommand RemovePhoto {
+            get {
+                return removePhoto ??
+                    (removePhoto = new RelayCommand(obj => {
+                        CurPhoto = Utility.NoPhotoImg;
+                        Photo = null;
+                    }, obj => {
+                        return CurPhoto != Utility.NoPhotoImg;
+                    }));
+            }
+        }
+
         public AddPersonViewModel(ObservableCollection<PersonDto> col) {
             InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
             client = new AdminServiceClient(cntxt);
 
             persons = col;
+            CurPhoto = Utility.NoPhotoImg;
         }
-        
+
+        protected override void ResetForm(string mark = null) {
+            base.ResetForm(mark);
+            CurPhoto = Utility.NoPhotoImg;
+        }
+
         public string this[string columnName] {
             get {
                 string error = "";

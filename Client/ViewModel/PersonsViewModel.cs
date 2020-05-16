@@ -16,6 +16,7 @@ using System.Collections;
 using Client.MainService;
 using System.ServiceModel;
 using Client.View.Admin;
+using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel {
     public class PersonsViewModel : ViewModel, IDataErrorInfo {
@@ -27,6 +28,16 @@ namespace Client.ViewModel {
         public ObservableCollection<PaymentDto> CurrentPersonPayments { get; }
         public ObservableCollection<ViolationDto> CurrentPersonViolations { get; set; }
 
+        private BitmapImage curPhoto;
+        public BitmapImage CurPhoto {
+            get {
+                return curPhoto;
+            }
+            set {
+                curPhoto = value;
+                OnPropertyChanged();
+            }
+        }
         #region Search fields
         private string passportIdSearch;
         [InputProperty(true)]
@@ -396,6 +407,7 @@ namespace Client.ViewModel {
             Persons = new ObservableCollection<PersonDto>();
             CurrentPersonPayments = new ObservableCollection<PaymentDto>();
             CurrentPersonViolations = new ObservableCollection<ViolationDto>();
+            CurPhoto = Utility.NoPhotoImg;
         }
 
         public string this[string columnName] {

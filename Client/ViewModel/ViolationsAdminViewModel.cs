@@ -31,6 +31,16 @@ namespace Client.ViewModel {
         public ViolationDto curViolation;
         public MapImageGrabber mapImageGrabber;
 
+        private BitmapImage curPhoto;
+        public BitmapImage CurPhoto {
+            get {
+                return curPhoto;
+            }
+            set {
+                curPhoto = value;
+                OnPropertyChanged();
+            }
+        }
         #region InputFields
         private string protocolIdSearch;
         [InputProperty(Mark = searchMark)]
@@ -372,6 +382,11 @@ namespace Client.ViewModel {
                         CurPerson.patronymic = curPerson.patronymic;
                         CurPerson.surname = curPerson.surname;
                         CurPerson.email = curPerson.email;
+                        if (curPerson.photo == null) {
+                            CurPhoto = Utility.NoPhotoImg;
+                        } else {
+                            CurPhoto = Utility.LoadImage(curPerson.photo);
+                        }
                     }, obj => {
                         return (obj as ICollection).Count == 1;
                     }));

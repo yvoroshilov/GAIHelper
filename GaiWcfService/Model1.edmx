@@ -39,7 +39,7 @@
           <Property Name="actual_penalty" Type="money" Nullable="false" />
           <Property Name="paid_penalty" Type="money" Nullable="false" />
           <Property Name="email" Type="varchar(max)" />
-          <Property Name="photo_path" Type="varchar(max)" />
+          <Property Name="photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -81,7 +81,7 @@
           <Property Name="description" Type="nvarchar(max)" />
           <Property Name="shift_id" Type="int" Nullable="false" />
           <Property Name="paid" Type="bit" Nullable="false" />
-          <Property Name="doc_path" Type="varchar(max)" />
+          <Property Name="doc_path" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ViolationTypes">
           <Key>
@@ -305,7 +305,7 @@
           <Property Name="actual_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="paid_penalty" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="photo_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Payments" Relationship="GAIDBModel.FK_Payments_Persons" FromRole="Person" ToRole="Payment" />
           <NavigationProperty Name="Violations" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Person" ToRole="Violation" />
         </EntityType>
@@ -354,7 +354,7 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="shift_id" Type="Int32" Nullable="false" />
           <Property Name="paid" Type="Boolean" Nullable="false" />
-          <Property Name="doc_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="doc_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="GAIDBModel.FK_Violations_Violators" FromRole="Violation" ToRole="Person" />
           <NavigationProperty Name="Shift" Relationship="GAIDBModel.FK_Violations_Shifts" FromRole="Violation" ToRole="Shift" />
           <NavigationProperty Name="ViolationType" Relationship="GAIDBModel.FK_Violations_ViolationsTypes" FromRole="Violation" ToRole="ViolationType" />
@@ -496,7 +496,7 @@
           <EntitySetMapping Name="Persons">
             <EntityTypeMapping TypeName="GAIDBModel.Person">
               <MappingFragment StoreEntitySet="Persons">
-                <ScalarProperty Name="photo_path" ColumnName="photo_path" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="paid_penalty" ColumnName="paid_penalty" />
                 <ScalarProperty Name="actual_penalty" ColumnName="actual_penalty" />

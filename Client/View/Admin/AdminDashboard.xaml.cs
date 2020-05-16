@@ -261,6 +261,7 @@ namespace Client.View.Admin {
             this.IsEnabled = false;
             ViolatorProfileWindow violatorProfileWindow = new ViolatorProfileWindow(this);
             violatorProfileWindow.DataContext = violationsAdminViewModel.CurPerson;
+            violatorProfileWindow.PersonPhoto1.DataContext = violationsAdminViewModel;
             violatorProfileWindow.Show();
         }
         #endregion
@@ -285,6 +286,11 @@ namespace Client.View.Admin {
         private void PersonTable_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (PersonTable.SelectedItems.Count == 1) {
                 personsViewModel.curSelectedPerson = PersonTable.SelectedItems[0] as PersonDto;
+                if (personsViewModel.curSelectedPerson.photo == null) {
+                    personsViewModel.CurPhoto = Utility.NoPhotoImg;
+                } else {
+                    personsViewModel.CurPhoto = Utility.LoadImage(personsViewModel.curSelectedPerson.photo);
+                }
             }
         }
 

@@ -2,6 +2,8 @@
 using GaiWcfService.Util;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -29,7 +31,7 @@ namespace GaiWcfService.Repository.implementation {
             oldPerson.birthday = person.birthday;
             oldPerson.driver_license = person.driver_license;
             oldPerson.email = person.email;
-            oldPerson.photo_path = person.photo_path;
+            oldPerson.photo = person.photo;
             entities.SaveChanges();
         }
 
@@ -64,7 +66,9 @@ namespace GaiWcfService.Repository.implementation {
 
         public List<Person> GetExpiredDebtors() {
             return dbEntities.Violations
-                .Where(val => !val.paid && val.Person.driver_license != "NO_LIC")
+                .Where(val => !val.paid && 
+                    val.Person.driver_license != "NO_LIC" &&
+                    DbFunctions.DiffDays(val.date, DateTime.Now) >= val.ViolationType.payday_after)
                 .GroupBy(val => val.Person.id)
                 .Select(val => val.FirstOrDefault().Person)
                 .ToList();

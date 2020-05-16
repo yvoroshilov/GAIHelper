@@ -30,7 +30,7 @@ namespace GaiWcfService.Service {
                 RemoveViolationFile(violationId);
             }
 
-            FileStream fs = File.Create($@"{Configuration.FileDir}\{violation.id}_{filename}");
+            FileStream fs = File.Create($@"{Configuration.DocDir}\{violation.id}_{filename}");
             fs.Write(file, 0, file.Length);
             violation.doc_path = new FileInfo(fs.Name).Name;
             violationRepository.EditViolation(violation);
@@ -40,12 +40,12 @@ namespace GaiWcfService.Service {
 
         public byte[] GetViolationFile(int violationId) {
             Violation violation = violationRepository.GetViolation(violationId);
-            return File.ReadAllBytes(Configuration.FileDir + @"\" + violation.doc_path);
+            return File.ReadAllBytes(Configuration.DocDir + @"\" + violation.doc_path);
         }
 
         public void RemoveViolationFile(int violationId) {
             Violation violation = violationRepository.GetViolation(violationId);
-            File.Delete(Configuration.FileDir + @"\" + violation.doc_path);
+            File.Delete(Configuration.DocDir + @"\" + violation.doc_path);
             violation.doc_path = null;
         }
 

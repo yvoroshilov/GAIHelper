@@ -93,7 +93,7 @@
       <xs:element minOccurs="0" name="paidPenalty" type="xs:double" />
       <xs:element minOccurs="0" name="passportId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="patronymic" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="photoPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="photo" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

@@ -50,11 +50,21 @@ namespace GaiWcfService.Util {
                     if (debtor.email != null) {
                         StringBuilder stringBuilder = new StringBuilder("Ваша задолженность по нарушениям: \n");
                         foreach (var violation in debtor.Violations) {
-                            stringBuilder.AppendLine(violation.violation_type_id + " -- " + violation.ViolationType.title + " -- " + violation.date.ToShortDateString());
+                            if (!violation.paid) {
+                                stringBuilder
+                                    .Append(violation.violation_type_id)
+                                    .Append(" -- ")
+                                    .Append(violation.ViolationType.title)
+                                    .Append(" -- ")
+                                    .Append(Math.Round(violation.penalty, 2) + " р.")
+                                    .Append(" -- ")
+                                    .AppendLine(violation.date.ToShortDateString());
+                            }
                         }
                         stringBuilder
                             .Append("В совокупности составляет ")
-                            .AppendLine(debtor.actual_penalty.ToString()).Append(" р.")
+                            .Append(Math.Round(debtor.actual_penalty - debtor.paid_penalty, 2).ToString())
+                            .AppendLine(" р.")
                             .AppendLine("Оплатите как можно скорее.");
 
                         emailSender.SendMail(debtor.email, "Оповещение о задолженности", stringBuilder.ToString());

@@ -737,7 +737,7 @@ namespace Client.MainService {
         private string patronymicField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string photoPathField;
+        private byte[] photoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string surnameField;
@@ -870,14 +870,14 @@ namespace Client.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string photoPath {
+        public byte[] photo {
             get {
-                return this.photoPathField;
+                return this.photoField;
             }
             set {
-                if ((object.ReferenceEquals(this.photoPathField, value) != true)) {
-                    this.photoPathField = value;
-                    this.RaisePropertyChanged("photoPath");
+                if ((object.ReferenceEquals(this.photoField, value) != true)) {
+                    this.photoField = value;
+                    this.RaisePropertyChanged("photo");
                 }
             }
         }

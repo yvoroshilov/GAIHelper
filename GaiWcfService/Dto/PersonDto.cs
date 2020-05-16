@@ -38,6 +38,6 @@ namespace GaiWcfService.Dto {
         public string email;
 
         [DataMember]
-        public string photoPath;
+        public byte[] photo;
     }
 }

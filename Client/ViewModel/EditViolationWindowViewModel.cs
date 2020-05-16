@@ -17,6 +17,7 @@ using Client.MainService;
 using System.ServiceModel;
 using Microsoft.Win32;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel {
     public class EditViolationWindowViewModel : ViewModel, IDataErrorInfo {
@@ -40,6 +41,17 @@ namespace Client.ViewModel {
         }
         
         private byte[] curFile;
+
+        private BitmapImage curPhoto;
+        public BitmapImage CurPhoto {
+            get {
+                return curPhoto;
+            }
+            set {
+                curPhoto = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         private int id;
@@ -268,11 +280,11 @@ namespace Client.ViewModel {
                         }
                         userClient.EditViolation(curViolation);
 
-                        if (curFile == null && curViolation.docPath != null) {
+                        if (CurrentFilePath == null && curViolation.docPath != null) {
                             userClient.RemoveViolationFile(curViolation.id);
                             curViolation.docPath = null;
                         }
-                        if (curFile != null) {
+                        if (curFile != null && CurrentFilePath != null) {
                             curViolation.docPath = userClient.AddViolationFileAsync(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).Result.docPath;
                         }
                         ResetForm();
@@ -300,6 +312,7 @@ namespace Client.ViewModel {
                             CurrentPerson.name = personDto.name;
                             CurrentPerson.surname = personDto.surname;
                             CurrentPerson.patronymic = personDto.patronymic;
+                            curPhoto = Utility.LoadImage(CurrentPerson.photo);
                             CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
@@ -374,6 +387,8 @@ namespace Client.ViewModel {
             ProtocolId = curViolation.protocolId;
             ShiftId = curViolation.shiftId;
             ViolationDate = curViolation.date;
+            CurPhoto = Utility.LoadImage(CurrentPerson.photo);
+            CurrentFilePath = curViolation.docPath;
             if (curViolation.personId != NO_LIC_PERSON_ID) {
                 DriverLicense = adminClient.GetPerson(curViolation.personId).driverLicense;
                 CheckPersonCommand.Execute(null);
@@ -389,6 +404,7 @@ namespace Client.ViewModel {
             CurrentPerson.surname = null;
             CurrentPerson.patronymic = null;
             CurrentPerson.birthday = DateTime.MinValue;
+            CurPhoto = null;
             CurrentPersonsViolations.Clear();
         }
 

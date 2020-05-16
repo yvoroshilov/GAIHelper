@@ -20,7 +20,7 @@
             <ColumnDefinition Width="175*"/>
             <ColumnDefinition Width="206*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="PersonPhoto1" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{StaticResource SamplePersonImage}" Margin="27,21,0,0"/>
+        <Image x:Name="PersonPhoto1" Stretch="Uniform" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{Binding CurPhoto}" Margin="27,21,0,0"/>
         <Label Content="Имя:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="26" Margin="185,21,0,0" Grid.ColumnSpan="2"/>
         <Label Content="Фамилия:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="26" Margin="185,47,0,0" Grid.ColumnSpan="2"/>
         <Label Content="Отчество:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="64" Margin="185,73,0,0" Grid.ColumnSpan="2"/>

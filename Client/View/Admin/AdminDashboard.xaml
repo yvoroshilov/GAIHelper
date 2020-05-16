@@ -372,6 +372,13 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <GridViewColumn Header="Оплачено">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding paid, Converter={StaticResource BoolConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -767,6 +774,7 @@
                     <CheckBox x:Name="OnlyDebtorsCheckbox" Content="Только должники" Grid.Column="4" Margin="37,457,10.4,0" Grid.ColumnSpan="2" IsChecked="{Binding OnlyDebtorsCheckbox}" Height="15" VerticalAlignment="Top"/>
                     <Button x:Name="SeePersonsViolationsBtn" Content="Посмотреть нарушения" Grid.Column="4" Margin="4,144,11.4,0" Grid.ColumnSpan="2" Command="{Binding SeeCurrentPersonViolations}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Height="39" VerticalAlignment="Top"/>
                     <Button x:Name="SearchWithExpiredPenalties" Content="              Найти людей &#xD;&#xA;с просроченными штрафами" Grid.Column="4" Margin="5,188,10.4,0" Grid.ColumnSpan="2" Command="{Binding GetPersonsWithExpiredPenalties}" Height="39" VerticalAlignment="Top" FontSize="10"/>
+                    <Image x:Name="PersonPhoto1" Stretch="Uniform" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{Binding CurPhoto}" Margin="16,237,0,0" Grid.ColumnSpan="2" Grid.Column="4"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="PaymentsTab" Header="Платежи" Padding="32,20">

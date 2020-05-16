@@ -151,7 +151,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="PersonPhoto" Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{StaticResource SamplePersonImage}"/>
+                <Image x:Name="PersonPhoto" Margin="10,65,0,0" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{Binding CurPhoto}" />
                 <Label Content="Имя:" HorizontalAlignment="Left" Margin="150,72,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
                 <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="150,103,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
                 <Label Content="Отчество:" HorizontalAlignment="Left" Margin="150,134,0,0" VerticalAlignment="Top" Height="26" Width="64"/>

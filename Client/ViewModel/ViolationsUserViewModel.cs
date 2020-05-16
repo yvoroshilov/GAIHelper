@@ -16,6 +16,7 @@ using System.Collections;
 using Client.MainService;
 using Microsoft.Win32;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel {
     public class ViolationsUserViewModel : ViewModel, IDataErrorInfo {
@@ -38,6 +39,17 @@ namespace Client.ViewModel {
         }
         
         private byte[] curFile;
+
+        private BitmapImage curPhoto;
+        public BitmapImage CurPhoto {
+            get {
+                return curPhoto;
+            }
+            set {
+                curPhoto = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Input fields
@@ -304,6 +316,11 @@ namespace Client.ViewModel {
                             CurrentPerson.name = personDto.name;
                             CurrentPerson.surname = personDto.surname;
                             CurrentPerson.patronymic = personDto.patronymic;
+                            if (personDto.photo == null) {
+                                CurPhoto = Utility.NoPhotoImg;
+                            } else {
+                                CurPhoto = Utility.LoadImage(personDto.photo);
+                            }
                             CurrentPersonsViolations.AddRange(client.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
@@ -345,11 +362,11 @@ namespace Client.ViewModel {
                         }
                         client.EditViolation(curViolation);
 
-                        if (curFile == null && curViolation.docPath != null) {
+                        if (CurrentFilePath == null && curViolation.docPath != null) {
                             client.RemoveViolationFile(curViolation.id);
                             curViolation.docPath = null;
                         }
-                        if (curFile != null) {
+                        if (curFile != null && CurrentFilePath != null) {
                             curViolation.docPath = client.AddViolationFileAsync(curViolation.id, curFile, new FileInfo(CurrentFilePath).Name).Result.docPath;
                         }
                         ResetForm();
@@ -435,6 +452,7 @@ namespace Client.ViewModel {
             currentPerson = new PersonDto();
             Violations.CollectionChanged += ViolationCollectionChanged;
             CurrentShift = shift;
+            CurPhoto = Utility.NoPhotoImg;
         }
 
         public void ResetPersonProfile() {
@@ -443,6 +461,7 @@ namespace Client.ViewModel {
             CurrentPerson.surname = null;
             CurrentPerson.patronymic = null;
             CurrentPerson.birthday = DateTime.MinValue;
+            CurPhoto = Utility.NoPhotoImg;
             CurrentPersonsViolations.Clear();
         }
 
