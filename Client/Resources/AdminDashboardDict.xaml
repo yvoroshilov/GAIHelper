@@ -5,6 +5,9 @@
 
     <converter:FIOConverter x:Key="FIOConverter" />
     <converter:ListViewAndParentConverter x:Key="ListViewAndParentConverter"/>
+
+    <BitmapImage UriSource="Img/refresh_icon3.png" x:Key="RefreshIcon"/>
+
     <Style TargetType="{x:Type TabItem}" x:Key="TabItemDebtorsStyle">
         <Setter Property="Template">
             <Setter.Value>

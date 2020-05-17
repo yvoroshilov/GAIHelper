@@ -25,7 +25,11 @@ namespace GaiWcfService.Util {
         private StreamWriter sw;
 
         private MyLogger() {
-            sw = new StreamWriter(@"D:\labs\kursach\GAIHelper\bat\test.txt", true);
+            if (Configuration.LogFile != null) {
+                sw = new StreamWriter(Configuration.LogFile, true);
+            } else {
+                sw = StreamWriter.Null;
+            }
             sw.AutoFlush = true;
         }
 

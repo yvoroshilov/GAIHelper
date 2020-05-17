@@ -37,7 +37,9 @@ namespace GaiWcfService.Repository.implementation {
         }
 
         public List<ViolationType> GetAll() {
-            return dbEntities.ViolationTypes.ToList();
+            return dbEntities.ViolationTypes
+                .OrderBy(val => val.id)
+                .ToList();
         }
     }
 }

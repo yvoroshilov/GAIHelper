@@ -4,6 +4,7 @@ using GaiWcfService.Repository.contract;
 using GaiWcfService.Repository.implementation;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace GaiWcfService.Util {
         private ExpiredPenaltiesChecker() {
             timer.Elapsed += (s, a) => NotifyClient();
             timer.AutoReset = true;
-            timer.Interval = 1000 * 60 * 1;
+            timer.Interval = 1000 * 45 * 1;
             timer.Start();
             logger.Write("EXPIRED PENALTIES TIMER STARTED");
         }
@@ -58,7 +59,7 @@ namespace GaiWcfService.Util {
                                     .Append(" -- ")
                                     .Append(Math.Round(violation.penalty, 2) + " р.")
                                     .Append(" -- ")
-                                    .AppendLine(violation.date.ToShortDateString());
+                                    .AppendLine(violation.date.ToString("d", new CultureInfo("ru-RU")));
                             }
                         }
                         stringBuilder

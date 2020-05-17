@@ -58,6 +58,7 @@ namespace GaiWcfService.Repository.implementation {
                 (searchedEmpl.surname == default || val.surname.ToLower().Contains(searchedEmpl.surname.ToLower())) &&
                 (searchedEmpl.patronymic == default || val.patronymic.ToLower().Contains(searchedEmpl.patronymic.ToLower())) &&
                 (searchedEmpl.hire_date == default || val.hire_date == searchedEmpl.hire_date))
+                .OrderBy(val => val.hire_date)
                 .ToList();
         }
     }

@@ -34,7 +34,9 @@ namespace GaiWcfService.Repository.implementation {
         }
 
         public List<Payment> GetAll() {
-            return dbEntities.Payments.ToList();
+            return dbEntities.Payments
+                .OrderBy(val => val.date)
+                .ToList();
         }
 
         public Payment GetPayment(int id) {
@@ -53,6 +55,7 @@ namespace GaiWcfService.Repository.implementation {
         public List<Payment> GetPaymentsByPersonId(int personId) {
             return dbEntities.Payments
                 .Where(val => val.person_id == personId)
+                .OrderBy(val => val.date)
                 .ToList();
         }
 
@@ -60,6 +63,7 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Payments
                 .OrderBy(val => val.id)
                 .SkipWhile(val => val.id <= lastPaymentId)
+                .OrderBy(val => val.date)
                 .ToList();
         }
 

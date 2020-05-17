@@ -58,7 +58,15 @@ namespace Client.ViewModel {
                             for (int i = 0; i < numbers.Length; i++) {
                                 numbers[i] = Violations.IndexOf(selectedViolations[i]) + 1;
                             }
-                            BitmapImage result = await mapImageGrabber.GetImage(Zoom, numbers, selectedViolations.ToArray());
+                            BitmapImage result;
+                            try {
+                                result = await mapImageGrabber.GetImage(Zoom, numbers, selectedViolations.ToArray());
+                            } catch {
+                                MessageBox.Show("Произошла ошибка при подключении к серверу Яндекса", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                Src = NOT_FOUND_IMG;
+                                return;
+                            }
+                            
                             if (result != null) {
                                 Src = result;
                             } else {

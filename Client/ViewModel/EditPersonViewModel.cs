@@ -250,6 +250,7 @@ namespace Client.ViewModel {
             PaidPenalty = person.paidPenalty;
             ActualPenalty = person.actualPenalty;
             Email = person.email;
+            Photo = person.photo;
             if (person.photo == null) {
                 CurPhoto = Utility.NoPhotoImg;
             } else {

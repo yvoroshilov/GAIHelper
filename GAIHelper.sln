@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceHost", "WcfServiceHost\WcfServiceHost.csproj", "{8CAB7E0E-6B64-4099-96CA-94488568C87C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ClientSetup", "ClientSetup\ClientSetup.vdproj", "{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,8 +36,8 @@ Global
 		{1C685FC4-6EE1-4A51-B19A-5520D9E63DC1}.Release|x64.Build.0 = Release|Any CPU
 		{1C685FC4-6EE1-4A51-B19A-5520D9E63DC1}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C685FC4-6EE1-4A51-B19A-5520D9E63DC1}.Release|x86.Build.0 = Release|Any CPU
-		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|x64.Build.0 = Debug|Any CPU
 		{DB86369B-7FFD-4AB0-8FBC-F2C171752798}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -58,6 +60,12 @@ Global
 		{8CAB7E0E-6B64-4099-96CA-94488568C87C}.Release|x64.Build.0 = Release|Any CPU
 		{8CAB7E0E-6B64-4099-96CA-94488568C87C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8CAB7E0E-6B64-4099-96CA-94488568C87C}.Release|x86.Build.0 = Release|Any CPU
+		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Debug|Any CPU.ActiveCfg = Release
+		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Debug|x64.ActiveCfg = Debug
+		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Debug|x86.ActiveCfg = Debug
+		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Release|Any CPU.ActiveCfg = Release
+		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Release|x64.ActiveCfg = Release
+		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

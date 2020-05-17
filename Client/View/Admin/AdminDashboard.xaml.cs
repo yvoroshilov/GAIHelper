@@ -105,6 +105,7 @@ namespace Client.View.Admin {
                 case "ExitTab":
                     MessageBoxResult res = MessageBox.Show("Вы действительно хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (res.Equals(MessageBoxResult.No)) {
+                        MainTabControl.SelectedItem = EmployeesTab;
                         return;
                     }
 

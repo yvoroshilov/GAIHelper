@@ -52,6 +52,7 @@ namespace GaiWcfService.Repository.implementation {
         public List<Violation> GetAllViolations(int personId) {
             return dbEntities.Violations.Select(val => val)
                 .Where(val => val.person_id == personId)
+                .OrderBy(val => val.date)
                 .ToList();
         }
 
@@ -67,12 +68,14 @@ namespace GaiWcfService.Repository.implementation {
                 (searchedViolation.latitude == default || val.latitude == searchedViolation.latitude) &&
                 (searchedViolation.address == default || val.address.ToLower().Contains(searchedViolation.address.ToLower())) &&
                 (searchedViolation.description == default || val.description.ToLower().Contains(searchedViolation.description.ToLower())))
+                .OrderBy(val => val.date)
                 .ToList();
         }
 
         public List<Violation> GetAllViolationsByShiftId(int shiftId) {
             return dbEntities.Violations
                 .Where(val => val.shift_id == shiftId)
+                .OrderBy(val => val.date)
                 .ToList();
         }
     }

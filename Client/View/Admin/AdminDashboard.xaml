@@ -796,6 +796,15 @@
             <TabItem x:Name="PaymentsTab" Header="Платежи" Padding="32,20">
                 <Grid x:Name="PaymentsTabGrid" Background="{StaticResource BackgroundPrimary}">
                     <ListView x:Name="PaymentTable" Margin="10,10,10.4,9.6" AlternationCount="2" ItemsSource="{Binding Payments}" ItemContainerStyle="{StaticResource ListViewItemStyle}" Foreground="Black">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="RefreshContextItem" Header="Обновить" Command="{Binding RefreshCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="{StaticResource RefreshIcon}"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="№" Width="30">

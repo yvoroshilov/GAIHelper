@@ -24,6 +24,19 @@ namespace Client.ViewModel {
         private AdminServiceClient client;
         public ObservableCollection<PaymentDto> Payments { get; }
 
+        private RelayCommand refreshCommand;
+        public RelayCommand RefreshCommand {
+            get {
+                return refreshCommand ??
+                    (refreshCommand = new RelayCommand(obj => {
+                        Payments.Clear();
+                        client.GetLastNPayments(COUNT)
+                            .ToList()
+                            .ForEach(val => Payments.Add(val));
+                    }));
+            }
+        }
+
         public PaymentsViewModel() {
             InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
             client = new AdminServiceClient(cntxt);

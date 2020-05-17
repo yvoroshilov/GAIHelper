@@ -176,10 +176,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GAIDB.mdf" />
-    <Content Include="GAIDB_log.ldf">
-      <DependentUpon>GAIDB.mdf</DependentUpon>
-    </Content>
+    <Content Include="GAIDB_LOCAL.mdf" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

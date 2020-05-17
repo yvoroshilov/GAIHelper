@@ -14,7 +14,7 @@ namespace GaiWcfService.Util {
 
         public static string DocDir { get; private set; }
 
-        public static string PhotoDir { get; private set; }
+        public static string LogFile { get; private set; }
 
         public static readonly string DEFAULT_PATH = Path.GetPathRoot(Environment.SystemDirectory) + @"GAIHelperConfig\config.properties";
 
