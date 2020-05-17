@@ -188,8 +188,7 @@ namespace Client.ViewModel {
         }
 
         public AddEmployeeViewModel(ObservableCollection<EmployeeDto> col) {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
 
             Employees = col;
         }

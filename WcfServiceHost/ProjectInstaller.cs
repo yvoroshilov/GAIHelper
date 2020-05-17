@@ -21,5 +21,11 @@ namespace WcfServiceHost {
            Installers.Add(serviceProcessInstaller1);
            Installers.Add(serviceInstaller1);
         }
+
+        private void serviceInstaller1_AfterInstall(object sender, InstallEventArgs e) {
+            using (ServiceController sc = new ServiceController(serviceInstaller1.ServiceName)) {
+                sc.Start();
+            }
+        }
     }
 }

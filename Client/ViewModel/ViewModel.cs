@@ -62,12 +62,6 @@ namespace Client.ViewModel {
             }
             return true;
         }
-        [CallbackBehavior(ConcurrencyMode=ConcurrencyMode.Multiple, AutomaticSessionShutdown = false)] 
-        public class DummyCallbackClass : IAdminServiceCallback {
-            public void SendPenaltyExpired(PersonDto[] persons) {
-                throw new NotImplementedException();
-            }
-        }
 
         protected PropertyInfo[] GetProps() {
             return props;

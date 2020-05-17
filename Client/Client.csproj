@@ -137,6 +137,8 @@
     <Compile Include="Resources\Converter\IndexOfConverter.cs" />
     <Compile Include="Resources\Converter\ViolationToTextConverter.cs" />
     <Compile Include="Resources\Rule\IntegerValidationRule.cs" />
+    <Compile Include="Util\ClientInstanceProvider.cs" />
+    <Compile Include="Util\Configuration.cs" />
     <Compile Include="Util\MapImageGrabber.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\RelayCommand.cs" />
@@ -207,6 +209,9 @@
     </Compile>
     <Compile Include="View\Admin\ViolationsTabSubWindows\ViolatorProfileWindow.xaml.cs">
       <DependentUpon>ViolatorProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\PersonsViolations.xaml.cs">
       <DependentUpon>PersonsViolations.xaml</DependentUpon>
@@ -280,6 +285,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Admin\ViolationsTabSubWindows\ViolatorProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -172,8 +172,7 @@ namespace Client.ViewModel {
         }
 
         public EditEmployeeViewModel(EmployeeDto employee) {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
 
             CertificateIdAdd = employee.certificateId;
             LoginAdd = employee.userLogin;

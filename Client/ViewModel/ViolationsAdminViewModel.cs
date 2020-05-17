@@ -485,9 +485,8 @@ namespace Client.ViewModel {
         #endregion
 
         public ViolationsAdminViewModel() {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            adminClient = new AdminServiceClient(cntxt);
-            userClient = new UserServiceClient();
+            adminClient = ClientInstanceProvider.GetAdminServiceClient();
+            userClient = ClientInstanceProvider.GetUserServiceClient();
             mapImageGrabber = new MapImageGrabber();
 
             CurPerson = new PersonDto();

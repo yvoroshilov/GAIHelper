@@ -215,8 +215,7 @@ namespace Client.ViewModel {
 
 
         public UsersViewModel() {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
             Roles = new ObservableCollection<string>(client.GetAllRoles().Select(val => val.role));
             Users = new ObservableCollection<UserDto>();
         }

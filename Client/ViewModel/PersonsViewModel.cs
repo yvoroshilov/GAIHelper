@@ -22,7 +22,7 @@ namespace Client.ViewModel {
     public class PersonsViewModel : ViewModel, IDataErrorInfo {
 
         private AdminServiceClient client;
-        private UserServiceClient userClient = new UserServiceClient();
+        private UserServiceClient userClient = ClientInstanceProvider.GetUserServiceClient();
         public ObservableCollection<PersonDto> Persons { get; }
         public PersonDto curSelectedPerson;
         public ObservableCollection<PaymentDto> CurrentPersonPayments { get; }
@@ -401,8 +401,7 @@ namespace Client.ViewModel {
         #endregion
 
         public PersonsViewModel() {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
 
             Persons = new ObservableCollection<PersonDto>();
             CurrentPersonPayments = new ObservableCollection<PaymentDto>();

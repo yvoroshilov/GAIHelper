@@ -163,7 +163,7 @@ namespace Client.ViewModel {
             get {
                 return editCommand ??
                     (editCommand = new RelayCommand(obj => {
-                        UserServiceClient userClient = new UserServiceClient();
+                        UserServiceClient userClient = ClientInstanceProvider.GetUserServiceClient();
                         if (PassportId != person.passportId && client.GetPersonByPassportId(PassportId) != null) {
                             MessageBox.Show("Профиль с таким номером паспорта уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
@@ -238,8 +238,7 @@ namespace Client.ViewModel {
         #endregion
 
         public EditPersonViewModel(PersonDto person) {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
 
             PassportId = person.passportId;
             DriverLicense = person.driverLicense;

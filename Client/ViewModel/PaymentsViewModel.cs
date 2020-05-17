@@ -38,8 +38,7 @@ namespace Client.ViewModel {
         }
 
         public PaymentsViewModel() {
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
 
             Payments = new ObservableCollection<PaymentDto>(client.GetLastNPayments(COUNT));
         }

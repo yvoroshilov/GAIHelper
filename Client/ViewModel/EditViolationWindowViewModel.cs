@@ -367,7 +367,7 @@ namespace Client.ViewModel {
         #region Form management
         public EditViolationWindowViewModel(ObservableCollection<ViolationDto> col, ViolationDto curViolation) : base() {
             userClient = new MainService.UserServiceClient();
-            adminClient = new AdminServiceClient(new InstanceContext(new DummyCallbackClass()));
+            adminClient = ClientInstanceProvider.GetAdminServiceClient();
             this.curViolation = curViolation;
 
             Violations = col;

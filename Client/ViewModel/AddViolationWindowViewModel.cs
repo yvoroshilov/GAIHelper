@@ -347,7 +347,7 @@ namespace Client.ViewModel {
         #region Form management
         public AddViolationWindowViewModel(ObservableCollection<ViolationDto> col) : base() {
             userClient = new MainService.UserServiceClient();
-            adminClient = new AdminServiceClient(new InstanceContext(new DummyCallbackClass()));
+            adminClient = ClientInstanceProvider.GetAdminServiceClient();
 
             Violations = col;
             ViolationTypes = new ReadOnlyCollection<ViolationType>(userClient

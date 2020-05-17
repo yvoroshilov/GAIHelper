@@ -110,7 +110,7 @@ namespace Client.View.Admin {
                     }
 
                     MainWindow main = new MainWindow();
-                    AdminServiceClient client = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+                    AdminServiceClient client = ClientInstanceProvider.GetAdminServiceClient();
                     client.Unsubscribe(curLogin);
                     main.Show();
                     closedByExit = true;

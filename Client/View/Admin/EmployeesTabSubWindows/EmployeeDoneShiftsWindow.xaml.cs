@@ -1,4 +1,5 @@
 ﻿using Client.MainService;
+using Client.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
             col.CollectionChanged += Col_CollectionChanged;
             DataContext = shiftAndCount;
             this.parent = parent;
-            adminClient = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+            adminClient = ClientInstanceProvider.GetAdminServiceClient();
         }
 
         private void Col_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
@@ -77,7 +78,7 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
         }
 
         private int GetViolationCount(int shiftId) {
-            AdminServiceClient adminClient = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+            AdminServiceClient adminClient = ClientInstanceProvider.GetAdminServiceClient();
             return adminClient
                 .GetViolationsByShiftId(shiftId)
                 .Count();

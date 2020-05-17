@@ -25,6 +25,9 @@ namespace GaiWcfService.Service {
         [OperationContract]
         byte[] GetTest();
 
+        [OperationContract]
+        byte[] TestAdminService();
+
         #region User
         [OperationContract]
         void AddUser(UserDto User);

@@ -1,5 +1,6 @@
 ﻿using Client.MainService;
 using Client.Model;
+using Client.Util;
 using Client.ViewModel;
 using Microsoft.Win32;
 using System;
@@ -195,7 +196,7 @@ namespace Client.View.User {
                 return;
             }
             
-            AdminServiceClient client = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+            AdminServiceClient client = ClientInstanceProvider.GetAdminServiceClient();
             client.CloseShift(dataContext.CurrentShift.responsibleId);
             MainWindow main = new MainWindow();
             main.Show();

@@ -38,5 +38,8 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         void RemoveViolationFile(int violationId);
+
+        [OperationContract]
+        byte[] TestUserService();
     }
 }

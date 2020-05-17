@@ -98,6 +98,12 @@
   <wsdl:message name="IAdminService_GetTest_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTestResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_TestAdminService_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAdminService" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_TestAdminService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestAdminServiceResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
   </wsdl:message>
@@ -377,6 +383,12 @@
   <wsdl:message name="IUserService_RemoveViolationFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveViolationFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_TestUserService_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestUserService" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_TestUserService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestUserServiceResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAdminService">
     <wsdl:operation name="Subscribe">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/Subscribe" message="tns:IAdminService_Subscribe_InputMessage" />
@@ -393,6 +405,10 @@
     <wsdl:operation name="GetTest">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetTest" message="tns:IAdminService_GetTest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetTestResponse" message="tns:IAdminService_GetTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAdminService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/TestAdminService" message="tns:IAdminService_TestAdminService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/TestAdminServiceResponse" message="tns:IAdminService_TestAdminService_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddUser" message="tns:IAdminService_AddUser_InputMessage" />
@@ -583,6 +599,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/RemoveViolationFile" message="tns:IUserService_RemoveViolationFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/RemoveViolationFileResponse" message="tns:IUserService_RemoveViolationFile_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="TestUserService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/TestUserService" message="tns:IUserService_TestUserService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/TestUserServiceResponse" message="tns:IUserService_TestUserService_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AdminServiceTcpEndpointAdmin" type="tns:IAdminService">
     <wsp:PolicyReference URI="#AdminServiceTcpEndpointAdmin_policy">
@@ -617,6 +637,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTest">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/GetTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestAdminService">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/TestAdminService" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1042,6 +1071,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveViolationFile">
       <soap12:operation soapAction="http://tempuri.org/IUserService/RemoveViolationFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestUserService">
+      <soap12:operation soapAction="http://tempuri.org/IUserService/TestUserService" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

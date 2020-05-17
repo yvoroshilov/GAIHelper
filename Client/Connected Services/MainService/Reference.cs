@@ -1071,6 +1071,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetTest", ReplyAction="http://tempuri.org/IAdminService/GetTestResponse")]
         System.Threading.Tasks.Task<byte[]> GetTestAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/TestAdminService", ReplyAction="http://tempuri.org/IAdminService/TestAdminServiceResponse")]
+        byte[] TestAdminService();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/TestAdminService", ReplyAction="http://tempuri.org/IAdminService/TestAdminServiceResponse")]
+        System.Threading.Tasks.Task<byte[]> TestAdminServiceAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddUser", ReplyAction="http://tempuri.org/IAdminService/AddUserResponse")]
         void AddUser(Client.MainService.UserDto User);
         
@@ -1359,6 +1365,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<byte[]> GetTestAsync() {
             return base.Channel.GetTestAsync();
+        }
+        
+        public byte[] TestAdminService() {
+            return base.Channel.TestAdminService();
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> TestAdminServiceAsync() {
+            return base.Channel.TestAdminServiceAsync();
         }
         
         public void AddUser(Client.MainService.UserDto User) {
@@ -1715,6 +1729,12 @@ namespace Client.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/RemoveViolationFile", ReplyAction="http://tempuri.org/IUserService/RemoveViolationFileResponse")]
         System.Threading.Tasks.Task RemoveViolationFileAsync(int violationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/TestUserService", ReplyAction="http://tempuri.org/IUserService/TestUserServiceResponse")]
+        byte[] TestUserService();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/TestUserService", ReplyAction="http://tempuri.org/IUserService/TestUserServiceResponse")]
+        System.Threading.Tasks.Task<byte[]> TestUserServiceAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1814,6 +1834,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task RemoveViolationFileAsync(int violationId) {
             return base.Channel.RemoveViolationFileAsync(violationId);
+        }
+        
+        public byte[] TestUserService() {
+            return base.Channel.TestUserService();
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> TestUserServiceAsync() {
+            return base.Channel.TestUserServiceAsync();
         }
     }
 }

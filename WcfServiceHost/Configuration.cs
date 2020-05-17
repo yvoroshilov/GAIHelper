@@ -5,18 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GaiWcfService.Util {
+namespace WcfServiceHost {
     public static class Configuration {
 
-        public static string MailLogin { get; private set; }
+        public static string BaseAddress { get; private set; }
 
-        public static string MailPassword { get; private set; }
-
-        public static string DocDir { get; private set; }
-
-        public static string LogFile { get; private set; }
-
-        public static readonly string DEFAULT_PATH = Path.GetPathRoot(Environment.SystemDirectory) + @"GAIHelperConfig\service_config.properties";
+        public static readonly string DEFAULT_PATH = Path.GetPathRoot(Environment.SystemDirectory) + @"GAIHelperConfig\host_config.properties";
 
         public static void LoadConfiguration(string path) {
             Dictionary<string, object> dict = ParseProperties(path);

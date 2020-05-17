@@ -1,4 +1,6 @@
 ﻿using Client.MainService;
+using Client.Util;
+using Client.View;
 using Client.View.User;
 using Client.ViewModel;
 using System;
@@ -22,13 +24,17 @@ namespace Client {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
-            DataContext = new LoginViewModel();
+            DataContext = new LoginViewModel(SettingsBtn);
             dataContext = (DataContext as LoginViewModel);
-            dataContext.ClosingRequest += (s, a) => this.Close();
+            dataContext.ClosingRequest += (s, a) => {
+                isClosedApp = false;
+                this.Close();
+            };
             InitializeComponent();
         }
 
         private readonly LoginViewModel dataContext;
+        private bool isClosedApp = true;
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
             switch (e.Key) {
@@ -38,6 +44,18 @@ namespace Client {
                     }
                     break;
             }
+        }
+
+        private void SettingsBtn_Click(object sender, RoutedEventArgs e) {
+            SettingsWindow settingsWindow = new SettingsWindow(Configuration.AdminServiceEndpointAddress, Configuration.UserServiceEndpointAddress, this);    
+
+            this.IsEnabled = false;
+
+            settingsWindow.Show();
+        }
+        protected override void OnClosed(EventArgs e) {
+            base.OnClosed(e);
+            if (isClosedApp) Application.Current.Shutdown();
         }
     }
 }

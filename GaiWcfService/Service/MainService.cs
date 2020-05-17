@@ -21,8 +21,7 @@ namespace GaiWcfService.Service {
         }
 
         public byte[] GetTest() {
-            Thread.Sleep(5000);
-            return new byte[] {1, 2, 3};
+            return new byte[] { 200 };
         }
 
         public void SetTest(int test) {
@@ -31,6 +30,14 @@ namespace GaiWcfService.Service {
 
         public string test() {
             return "TEST";
+        }
+
+        public byte[] TestAdminService() {
+            return new byte[] { 200 };
+        }
+
+        public byte[] TestUserService() {
+            return new byte[] { 200 };
         }
     }
 }

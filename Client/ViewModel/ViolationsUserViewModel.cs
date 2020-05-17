@@ -442,7 +442,7 @@ namespace Client.ViewModel {
 
         #region Form management
         public ViolationsUserViewModel(ShiftDto shift) : base() {
-            client = new MainService.UserServiceClient();
+            client = ClientInstanceProvider.GetUserServiceClient();
 
             Violations = new ObservableCollection<ViolationDto>();
             ViolationTypes = new ReadOnlyCollection<ViolationType>(client

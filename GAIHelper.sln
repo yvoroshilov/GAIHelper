@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceHost", "WcfServic
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ClientSetup", "ClientSetup\ClientSetup.vdproj", "{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ServerSetup", "ServerSetup\ServerSetup.vdproj", "{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,12 @@ Global
 		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Release|Any CPU.ActiveCfg = Release
 		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Release|x64.ActiveCfg = Release
 		{0D8C42A0-E8D6-4A48-8E33-DE0C5881DF54}.Release|x86.ActiveCfg = Release
+		{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}.Debug|Any CPU.ActiveCfg = Debug
+		{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}.Debug|x64.ActiveCfg = Debug
+		{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}.Debug|x86.ActiveCfg = Debug
+		{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}.Release|Any CPU.ActiveCfg = Release
+		{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}.Release|x64.ActiveCfg = Release
+		{20C8837F-FC2D-4206-A8A8-3C0A6B0BECC5}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

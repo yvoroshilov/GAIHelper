@@ -23,7 +23,7 @@ namespace Client.ViewModel {
         public ObservableCollection<ViolationTypeDto> ViolationTypes { get; }
 
         public ViolationTypesViewModel() {
-            client = new UserServiceClient();
+            client = ClientInstanceProvider.GetUserServiceClient();
 
             ViolationTypes = new ObservableCollection<ViolationTypeDto>(client.GetAllViolationTypes());
         }

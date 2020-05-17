@@ -1,4 +1,5 @@
 ﻿using Client.MainService;
+using Client.Util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +13,7 @@ namespace Client.Resources.Converter {
     public class ShiftToViolationsCountConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             ShiftDto shift = value as ShiftDto;
-            AdminServiceClient adminClient = new AdminServiceClient(new InstanceContext(new ViewModel.ViewModel.DummyCallbackClass()));
+            AdminServiceClient adminClient = ClientInstanceProvider.GetAdminServiceClient();
             return adminClient
                 .GetViolationsByShiftId(shift.id)
                 .Count();

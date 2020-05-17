@@ -44,9 +44,13 @@ namespace Client.ViewModel {
             }
         }
 
-        public LoginViewModel() {
-            InstanceContext cntx = new InstanceContext(new Cllbck());
-            client = new AdminServiceClient(cntx);
+        public LoginViewModel(Button settingsBtn) {
+            try {
+                Configuration.LoadConfiguration();
+            } catch {
+                MessageBox.Show("Невозможно получить доступ к конфигурационному файлу. Будут использованы значения по умолчанию", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                settingsBtn.IsEnabled = false;
+            }
         }
 
 
@@ -55,21 +59,32 @@ namespace Client.ViewModel {
             get {
                 return loginCommand ??
                     (loginCommand = new RelayCommand(obj => {
+                        ClientInstanceProvider.UpdateAddressesFromConfiguration();
+                        client = ClientInstanceProvider.GetAdminServiceClient(new Cllbck());
+
                         UserDto user;
                         try {
                             user = client.GetUser(Login);
                         } catch {
                             MessageBox.Show("Сервер недопступен", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            InstanceContext cntx = new InstanceContext(new Cllbck());
-                            client = new AdminServiceClient(cntx);
                             return;
                         }
+
                         PasswordBox passwordBox = (PasswordBox)obj;
 
                         if (user == null || user.password != passwordBox.Password) {
                             MessageBox.Show("Неверно введён логин или пароль", "Внимание", MessageBoxButton.OK, MessageBoxImage.Error);
                             passwordBox.Password = "";
                             return;
+                        }
+
+                        if (user.role == "ROLE_USER") {
+                            try {
+                                ClientInstanceProvider.GetUserServiceClient().TestUserService();
+                            } catch {
+                                MessageBox.Show("Сервер недопступен", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
                         }
 
 

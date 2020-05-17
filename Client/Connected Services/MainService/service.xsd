@@ -52,6 +52,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="TestAdminService">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestAdminServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestAdminServiceResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
@@ -674,6 +686,18 @@
   <xs:element name="RemoveViolationFileResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestUserService">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestUserServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestUserServiceResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

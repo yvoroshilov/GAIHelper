@@ -16,13 +16,14 @@
     </Window.Resources>
 
     <Grid Margin="0,0,-0.4,0" RenderTransformOrigin="0.502,0.445" Background="{StaticResource BackgroundPrimary}">
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="237" Width="199" Margin="221,105,222,130" FocusManager.FocusedElement="{Binding ElementName=LoginField}">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="260" Width="199" Margin="221,105,222,107" FocusManager.FocusedElement="{Binding ElementName=LoginField}">
             <Label Content="Вход в систему" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,9,0" Height="50" Width="175" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
-            <TextBox HorizontalAlignment="Center" Name="LoginField" Height="30" VerticalAlignment="Top" Width="170" Margin="17,78,12,0" Padding="0,5,0,0" FontSize="14" Text="{Binding Login}" />
+            <TextBox HorizontalAlignment="Center" Name="LoginField" Height="30" VerticalAlignment="Top" Width="170" Margin="17,78,12,0" Padding="0,5,0,0" FontSize="14" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
             <PasswordBox HorizontalAlignment="Center" Name="PasswordField" Height="30" VerticalAlignment="Top" Width="170" Margin="17,143,12,0"  Padding="0,5,0,0" FontSize="14"/>
             <Button Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="54,186,0,0" Height="29" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordField}"/>
             <Label Content="Логин:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,52,0,0" Width="165"/>
             <Label Content="Пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,117,0,0" Width="165"/>
+            <Button x:Name="SettingsBtn" Content="Настройки" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="54,220,0,0" Height="29" Click="SettingsBtn_Click"/>
         </Grid>
     </Grid>
 </Window>

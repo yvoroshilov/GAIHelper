@@ -302,8 +302,7 @@ namespace Client.ViewModel {
             EmployeeAddedViolations = new ObservableCollection<ViolationDto>();
             EmployeeDoneShifts = new ObservableCollection<ShiftDto>();
             ViolationsForStats = new List<ViolationDto>();
-            InstanceContext cntxt = new InstanceContext(new DummyCallbackClass());
-            client = new AdminServiceClient(cntxt);
+            client = ClientInstanceProvider.GetAdminServiceClient();
             CurrentEmployee = new EmployeeDto();
         }
 
