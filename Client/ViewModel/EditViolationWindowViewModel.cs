@@ -366,7 +366,7 @@ namespace Client.ViewModel {
 
         #region Form management
         public EditViolationWindowViewModel(ObservableCollection<ViolationDto> col, ViolationDto curViolation) : base() {
-            userClient = new MainService.UserServiceClient();
+            userClient = ClientInstanceProvider.GetUserServiceClient();
             adminClient = ClientInstanceProvider.GetAdminServiceClient();
             this.curViolation = curViolation;
 
@@ -446,7 +446,7 @@ namespace Client.ViewModel {
                             break;
                         }
 
-                        if (Latitude != null && (Latitude > 90 || Longitude < -90)) {
+                        if (Latitude != null && (Latitude > 90 || Latitude < -90)) {
                             error = "Широта должна быть в пределах от -90 до 90 градусов";
                             break;
                         }

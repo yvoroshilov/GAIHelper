@@ -85,6 +85,7 @@ namespace Client.ViewModel {
                                 MessageBox.Show("Сервер недопступен", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
+
                         }
 
 

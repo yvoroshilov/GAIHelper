@@ -75,7 +75,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AC8D5843FB824F84B766AA6AC8BF2C55"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BC27293315754451B87F29B65E3D0979"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9B8D62ED3CD44A0B83B4AB7CE86A82B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -152,6 +164,11 @@
                     "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
                     "ProductCode" = "8:.NETFramework,Version=v4.8"
                     }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.SqlServer.Express.11.0"
+                    {
+                    "Name" = "8:SQL Server 2012 Express"
+                    "ProductCode" = "8:Microsoft.SqlServer.Express.11.0"
+                    }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.SqlServer.SQLSysClrTypes.12.0.x86"
                     {
                     "Name" = "8:Microsoft® System CLR Types for SQL Server® 2014 (x86)"
@@ -198,6 +215,20 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_3673AA1C_11DD_4A7A_8635_109FA65B25FA"
             "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A836B71983B84715B61E2FBD43E76F42"
+            {
+            "Name" = "8:cmd.exe"
+            "Condition" = "8:"
+            "Object" = "8:_AC8D5843FB824F84B766AA6AC8BF2C55"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:/c \"[TARGETDIR]start_service.bat\""
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_2290C7FD_C4C3_423D_AE0E_53D9D3DC2D02"
+            "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E48B8B34BA4441938D84019A72461554"
@@ -412,10 +443,50 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC8D5843FB824F84B766AA6AC8BF2C55"
+            {
+            "SourcePath" = "8:..\\cmd.exe"
+            "TargetName" = "8:cmd.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_C24A83165B584183A72A6338CD880320"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC27293315754451B87F29B65E3D0979"
             {
             "SourcePath" = "8:..\\GaiWcfService\\GAIDB_LOCAL_log.ldf"
             "TargetName" = "8:GAIDB_LOCAL_log.ldf"
+            "Tag" = "8:"
+            "Folder" = "8:_C24A83165B584183A72A6338CD880320"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C9B8D62ED3CD44A0B83B4AB7CE86A82B"
+            {
+            "SourcePath" = "8:..\\bat\\start_service.bat"
+            "TargetName" = "8:start_service.bat"
             "Tag" = "8:"
             "Folder" = "8:_C24A83165B584183A72A6338CD880320"
             "Condition" = "8:"
@@ -489,7 +560,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ServerSetup"
         "ProductCode" = "8:{9BBFE7BE-4C00-4BD6-9BD9-7061708A48E2}"
-        "PackageCode" = "8:{D1AEAE6B-3DEF-4ACD-ADCB-B38B32632416}"
+        "PackageCode" = "8:{41DEE3F3-F54C-43E9-911C-DF688BA7940A}"
         "UpgradeCode" = "8:{75E32EE2-5AB1-47CC-8BB2-F9102720314B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

@@ -51,22 +51,24 @@ namespace Client.View {
             bool good = true;
             AdminServiceClient adminClient = new AdminServiceClient(
                 new InstanceContext(new ClientInstanceProvider.DummyCallbackClass()),
-                new NetTcpBinding(),
+                new NetTcpBinding(SecurityMode.None),
                 new EndpointAddress(adminEndp));
             try {
                 adminClient.TestAdminService();
-            } catch {
+            } catch (Exception ex) {
                 MessageBox.Show("AdminServiceEndpoint: сервис недоступен", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                var a = ex.Message.Length;
                 good = false;
             }
 
             UserServiceClient userClient = new UserServiceClient(
-                new NetTcpBinding(),
+                new NetTcpBinding(SecurityMode.None),
                 new EndpointAddress(userEndp));
             try {
                 userClient.TestUserService();
-            } catch {
+            } catch (Exception ex) {
                 MessageBox.Show("UserServiceEndpoint: сервис недоступен", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                var a = ex.Message.Length;
                 good = false;
             }
 

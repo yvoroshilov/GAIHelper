@@ -17,12 +17,14 @@ namespace Client.Util {
 
         public static readonly string DefaultUserServiceEndpointAddress = "net.tcp://localhost:9007/UserService";
 
-        private static NetTcpBinding binding = new NetTcpBinding() {
-            MaxReceivedMessageSize = 20480000,
-        };
+        private static NetTcpBinding binding;
 
         static ClientInstanceProvider() {
-            SetDefaultAddresses();
+            SetDefaultAddresses(); 
+            binding = new NetTcpBinding();
+            binding.MaxReceivedMessageSize = 20480000;
+            binding.Security.Mode = SecurityMode.None;
+            binding.TransferMode = TransferMode.Buffered;
         }
 
         public static AdminServiceClient GetAdminServiceClient(IAdminServiceCallback callback) {
