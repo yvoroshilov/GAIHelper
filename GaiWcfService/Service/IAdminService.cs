@@ -39,9 +39,6 @@ namespace GaiWcfService.Service {
         void EditUser(UserDto user);
 
         [OperationContract]
-        HashSet<UserDto> getAllUsers();
-
-        [OperationContract]
         List<UserDto> SearchUsers(UserDto searchedUser);
 
         [OperationContract]

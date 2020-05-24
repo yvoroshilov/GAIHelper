@@ -96,24 +96,25 @@ namespace Client.ViewModel {
                                 passwordBox.Password = "";
                                 return;
                             }
-                            switch (res) {
-                                case MainServiceSubscribeState.SUBSCRIBED:
-                                    break;
-                                case MainServiceSubscribeState.SUBSCRIBE_UPDATED:
-                                    break;
-                                case MainServiceSubscribeState.NOT_SUBSCRIBED:
-                                    MessageBox.Show("Пользователь уже вошёл в программу!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    passwordBox.Password = "";
-                                    return;
-                                default:
-                                    break;
+
+                            if (res == MainServiceSubscribeState.NOT_SUBSCRIBED) {
+                                MessageBox.Show("Пользователь уже вошёл в программу!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                passwordBox.Password = "";
+                                return;
                             }
                         }
 
                         if (user.role == "ROLE_USER") {
                             EmployeeDto empDto = client.GetEmployeeByUserLogin(user.login);
                             ShiftDto curShift = client.GetCurrentShift(empDto.certificateId);
-                            new UserDashboard(curShift).Show();
+                            UserDashboard userDashboard;
+                            if (res == MainServiceSubscribeState.SUBSCRIBE_UPDATED) {
+                                List<ViolationDto> recentViolations = client.GetViolationsByShiftId(curShift.id).ToList();
+                                userDashboard = new UserDashboard(curShift, recentViolations);
+                            } else {
+                                userDashboard = new UserDashboard(curShift);
+                            }
+                            userDashboard.Show();
                         } else if (user.role == "ROLE_ADMIN") {
                             adminDashboard = new AdminDashboard(user.login);
                             adminDashboard.Show();

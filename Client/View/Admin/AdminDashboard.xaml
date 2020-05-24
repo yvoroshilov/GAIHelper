@@ -130,7 +130,7 @@
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox>
-                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindNameCheckBox, UpdateSourceTrigger=PropertyChanged}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
+                        <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindNameCheckbox, UpdateSourceTrigger=PropertyChanged}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
                     <StackPanel Margin="24.2,2.8,10.2,6.6" Orientation="Vertical" Grid.Column="2" Grid.Row="2" x:Name="PatronymicStackPanel">
                         <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество" IsEnabled="False"/>
@@ -498,12 +498,12 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Content="Удалить" Grid.Column="4" Margin="10.2,62,1.8,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}"/>
-                    <Button x:Name="EditViolationBtn" Content="Изменить" Grid.Column="5" Margin="7.2,62,10.4,0" VerticalAlignment="Top" Height="35" Command="{Binding EditCommand}"  CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="EditViolationBtn_Click"/>
+                    <Button Content="Удалить" Grid.Column="4" Margin="10.2,60,1.8,0" VerticalAlignment="Top" Height="35" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}"/>
+                    <Button x:Name="EditViolationBtn" Content="Изменить" Grid.Column="5" Margin="7.2,60,10.4,0" VerticalAlignment="Top" Height="35" Command="{Binding EditCommand}"  CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="EditViolationBtn_Click"/>
                     <Button x:Name="AddViolationBtn" Content="Добавить нарушение" VerticalAlignment="Top" Grid.Column="4" Margin="10.2,10,10.4,0" Grid.ColumnSpan="2" Height="45" Command="{Binding AddCommand}" Click="AddViolationBtn_Click"/>
-                    <Button x:Name="SeeViolatorProfileBtn" Grid.ColumnSpan="2" Content="Посмотреть профиль&#xD;&#xA;        нарушителя" Grid.Column="4" Margin="10.2,105,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeViolatorProfile}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="SeeViolatorProfileBtn_Click" />
-                    <Button x:Name="SeeStatisticsBtn" Grid.ColumnSpan="2" Content="Посмотреть статистику&#xA;           за период" Grid.Column="4" Margin="10.2,193,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeStatistics}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"/>
-                    <Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="10.2,233,10.4,219.6">
+                    <Button x:Name="SeeViolatorProfileBtn" Grid.ColumnSpan="2" Content="Посмотреть профиль&#xD;&#xA;        нарушителя" Grid.Column="4" Margin="10.2,100,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeViolatorProfile}" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Click="SeeViolatorProfileBtn_Click" />
+                    <Button x:Name="SeeStatisticsBtn" Grid.ColumnSpan="2" Content="Посмотреть статистику&#xA;           за период" Grid.Column="4" Margin="10.2,188,10.4,0" VerticalAlignment="Top" Height="37" Command="{Binding SeeStatistics}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"/>
+                    <Grid Grid.ColumnSpan="2" Grid.Column="4" Margin="10.2,230,10.4,222.6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="13*"/>
                             <ColumnDefinition Width="11*"/>
@@ -536,7 +536,7 @@
                         </ComboBox>
                         <CheckBox Content="Искать по этому полю" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding FindViolationTypeCheckbox}" Checked="SearchThisFieldCheckboxChecked" Unchecked="SearchThisFieldCheckboxUnchecked"/>
                     </StackPanel>
-                    <Button x:Name="SeeMapBtn" Grid.ColumnSpan="2" Content="    Посмотреть место&#xD;&#xA;происшествия на карте" Grid.Column="4" Margin="10.2,147,10.4,0" Command="{Binding ShowMapCommand}" Height="41" VerticalAlignment="Top">
+                    <Button x:Name="SeeMapBtn" Grid.ColumnSpan="2" Content="    Посмотреть место&#xD;&#xA;происшествия на карте" Grid.Column="4" Margin="10.2,142,10.4,0" Command="{Binding ShowMapCommand}" Height="41" VerticalAlignment="Top">
                         <Button.CommandParameter>
                             <MultiBinding Converter="{StaticResource ListViewAndParentConverter}">
                                 <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}"/>

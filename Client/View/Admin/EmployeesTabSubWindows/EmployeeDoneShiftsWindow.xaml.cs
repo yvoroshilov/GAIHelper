@@ -26,6 +26,7 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
     public partial class EmployeeDoneShiftsWindow : Window {
         public EmployeeDoneShiftsWindow(ObservableCollection<ShiftDto> col, Window parent) {
             InitializeComponent();
+            this.col = col;
             shiftAndCount = new ObservableCollection<Tuple<ShiftDto, int>>();
             col.CollectionChanged += Col_CollectionChanged;
             DataContext = shiftAndCount;
@@ -53,9 +54,11 @@ namespace Client.View.Admin.EmployeesTabSubWindows {
 
         private Window parent;
         private AdminServiceClient adminClient;
+        private ObservableCollection<ShiftDto> col;
         private ObservableCollection<Tuple<ShiftDto, int>> shiftAndCount;
 
         protected override void OnClosed(EventArgs e) {
+            col.CollectionChanged -= Col_CollectionChanged;
             parent.IsEnabled = true;
             base.OnClosed(e);
         }

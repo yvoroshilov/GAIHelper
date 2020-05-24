@@ -25,6 +25,7 @@ namespace Client.Util {
             binding.MaxReceivedMessageSize = 20480000;
             binding.Security.Mode = SecurityMode.None;
             binding.TransferMode = TransferMode.Buffered;
+            binding.ReceiveTimeout = new TimeSpan(24, 00, 00);
         }
 
         public static AdminServiceClient GetAdminServiceClient(IAdminServiceCallback callback) {

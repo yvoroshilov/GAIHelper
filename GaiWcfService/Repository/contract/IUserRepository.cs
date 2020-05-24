@@ -16,8 +16,6 @@ namespace GaiWcfService.Repository.contract {
 
         void DeleteUser(string login);
 
-        HashSet<User> GetAll();
-
         List<User> SearchUser(User searchedUser);
     }
 }

@@ -25,8 +25,8 @@ using System.Windows.Shapes;
 namespace Client.View.User {
 
     public partial class UserDashboard : Window {
-        public UserDashboard(ShiftDto shift) {
-            DataContext = new ViolationsUserViewModel(shift);
+        public UserDashboard(ShiftDto shift, List<ViolationDto> recentViolations = null) {
+            DataContext = new ViolationsUserViewModel(shift, recentViolations);
             dataContext = (ViolationsUserViewModel)DataContext;
             dataContext.CurrentPerson.PropertyChanged += OnCurrentPersonIdChanged;
             dataContext.PropertyChanged += OnLocationChanged;

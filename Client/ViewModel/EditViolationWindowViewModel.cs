@@ -197,9 +197,9 @@ namespace Client.ViewModel {
             }
         }
 
-        private int shiftId;
+        private int? shiftId;
         [InputProperty(true)]
-        public int ShiftId {
+        public int? ShiftId {
             get {
                 return shiftId;
             }
@@ -258,7 +258,7 @@ namespace Client.ViewModel {
             get {
                 return acceptEditCommand ??
                     (acceptEditCommand = new RelayCommand(obj => {
-                        if (adminClient.GetShiftById(ShiftId) == null) {
+                        if (adminClient.GetShiftById(ShiftId.Value) == null) {
                             MessageBox.Show("Смены с таким номером не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
@@ -271,7 +271,7 @@ namespace Client.ViewModel {
                         curViolation.address = Address;
                         curViolation.description = Description;
                         curViolation.protocolId = ProtocolId;
-                        curViolation.shiftId = ShiftId;
+                        curViolation.shiftId = ShiftId.Value;
                         curViolation.date = ViolationDate;
                         if (NoLic) {
                             curViolation.personId = NO_LIC_PERSON_ID;
@@ -316,7 +316,7 @@ namespace Client.ViewModel {
                             CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
-                        return DriverLicense != null;
+                        return this[nameof(DriverLicense)].Equals("");
                     }));
             }
         }
@@ -487,6 +487,28 @@ namespace Client.ViewModel {
                             }
                         }
 
+                        break;
+                    case nameof(DriverLicense):
+                        if (NoLic) break;
+                        if (DriverLicense == null) {
+                            error = "Номер водительского удостоверения обязателен для заполнения";
+                            break;
+                        }
+
+                        foreach (char ch in DriverLicense) {
+                            if (!char.IsLetterOrDigit(ch)) {
+                                if (!NoLic) {
+                                    error = "Номер ВУ может содержать только буквы и цифры";
+                                }
+                                break;
+                            }
+                        }
+
+                        break;
+                    case nameof(ShiftId):
+                        if (ShiftId == null) {
+                            error = "Номер смены обязателен для заполнения";
+                        }
                         break;
                 }
                 return error;

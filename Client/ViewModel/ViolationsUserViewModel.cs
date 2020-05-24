@@ -324,7 +324,7 @@ namespace Client.ViewModel {
                             CurrentPersonsViolations.AddRange(client.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
-                        return DriverLicense != null;
+                        return this[nameof(DriverLicense)].Equals("");
                     }));
             }
         }
@@ -441,10 +441,10 @@ namespace Client.ViewModel {
         #endregion
 
         #region Form management
-        public ViolationsUserViewModel(ShiftDto shift) : base() {
+        public ViolationsUserViewModel(ShiftDto shift, List<ViolationDto> recentViolations = null) : base() {
             client = ClientInstanceProvider.GetUserServiceClient();
 
-            Violations = new ObservableCollection<ViolationDto>();
+            Violations = new ObservableCollection<ViolationDto>(recentViolations ?? new List<ViolationDto>());
             ViolationTypes = new ReadOnlyCollection<ViolationType>(client
                 .GetAllViolationTypes()
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))

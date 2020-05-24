@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="61829b77956a4e6e98f8e1a9c69bf50f" Name="Diagram1" ZoomLevel="92">
-        <EntityTypeShape EntityType="GAIDBModel.Employee" Width="1.5" PointX="1.5" PointY="8.875" />
+      <Diagram DiagramId="61829b77956a4e6e98f8e1a9c69bf50f" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="GAIDBModel.Employee" Width="1.5" PointX="10.625" PointY="3.875" />
         <EntityTypeShape EntityType="GAIDBModel.Payment" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="GAIDBModel.Person" Width="1.5" PointX="0.75" PointY="3.875" />
-        <EntityTypeShape EntityType="GAIDBModel.Role" Width="1.5" PointX="1.5" PointY="16.5" />
-        <EntityTypeShape EntityType="GAIDBModel.Shift" Width="1.5" PointX="3.75" PointY="9" />
-        <EntityTypeShape EntityType="GAIDBModel.User" Width="1.5" PointX="1.5" PointY="13.125" />
+        <EntityTypeShape EntityType="GAIDBModel.Role" Width="1.5" PointX="13.25" PointY="7.375" />
+        <EntityTypeShape EntityType="GAIDBModel.Shift" Width="1.5" PointX="8.375" PointY="4" />
+        <EntityTypeShape EntityType="GAIDBModel.User" Width="1.5" PointX="13.25" PointY="4" />
         <EntityTypeShape EntityType="GAIDBModel.Violation" Width="1.5" PointX="6" PointY="3.5" />
         <EntityTypeShape EntityType="GAIDBModel.ViolationType" Width="1.5" PointX="3.75" PointY="0.75" />
         <AssociationConnector Association="GAIDBModel.FK_Employees_Users" />

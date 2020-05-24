@@ -18,7 +18,5 @@ namespace GaiWcfService.Repository.contract {
         Shift GetOpenedShiftByResponsibleId(int responsibleId);
 
         List<Shift> GetAllShiftsByResponsibleId(int responsibleId);
-
-        HashSet<Shift> GetAll();
     }
 }

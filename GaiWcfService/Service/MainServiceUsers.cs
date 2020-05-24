@@ -29,12 +29,6 @@ namespace GaiWcfService.Service {
             return Mapper.mapper.Map<UserDto>(userRepository.GetUser(login));
         }
 
-        public HashSet<UserDto> getAllUsers() {
-            return userRepository.GetAll()
-                .Select(val => Mapper.mapper.Map<UserDto>(val))
-                .ToHashSet();
-        }
-
         public List<UserDto> SearchUsers(UserDto searchedUser) {
             return userRepository.SearchUser(Mapper.mapper.Map<User>(searchedUser))
                 .Select(val => Mapper.mapper.Map<UserDto>(val))

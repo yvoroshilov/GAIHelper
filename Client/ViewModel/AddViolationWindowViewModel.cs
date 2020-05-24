@@ -296,7 +296,7 @@ namespace Client.ViewModel {
                             CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
-                        return DriverLicense != null;
+                        return this[nameof(DriverLicense)].Equals("");
                     }));
             }
         }
@@ -440,6 +440,28 @@ namespace Client.ViewModel {
                             }
                         }
 
+                        break;
+                    case nameof(DriverLicense):
+                        if (NoLic) break;
+                        if (DriverLicense == null) {
+                            error = "Номер водительского удостоверения обязателен для заполнения";
+                            break;
+                        }
+
+                        foreach (char ch in DriverLicense) {
+                            if (!char.IsLetterOrDigit(ch)) {
+                                if (!NoLic) {
+                                    error = "Номер ВУ может содержать только буквы и цифры";
+                                }
+                                break;
+                            }
+                        }
+
+                        break;
+                    case nameof(ShiftId):
+                        if (ShiftId == null) {
+                            error = "Номер смены обязателен для заполнения";
+                        }
                         break;
                 }
                 return error;
