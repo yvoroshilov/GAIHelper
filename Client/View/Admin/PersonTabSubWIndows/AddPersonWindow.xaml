@@ -72,17 +72,6 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <StackPanel Margin="5,5.2,9.8,0.8" Orientation="Vertical" Grid.Column="1" Grid.Row="3">
-            <Label VerticalAlignment="Top" Height="26" Content="Задолженность, р." HorizontalAlignment="Left" Width="142"/>
-            <TextBox x:Name="ActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0" MaxLength="10">
-                <Binding Path="ActualPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="" Converter="{StaticResource MoneyConverter}">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                        <rule:DoubleValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-        </StackPanel>
         <StackPanel Orientation="Vertical" Margin="10,5.2,4,0.8" Grid.Row="3">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Отчество"/>
             <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="20">
@@ -118,9 +107,9 @@
                 </Style>
             </Button.Style>
         </Button>
-        <StackPanel Orientation="Vertical" Margin="10,2.2,4,226.2" Grid.Row="4">
+        <StackPanel Orientation="Vertical" Margin="5,5.2,5.8,2.8" Grid.Row="3" Grid.Column="1">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="Электронная почта"/>
-            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,0.4,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,2.6,0" Padding="0,3,0,0" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
                 <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -128,9 +117,9 @@
                 </Binding>
             </TextBox>
         </StackPanel>
-        <Button Content="Удалить&#xD;&#xA;  фото" HorizontalAlignment="Left" Margin="80,4.2,0,0" Grid.Row="4" VerticalAlignment="Top" Width="67" Height="48" Grid.Column="1" Command="{Binding RemovePhoto}"/>
+        <Button Content="Удалить фото" HorizontalAlignment="Left" Margin="10,4.2,0,0" Grid.Row="4" VerticalAlignment="Top" Width="137" Height="48" Grid.Column="1" Command="{Binding RemovePhoto}"/>
         <Image x:Name="PersonPhoto1" Stretch="Uniform" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{Binding CurPhoto}" Margin="95,139.2,0,0" Grid.ColumnSpan="2" Grid.Row="4"/>
-        <Button Content="Добавить&#xD;&#xA;    фото" HorizontalAlignment="Left" Margin="5,4.2,0,0" Grid.Row="4" VerticalAlignment="Top" Width="67" Height="48" Grid.Column="1" Command="{Binding ChoosePhoto}"/>
+        <Button Content="Добавить фото" HorizontalAlignment="Left" Margin="10,4.2,0,0" Grid.Row="4" VerticalAlignment="Top" Width="140" Height="48" Command="{Binding ChoosePhoto}"/>
 
     </Grid>
 </Window>

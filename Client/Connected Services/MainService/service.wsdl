@@ -5,29 +5,6 @@
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
         </msb:BinaryEncoding>
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256>
-                </sp:Basic256>
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict>
-                </sp:Strict>
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing>
         </wsaw:UsingAddressing>
       </wsp:All>
@@ -38,29 +15,6 @@
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
         </msb:BinaryEncoding>
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256>
-                </sp:Basic256>
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict>
-                </sp:Strict>
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing>
         </wsaw:UsingAddressing>
       </wsp:All>
@@ -121,12 +75,6 @@
   </wsdl:message>
   <wsdl:message name="IAdminService_EditUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_getAllUsers_InputMessage">
-    <wsdl:part name="parameters" element="tns:getAllUsers" />
-  </wsdl:message>
-  <wsdl:message name="IAdminService_getAllUsers_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getAllUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_SearchUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchUsers" />
@@ -422,10 +370,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditUser" message="tns:IAdminService_EditUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditUserResponse" message="tns:IAdminService_EditUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="getAllUsers">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/getAllUsers" message="tns:IAdminService_getAllUsers_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/getAllUsersResponse" message="tns:IAdminService_getAllUsers_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="SearchUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/SearchUsers" message="tns:IAdminService_SearchUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/SearchUsersResponse" message="tns:IAdminService_SearchUsers_OutputMessage" />
@@ -673,15 +617,6 @@
     </wsdl:operation>
     <wsdl:operation name="EditUser">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/EditUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAllUsers">
-      <soap12:operation soapAction="http://tempuri.org/IAdminService/getAllUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1093,18 +1028,12 @@
       <soap12:address location="net.tcp://localhost:9007/AdminService" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:9007/AdminService</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Spn>host/DESKTOP-4KEPV7Q</Spn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="UserServiceTcpEndpointUser" binding="tns:UserServiceTcpEndpointUser">
       <soap12:address location="net.tcp://localhost:9007/UserService" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:9007/UserService</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Spn>host/DESKTOP-4KEPV7Q</Spn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

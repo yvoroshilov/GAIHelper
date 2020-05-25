@@ -64,5 +64,11 @@ namespace Client.Util {
             File.WriteAllLines(actualPath, dict.Select(val => $"{val.Key}={val.Value as string}"));
             AssignValues(dict);
         }
+
+        public static void CreateConfigFile() {
+            string dirPath = DEFAULT_PATH.Remove(DEFAULT_PATH.LastIndexOf('\\'));
+            Directory.CreateDirectory(dirPath);
+            File.Create(DEFAULT_PATH).Close();
+        }
     }
 }

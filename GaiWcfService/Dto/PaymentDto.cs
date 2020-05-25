@@ -9,15 +9,15 @@ namespace GaiWcfService.Dto {
     [DataContract]
     public class PaymentDto {
         [DataMember]
-        public int id { get; set; }
+        public int id;
 
         [DataMember] 
-        public int personId { get; set; }
+        public int personId;
 
         [DataMember]
-        public double amount { get; set; }
+        public double amount;
 
         [DataMember]
-        public DateTime date { get; set; }
+        public DateTime date;
     }
 }

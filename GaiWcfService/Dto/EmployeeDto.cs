@@ -9,21 +9,21 @@ namespace GaiWcfService.Dto {
     [DataContract]
     public class EmployeeDto {
         [DataMember] 
-        public int certificateId { get; set; }
+        public int certificateId;
 
         [DataMember] 
-        public string name { get; set; }
+        public string name;
 
         [DataMember] 
-        public string surname { get; set; }
+        public string surname;
 
         [DataMember] 
-        public string patronymic { get; set; }
+        public string patronymic;
 
         [DataMember]
-        public DateTime hireDate { get; set; }
+        public DateTime hireDate;
 
         [DataMember] 
-        public string userLogin { get; set; }
+        public string userLogin;
     }
 }

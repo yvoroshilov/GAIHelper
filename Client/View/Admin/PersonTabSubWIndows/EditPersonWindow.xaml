@@ -74,7 +74,7 @@
         </StackPanel>
         <StackPanel Margin="5,1.2,9.8,3" Orientation="Vertical" Grid.Column="1" Grid.Row="3">
             <Label VerticalAlignment="Top" Height="26" Content="Задолженность, р." HorizontalAlignment="Left" Width="142"/>
-            <TextBox x:Name="ActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0" MaxLength="10">
+            <TextBox x:Name="ActualPenaltyField" Padding="3" Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,0,0.4,0" MaxLength="10" IsEnabled="False">
                 <Binding Path="ActualPenalty" UpdateSourceTrigger="PropertyChanged" TargetNullValue="" Converter="{StaticResource MoneyConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>

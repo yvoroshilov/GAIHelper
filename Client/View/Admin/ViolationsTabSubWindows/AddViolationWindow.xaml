@@ -85,7 +85,7 @@
                 <Label x:Name="NameLabel" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top" Width="135" Height="26" Content="{Binding CurrentPerson.name, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label x:Name="SurnameLabel" HorizontalAlignment="Left" Margin="208,103,0,0" VerticalAlignment="Top" Width="110" Height="26" Content="{Binding CurrentPerson.surname, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label x:Name="PatronymicLabel" HorizontalAlignment="Left" Margin="209,134,0,0" VerticalAlignment="Top" Width="109" Height="26" Content="{Binding CurrentPerson.patronymic, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="243,165,0,0" VerticalAlignment="Top" Width="75" Height="26" Content="{Binding CurrentPerson.nirthday, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="BirthdayLabel" HorizontalAlignment="Left" Margin="243,165,0,0" VerticalAlignment="Top" Width="75" Height="26" Content="{Binding CurrentPerson.birthday, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateConverter}}"/>
                 <Button x:Name="CheckPersonBtn" Content="Проверить" Margin="10,21,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="139" Command="{Binding CheckPersonCommand}" Click="CheckPersonBtn_Click"/>
                 <Button x:Name="ShowPersonsViolationsBtn" Content="Нарушения" HorizontalAlignment="Left" Margin="169,21,0,0" VerticalAlignment="Top" Width="139" Height="24" Click="ShowPersonsViolationsBtn_Click" IsEnabled="False" />
             </Grid>

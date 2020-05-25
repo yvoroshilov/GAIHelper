@@ -121,18 +121,6 @@ namespace Client.ViewModel {
             }
         }
 
-        private double? actualPenalty;
-        [InputProperty(true)]
-        public double? ActualPenalty {
-            get {
-                return actualPenalty;
-            }
-            set {
-                actualPenalty = value;
-                OnPropertyChanged();
-            }
-        }
-
         private string email;
         [InputProperty]
         public string Email {
@@ -181,7 +169,7 @@ namespace Client.ViewModel {
                         person.surname = Surname;
                         person.name = Name;
                         person.patronymic = Patronymic;
-                        person.actualPenalty = ActualPenalty.Value;
+                        person.actualPenalty = 0;
                         person.email = Email;
                         person.photo = Photo;
 
@@ -295,16 +283,6 @@ namespace Client.ViewModel {
                         break;
                     case nameof(PaidPenalty):
                         if (PaidPenalty < 0) {
-                            error = "Штраф не может быть отрицательным";
-                            break;
-                        }
-                        if (PaidPenalty > ActualPenalty) {
-                            error = "Выплаченный штраф не может быть больше текущего";
-                            break;
-                        }
-                        break;
-                    case nameof(ActualPenalty):
-                        if (ActualPenalty < 0) {
                             error = "Штраф не может быть отрицательным";
                             break;
                         }

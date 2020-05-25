@@ -34,7 +34,7 @@ namespace GaiWcfService.Util {
         }
 
         public void Write(string s) {
-            sw.Write(DateTime.Now + " | " + s + '\n');
+            sw.Write(DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + " | " + s + '\n');
         }
 
         public void Dispose() {

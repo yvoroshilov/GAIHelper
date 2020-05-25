@@ -24,13 +24,13 @@ namespace Client {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
+            InitializeComponent();
             DataContext = new LoginViewModel(SettingsBtn);
             dataContext = (DataContext as LoginViewModel);
             dataContext.ClosingRequest += (s, a) => {
                 isClosedApp = false;
                 this.Close();
             };
-            InitializeComponent();
         }
 
         private readonly LoginViewModel dataContext;

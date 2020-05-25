@@ -544,7 +544,7 @@
                             </MultiBinding>
                         </Button.CommandParameter>
                     </Button>
-                    <Button x:Name="DownloadFileBtn" Content="⭳ Загрузить файл" Margin="10.2,267,10.4,177.6" FontSize="17" Padding="0" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Command="{Binding DownloadFile}" Grid.Column="4" Grid.ColumnSpan="2"/>
+                    <Button x:Name="DownloadFileBtn" Content="⭳ Загрузить файл" Margin="10.2,267,10.4,0" FontSize="17" Padding="0" CommandParameter="{Binding SelectedItems, ElementName=ViolationsTable}" Command="{Binding DownloadFile}" Grid.Column="4" Grid.ColumnSpan="2" Height="37" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="PersonsTab" Header="Профили" Padding="32,20">
@@ -691,7 +691,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10,0.4,25,4.8">
                         <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="№ Паспорта" IsEnabled="False"/>
-                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <TextBox Height="24" VerticalAlignment="Top" Margin="0,0,-0.2,0" Padding="0,3,0,0" IsEnabled="False" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" MaxLength="9">
                             <Binding Path="PassportIdSearch" UpdateSourceTrigger="PropertyChanged" TargetNullValue="">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>

@@ -1095,12 +1095,6 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/EditUser", ReplyAction="http://tempuri.org/IAdminService/EditUserResponse")]
         System.Threading.Tasks.Task EditUserAsync(Client.MainService.UserDto user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
-        Client.MainService.UserDto[] getAllUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/getAllUsers", ReplyAction="http://tempuri.org/IAdminService/getAllUsersResponse")]
-        System.Threading.Tasks.Task<Client.MainService.UserDto[]> getAllUsersAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/SearchUsers", ReplyAction="http://tempuri.org/IAdminService/SearchUsersResponse")]
         Client.MainService.UserDto[] SearchUsers(Client.MainService.UserDto searchedUser);
         
@@ -1397,14 +1391,6 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task EditUserAsync(Client.MainService.UserDto user) {
             return base.Channel.EditUserAsync(user);
-        }
-        
-        public Client.MainService.UserDto[] getAllUsers() {
-            return base.Channel.getAllUsers();
-        }
-        
-        public System.Threading.Tasks.Task<Client.MainService.UserDto[]> getAllUsersAsync() {
-            return base.Channel.getAllUsersAsync();
         }
         
         public Client.MainService.UserDto[] SearchUsers(Client.MainService.UserDto searchedUser) {

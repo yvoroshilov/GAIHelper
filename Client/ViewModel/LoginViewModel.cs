@@ -5,6 +5,7 @@ using Client.View.Admin;
 using Client.View.User;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -48,11 +49,24 @@ namespace Client.ViewModel {
             try {
                 Configuration.LoadConfiguration();
             } catch {
-                MessageBox.Show("Невозможно получить доступ к конфигурационному файлу. Будут использованы значения по умолчанию", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
-                settingsBtn.IsEnabled = false;
+                ClientInstanceProvider.SetDefaultAddresses();
+
+                try {
+                    Configuration.CreateConfigFile();
+                } catch {
+                    MessageBox.Show("Невозможно получить доступ к системному разделу для конфигурации программы",
+                        "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                Configuration.UpdateValue("AdminServiceEndpointAddress", ClientInstanceProvider.AdminServiceEndpointAddress);
+                Configuration.UpdateValue("UserServiceEndpointAddress", ClientInstanceProvider.UserServiceEndpointAddress);
+
+                MessageBox.Show("Невозможно получить доступ к конфигурационному файлу. Будут использованы значения по умолчанию\n" +
+                    "AdminServiceEndpoint: " + ClientInstanceProvider.AdminServiceEndpointAddress + "\n" +
+                    "UserServiceEndpoint: " + ClientInstanceProvider.UserServiceEndpointAddress, 
+                    "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
 
         private RelayCommand loginCommand;
         public RelayCommand LoginCommand {

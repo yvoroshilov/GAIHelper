@@ -30,10 +30,6 @@ namespace GaiWcfService.Repository.implementation {
             return dbEntities.Users.Find(login);
         }
 
-        public HashSet<User> GetAll() {
-            return dbEntities.Users.ToHashSet();
-        }
-
         public List<User> SearchUser(User searchedUser) {
             return dbEntities.Users.Where(val =>
                 (searchedUser.login == default || val.login.Equals(searchedUser.login)) &&

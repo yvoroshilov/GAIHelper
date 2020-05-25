@@ -13,9 +13,10 @@ namespace GaiWcfService.Util {
 
         public static void CalculateViolationsPaid(int personId) {
             Person person = personRepository.GetPerson(personId);
-            double overallCost = person.Violations.Aggregate(0.0, (a, b) => a + b.penalty);
+            List<Violation> violations = violationRepository.GetAllViolations(person.id);
+            double overallCost = violations.Aggregate(0.0, (a, b) => a + b.penalty);
             double paidPenalty = (double)person.paid_penalty;
-            foreach (Violation item in person.Violations) {
+            foreach (Violation item in violations) {
                 if (SafeLessThan(paidPenalty - item.penalty, 0)) {
                     if (item.paid) {
                         item.paid = false;

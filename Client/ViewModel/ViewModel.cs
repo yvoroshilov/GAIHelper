@@ -41,7 +41,7 @@ namespace Client.ViewModel {
                     InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);
                     
                     if ((attr.isRequred() && (prop.GetValue(this)?.Equals(Utility.GetDefault(prop.PropertyType)) ?? true)) &&
-                     (mark == null || mark.Equals(attr.Mark))) {
+                        (mark == null || mark.Equals(attr.Mark))) {
                         return false;
                     }
                 }
@@ -55,7 +55,7 @@ namespace Client.ViewModel {
                     InputProperty attr = (InputProperty)prop.GetCustomAttribute(inputPropertyType);
                     
                     if ((errorInfo[prop.Name]) != "" &&
-                     (mark == null || mark.Equals(attr.Mark))) {
+                        (mark == null || mark.Equals(attr.Mark))) {
                         return false;
                     }
                 }

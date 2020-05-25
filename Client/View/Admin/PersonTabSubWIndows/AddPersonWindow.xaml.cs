@@ -26,22 +26,11 @@ namespace Client.View.Admin.PersonTabSubWIndows {
             InitializeComponent();
             DataContext = new AddPersonViewModel(col);
             dataContext = DataContext as AddPersonViewModel;
-            dataContext.PropertyChanged += OnPenaltyChanged;
             this.parent = parent;
             
         }
 
         private AddPersonViewModel dataContext;
-
-        private void OnPenaltyChanged(object sender, PropertyChangedEventArgs e) {
-            if (e.PropertyName == nameof(dataContext.PaidPenalty) || e.PropertyName == nameof(dataContext.ActualPenalty)) {
-                if (new DoubleValidationRule().Validate(dataContext.PaidPenalty, null).IsValid &&
-                    new DoubleValidationRule().Validate(dataContext.ActualPenalty, null).IsValid) {
-                    PaidPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-                    ActualPenaltyField.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-                }
-            }
-        }
 
         private Window parent;
 
