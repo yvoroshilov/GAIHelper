@@ -18,6 +18,7 @@ using System.ServiceModel;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows.Media.Imaging;
+using Client.Resources.Converter;
 
 namespace Client.ViewModel {
     public class EditViolationWindowViewModel : ViewModel, IDataErrorInfo {
@@ -108,7 +109,7 @@ namespace Client.ViewModel {
                 return penalty;
             }
             set {
-                penalty = value;
+                penalty = (double)new MoneyConverter().Convert(value, null, null, null);
                 OnPropertyChanged();
             }
         }

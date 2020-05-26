@@ -80,8 +80,10 @@ namespace Client.ViewModel {
                 return paidPenalty;
             }
             set {
-                paidPenalty = value;
-                OnPropertyChanged();
+                if (value != paidPenalty) {
+                    paidPenalty = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

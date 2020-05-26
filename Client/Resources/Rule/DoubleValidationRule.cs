@@ -12,9 +12,12 @@ namespace Client.Resources.Rule {
     public class DoubleValidationRule : ValidationRule {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo) {
             string val = value?.ToString();
-                
             if (val == null || (Regex.IsMatch(val, @"^-?\d+\.?\d*$") && !val.EndsWith("."))) {
-                return new ValidationResult(true, null);
+                if (!val.EndsWith("0")) {
+                    return new ValidationResult(true, null);
+                } else {
+                    return new ValidationResult(false, $"Удалите последний ноль либо введите не ноль");
+                }
             } else {
                 return new ValidationResult(false, $"Значение '{(string)value}' не подходит для этого поля");
             }
