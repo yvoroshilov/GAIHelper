@@ -99,21 +99,6 @@ namespace Client.View.Admin {
                         ViolationTypesTabGrid.DataContext = violationTypesViewModel;
                     }
                     break;
-                case "ExitTab":
-                    MessageBoxResult res = MessageBox.Show("Вы действительно хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (res.Equals(MessageBoxResult.No)) {
-                        MainTabControl.SelectedItem = EmployeesTab;
-                        return;
-                    }
-
-                    MainWindow main = new MainWindow();
-                    AdminServiceClient client = ClientInstanceProvider.GetAdminServiceClient();
-                    client.Unsubscribe(curLogin);
-                    main.Show();
-                    closedByExit = true;
-                    this.Close();
-                    break;
-
             }
         }
 
@@ -331,6 +316,20 @@ namespace Client.View.Admin {
                 })
             };
             notifier?.ShowWarning("Просрочены сроки по уплате штрафов. Количество людей: " + debtors.Count, opts);
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e) {
+            MessageBoxResult res = MessageBox.Show("Вы действительно хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res.Equals(MessageBoxResult.No)) {
+                return;
+            }
+
+            MainWindow main = new MainWindow();
+            AdminServiceClient client = ClientInstanceProvider.GetAdminServiceClient();
+            client.Unsubscribe(curLogin);
+            main.Show();
+            closedByExit = true;
+            this.Close();
         }
     }
 

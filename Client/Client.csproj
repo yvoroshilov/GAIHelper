@@ -363,17 +363,17 @@
     <None Include="Connected Services\MainService\Client.MainService.ViolationTypeDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\MainService\GaiWcfService.Dto.xsd">
+    <None Include="Connected Services\MainService\GaiWcfService.Dto1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainService\GaiWcfService.Service.xsd">
+    <None Include="Connected Services\MainService\GaiWcfService.Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainService\service.wsdl" />
-    <None Include="Connected Services\MainService\service.xsd">
+    <None Include="Connected Services\MainService\service1.wsdl" />
+    <None Include="Connected Services\MainService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainService\service1.xsd">
+    <None Include="Connected Services\MainService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

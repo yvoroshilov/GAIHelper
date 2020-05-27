@@ -1287,6 +1287,12 @@ namespace Client.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetLastNPayments", ReplyAction="http://tempuri.org/IAdminService/GetLastNPaymentsResponse")]
         System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetLastNPaymentsAsync(int n);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPayment", ReplyAction="http://tempuri.org/IAdminService/AddPaymentResponse")]
+        void AddPayment(Client.MainService.PaymentDto payment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddPayment", ReplyAction="http://tempuri.org/IAdminService/AddPaymentResponse")]
+        System.Threading.Tasks.Task AddPaymentAsync(Client.MainService.PaymentDto payment);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllRoles", ReplyAction="http://tempuri.org/IAdminService/GetAllRolesResponse")]
         Client.MainService.RoleDto[] GetAllRoles();
         
@@ -1647,6 +1653,14 @@ namespace Client.MainService {
         
         public System.Threading.Tasks.Task<Client.MainService.PaymentDto[]> GetLastNPaymentsAsync(int n) {
             return base.Channel.GetLastNPaymentsAsync(n);
+        }
+        
+        public void AddPayment(Client.MainService.PaymentDto payment) {
+            base.Channel.AddPayment(payment);
+        }
+        
+        public System.Threading.Tasks.Task AddPaymentAsync(Client.MainService.PaymentDto payment) {
+            return base.Channel.AddPaymentAsync(payment);
         }
         
         public Client.MainService.RoleDto[] GetAllRoles() {

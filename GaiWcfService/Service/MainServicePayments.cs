@@ -13,6 +13,10 @@ namespace GaiWcfService.Service {
 
         private IPaymentRepository paymentRepository = new PaymentRepository();
 
+        public void AddPayment(PaymentDto payment) {
+            paymentRepository.AddPayment(Mapper.mapper.Map<Payment>(payment));
+        }
+
         public List<PaymentDto> GetPaymentsByPersonId(int personId) {
             return paymentRepository.GetPaymentsByPersonId(personId)
                 .Select(val => Mapper.mapper.Map<PaymentDto>(val))

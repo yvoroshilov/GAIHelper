@@ -268,6 +268,12 @@
   <wsdl:message name="IAdminService_GetLastNPayments_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLastNPaymentsResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_AddPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPayment" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_AddPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPaymentResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_GetAllRoles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllRoles" />
   </wsdl:message>
@@ -497,6 +503,10 @@
     <wsdl:operation name="GetLastNPayments">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetLastNPayments" message="tns:IAdminService_GetLastNPayments_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/GetLastNPaymentsResponse" message="tns:IAdminService_GetLastNPayments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddPayment" message="tns:IAdminService_AddPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddPaymentResponse" message="tns:IAdminService_AddPayment_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetAllRoles" message="tns:IAdminService_GetAllRoles_InputMessage" />
@@ -912,6 +922,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddPayment">
+      <soap12:operation soapAction="http://tempuri.org/IAdminService/AddPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllRoles">
       <soap12:operation soapAction="http://tempuri.org/IAdminService/GetAllRoles" style="document" />
       <wsdl:input>
@@ -1025,15 +1044,15 @@
   </wsdl:binding>
   <wsdl:service name="MainService">
     <wsdl:port name="AdminServiceTcpEndpointAdmin" binding="tns:AdminServiceTcpEndpointAdmin">
-      <soap12:address location="net.tcp://localhost:9007/AdminService" />
+      <soap12:address location="net.tcp://192.168.1.175:9007/AdminService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:9007/AdminService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.1.175:9007/AdminService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="UserServiceTcpEndpointUser" binding="tns:UserServiceTcpEndpointUser">
-      <soap12:address location="net.tcp://localhost:9007/UserService" />
+      <soap12:address location="net.tcp://192.168.1.175:9007/UserService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:9007/UserService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.1.175:9007/UserService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

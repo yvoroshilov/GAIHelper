@@ -146,6 +146,9 @@ namespace GaiWcfService.Service {
 
         [OperationContract]
         List<PaymentDto> GetLastNPayments(int n);
+    
+        [OperationContract]
+        void AddPayment(PaymentDto payment);
         #endregion
 
         #region Roles

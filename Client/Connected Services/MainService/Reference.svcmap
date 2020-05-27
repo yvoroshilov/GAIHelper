@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:9007/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://192.168.1.175:9007/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="cebecce3-6110-46d4-a188-c3e0f8e3d694" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d29e2320-3ba0-453e-b9bb-4dbe2f807cb8" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9fa26db6-dec7-4b61-82e8-c441421397b0" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="GaiWcfService.Service.xsd" MetadataType="Schema" ID="2593b26a-8f29-4a8c-bc5f-26e60b77623d" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
-    <MetadataFile FileName="GaiWcfService.Dto.xsd" MetadataType="Schema" ID="621f9b2d-8192-4966-bec1-f702372de67e" SourceId="1" SourceUrl="net.tcp://localhost:9007/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="b4f19b6a-66e2-40e8-8268-d63184f60cf8" SourceId="1" SourceUrl="net.tcp://192.168.1.175:9007/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="acdab301-729e-4822-ac1b-b01f3d9fb1fa" SourceId="1" SourceUrl="net.tcp://192.168.1.175:9007/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="af9fed71-d3e6-4386-a81f-b47ef04801b9" SourceId="1" SourceUrl="net.tcp://192.168.1.175:9007/mex" />
+    <MetadataFile FileName="GaiWcfService.Service1.xsd" MetadataType="Schema" ID="1daba55a-b8f7-473e-9b4c-74e924b2d69d" SourceId="1" SourceUrl="net.tcp://192.168.1.175:9007/mex" />
+    <MetadataFile FileName="GaiWcfService.Dto1.xsd" MetadataType="Schema" ID="8de5e774-c307-43d6-8b26-a2dba97fd771" SourceId="1" SourceUrl="net.tcp://192.168.1.175:9007/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

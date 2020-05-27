@@ -244,6 +244,7 @@ namespace Client.ViewModel {
         }
 
         private bool findActualPenaltyCheckbox;
+        [InputProperty]
         public bool FindActualPenaltyCheckbox {
             get {
                 return findActualPenaltyCheckbox;
@@ -454,41 +455,41 @@ namespace Client.ViewModel {
                         break;
                     case nameof(MinPaidPenaltySearch):
                         if (MinPaidPenaltySearch < 0) {
-                            error = "Штраф не может быть отрицательным";
+                            error = "Выплаченная сумма не может быть отрицательной";
                             break;
                         }
                         if (MinPaidPenaltySearch > MaxPaidPenaltySearch) {
-                            error = "Минимальный выплаченный штраф не может быть больше текущего";
+                            error = "Минимальный выплаченный штраф не может быть больше максимального текущего";
                             break;
                         }
                         break;
                     case nameof(MaxPaidPenaltySearch):
                         if (MaxPaidPenaltySearch < 0) {
-                            error = "Штраф не может быть отрицательным";
+                            error = "Выплаченная сумма не может быть отрицательной";
                             break;
                         }
                         if (MinPaidPenaltySearch > MaxPaidPenaltySearch) {
-                            error = "Минимальный выплаченный штраф не может быть больше текущего";
+                            error = "Минимальный выплаченный штраф не может быть больше максимального текущего";
                             break;
                         }
                         break;
                     case nameof(MinActualPenaltySearch):
                         if (MinActualPenaltySearch < 0) {
-                            error = "Штраф не может быть отрицательным";
+                            error = "Задолженность не может быть отрицательной";
                             break;
                         }
                         if (MinActualPenaltySearch > MaxPaidPenaltySearch) {
-                            error = "Минимальный текущий штраф не может быть больше текущего";
+                            error = "Минимальный текущий штраф не может быть больше максимального текущего";
                             break;
                         }
                         break;
                     case nameof(MaxActualPenaltySearch):
                         if (MaxActualPenaltySearch < 0) {
-                            error = "Штраф не может быть отрицательным";
+                            error = "Задолженность не может быть отрицательной";
                             break;
                         }
                         if (MaxActualPenaltySearch > MaxActualPenaltySearch) {
-                            error = "Минимальный текущий штраф не может быть больше текущего";
+                            error = "Минимальный текущий штраф не может быть больше максимального текущего";
                             break;
                         }
                         break;

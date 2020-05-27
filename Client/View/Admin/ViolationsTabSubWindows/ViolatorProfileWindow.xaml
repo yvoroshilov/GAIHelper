@@ -36,10 +36,9 @@
         <Label Content="№ ВУ:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="43" Height="26" Margin="27,164,0,0"/>
         <Label x:Name="DriverLicenseLabel" Content="{Binding driverLicense, UpdateSourceTrigger=PropertyChanged}" Margin="65,164,0,0" HorizontalAlignment="Left" Width="102" Height="26" VerticalAlignment="Top"/>
         <Label Content="№ паспорта:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="26" Margin="185,164,0,0" Grid.ColumnSpan="2"/>
-        <Label x:Name="PassportIdLabel" Content="{Binding passportId, UpdateSourceTrigger=PropertyChanged}" Margin="66.6,164,0,0" HorizontalAlignment="Left" Width="86" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="PassportIdLabel" Content="{Binding passportId, UpdateSourceTrigger=PropertyChanged}" Margin="61.6,164,0,0" HorizontalAlignment="Left" Width="86" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
         <Label Content="Эл. почта:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Height="26" Margin="185,125,0,0" Grid.ColumnSpan="2"/>
         <Label x:Name="EmailLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="26" Content="{Binding email, UpdateSourceTrigger=PropertyChanged}" Margin="45.6,125,0,0" Grid.Column="1"/>
-        <Label x:Name="PassportIdLabel_Copy" Content="{Binding passportId, UpdateSourceTrigger=PropertyChanged}" Margin="61.6,164,0,0" HorizontalAlignment="Left" Width="86" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
 
     </Grid>
 </Window>

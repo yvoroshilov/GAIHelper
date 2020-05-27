@@ -924,8 +924,7 @@
                     <Rectangle Stroke="#FF828790" Fill="{x:Null}" StrokeThickness="2" Margin="10,10,10.4,9.6"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="ExitTab" Height="54" Header="Выход" Background="#FF868686">
-            </TabItem>
         </TabControl>
+        <Button x:Name="ExitBtn" Content="Выход" Margin="10,0,0,10.2" Background="#FF868686" Click="ExitBtn_Click" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="140"/>
     </Grid>
 </Window>
