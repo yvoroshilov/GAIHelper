@@ -9,7 +9,7 @@
         xmlns:rule="clr-namespace:Client.Resources.Rule"
         x:Class="Client.View.Admin.AdminDashboard"
         mc:Ignorable="d"
-        Title="AdminDashboard" Height="656.2" Width="1138.2" MinHeight="676.4" MinWidth="918" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
+        Title="Панель администратора" Height="656.2" Width="1138.2" MinHeight="676.4" MinWidth="918" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

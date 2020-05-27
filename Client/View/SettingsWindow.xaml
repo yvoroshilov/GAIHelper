@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="316.4" Width="328.2" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Настройки" Height="316.4" Width="328.2" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-0.4,1.2" Background="{StaticResource BackgroundPrimary}">
         <StackPanel Margin="10,86,10,137" Orientation="Vertical" x:Name="NameStackPanel">
             <Label Margin="0,0,0.2,0" VerticalAlignment="Top" Height="26" Content="UserServiceEndpoint"/>

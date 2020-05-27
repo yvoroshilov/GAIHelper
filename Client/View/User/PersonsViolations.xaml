@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View.User"
         mc:Ignorable="d"
-        Title="PersonsViolations" Height="450" Width="608" ResizeMode="NoResize">
+        Title="Нарушения" Height="450" Width="608" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

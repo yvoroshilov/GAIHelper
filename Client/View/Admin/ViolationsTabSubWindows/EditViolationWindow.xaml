@@ -8,7 +8,7 @@
         xmlns:res="clr-namespace:Client.Resources.Rule"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.View.Admin.ViolationsTabSubWindows.EditViolationWindow"
         mc:Ignorable="d"
-        Title="Dashboard" Height="716.4" Width="403.2" MinHeight="750" MinWidth="403" Loaded="Window_Loaded" >
+        Title="Редактировать нарушение" Height="716.4" Width="403.2" MinHeight="750" MinWidth="403" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -77,7 +77,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="PersonPhoto" Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{StaticResource SamplePersonImage}"/>
+                <Image x:Name="PersonPhoto" Margin="10,65,0,0" Stretch="Fill" Height="130" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Source="{Binding CurPhoto}"/>
                 <Label Content="Имя:" HorizontalAlignment="Left" Margin="150,72,0,0" VerticalAlignment="Top" Width="38" Height="26"/>
                 <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="150,103,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
                 <Label Content="Отчество:" HorizontalAlignment="Left" Margin="150,134,0,0" VerticalAlignment="Top" Height="26" Width="64"/>

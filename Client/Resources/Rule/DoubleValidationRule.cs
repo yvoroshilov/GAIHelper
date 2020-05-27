@@ -13,7 +13,7 @@ namespace Client.Resources.Rule {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo) {
             string val = value?.ToString();
             if (val == null || (Regex.IsMatch(val, @"^-?\d+\.?\d*$") && !val.EndsWith("."))) {
-                if (!val.EndsWith("0")) {
+                if (val == null || !val.EndsWith("0") || val == "0") {
                     return new ValidationResult(true, null);
                 } else {
                     return new ValidationResult(false, $"Удалите последний ноль либо введите не ноль");

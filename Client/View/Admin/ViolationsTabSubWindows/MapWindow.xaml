@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client.View.Admin.ViolationsTabSubWindows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.View.Admin.ViolationsTabSubWindows.MapWindow"
         mc:Ignorable="d"
-        Title="MapWindow" Height="511.4" Width="883.1" ResizeMode="NoResize">
+        Title="Карта" Height="511.4" Width="883.1" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

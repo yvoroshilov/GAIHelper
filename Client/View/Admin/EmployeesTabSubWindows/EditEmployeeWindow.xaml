@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View.Admin.EmployeesTabSubWindows"
         mc:Ignorable="d"
-        Title="Редакирование сотрудника" Height="501.4" Width="243.2" ResizeMode="NoResize">
+        Title="Редактирование сотрудника" Height="501.4" Width="243.2" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

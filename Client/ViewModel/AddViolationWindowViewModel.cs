@@ -293,7 +293,11 @@ namespace Client.ViewModel {
                             CurrentPerson.name = personDto.name;
                             CurrentPerson.surname = personDto.surname;
                             CurrentPerson.patronymic = personDto.patronymic;
-                            CurPhoto = Utility.LoadImage(CurrentPerson.photo);
+                            if (personDto.photo == null) {
+                                CurPhoto = Utility.NoPhotoImg;
+                            } else {
+                                CurPhoto = Utility.LoadImage(personDto.photo);
+                            }
                             CurrentPersonsViolations.AddRange(userClient.GetAllViolations(CurrentPerson.id));
                         }
                     }, obj => {
@@ -356,6 +360,7 @@ namespace Client.ViewModel {
                 .Select(val => Mapper.mapper.Map<ViolationType>(val))
                 .ToList());
             currentPerson = new PersonDto();
+            CurPhoto = Utility.NoPhotoImg;
         }
 
         public void ResetPersonProfile() {

@@ -40,7 +40,7 @@ namespace GaiWcfService.Repository.implementation {
 
         public void DeleteUser(string login) {
             GAIDBEntities entities = dbEntities;
-            User user = dbEntities.Users.Find(login);
+            User user = entities.Users.Find(login);
             entities.Users.Remove(user);
             entities.SaveChanges();
         }
